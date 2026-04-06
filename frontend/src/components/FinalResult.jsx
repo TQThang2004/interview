@@ -1,6 +1,5 @@
 import React from 'react';
 import { CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
-import { TOPICS } from './SetupForm';
 
 export default function FinalResult({ history, topic, total, onRestart }) {
   const avgScore = history.length ? (history.reduce((a, b) => a + b, 0) / history.length).toFixed(1) : 0;
@@ -14,7 +13,7 @@ export default function FinalResult({ history, topic, total, onRestart }) {
         )}
         
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Hoàn Thành!</h1>
-        <p className="text-gray-600 mb-6">Bạn đã qua {total} câu chủ đề {TOPICS.find(t=>t.id===topic)?.label}.</p>
+        <p className="text-gray-600 mb-6">Bạn đã qua {total} câu thuộc chủ đề "{topic}".</p>
         
         <div className="bg-blue-50 py-6 rounded-xl mb-8 border border-blue-100">
           <div className="text-sm font-semibold text-blue-800 uppercase tracking-widest mb-1">Điểm Trung Bình</div>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { api } from './services/api';
 import { useAudioRecorder } from './hooks/useAudioRecorder';
 
-import SetupForm, { TOPICS, LEVELS } from './components/SetupForm';
+import SetupForm, { LEVELS } from './components/SetupForm';
 import LoadingScreen from './components/LoadingScreen';
 import InterviewPanel from './components/InterviewPanel';
 import EvaluationResult from './components/EvaluationResult';
@@ -10,7 +10,8 @@ import FinalResult from './components/FinalResult';
 
 export default function App() {
   const [appState, setAppState] = useState("SETUP"); 
-  const [topic, setTopic] = useState(TOPICS[0].id);
+  const [cvFile, setCvFile] = useState(null);
+  const [jd, setJd] = useState("");
   const [level, setLevel] = useState(LEVELS[1]);
   const [language, setLanguage] = useState("vi");
   
@@ -35,7 +36,7 @@ export default function App() {
   const startInterview = async () => {
     setAppState("LOADING_QUESTIONS");
     try {
-      const data = await api.startInterview(topic, level, language);
+      const data = await api.startInterview(cvFile, jd, level, language);
       if (data.status === "success" && data.questions.length > 0) {
         setQuestions(data.questions);
         setCurrentIdx(0);
@@ -94,9 +95,9 @@ export default function App() {
     setAppState("SETUP");
   };
 
-  if (appState === "SETUP") return <SetupForm {...{topic, setTopic, level, setLevel, language, setLanguage, onStart: startInterview}} />;
-  if (appState === "LOADING_QUESTIONS" || appState === "EVALUATING") return <LoadingScreen message={appState === "LOADING_QUESTIONS" ? "Đang xào nấu câu hỏi..." : "Đang chấm điểm..."} />;
-  if (appState === "FINISHED") return <FinalResult history={history} topic={topic} total={questions.length} onRestart={restart} />;
+  if (appState === "SETUP") return <SetupForm {...{cvFile, setCvFile, jd, setJd, level, setLevel, language, setLanguage, onStart: startInterview}} />;
+  if (appState === "LOADING_QUESTIONS" || appState === "EVALUATING") return <LoadingScreen message={appState === "LOADING_QUESTIONS" ? "Đang xào nấu câu hỏi từ CV/JD..." : "Đang chấm điểm..."} />;
+  if (appState === "FINISHED") return <FinalResult history={history} topic={jd ? "Phỏng vấn Tùy chỉnh" : "Phỏng vấn RAG"} total={questions.length} onRestart={restart} />;
   
   if (appState === "INTERVIEWING") {
     return <InterviewPanel 

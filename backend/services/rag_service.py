@@ -59,7 +59,7 @@ def extract_reference_answer(document: str) -> str:
             return line.split(":", 1)[1].strip()
     return ""
 
-def retrieve_rag_questions(topic: str, level: str, language: str = "vi") -> list[dict]:
+def retrieve_rag_questions(topic: str, level: str, language: str = "vi", num_q: int = NUM_QUESTIONS) -> list[dict]:
     collection = get_collection()
     # Nhieu lan embedding se cho ra cung 1 he so, nen minh thiet lap chi tra ve topic
     query_text = f"Interview questions about {topic.replace(' interview question', '')}"
@@ -69,12 +69,15 @@ def retrieve_rag_questions(topic: str, level: str, language: str = "vi") -> list
         task_type="retrieval_query"
     )["embedding"]
 
-    results = collection.query(
-        query_embeddings=[query_emb],
-        n_results=50,
-        where={"instruction": topic},
-        include=["documents", "metadatas", "distances"]
-    )
+    try:
+        results = collection.query(
+            query_embeddings=[query_emb],
+            n_results=50,
+            include=["documents", "metadatas", "distances"]
+        )
+    except Exception as e:
+        print(f"RAG Query error: {e}")
+        return []
 
     valid_candidates = []
     fallback_candidates = []
@@ -88,9 +91,9 @@ def retrieve_rag_questions(topic: str, level: str, language: str = "vi") -> list
     random.shuffle(valid_candidates)
     random.shuffle(fallback_candidates)
 
-    selected = valid_candidates[:NUM_QUESTIONS]
-    if len(selected) < NUM_QUESTIONS:
-        needed = NUM_QUESTIONS - len(selected)
+    selected = valid_candidates[:num_q]
+    if len(selected) < num_q:
+        needed = num_q - len(selected)
         selected.extend(fallback_candidates[:needed])
 
     formatted_questions = []
@@ -118,6 +121,66 @@ def retrieve_rag_questions(topic: str, level: str, language: str = "vi") -> list
             return formatted_questions
 
     return formatted_questions
+
+def generate_questions_from_cv_jd(cv_text: str, jd_text: str, level: str, language: str = "vi") -> list[dict]:
+    llm = get_llm()
+    
+    if not cv_text.strip() and not jd_text.strip():
+        return retrieve_rag_questions("software development core knowledge interview questions", level, language, num_q=5)
+        
+    prompt_extract = f"""
+Trích xuất tóm tắt ngắn gọn các kỹ năng công nghệ chính, framework hoặc domain mà ứng viên sử dụng (ví dụ: 'ReactJS, MongoDB, Fullstack', 'Python Data Analysis', 'Java Spring Boot').
+CV: {cv_text[:2000]}
+JD: {jd_text[:1000]}
+
+Yêu cầu xuất ra MỘT cụm từ tiếng Anh ngắn gọn chứa các keyword đó KHÔNG GIẢI THÍCH:
+"""
+    topic_raw = llm_call_with_retry(llm, prompt_extract)
+    topic = topic_raw.strip().replace("'", "").replace('"', '')
+    if not topic:
+        topic = "software engineering core skills"
+        
+    topic = f"Interview questions about {topic}"
+    
+    # 1. Trích xuất 5 câu hỏi kiến thức cốt lõi từ RAG liên quan đến CV/JD
+    rag_questions = retrieve_rag_questions(topic, level, language, num_q=5)
+    
+    # 2. Sinh 2 câu hỏi tùy chỉnh dựa trên kinh nghiệm thực tế / đồ án trong CV (hoặc JD)
+    lang_req = "Tiếng Việt" if language == "vi" else "English"
+    prompt_custom = f"""
+Bạn là một người phỏng vấn chuyên nghiệp. Ứng viên đang phỏng vấn cho vị trí/kinh nghiệm '{level}'.
+Dưới đây là thông tin ứng viên (CV) và yêu cầu công việc (JD):
+
+CV: {cv_text[:3000]}
+JD: {jd_text[:1500]}
+
+Dựa vào kinh nghiệm, công nghệ, hoặc các dự án được liệt kê trong CV/JD, hãy tạo 2 câu hỏi phỏng vấn kỹ thuật thực tế và đào sâu vào những gì ứng viên đã làm. Yêu cầu câu hỏi bằng {lang_req}.
+BẠN BẮT BUỘC TRẢ VỀ CHÍNH XÁC MỘT DANH SÁCH JSON (array) các câu hỏi và gợi ý trả lời như mẫu sau (không dùng text thừa, không dùng markdown block):
+[
+  {{"question": "Câu hỏi đánh giá project X", "reference": "Gợi ý trả lời"}},
+  {{"question": "Câu hỏi đánh giá kỹ năng Y ghi trong CV", "reference": "Gợi ý trả lời"}}
+]
+"""
+    custom_raw = llm_call_with_retry(llm, prompt_custom)
+    try:
+        cleaned = custom_raw.strip()
+        if cleaned.startswith("```json"): cleaned = cleaned[7:]
+        if cleaned.startswith("```"): cleaned = cleaned[3:]
+        if cleaned.endswith("```"): cleaned = cleaned[:-3]
+        custom_qs = json.loads(cleaned.strip())
+        
+        for q in custom_qs:
+            rag_questions.append({
+                "id": len(rag_questions),
+                "question": q["question"],
+                "reference": q["reference"]
+            })
+    except Exception as e:
+        print(f"Error parsing custom questions: {e}. Raw: {custom_raw}")
+        # Nếu lỗi có thể thêm câu hỏi RAG dự phòng, nhưng thôi trả trực tiếp rag_qs
+        pass
+        
+    return rag_questions
 
 def evaluate_rag_answer(question: str, user_answer: str, reference: str, level: str, language: str = "vi") -> dict:
     llm = get_llm()

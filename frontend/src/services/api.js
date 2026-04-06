@@ -1,11 +1,16 @@
 export const API_BASE = "http://localhost:8000/api";
 
 export const api = {
-  startInterview: async (topic, level, language) => {
+  startInterview: async (cvFile, jd, level, language) => {
+    const formData = new FormData();
+    if (cvFile) formData.append("cv", cvFile);
+    formData.append("jd", jd || "");
+    formData.append("level", level);
+    formData.append("language", language);
+
     const res = await fetch(`${API_BASE}/start-interview`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic, level, language })
+      body: formData
     });
     return res.json();
   },

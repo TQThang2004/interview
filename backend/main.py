@@ -2,8 +2,9 @@ from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from schemas.models import StartInterviewRequest, EvaluateAnswerRequest, TTSRequest
-from services import audio_service, rag_service
+from schemas.models import EvaluateAnswerRequest, TTSRequest
+from fastapi import Form
+from services import audio_service, rag_service, pdf_parser
 
 app = FastAPI(title="AI Interviewer API")
 
@@ -20,9 +21,19 @@ def read_root():
     return {"status": "ok", "message": "Backend FastAPI is running"}
 
 @app.post("/api/start-interview")
-def start_interview(req: StartInterviewRequest):
+async def start_interview(
+    cv: UploadFile = File(None),
+    jd: str = Form(""),
+    level: str = Form("Junior"),
+    language: str = Form("vi")
+):
     try:
-        questions = rag_service.retrieve_rag_questions(req.topic, req.level, req.language)
+        cv_text = ""
+        if cv:
+            cv_bytes = await cv.read()
+            cv_text = pdf_parser.extract_text_from_pdf_bytes(cv_bytes)
+            
+        questions = rag_service.generate_questions_from_cv_jd(cv_text, jd, level, language)
         return {"status": "success", "questions": questions}
     except Exception as e:
         print(f"Error starting interview: {e}")
