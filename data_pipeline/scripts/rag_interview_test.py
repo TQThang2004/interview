@@ -12,13 +12,16 @@ import chromadb
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-load_dotenv()
+env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.env"))
+load_dotenv(dotenv_path=env_path, override=True)
 
 # ============================================================
 # CẤU HÌNH
 # ============================================================
-GOOGLE_API_KEY    = os.getenv("GOOGLE_API_KEY", "AIzaSyBVBK1SRaZoVntBdHf7EWPI8-caDNyH6OA")
-CHROMA_DB_PATH    = "./chroma_db"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    raise ValueError("Lỗi: Không tìm thấy GOOGLE_API_KEY trong file .env")
+CHROMA_DB_PATH    = os.path.join(os.path.dirname(__file__), "../../chroma_db")
 COLLECTION_NAME   = "interview_questions"
 EMBED_MODEL       = "models/gemini-embedding-001"
 LLM_MODEL         = "gemini-1.5-flash"   # Model LLM de hoi va cham diem

@@ -1,9 +1,12 @@
 import csv
 import json
 
+import os
+
 def process_csv():
     out_data = []
-    with open('c:/DOAN/Data/sample.csv', 'r', encoding='utf-8') as f:
+    input_path = os.path.join(os.path.dirname(__file__), '../data/sample.csv')
+    with open(input_path, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         header = next(reader)
         for idx, row in enumerate(reader):
@@ -43,7 +46,7 @@ def process_csv():
                 "metadata": metadata
             })
 
-    output_path = 'c:/DOAN/Data/chunked_sample.json'
+    output_path = os.path.join(os.path.dirname(__file__), '../data/chunked_sample.json')
     with open(output_path, 'w', encoding='utf-8') as out_f:
         json.dump(out_data, out_f, ensure_ascii=False, indent=4)
         
