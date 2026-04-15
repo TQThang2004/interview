@@ -35,25 +35,58 @@ Toàn bộ hệ thống chạy dựa trên hai luồng chia tách rõ ràng: **T
 3. **Kiểm tra trạng thái (`check_chroma.py`)**: Load thử xem thư mục local DB đắp xong chưa, test thử quá trình tìm kiếm với top K xem điểm số tương đương cao nhất. Log nằm tại `check_result.txt`.
 
 ### B. Luồng hoạt động Ứng dụng AI Phỏng Vấn (Live App Workflow)
-Được phát qua giao diện Web khi Start backend FastAPI (`main.py`) và Frontend vite webserver:
 
-1. **Khởi tạo (Start Interview)**: 
-   Người dùng thông qua giao diện Web React tại màn hình chính thiết lập "Chủ đề Kiến thức", "Mức độ level", và "Ngôn ngữ đọc/hiển thị". Frontend submit `/api/start-interview`. 
-   Phía sau Backend (cụ thể script `rag_services.py`) tiến hành query RAG vào `chroma_db` để truy vấn ra Top các câu hỏi liên quan sát chủ đề nhất. Đồng thời trộn ngẫu nhiên và dùng Gemini dịch mượt mà qua lại giữa 2 khung Tiếng Anh - Tiếng Việt nếu user tick chọn hệ Tiếng Việt.
+Hệ thống hoạt động theo mô hình Client-Server hiện đại, kết hợp chặt chẽ giữa khả năng xử lý giao diện của React và khả năng xử lý AI đa phương thức của FastAPI.
 
-2. **Giao tiếp Hỏi - Đáp**:
-   - Backend xuất list dạng JSON. Frontend sẽ kích hoạt gọi TTS âm thanh (thông qua API `/api/tts` dùng gTTS generator) đọc từng chữ nội dung câu hỏi cho giả lập phỏng vấn thực.
-   - Thí sinh khi nghe xong bấm record Icon Mic. Micro kích hoạt, đóng module Blob âm lượng và gửi audio WebM tới backend theo enpoint `/api/transcribe`.
-   - Lớp LLM thông qua gemini Flash tiến hành đọc File Audio, thực hiện trích lọc ký tự "Vinglish" theo bộ Prompt được tinh chỉnh (ví dụ: `rì ắc` -> `React`, `Nốt di ét` -> `NodeJS`) đẩy ra String text thô rồi trả ngược lại lên UI cho ứng tuyển viên nhìn lại câu trả lời.
+```mermaid
+graph TD
+    A[User: Upload CV & JD] -->|POST /api/start-interview| B(Backend: API Server)
+    B -->|PyMuPDF| C[Extract Text]
+    C -->|Gemini RAG| D[Generate Questions]
+    D -->|JSON| E[Frontend: Start Interview]
+    E -->|API /api/tts| F[TTS Service: gTTS]
+    F -->|Audio MP3| G[User: Listen to Question]
+    G -->|MediaRecorder| H[Audio Record: WebM]
+    H -->|POST /api/transcribe| I[Backend: Gemini Multimodal STT]
+    I -->|Text String| J[User: Confirm Answer]
+    J -->|POST /api/evaluate| K[Backend: Gemini Eval Agent]
+    K -->|Detailed JSON| L[Frontend: Result & Next Question]
+```
 
-3. **Chấm Điểm Nhận Xét (Evaluate)**:
-   Sau khi chốt câu trả lời, Frontend ném câu này + Cau tham khảo (ở DB reference) vào endpoint (`/api/evaluate`).
-   Gemini trong `rag_services.py` đóng vai giám khảo chuyên môn tuỳ theo senior hay junior sẽ so khớp và bóc tách ra thành object cố định bao gồm:
-   - Điểm số: 7/10
-   - Điểm mạnh: ...
-   - Điểm thiếu sót: ...
-   - Gợi ý ôn tập: ...
-   
-   Frontend nhận tín hiệu render ra View đẹp mắt, bấm Next sẽ trỏ tới câu tiếp theo trong Queue. Kết thúc màn phỏng vấn sẽ cộng dồn Tổng điểm và đánh giá liệu thí sinh đã sẵn sàng ứng tuyển thực hay chưa.
+#### 🛠 Chi tiết các giai đoạn hoạt động:
+
+#### 1. Giai đoạn thiết lập & Phân tích (Setup Phase)
+- **Nhiệm vụ:** Thu thập hồ sơ ứng viên (CV) và yêu cầu công việc (JD).
+- **Công nghệ/Thư viện:** 
+    - **Frontend:** `SetupForm.jsx` sử dụng HTML5 File Input và Hooks để quản lý trạng thái.
+    - **Backend:** `pdf_parser.py` sử dụng thư viện **PyMuPDF (fitz)** để xử lý file PDF bytes thành văn bản thô.
+- **Cơ chế:** Backend nhận file và văn bản từ Form Data, trích xuất thông tin CV và chuẩn hóa nội dung JD trước khi chuyển sang bước tạo câu hỏi.
+
+#### 2. Khởi tạo buổi phỏng vấn (Question Generation)
+- **Nhiệm vụ:** Tạo danh sách câu hỏi phỏng vấn được cá nhân hóa hoàn toàn.
+- **Công nghệ/Thư viện:**
+    - **API Endpoint:** `/api/start-interview`.
+    - **Mô hình AI:** **Google Gemini 2.5 Flash**.
+- **Cơ chế:** Sử dụng kỹ thuật **System Prompting** để định danh Gemini làm chuyên gia tuyển dụng. AI dựa trên nội dung CV/JD để suy luận ra các câu hỏi kỹ thuật phù hợp với Level (Intern, Junior, Senior). Kết quả trả về là một danh sách JSON gồm nội dung câu hỏi và đáp án tham khảo lý tưởng.
+
+#### 3. Tương tác Hỏi - Đáp Đa phương thức (Live Interaction)
+- **Nhiệm vụ:** Giả lập môi trường phỏng vấn thực tế bằng giọng nói (STT & TTS).
+- **Công nghệ/Thư viện:**
+    - **Chuyển văn bản thành tiếng (TTS):** Sử dụng **gTTS** (Google Text-to-Speech) để tạo giọng đọc tự nhiên.
+    - **Thu âm (Frontend):** Sử dụng **MediaRecorder API** ghi âm định dạng `audio/webm;codecs=opus`.
+    - **Nhận diện giọng nói (STT):** Endpoint `/api/transcribe` gửi audio trực tiếp sang **Gemini Multimodal**.
+- **Cơ chế:** Gemini xử lý audio đầu vào với khả năng nhận diện thuật ngữ **Vinglish** (tiếng Việt pha tiếng Anh chuyên ngành) cực tốt nhờ bộ Prompt được tối ưu hóa, đảm bảo trích xuất nội dung trả lời chính xác nhất.
+
+#### 4. Chấm điểm & Nhận xét Chuyên sâu (Evaluation Phase)
+- **Nhiệm vụ:** Đánh giá chuyên môn và cung cấp phản hồi cho ứng viên.
+- **Công nghệ/Thư viện:**
+    - **Logic xử lý:** `rag_service.py` -> `evaluate_rag_answer`.
+    - **Định dạng dữ liệu:** Sử dụng **Pydantic Models** và **Gemini JSON Mode**.
+- **Cơ chế:** AI thực hiện so khớp ngữ nghĩa giữa câu trả lời của thí sinh và đáp án tham khảo. Hệ thống bóc tách kết quả thành các trường: Score (0-10), Strong Points, Weak Points, và Study Recommendations.
+
+#### 5. Kết luận & Tổng hợp (Final Assessment)
+- **Nhiệm vụ:** Tổng kết hiệu suất buổi phỏng vấn.
+- **Công nghệ/Thư viện:** UI Components hiện đại với CSS Animation và Lucide Icons.
+- **Cơ chế:** Sau khi hoàn thành bộ câu hỏi, hệ thống tổng hợp lịch sử chấm điểm, tính toán điểm trung bình và đưa ra nhận định liệu ứng viên đã sẵn sàng cho buổi phỏng vấn thực tế hay chưa.
 
 *(Lưu ý: Bạn cũng có một file `rag_interview_test.py` cung cấp chức năng CLI Mock Test để test Terminal thay vì chạy UI Graphic nếu backend muốn kiểm thử luồng nhanh chóng)*
