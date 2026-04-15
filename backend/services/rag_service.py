@@ -96,6 +96,13 @@ def retrieve_rag_questions(topic: str, level: str, language: str = "vi", num_q: 
         needed = num_q - len(selected)
         selected.extend(fallback_candidates[:needed])
 
+    print("\n" + "-"*50)
+    print(f">>> [LOG] NỘI DUNG TÀI LIỆU LẤY ĐƯỢC TỪ RAG (TOP {len(selected)} TÀI LIỆU):")
+    for i, c in enumerate(selected):
+        print(f"--- RAG Doc {i+1} ---")
+        preview = c['document'].replace('\n', ' ')[:300] + "..." if len(c['document']) > 300 else c['document'].replace('\n', ' ')
+        print(preview + "\n")
+
     formatted_questions = []
     for i, c in enumerate(selected):
         formatted_questions.append({
@@ -104,6 +111,10 @@ def retrieve_rag_questions(topic: str, level: str, language: str = "vi", num_q: 
             "reference": extract_reference_answer(c["document"])
         })
         
+    print("\n>>> [LOG] CÁC CÂU HỎI (VÀ ĐÁP ÁN GỢI Ý MẪU) CHỌN TỪ RAG:")
+    for q in formatted_questions:
+        print(f"- Hỏi: {q['question']}")
+
     if language == "vi":
         llm = get_llm()
         translate_prompt = "Dich toan bo cau hoi va cau tra loi sau sang Tiếng Việt mot cach chuyen nghiep. GIU NGUYEN cac thuat ngu ky thuat IT (khong dich bừa). Ban PHAI tra ve DUNG DINH DANG JSON LIST cua nguyen ban, va tuyet doi KHONG DUNG ky tu markdown (```json).\n\n"
@@ -135,7 +146,15 @@ JD: {jd_text[:1000]}
 
 Yêu cầu xuất ra MỘT cụm từ tiếng Anh ngắn gọn chứa các keyword đó KHÔNG GIẢI THÍCH:
 """
+    print("\n" + "="*60)
+    print(">>> [LOG] 1. PROMPT TRÍCH XUẤT THÔNG TIN TỪ CV VÀ JD:")
+    print(prompt_extract)
+    
     topic_raw = llm_call_with_retry(llm, prompt_extract)
+
+    print("\n>>> [LOG] 2. THÔNG TIN TRÍCH XUẤT ĐƯỢC TỪ LLM (CV/JD SKILLS):")
+    print(topic_raw)
+    
     topic = topic_raw.strip().replace("'", "").replace('"', '')
     if not topic:
         topic = "software engineering core skills"
@@ -161,7 +180,14 @@ BẠN BẮT BUỘC TRẢ VỀ CHÍNH XÁC MỘT DANH SÁCH JSON (array) các câ
   {{"question": "Câu hỏi đánh giá kỹ năng Y ghi trong CV", "reference": "Gợi ý trả lời"}}
 ]
 """
+    print("\n" + "="*60)
+    print(">>> [LOG] 3. PROMPT SỬ DỤNG LLM ĐỂ TẠO CÂU HỎI TÙY CHỈNH TỪ CV/JD:")
+    print(prompt_custom)
+
     custom_raw = llm_call_with_retry(llm, prompt_custom)
+    
+    print("\n>>> [LOG] 4. KẾT QUẢ TỪ LLM (CÂU HỎI TẠO TỪ CV/JD):")
+    print(custom_raw)
     try:
         cleaned = custom_raw.strip()
         if cleaned.startswith("```json"): cleaned = cleaned[7:]
@@ -203,7 +229,14 @@ DIEM YEU: [nhan xet diem yeu]
 GOI Y BO SUNG: [goi y ngan gon bo sung kien thuc]
 """.strip()
 
+    print("\n" + "="*60)
+    print(">>> [LOG] 5. PROMPT ĐÁNH GIÁ (CHẤM ĐIỂM) CÂU TRẢ LỜI CỦA ỨNG VIÊN:")
+    print(prompt)
+
     raw = llm_call_with_retry(llm, prompt)
+
+    print("\n>>> [LOG] 6. KẾT QUẢ ĐÁNH GIÁ TỪ LLM:")
+    print(raw)
     
     res = {
         "score": 0.0,

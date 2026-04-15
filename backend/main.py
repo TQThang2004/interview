@@ -28,10 +28,23 @@ async def start_interview(
     language: str = Form("vi")
 ):
     try:
+        print("\n\n" + "*"*80)
+        print(">>> [LOG] BẮT ĐẦU LUỒNG PHỎNG VẤN MỚI")
+        print("*"*80)
+        
         cv_text = ""
         if cv:
             cv_bytes = await cv.read()
             cv_text = pdf_parser.extract_text_from_pdf_bytes(cv_bytes)
+            print(">>> [LOG] TÌNH TRẠNG CV: CÓ NHẬN ĐƯỢC CV")
+        else:
+            print(">>> [LOG] TÌNH TRẠNG CV: KHÔNG NHẬN ĐƯỢC CV")
+            
+        print("\n>>> [LOG] NỘI DUNG JD NHẬN ĐƯỢC:")
+        if jd.strip():
+            print(jd.strip())
+        else:
+            print("(Không có JD)")
             
         questions = rag_service.generate_questions_from_cv_jd(cv_text, jd, level, language)
         return {"status": "success", "questions": questions}
