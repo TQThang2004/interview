@@ -1,10 +1,16 @@
 """
 FastAPI application factory – đăng ký middleware và routers.
 """
+import sys
 from fastapi import FastAPI
 
 from app.middleware.cors import register_cors
 from app.routers import interview, evaluate, audio
+
+# Fix lỗi in Tiếng Việt trên Windows (charmap codec can't encode character)
+if sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 app = FastAPI(
     title="AI Interviewer API",

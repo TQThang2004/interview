@@ -3,10 +3,22 @@ import { RefreshCw } from 'lucide-react';
 
 export default function LoadingScreen({ message }) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <RefreshCw className="w-12 h-12 text-blue-600 animate-spin mb-4" />
-      <h2 className="text-xl font-semibold text-gray-700">{message}</h2>
-      <p className="text-gray-500 mt-2">Vui lòng đợi trong giây lát</p>
+    <div style={{ padding: 'clamp(40px, 10vw, 100px) 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{
+        width: '64px', height: '64px', borderRadius: '50%',
+        background: 'oklch(83.3% 0.145 321.434 / 0.1)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginBottom: '24px',
+        boxShadow: '0 0 0 2px oklch(83.3% 0.145 321.434 / 0.3) inset, 0 0 20px oklch(83.3% 0.145 321.434 / 0.2)',
+      }}>
+        <RefreshCw size={28} style={{ color: 'var(--primary)', animation: 'spin 1.5s linear infinite' }} />
+      </div>
+      <h2 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '8px', textAlign: 'center' }}>
+        {message}
+      </h2>
+      <p style={{ color: 'var(--text-secondary)', fontSize: '14px', textAlign: 'center' }}>
+        Quá trình này có thể mất vài giây, vui lòng đợi...
+      </p>
     </div>
   );
 }

@@ -1,7 +1,329 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @layer base {
+  :root {
+    /* Primary: Pink-Purple  oklch(83.3% 0.145 321.434) */
+    --primary:        oklch(83.3% 0.145 321.434);
+    --primary-dark:   oklch(60% 0.18 321.434);
+    --primary-light:  oklch(92% 0.07 321.434);
+    --primary-glow:   oklch(83.3% 0.145 321.434 / 0.35);
+
+    /* Secondary: Slate-Teal  oklch(45% 0.017 213.2) */
+    --secondary:      oklch(45% 0.017 213.2);
+    --secondary-dark: oklch(30% 0.025 213.2);
+    --secondary-light:oklch(65% 0.017 213.2);
+
+    /* Background dark */
+    --bg-base:        oklch(12% 0.015 250);
+    --bg-surface:     oklch(16% 0.018 250);
+    --bg-elevated:    oklch(20% 0.02 250);
+    --bg-card:        oklch(18% 0.02 260 / 0.85);
+
+    /* Text */
+    --text-primary:   oklch(96% 0.005 250);
+    --text-secondary: oklch(70% 0.01 250);
+    --text-muted:     oklch(50% 0.01 250);
+
+    /* Border */
+    --border:         oklch(30% 0.02 250 / 0.6);
+    --border-focus:   oklch(83.3% 0.145 321.434 / 0.7);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, oklch(83.3% 0.145 321.434), oklch(65% 0.2 280));
+    --gradient-bg: linear-gradient(135deg, oklch(12% 0.015 250) 0%, oklch(15% 0.025 280) 50%, oklch(13% 0.02 220) 100%);
+
+    /* Shadows */
+    --shadow-primary: 0 0 40px oklch(83.3% 0.145 321.434 / 0.2);
+    --shadow-card:    0 8px 32px oklch(0% 0 0 / 0.4);
+    --shadow-glow:    0 0 60px oklch(83.3% 0.145 321.434 / 0.15);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-gray-50 text-gray-900 antialiased font-sans;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
   }
 }
+
+/* ─── Animated gradient background ─────────────────────────── */
+.bg-animated {
+  background: var(--gradient-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-animated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, oklch(83.3% 0.145 321.434 / 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 80% 70%, oklch(65% 0.2 280 / 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 60% 10%, oklch(45% 0.017 213.2 / 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  animation: bgGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgGlow {
+  0%   { opacity: 0.8; }
+  100% { opacity: 1.2; }
+}
+
+/* ─── Glassmorphism card ────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Primary button ────────────────────────────────────────── */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: oklch(15% 0.01 250);
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px oklch(83.3% 0.145 321.434 / 0.35);
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, oklch(100% 0 0 / 0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px oklch(83.3% 0.145 321.434 / 0.5);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:active { transform: translateY(0); }
+
+/* ─── Secondary/ghost button ────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: oklch(83.3% 0.145 321.434 / 0.05);
+}
+
+/* ─── Input field ───────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  background: oklch(22% 0.015 250 / 0.8);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+.input-field:focus {
+  border-color: var(--border-focus);
+  background: oklch(24% 0.018 250 / 0.9);
+  box-shadow: 0 0 0 3px oklch(83.3% 0.145 321.434 / 0.12);
+}
+
+/* ─── Google button ─────────────────────────────────────────── */
+.btn-google {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: oklch(96% 0.005 250);
+  color: oklch(25% 0.02 250);
+  border: none;
+  border-radius: 14px;
+  padding: 13px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.15);
+}
+
+.btn-google:hover {
+  background: oklch(100% 0 0);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px oklch(0% 0 0 / 0.2);
+}
+
+/* ─── Divider ───────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── Label icon input group ────────────────────────────────── */
+.input-group {
+  position: relative;
+}
+
+.input-group .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  transition: color 0.2s;
+}
+
+.input-group:focus-within .input-icon {
+  color: var(--primary);
+}
+
+.input-group .input-field {
+  padding-left: 44px;
+}
+
+/* ─── Floating orbs decoration ──────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: orbFloat 6s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 350px;
+  height: 350px;
+  background: oklch(83.3% 0.145 321.434 / 0.12);
+  top: -80px;
+  right: -80px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 250px;
+  height: 250px;
+  background: oklch(65% 0.2 280 / 0.1);
+  bottom: 10%;
+  left: -60px;
+  animation-delay: 3s;
+}
+
+.orb-3 {
+  width: 180px;
+  height: 180px;
+  background: oklch(45% 0.017 213.2 / 0.08);
+  top: 40%;
+  right: 10%;
+  animation-delay: 1.5s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(12px, -18px) scale(1.05); }
+  66%       { transform: translate(-8px, 10px) scale(0.97); }
+}
+
+/* ─── Fade In animation ─────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.1s; }
+.fade-in-up-delay-2 { animation-delay: 0.2s; }
+.fade-in-up-delay-3 { animation-delay: 0.3s; }
+
+/* ─── Gradient text ─────────────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Link ──────────────────────────────────────────────────── */
+.text-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.text-link:hover { opacity: 0.75; }
+
+/* ─── Error message ─────────────────────────────────────────── */
+.error-msg {
+  color: oklch(70% 0.2 25);
+  font-size: 13px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: oklch(40% 0.02 250);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }

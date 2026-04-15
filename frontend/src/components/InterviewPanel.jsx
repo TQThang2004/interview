@@ -10,90 +10,150 @@ export default function InterviewPanel({
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
-      <div className="w-full max-w-3xl">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex gap-2">
-             {Array.from({ length: totalQuestions }).map((_, i) => (
-               <div key={i} className={`h-2 w-12 rounded-full transition-colors ${i <= currentIdx ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
-             ))}
+    <div style={{ padding: 'clamp(20px, 3vw, 40px)', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '800px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        
+        {/* Header Progress */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 8px' }}>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            {Array.from({ length: totalQuestions }).map((_, i) => (
+              <div key={i} style={{ 
+                height: '6px', width: '32px', borderRadius: '4px', transition: 'all 0.3s',
+                background: i < currentIdx ? 'var(--primary)' : i === currentIdx ? 'oklch(83.3% 0.145 321.434 / 0.6)' : 'oklch(22% 0.015 250)'
+              }}></div>
+            ))}
           </div>
-          <div className="text-sm font-semibold text-gray-500 bg-white px-3 py-1 rounded-full shadow-sm">
+          <div style={{ 
+            fontSize: '13px', fontWeight: 700, color: 'var(--text-secondary)',
+            background: 'oklch(22% 0.015 250 / 0.6)', padding: '6px 14px', borderRadius: '20px', 
+            border: '1px solid var(--border)' 
+          }}>
             Câu hỏi {currentIdx + 1} / {totalQuestions}
           </div>
         </div>
 
-        <div className="flex gap-4 mb-8 w-full">
-           <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg flex items-center justify-center flex-shrink-0 animate-fade-in-up mt-1">
-              <Bot className="w-8 h-8 text-white" />
-           </div>
-           <div className="bg-white rounded-2xl rounded-tl-sm shadow-md border border-gray-200 p-6 relative flex-grow animate-fade-in-up">
-              <button 
-                 onClick={onSpeak} 
-                 className="absolute top-4 right-4 text-gray-400 hover:text-blue-600 transition-colors bg-gray-50 hover:bg-blue-50 p-2.5 rounded-full"
-                 title="Đọc lại câu hỏi"
-              >
-                  <Volume2 className="w-5 h-5" />
-              </button>
-              <h2 className="text-xl font-bold text-gray-800 leading-relaxed pr-10">
-                {q?.question}
-              </h2>
-           </div>
+        {/* AI Question Box */}
+        <div style={{ display: 'flex', gap: '16px' }}>
+          <div style={{ 
+            width: '52px', height: '52px', background: 'var(--gradient-primary)', 
+            borderRadius: '16px', borderRadiusBottomRight: '4px', display: 'flex', 
+            alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+            boxShadow: '0 8px 24px oklch(83.3% 0.145 321.434 / 0.3)'
+          }}>
+            <Bot size={28} style={{ color: 'oklch(15% 0.01 250)' }} />
+          </div>
+          <div className="glass-card" style={{ 
+            flex: 1, padding: '24px 32px', position: 'relative', 
+            borderTopLeftRadius: '4px', boxShadow: 'none' 
+          }}>
+            <button onClick={onSpeak} title="Đọc lại câu hỏi" style={{ 
+              absolute: true, right: '20px', top: '20px', background: 'oklch(22% 0.015 250 / 0.5)',
+              border: 'none', color: 'var(--text-muted)', padding: '8px', borderRadius: '50%',
+              cursor: 'pointer', transition: 'all 0.2s', display: 'flex'
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.15)'; }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.5)'; }}>
+              <Volume2 size={20} />
+            </button>
+            <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.6, paddingRight: '40px' }}>
+              {q?.question}
+            </h2>
+          </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col items-center">
-           <div className="relative mb-8 mt-4 flex items-center justify-center">
-              {isRecording && (
-                 <div className="absolute w-28 h-28 bg-blue-400 rounded-full animate-wave opacity-50"></div>
+        {/* User Interaction Area */}
+        <div className="glass-card" style={{ padding: 'clamp(24px, 4vw, 40px)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          
+          <div style={{ position: 'relative', marginBottom: '24px', marginTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {isRecording && (
+              <div style={{ 
+                position: 'absolute', width: '120px', height: '120px', background: 'oklch(65% 0.22 25)', 
+                borderRadius: '50%', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite', opacity: 0.2 
+              }}></div>
+            )}
+            <button onClick={() => { setIsEditing(false); toggleRecording(); }} style={{ 
+              position: 'relative', zIndex: 10, width: '84px', height: '84px', borderRadius: '50%', 
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: 'none',
+              background: isRecording ? 'oklch(65% 0.22 25)' : 'var(--gradient-primary)',
+              color: isRecording ? 'white' : 'oklch(15% 0.01 250)',
+              boxShadow: isRecording ? '0 0 30px oklch(65% 0.22 25 / 0.5)' : '0 12px 30px oklch(83.3% 0.145 321.434 / 0.3)',
+              transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
+              transform: isRecording ? 'scale(1.05)' : 'scale(1)'
+            }}
+            onMouseEnter={e => { if(!isRecording) e.currentTarget.style.transform = 'scale(1.08) translateY(-2px)'; }}
+            onMouseLeave={e => { if(!isRecording) e.currentTarget.style.transform = 'scale(1) translateY(0)'; }}>
+              {isRecording ? <Square size={36} fill="currentColor" /> : <Mic size={40} />}
+            </button>
+          </div>
+          
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <p style={{ 
+              fontWeight: 600, fontSize: '15px', 
+              color: isRecording ? 'oklch(65% 0.22 25)' : (isTranscribing ? 'var(--primary)' : 'var(--text-muted)'),
+              animation: isRecording || isTranscribing ? 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none'
+            }}>
+              {isRecording ? 'Đang thu âm (nhấn vuông để dừng)...' : (isTranscribing ? 'Đang xử lý âm thanh với AI...' : 'Bấm vào Mic để bắt đầu nói')}
+            </p>
+          </div>
+
+          <div style={{ width: '100%', position: 'relative' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)' }}>Kết quả nhận diện:</span>
+              {!isRecording && !isTranscribing && (
+                <button onClick={() => setIsEditing(!isEditing)} style={{ 
+                  background: 'oklch(22% 0.015 250)', border: '1px solid var(--border)', cursor: 'pointer',
+                  color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, padding: '6px 12px',
+                  borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px', transition: 'all 0.2s'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.borderColor = 'var(--border)'; }}>
+                  <Edit3 size={14}/> {isEditing ? 'Đóng chế độ gõ' : 'Sửa trực tiếp'}
+                </button>
               )}
-              <button 
-                onClick={() => { setIsEditing(false); toggleRecording(); }}
-                className={`relative z-10 w-24 h-24 flex items-center justify-center rounded-full shadow-2xl transition-transform duration-300 transform outline-none ${isRecording ? 'bg-red-500 hover:bg-red-600 hover:-translate-y-1' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-1'} text-white ring-4 ring-white`}
-              >
-                {isRecording ? <Square className="w-10 h-10 fill-current" /> : <Mic className="w-12 h-12" />}
-              </button>
-           </div>
-           
-           <div className="text-center mb-6">
-              <p className={`font-medium text-lg ${isRecording ? 'text-red-500 animate-pulse' : (isTranscribing ? 'text-blue-500 animate-pulse' : 'text-gray-500')}`}>
-                {isRecording ? 'Đang thu âm...' : (isTranscribing ? 'Đang xử lý Whisper AI...' : 'Bấm vào Mic để trả lời')}
-              </p>
-           </div>
+            </div>
+            
+            {isEditing ? (
+              <textarea 
+                value={userAnswer}
+                onChange={e => setUserAnswer(e.target.value)}
+                placeholder="Nhập hoặc chỉnh sửa câu trả lời của bạn..."                     
+                className="input-field"
+                style={{ width: '100%', minHeight: '160px', padding: '16px', fontSize: '16px', lineHeight: 1.6 }}
+              />
+            ) : (
+              <div style={{ 
+                width: '100%', minHeight: '130px', padding: '20px', borderRadius: '12px',
+                background: 'oklch(14% 0.018 250 / 0.4)', border: '1px solid var(--border)',
+                transition: 'all 0.3s',
+                borderColor: isRecording || isTranscribing ? 'var(--primary)' : 'var(--border)',
+                boxShadow: isRecording || isTranscribing ? '0 0 0 2px oklch(83.3% 0.145 321.434 / 0.1)' : 'none',
+                overflowY: 'auto'
+              }}>
+                {userAnswer ? (
+                  <p style={{ color: 'var(--text-primary)', fontSize: '16px', lineHeight: 1.6, whiteSpace: 'pre-wrap', margin: 0 }}>{userAnswer}</p>
+                ) : (
+                  <p style={{ color: 'var(--text-muted)', fontSize: '15px', fontStyle: 'italic', margin: 0 }}>Dữ liệu giọng nói sẽ xuất hiện ở đây...</p>
+                )}
+              </div>
+            )}
+          </div>
 
-           <div className="w-full relative">
-             <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-3">
-               <span>Kết quả nhận diện</span>
-               {!isRecording && !isTranscribing && (
-                  <button onClick={() => setIsEditing(!isEditing)} className="text-blue-600 hover:text-blue-800 flex items-center gap-1 text-xs px-3 py-1.5 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100 shadow-sm font-bold">
-                     <Edit3 className="w-3.5 h-3.5"/> {isEditing ? 'Đóng chế độ gõ phím' : 'Gõ phím thiết lập'}
-                  </button>
-               )}
-             </label>
-             
-             {isEditing ? (
-               <textarea 
-                 value={userAnswer}
-                 onChange={e => setUserAnswer(e.target.value)}
-                 placeholder="Nhập hoặc chỉnh sửa câu trả lời..."                     
-                 className="w-full h-32 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block p-4 outline-none resize-none transition-all shadow-inner font-medium text-lg leading-relaxed"
-               ></textarea>
-             ) : (
-               <div className={`w-full min-h-[9rem] bg-gray-50 border flex items-start p-5 rounded-xl shadow-inner overflow-y-auto transition-all ${isRecording || isTranscribing ? 'border-blue-300 ring-2 ring-blue-100 blur-[0.3px]' : 'border-gray-200'} font-medium text-lg leading-relaxed`}>
-                  {userAnswer ? (
-                    <p className="text-gray-800 whitespace-pre-wrap">{userAnswer}</p>
-                  ) : (
-                    <p className="text-gray-400 italic">Dữ liệu giọng nói sẽ xuất hiện ở đây...</p>
-                  )}
-               </div>
-             )}
-           </div>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border)' }}>
+            <button onClick={onSubmit} disabled={!userAnswer.trim() || isRecording || isTranscribing}
+              style={{
+                padding: '14px 28px', borderRadius: '12px', fontSize: '15px', fontWeight: 700, 
+                display: 'flex', alignItems: 'center', gap: '8px', transition: 'all 0.25s', border: 'none',
+                cursor: !userAnswer.trim() || isRecording || isTranscribing ? 'not-allowed' : 'pointer',
+                background: !userAnswer.trim() || isRecording || isTranscribing ? 'oklch(22% 0.015 250)' : 'white',
+                color: !userAnswer.trim() || isRecording || isTranscribing ? 'var(--text-muted)' : 'oklch(14% 0.018 250)',
+                transform: !userAnswer.trim() || isRecording || isTranscribing ? 'none' : 'translateY(-2px)',
+                boxShadow: !userAnswer.trim() || isRecording || isTranscribing ? 'none' : '0 8px 16px oklch(0% 0 0 / 0.2)',
+              }}>
+              {isRecording ? 'Đang Thu Âm...' : (isTranscribing ? 'Đang xử lý...' : 'Nộp Câu Trả Lời')} 
+              <Send size={18} />
+            </button>
+          </div>
 
-           <div className="w-full flex justify-end mt-8 border-t border-gray-100 pt-6">
-              <button onClick={onSubmit} disabled={!userAnswer.trim() || isRecording || isTranscribing}
-                className={`font-bold py-3.5 px-8 rounded-xl flex items-center gap-2 transition-all shadow-lg text-lg ${!userAnswer.trim() || isRecording || isTranscribing ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none' : 'bg-gray-900 hover:bg-gray-800 text-white transform hover:scale-105 hover:-translate-y-1'}`}>
-                {isRecording ? 'Đang Thu Âm...' : (isTranscribing ? 'Đang xử lý...' : 'Gửi Câu Trả Lời')} <Send className="w-5 h-5" />
-              </button>
-           </div>
         </div>
       </div>
     </div>
