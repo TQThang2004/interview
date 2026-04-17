@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Users, FileText, Mic, History,
   User, ArrowLeft, Brain, Menu, X, ChevronRight, LogOut,
@@ -12,13 +13,11 @@ import HistoryPage      from './dashboard/HistoryPage';
 import ProfilePage      from './dashboard/ProfilePage';
 import InterviewPage    from './InterviewPage';
 
-/* ── Mock user (thay bằng auth context sau) ── */
-const MOCK_USER = {
-  name: 'Nguyễn Văn A',
-  email: 'nguyenvana@gmail.com',
-  role: 'Fullstack Developer',
-  avatar: 'NV',
-};
+/* ── User helper ── */
+function getAvatar(user) {
+  if (!user) return '?';
+  return user.username?.slice(0, 2).toUpperCase() || user.email?.slice(0, 2).toUpperCase() || '?';
+}
 
 /* ── Nav items ── */
 const NAV = [
@@ -31,7 +30,7 @@ const NAV = [
 ];
 
 /* ── Sidebar component ── */
-function Sidebar({ active, onNavigate, collapsed, onToggle }) {
+function Sidebar({ active, onNavigate, collapsed, onToggle, user, onLogout }) {
   return (
     <aside style={{
       width: collapsed ? '80px' : '280px',
@@ -111,13 +110,13 @@ function Sidebar({ active, onNavigate, collapsed, onToggle }) {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontWeight: 800, fontSize: '18px', color: 'var(--primary)',
             cursor: 'pointer',
-          }} title={MOCK_USER.name}>
-            {MOCK_USER.avatar}
+          }} title={user?.username}>
+            {getAvatar(user)}
           </div>
           {!collapsed && (
             <div style={{ overflow: 'hidden', flex: 1 }}>
-              <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{MOCK_USER.name}</div>
-              <div style={{ fontSize: '12px', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '2px' }}>{MOCK_USER.role}</div>
+              <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user?.username || 'Người dùng'}</div>
+              <div style={{ fontSize: '12px', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '2px' }}>{user?.email || ''}</div>
             </div>
           )}
         </div>
@@ -192,7 +191,7 @@ function Sidebar({ active, onNavigate, collapsed, onToggle }) {
           </button>
         </Link>
         {!collapsed && (
-          <button title="Đăng xuất"
+          <button id="btn-logout" title="Đăng xuất" onClick={onLogout}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               padding: '14px', background: 'oklch(20% 0.015 250)',
@@ -211,8 +210,15 @@ function Sidebar({ active, onNavigate, collapsed, onToggle }) {
 
 /* ── Main Dashboard Page ── */
 export default function DashboardPage() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [activePage, setActivePage] = useState('dashboard');
   const [collapsed, setCollapsed] = useState(false);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   const sidebarWidth = collapsed ? 68 : 280;
 
@@ -243,6 +249,8 @@ export default function DashboardPage() {
         onNavigate={setActivePage}
         collapsed={collapsed}
         onToggle={() => setCollapsed(v => !v)}
+        user={user}
+        onLogout={handleLogout}
       />
 
       {/* Main content */}
@@ -289,11 +297,11 @@ export default function DashboardPage() {
           {/* User avatar top right */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ textAlign: 'right', display: window.innerWidth > 600 ? 'block' : 'none' }}>
-              <div style={{ fontSize: '13px', fontWeight: 600 }}>{MOCK_USER.name}</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{MOCK_USER.role}</div>
+              <div style={{ fontSize: '13px', fontWeight: 600 }}>{user?.username || 'Người dùng'}</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{user?.email || ''}</div>
             </div>
             <button onClick={() => setActivePage('profile')} style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--gradient-primary)', border: '2px solid oklch(83.3% 0.145 321.434 / 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '12px', color: 'oklch(15% 0.01 250)', cursor: 'pointer' }}>
-              {MOCK_USER.avatar}
+              {getAvatar(user)}
             </button>
           </div>
         </header>

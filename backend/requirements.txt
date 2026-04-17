@@ -2,5 +2,9 @@ fastapi
 uvicorn
 chromadb
 google-genai
-pydantic
+pydantic[email]
 python-dotenv
+# Auth & Database
+asyncpg
+bcrypt
+python-jose[cryptography]

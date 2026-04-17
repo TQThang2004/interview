@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -51,9 +52,12 @@ const PasswordStrength = ({ password }) => {
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const { register } = useAuth();
+
+  const [form, setForm]       = useState({ username: '', email: '', password: '' });
   const [showPass, setShowPass] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors]   = useState({});
+  const [apiError, setApiError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
@@ -67,28 +71,32 @@ export default function RegisterPage() {
     return e;
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const e2 = validate();
     if (Object.keys(e2).length) { setErrors(e2); return; }
     setErrors({});
+    setApiError('');
     setLoading(true);
-    // TODO: kết nối API đăng ký
-    setTimeout(() => {
+    try {
+      await register(form.username, form.email, form.password);
+      navigate('/dashboard');
+    } catch (err) {
+      setApiError(err.message || 'Đăng ký thất bại, vui lòng thử lại.');
+    } finally {
       setLoading(false);
-      navigate('/interview');
-    }, 1200);
+    }
   };
 
   const handleGoogle = () => {
-    // TODO: OAuth Google
-    navigate('/interview');
+    alert('Tính năng đăng ký Google đang được phát triển.');
   };
 
   const update = (field) => (e) => {
     setForm(f => ({ ...f, [field]: e.target.value }));
     if (errors[field]) setErrors(err => ({ ...err, [field]: '' }));
   };
+
 
   return (
     <div className="bg-animated min-h-screen flex items-center justify-center p-4 relative">
@@ -215,6 +223,14 @@ export default function RegisterPage() {
               ))}
             </div>
 
+            {/* API Error */}
+            {apiError && (
+              <div className="error-msg mt-3">
+                <AlertCircle size={14} />
+                {apiError}
+              </div>
+            )}
+
             <button
               id="btn-register-submit"
               type="submit"
@@ -230,6 +246,7 @@ export default function RegisterPage() {
                 </span>
               ) : 'Đăng ký'}
             </button>
+
           </form>
 
           <p className="text-center mt-6" style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>

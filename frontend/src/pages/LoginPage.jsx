@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -13,10 +14,12 @@ const GoogleIcon = () => (
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const { login } = useAuth();
+
+  const [email, setEmail]     = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError]     = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
@@ -27,16 +30,19 @@ export default function LoginPage() {
       return;
     }
     setLoading(true);
-    // TODO: kết nối API xác thực
-    setTimeout(() => {
+    try {
+      await login(email, password);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Đăng nhập thất bại, vui lòng thử lại.');
+    } finally {
       setLoading(false);
-      navigate('/interview');
-    }, 1200);
+    }
   };
 
   const handleGoogle = () => {
     // TODO: OAuth Google
-    navigate('/interview');
+    alert('Tính năng đăng nhập Google đang được phát triển.');
   };
 
   return (
