@@ -27,6 +27,13 @@ export function AuthProvider({ children }) {
     return data;
   }, []);
 
+  /** Đăng nhập / đăng ký qua Google → cập nhật user state */
+  const loginWithGoogle = useCallback(async (credential) => {
+    const data = await authService.loginWithGoogle(credential);
+    setUser(data.user);
+    return data;
+  }, []);
+
   /** Đăng ký → cập nhật user state */
   const register = useCallback(async (username, email, password) => {
     const data = await authService.register(username, email, password);
@@ -41,7 +48,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, loginWithGoogle, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -8,3 +8,6 @@ python-dotenv
 asyncpg
 bcrypt
 python-jose[cryptography]
+# Google OAuth
+google-auth
+httpx

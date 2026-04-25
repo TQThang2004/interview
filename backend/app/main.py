@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import interview, evaluate, audio, auth
+from app.routers import interview, evaluate, audio, auth, history
 from app.database.connection import get_pool, close_pool
 
 # Fix lỗi in Tiếng Việt trên Windows (charmap codec can't encode character)
@@ -77,3 +77,4 @@ app.include_router(auth.router)
 app.include_router(interview.router)
 app.include_router(evaluate.router)
 app.include_router(audio.router)
+app.include_router(history.router)

@@ -10,8 +10,15 @@ load_dotenv(dotenv_path=_env_path, override=True)
 
 # -- API Keys --
 GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+# Task-specific keys (fallback to global key if not set)
+GOOGLE_API_KEY_EMBEDDING: str = os.getenv("GOOGLE_API_KEY_EMBEDDING", GOOGLE_API_KEY)
+GOOGLE_API_KEY_TRANSLATE: str = os.getenv("GOOGLE_API_KEY_TRANSLATE", GOOGLE_API_KEY)
+GOOGLE_API_KEY_EXTRACT_TOPIC: str = os.getenv("GOOGLE_API_KEY_EXTRACT_TOPIC", GOOGLE_API_KEY)
+GOOGLE_API_KEY_GENERATE_Q: str = os.getenv("GOOGLE_API_KEY_GENERATE_Q", GOOGLE_API_KEY)
+GOOGLE_API_KEY_EVALUATE: str = os.getenv("GOOGLE_API_KEY_EVALUATE", GOOGLE_API_KEY)
+
 if not GOOGLE_API_KEY:
-    raise ValueError("Lỗi: Không tìm thấy GOOGLE_API_KEY trong file .env")
+    print("Warning: Không tìm thấy GOOGLE_API_KEY trong file .env, các module có thể gặp lỗi nếu thiếu key chi tiết.")
 
 # -- Model names --
 LLM_MODEL: str = "gemini-2.5-flash"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 
 const GoogleIcon = () => (
@@ -54,11 +55,12 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const { register } = useAuth();
 
-  const [form, setForm]       = useState({ username: '', email: '', password: '' });
+  const [form, setForm]         = useState({ username: '', email: '', password: '' });
   const [showPass, setShowPass] = useState(false);
-  const [errors, setErrors]   = useState({});
+  const [errors, setErrors]     = useState({});
   const [apiError, setApiError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading]   = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const validate = () => {
     const e = {};
@@ -88,9 +90,40 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogle = () => {
-    alert('Tính năng đăng ký Google đang được phát triển.');
-  };
+  const handleGoogleRegister = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      setGoogleLoading(true);
+      setApiError('');
+      try {
+        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        });
+        if (!userInfoRes.ok) throw new Error('Không thể lấy thông tin Google.');
+        const userInfo = await userInfoRes.json();
+
+        const res = await fetch('http://localhost:8000/api/auth/google/callback', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            credential: tokenResponse.access_token,
+            user_info: userInfo,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.detail || 'Đăng ký Google thất bại.');
+
+        window.location.href = '/dashboard';
+      } catch (err) {
+        setApiError(err.message || 'Đăng ký Google thất bại, vui lòng thử lại.');
+      } finally {
+        setGoogleLoading(false);
+      }
+    },
+    onError: () => {
+      setApiError('Đã hủy hoặc gặp lỗi khi đăng nhập Google.');
+    },
+  });
 
   const update = (field) => (e) => {
     setForm(f => ({ ...f, [field]: e.target.value }));
@@ -108,9 +141,26 @@ export default function RegisterPage() {
         {/* Card */}
         <div className="glass-card p-8 fade-in-up fade-in-up-delay-1">
           {/* Google */}
-          <button id="btn-google-register" onClick={handleGoogle} className="btn-google mb-6">
-            <GoogleIcon />
-            Đăng ký với Google
+          <button
+            id="btn-google-register"
+            onClick={() => handleGoogleRegister()}
+            disabled={googleLoading || loading}
+            className="btn-google mb-6"
+            style={{ opacity: (googleLoading || loading) ? 0.75 : 1, cursor: (googleLoading || loading) ? 'not-allowed' : 'pointer' }}
+          >
+            {googleLoading ? (
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="30 70" />
+                </svg>
+                Đang kết nối Google...
+              </span>
+            ) : (
+              <>
+                <GoogleIcon />
+                Đăng ký với Google
+              </>
+            )}
           </button>
 
           <div className="divider mb-6">hoặc</div>

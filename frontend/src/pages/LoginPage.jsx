@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 
 const GoogleIcon = () => (
@@ -14,13 +15,14 @@ const GoogleIcon = () => (
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
 
-  const [email, setEmail]     = useState('');
-  const [password, setPassword] = useState('');
-  const [showPass, setShowPass] = useState(false);
-  const [error, setError]     = useState('');
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail]         = useState('');
+  const [password, setPassword]   = useState('');
+  const [showPass, setShowPass]   = useState(false);
+  const [error, setError]         = useState('');
+  const [loading, setLoading]     = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -40,10 +42,50 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogle = () => {
-    // TODO: OAuth Google
-    alert('Tính năng đăng nhập Google đang được phát triển.');
-  };
+  // useGoogleLogin trả về credential dạng id_token (flow='implicit' mặc định trả access_token)
+  // Dùng flow='auth-code' sẽ cần backend exchange code. Ở đây ta dùng id_token qua responseType
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      // tokenResponse.credential chỉ có với GoogleLogin component (One Tap).
+      // useGoogleLogin trả về access_token. Ta cần id_token nên dùng credential popup.
+      // Nhưng để đơn giản, ta lấy userinfo qua Google API rồi gửi access_token.
+      // Backend sẽ nhận access_token và gọi Google userinfo endpoint.
+      setGoogleLoading(true);
+      setError('');
+      try {
+        // Gọi Google userinfo để lấy thông tin người dùng
+        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        });
+        if (!userInfoRes.ok) throw new Error('Không thể lấy thông tin Google.');
+        const userInfo = await userInfoRes.json();
+
+        // Gửi lên backend theo dạng custom - chúng ta dùng access_token thay credential
+        const res = await fetch('http://localhost:8000/api/auth/google/callback', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            credential: tokenResponse.access_token,
+            user_info: userInfo,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.detail || 'Đăng nhập Google thất bại.');
+
+        // Cập nhật state qua loginWithGoogle – nhưng ở đây ta đã có data
+        // Reload session qua /me để đồng bộ
+        window.location.href = '/dashboard';
+      } catch (err) {
+        setError(err.message || 'Đăng nhập Google thất bại, vui lòng thử lại.');
+      } finally {
+        setGoogleLoading(false);
+      }
+    },
+    onError: () => {
+      setError('Đã hủy hoặc gặp lỗi khi đăng nhập Google.');
+    },
+  });
 
   return (
     <div className="bg-animated min-h-screen flex items-center justify-center p-4 relative">
@@ -73,9 +115,26 @@ export default function LoginPage() {
         {/* Card */}
         <div className="glass-card p-8 fade-in-up fade-in-up-delay-1">
           {/* Google button */}
-          <button id="btn-google-login" onClick={handleGoogle} className="btn-google mb-6">
-            <GoogleIcon />
-            Đăng nhập với Google
+          <button
+            id="btn-google-login"
+            onClick={() => handleGoogleLogin()}
+            disabled={googleLoading || loading}
+            className="btn-google mb-6"
+            style={{ opacity: (googleLoading || loading) ? 0.75 : 1, cursor: (googleLoading || loading) ? 'not-allowed' : 'pointer' }}
+          >
+            {googleLoading ? (
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="30 70" />
+                </svg>
+                Đang kết nối Google...
+              </span>
+            ) : (
+              <>
+                <GoogleIcon />
+                Đăng nhập với Google
+              </>
+            )}
           </button>
 
           <div className="divider mb-6">hoặc</div>
@@ -151,8 +210,8 @@ export default function LoginPage() {
               id="btn-login-submit"
               type="submit"
               className="btn-primary w-full mt-6"
-              disabled={loading}
-              style={{ opacity: loading ? 0.75 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+              disabled={loading || googleLoading}
+              style={{ opacity: (loading || googleLoading) ? 0.75 : 1, cursor: (loading || googleLoading) ? 'not-allowed' : 'pointer' }}>
               {loading ? (
                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                   <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">

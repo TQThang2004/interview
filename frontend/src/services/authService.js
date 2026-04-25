@@ -38,6 +38,16 @@ export const authService = {
       body: JSON.stringify({ email, password }),
     }),
 
+  /**
+   * Đăng nhập / đăng ký qua Google.
+   * @param {string} credential – id_token trả về từ @react-oauth/google
+   */
+  loginWithGoogle: (credential) =>
+    authFetch("/google/callback", {
+      method: "POST",
+      body: JSON.stringify({ credential }),
+    }),
+
   /** Đăng xuất, server xoá cookie */
   logout: () =>
     authFetch("/logout", { method: "POST" }),

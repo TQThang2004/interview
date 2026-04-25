@@ -1,5 +1,5 @@
 """
-Pydantic schemas cho Auth: Register, Login, Response.
+Pydantic schemas cho Auth: Register, Login, Response, Google OAuth.
 """
 from pydantic import BaseModel, EmailStr, field_validator
 
@@ -27,6 +27,16 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
+
+class GoogleCallbackRequest(BaseModel):
+    """
+    Nhận Google credential từ frontend.
+    - credential: access_token trả về từ useGoogleLogin (@react-oauth/google)
+    - user_info: thông tin user đã lấy từ Google userinfo endpoint (do frontend gửi kèm)
+    """
+    credential: str
+    user_info: dict | None = None
 
 
 class UserResponse(BaseModel):
