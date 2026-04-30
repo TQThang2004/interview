@@ -33,8 +33,12 @@ export default function LoginPage() {
     }
     setLoading(true);
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      const data = await login(email, password);
+      if (data?.user?.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError(err.message || 'Đăng nhập thất bại, vui lòng thử lại.');
     } finally {
@@ -75,7 +79,11 @@ export default function LoginPage() {
 
         // Cập nhật state qua loginWithGoogle – nhưng ở đây ta đã có data
         // Reload session qua /me để đồng bộ
-        window.location.href = '/dashboard';
+        if (data?.user?.role === 'admin') {
+          window.location.href = '/admin';
+        } else {
+          window.location.href = '/dashboard';
+        }
       } catch (err) {
         setError(err.message || 'Đăng nhập Google thất bại, vui lòng thử lại.');
       } finally {

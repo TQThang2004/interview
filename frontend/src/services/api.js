@@ -145,5 +145,102 @@ export const api = {
     const data = await res.json();
     return data.interview || null;
   },
+
+  // ── Admin ────────────────────────────────────────────────────────────────
+  adminGetStats: async () => {
+    const res = await fetch(`${API_BASE}/admin/stats`, { credentials: "include" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.stats;
+  },
+  adminGetChartData: async (days = 30) => {
+    const res = await fetch(`${API_BASE}/admin/stats/chart?days=${days}`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.chart;
+  },
+  adminGetUsers: async (limit = 20, offset = 0, search = "") => {
+    const url = new URL(`${API_BASE}/admin/users`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    if (search) url.searchParams.append("search", search);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { users: [], total: 0 };
+    return res.json();
+  },
+  adminUpdateUserRole: async (userId, role) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}/role`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ role })
+    });
+    return res.ok;
+  },
+  adminDeleteUser: async (userId) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}`, {
+      method: "DELETE",
+      credentials: "include"
+    });
+    return res.ok;
+  },
+  adminGetInterviews: async (limit = 20, offset = 0, statusFilter = "") => {
+    const url = new URL(`${API_BASE}/admin/interviews`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    if (statusFilter) url.searchParams.append("status", statusFilter);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { interviews: [], total: 0 };
+    return res.json();
+  },
+  adminGetTopCandidates: async (limit = 10) => {
+    const res = await fetch(`${API_BASE}/admin/top-candidates?limit=${limit}`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.candidates;
+  },
+
+  // ── Community ────────────────────────────────────────────────────────────
+  getCommunityPosts: async (limit = 20, offset = 0, search = "", category = "", tag = "") => {
+    const url = new URL(`${API_BASE}/community/posts`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    if (search) url.searchParams.append("search", search);
+    if (category) url.searchParams.append("category", category);
+    if (tag) url.searchParams.append("tag", tag);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { posts: [], total: 0 };
+    return res.json();
+  },
+  createCommunityPost: async (title, content, category, tags) => {
+    const res = await fetch(`${API_BASE}/community/posts`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, content, category, tags })
+    });
+    if (!res.ok) return null;
+    return res.json();
+  },
+  toggleLikePost: async (postId) => {
+    const res = await fetch(`${API_BASE}/community/posts/${postId}/like`, {
+      method: "POST",
+      credentials: "include"
+    });
+    return res.json();
+  },
+  toggleSavePost: async (postId) => {
+    const res = await fetch(`${API_BASE}/community/posts/${postId}/save`, {
+      method: "POST",
+      credentials: "include"
+    });
+    return res.json();
+  },
+  getPopularTags: async (limit = 10) => {
+    const res = await fetch(`${API_BASE}/community/tags?limit=${limit}`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.tags;
+  }
 };
 

@@ -31,7 +31,7 @@ CHROMA_DB_PATH: str = os.path.abspath(
 COLLECTION_NAME: str = "interview_questions"
 
 # -- RAG settings --
-TOP_K_RETRIEVE: int = 50
+TOP_K_RETRIEVE: int = 20
 NUM_QUESTIONS: int = 5
 
 # -- LLM retry --

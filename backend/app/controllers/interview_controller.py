@@ -1,10 +1,13 @@
 """
-Interview Controller – chứa business logic cho luồng phỏng vấn.
+Interview Controller – business logic cho luồng phỏng vấn.
+
 Tách biệt xử lý nghiệp vụ ra khỏi router để dễ test và tái sử dụng.
+Gọi trực tiếp rag_generator thay vì qua rag_service facade.
 """
 from fastapi import UploadFile
 
-from app.services import pdf_parser, rag_service
+from app.services import pdf_parser
+from app.services.rag_generator import generate_questions_from_cv_jd
 
 
 async def handle_start_interview(
@@ -16,7 +19,7 @@ async def handle_start_interview(
     """
     Xử lý request bắt đầu phỏng vấn:
       1. Đọc và parse CV (nếu có)
-      2. Sinh danh sách câu hỏi từ CV + JD qua RAG + LLM
+      2. Sinh danh sách câu hỏi qua pipeline RAG (Extract → Retrieve → Augment)
     """
     print("\n\n" + "*" * 80)
     print(">>> [LOG] BẮT ĐẦU LUỒNG PHỎNG VẤN MỚI")
@@ -33,5 +36,5 @@ async def handle_start_interview(
     print("\n>>> [LOG] NỘI DUNG JD NHẬN ĐƯỢC:")
     print(jd.strip() if jd.strip() else "(Không có JD)")
 
-    questions = rag_service.generate_questions_from_cv_jd(cv_text, jd, level, language)
+    questions = generate_questions_from_cv_jd(cv_text, jd, level, language)
     return {"status": "success", "questions": questions}
