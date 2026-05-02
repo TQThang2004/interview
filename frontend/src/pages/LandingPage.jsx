@@ -28,6 +28,38 @@ function AnimatedNumber({ target, suffix = '' }) {
   return <span ref={ref}>{value.toLocaleString()}{suffix}</span>;
 }
 
+/* ── FAQ Item (accordion) ────────────────────────────────────── */
+function FAQItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="glass-card"
+      style={{ padding: 0, overflow: 'hidden', transition: 'border-color 0.25s', cursor: 'pointer', borderColor: open ? 'oklch(83.3% 0.145 321.434 / 0.4)' : '' }}
+      onClick={() => setOpen(v => !v)}
+    >
+      <div style={{ padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+        <span style={{ fontWeight: 600, fontSize: '15px', color: 'var(--text-primary)' }}>{q}</span>
+        <span style={{
+          flexShrink: 0, width: '26px', height: '26px', borderRadius: '50%',
+          background: open ? 'var(--gradient-primary)' : 'oklch(83.3% 0.145 321.434 / 0.1)',
+          border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '18px', fontWeight: 700, lineHeight: 1,
+          color: open ? 'oklch(15% 0.01 250)' : 'var(--primary)',
+          transition: 'all 0.25s',
+        }}>
+          {open ? '−' : '+'}
+        </span>
+      </div>
+      {open && (
+        <div style={{ padding: '0 24px 18px', fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.7, borderTop: '1px solid var(--border)' }}>
+          <div style={{ paddingTop: '14px' }}>{a}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ── Feature card data ───────────────────────────────────────── */
 const FEATURES = [
   {
@@ -63,16 +95,25 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { num: '01', title: 'Upload CV & JD', desc: 'Tải lên CV của bạn và Job Description vị trí muốn ứng tuyển (hoặc bỏ qua để dùng câu hỏi chung).' },
-  { num: '02', title: 'Chọn cấp độ', desc: 'Chọn cấp độ phỏng vấn: Intern, Junior, Middle hoặc Senior để nhận câu hỏi phù hợp.' },
-  { num: '03', title: 'Phỏng vấn AI', desc: 'Nghe câu hỏi, trả lời bằng micro hoặc gõ văn bản – AI sẽ lắng nghe và đánh giá.' },
-  { num: '04', title: 'Nhận kết quả', desc: 'Xem điểm số, nhận xét chi tiết và gợi ý cải thiện để phát triển bản thân.' },
+  { num: '01', title: 'Upload CV & JD', desc: 'Tải lên CV (PDF) và dán Job Description – AI sẽ phân tích kỹ năng, kinh nghiệm và gap để tạo câu hỏi cá nhân hóa.' },
+  { num: '02', title: 'Chọn cấp độ', desc: 'Chọn cấp độ phỏng vấn: Intern, Junior, Middle hoặc Senior. AI điều chỉnh độ khó tương ứng.' },
+  { num: '03', title: 'Phỏng vấn thực chiến', desc: 'AI đọc câu hỏi bằng giọng nói. Bạn trả lời qua mic hoặc gõ văn bản – thoải mái như phỏng vấn thật.' },
+  { num: '04', title: 'Nhận phản hồi chi tiết', desc: 'Xem điểm số từng câu, phân tích điểm mạnh – yếu, gợi ý tài liệu học thêm cụ thể.' },
 ];
 
 const TESTIMONIALS = [
-  { name: 'Nguyễn Văn A', role: 'Frontend Developer', avatar: 'NV', rating: 5, text: 'Cực kỳ hữu ích! Sau 2 tuần luyện tập với AI Interviewer, tôi tự tin hơn rất nhiều và đã pass vòng phỏng vấn kỹ thuật.' },
-  { name: 'Trần Thị B', role: 'Backend Engineer', avatar: 'TB', rating: 5, text: 'Tính năng nhận diện giọng nói rất chính xác, kể cả khi nói Tiếng Việt pha thuật ngữ IT. Câu hỏi sát với thực tế.' },
-  { name: 'Lê Minh C', role: 'Fullstack Developer', avatar: 'LM', rating: 5, text: 'Phân tích CV + JD ra câu hỏi cực kỳ sát. Tôi dùng trước mỗi buổi phỏng vấn thật, như warm-up vậy!' },
+  { name: 'Nguyễn Minh Tuấn', role: 'Frontend Developer tại VNG', avatar: 'MT', rating: 5, text: 'Sau 3 tuần luyện tập mỗi ngày với AI Interviewer, mình đã pass vòng technical của VNG. Câu hỏi React rất sát thực tế, đặc biệt phần hooks và performance.' },
+  { name: 'Trần Khánh Linh', role: 'Backend Engineer tại Tiki', avatar: 'KL', rating: 5, text: 'Mình thích nhất là AI phân tích được gap giữa CV và JD. Nó hỏi đúng vào điểm mình chưa mạnh, giúp mình chuẩn bị có mục tiêu hơn nhiều.' },
+  { name: 'Lê Hoàng Nam', role: 'Fullstack Developer tại VNPT', avatar: 'HN', rating: 5, text: 'Tính năng nhận diện giọng nói cực tốt với Tiếng Việt pha IT. Mình dùng trước mỗi vòng phỏng vấn như warm-up – tăng tự tin rõ rệt.' },
+];
+
+const TECH_STACK = ['React', 'Node.js', 'Python', 'SQL', 'Docker', 'AWS', 'TypeScript', 'MongoDB', 'Redis', 'System Design'];
+
+const FAQ = [
+  { q: 'AI Interviewer có miễn phí không?', a: 'Hoàn toàn miễn phí! Bạn có thể thực hiện không giới hạn phiên phỏng vấn mà không cần thẻ tín dụng.' },
+  { q: 'AI có hiểu tiếng Việt không?', a: 'Có! Hệ thống hỗ trợ cả tiếng Việt lẫn tiếng Anh. Đặc biệt, AI hiểu Vinglish (tiếng Việt pha thuật ngữ IT) rất tốt.' },
+  { q: 'Câu hỏi được tạo ra như thế nào?', a: 'AI phân tích CV và JD của bạn qua Gap Analysis, kết hợp knowledge base 15,000+ câu hỏi kỹ thuật, để tạo ra bộ câu hỏi cá nhân hóa.' },
+  { q: 'Tôi cần upload CV không?', a: 'Không bắt buộc. Bạn có thể bỏ qua và chọn chủ đề + cấp độ để nhận câu hỏi tổng quát.' },
 ];
 
 export default function LandingPage() {
@@ -307,23 +348,37 @@ export default function LandingPage() {
       {/* ── Stats ──────────────────────────────────────────────── */}
       <section style={{ paddingInline: '24px', paddingBottom: '80px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div className="glass-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderRadius: '20px', overflow: 'hidden' }}>
+          <div className="glass-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', borderRadius: '20px', overflow: 'hidden' }}>
             {[
-              { label: 'Người dùng', value: 500, suffix: '+' },
-              { label: 'Câu hỏi đã sinh', value: 15000, suffix: '+' },
+              { label: 'Người dùng active', value: 500, suffix: '+' },
+              { label: 'Câu hỏi trong kho', value: 15000, suffix: '+' },
+              { label: 'Phiên phỏng vấn', value: 3200, suffix: '+' },
               { label: 'Tỷ lệ pass phỏng vấn', value: 87, suffix: '%' },
-            ].map((s, i) => (
+            ].map((s, i, arr) => (
               <div key={i} style={{
-                padding: '32px 24px', textAlign: 'center',
-                borderRight: i < 2 ? '1px solid var(--border)' : 'none',
+                padding: '32px 20px', textAlign: 'center',
+                borderRight: i < arr.length - 1 ? '1px solid var(--border)' : 'none',
               }}>
-                <div style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 900, marginBottom: '6px' }}>
+                <div style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 900, marginBottom: '6px' }}>
                   <span className="gradient-text">
                     <AnimatedNumber target={s.value} suffix={s.suffix} />
                   </span>
                 </div>
-                <div style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 500 }}>{s.label}</div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '13px', fontWeight: 500 }}>{s.label}</div>
               </div>
+            ))}
+          </div>
+
+          {/* Tech stack badges */}
+          <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
+            <div style={{ width: '100%', textAlign: 'center', fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>Hỗ trợ kiến thức kỹ thuật về</div>
+            {TECH_STACK.map(tech => (
+              <span key={tech} style={{
+                padding: '5px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 600,
+                background: 'oklch(83.3% 0.145 321.434 / 0.08)',
+                border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+                color: 'var(--primary-light)',
+              }}>{tech}</span>
             ))}
           </div>
         </div>
@@ -456,6 +511,23 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ─────────────────────────────────────────────────── */}
+      <section style={{ paddingInline: '24px', paddingBottom: '100px' }}>
+        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>FAQ</p>
+            <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 800, letterSpacing: '-0.03em' }}>
+              Câu hỏi <span className="gradient-text">thường gặp</span>
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {FAQ.map((item, i) => (
+              <FAQItem key={i} q={item.q} a={item.a} />
             ))}
           </div>
         </div>

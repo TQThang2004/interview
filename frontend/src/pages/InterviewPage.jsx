@@ -31,6 +31,9 @@ export default function InterviewPage() {
    */
   const [history, setHistory] = useState([]);
 
+  // Lưu tất cả điểm (bao gồm câu cuối) để FinalResult tính đúng
+  const [finalScores, setFinalScores] = useState([]);
+
   // ── DB tracking IDs ────────────────────────────────────────────────────────
   /**
    * interviewId: UUID của phiên phỏng vấn trong bảng interviews.
@@ -147,20 +150,20 @@ export default function InterviewPage() {
         const evaluation = data.evaluation;
         setEvalResult(evaluation);
 
-        // Cập nhật DB: lưu câu trả lời + đánh giá
+        // Cập nhật DB: lưu câu trả lời + đánh giá (JSON có cấu trúc)
         const qDbId = questionDbIdsRef.current[currentIdx];
         if (interviewIdRef.current && qDbId) {
-          const evalText = [
-            `ĐIỂM: ${evaluation.score_str}`,
-            `ĐIỂM MẠNH: ${evaluation.strengths}`,
-            `ĐIỂM YẾU: ${evaluation.weaknesses}`,
-            `GỢI Ý: ${evaluation.suggestions}`,
-          ].join("\n");
+          const evalJson = JSON.stringify({
+            score_str: evaluation.score_str,
+            strengths: evaluation.strengths,
+            weaknesses: evaluation.weaknesses,
+            suggestions: evaluation.suggestions,
+          });
           api.updateAnswer(
             interviewIdRef.current,
             qDbId,
             userAnswer,
-            evalText,
+            evalJson,
             evaluation.score
           ).catch(console.warn);
         }
@@ -197,8 +200,9 @@ export default function InterviewPage() {
     } else {
       // Kết thúc phỏng vấn – tính avgScore từ history + score câu cuối
       isInterviewingRef.current = false;
+      const allScores = lastScore != null ? [...history, lastScore] : [...history];
+      setFinalScores(allScores); // Lưu để FinalResult dùng
       if (interviewIdRef.current) {
-        const allScores = lastScore != null ? [...history, lastScore] : [...history];
         const avgScore = allScores.length
           ? parseFloat((allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(2))
           : 0;
@@ -228,6 +232,7 @@ export default function InterviewPage() {
 
     setQuestions([]);
     setHistory([]);
+    setFinalScores([]);
     setEvalResult(null);
     setUserAnswer("");
     setCurrentIdx(0);
@@ -242,7 +247,7 @@ export default function InterviewPage() {
     return <LoadingScreen message={appState === "LOADING_QUESTIONS" ? "Đang xào nấu câu hỏi từ CV/JD..." : "Đang chấm điểm..."} />;
 
   if (appState === "FINISHED")
-    return <FinalResult history={history} topic={buildTopicLabel()} total={questions.length} onRestart={restart} />;
+    return <FinalResult history={finalScores} topic={buildTopicLabel()} total={questions.length} onRestart={restart} />;
 
   if (appState === "INTERVIEWING")
     return (

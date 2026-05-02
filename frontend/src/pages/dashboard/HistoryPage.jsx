@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Clock, Star, ChevronDown, ChevronUp, Search, Filter, BarChart3, TrendingUp, Trophy, RefreshCw, AlertCircle } from 'lucide-react';
+import { Clock, Star, ChevronDown, ChevronUp, Search, Filter, BarChart3, TrendingUp, Trophy, RefreshCw, AlertCircle, Lightbulb, ThumbsUp, AlertTriangle } from 'lucide-react';
 import { api } from '../../services/api';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -47,6 +47,113 @@ function calcDuration(startedAt, completedAt) {
   const ms = new Date(completedAt) - new Date(startedAt);
   const mins = Math.round(ms / 60000);
   return mins > 0 ? `${mins} phút` : '< 1 phút';
+}
+
+/**
+ * Parse ai_evaluation: hỗ trợ cả JSON mới và text cũ.
+ */
+function parseAiEvaluation(raw) {
+  if (!raw) return null;
+  // Thử parse JSON (format mới)
+  try {
+    const obj = JSON.parse(raw);
+    if (obj && (obj.strengths || obj.weaknesses || obj.suggestions)) return obj;
+  } catch (_) {}
+  // Fallback: parse text cũ "ĐIỂM MẠNH: ..."
+  const result = {};
+  const lines = raw.split('\n');
+  let currentKey = null;
+  let buffer = [];
+  const flush = () => buffer.join(' ').trim();
+
+  for (const line of lines) {
+    const s = line.trim().replace(/\*/g, '');
+    if (s.startsWith('ĐIỂM:') || s.startsWith('DIEM:')) {
+      result.score_str = s.split(':')[1]?.trim();
+      currentKey = null; buffer = [];
+    } else if (s.startsWith('ĐIỂM MẠNH:') || s.startsWith('DIEM MANH:')) {
+      if (currentKey) result[currentKey] = flush();
+      currentKey = 'strengths'; buffer = [s.split(':')[1]?.trim() || ''];
+    } else if (s.startsWith('ĐIỂM YẾU:') || s.startsWith('DIEM YEU:')) {
+      if (currentKey) result[currentKey] = flush();
+      currentKey = 'weaknesses'; buffer = [s.split(':')[1]?.trim() || ''];
+    } else if (s.startsWith('GỢI Ý') || s.startsWith('GOI Y')) {
+      if (currentKey) result[currentKey] = flush();
+      currentKey = 'suggestions'; buffer = [s.split(':').slice(1).join(':').trim() || ''];
+    } else if (currentKey && s) {
+      buffer.push(s);
+    }
+  }
+  if (currentKey) result[currentKey] = flush();
+  return Object.keys(result).length > 0 ? result : null;
+}
+
+// ── AI Evaluation Panel ────────────────────────────────────────────────────────
+
+function AiEvaluationPanel({ aiEvaluation }) {
+  const parsed = parseAiEvaluation(aiEvaluation);
+  if (!parsed) return null;
+
+  return (
+    <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      {parsed.strengths && (
+        <div style={{
+          padding: '10px 14px', borderRadius: '10px',
+          background: 'oklch(72% 0.18 145 / 0.06)',
+          border: '1px solid oklch(72% 0.18 145 / 0.2)',
+          display: 'flex', gap: '10px', alignItems: 'flex-start',
+        }}>
+          <ThumbsUp size={14} style={{ color: 'oklch(68% 0.2 145)', marginTop: '2px', flexShrink: 0 }} />
+          <div>
+            <div style={{ fontSize: '10px', fontWeight: 700, color: 'oklch(68% 0.2 145)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
+              Điểm mạnh
+            </div>
+            <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+              {parsed.strengths}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {parsed.weaknesses && (
+        <div style={{
+          padding: '10px 14px', borderRadius: '10px',
+          background: 'oklch(65% 0.22 25 / 0.06)',
+          border: '1px solid oklch(65% 0.22 25 / 0.2)',
+          display: 'flex', gap: '10px', alignItems: 'flex-start',
+        }}>
+          <AlertTriangle size={14} style={{ color: 'oklch(65% 0.22 25)', marginTop: '2px', flexShrink: 0 }} />
+          <div>
+            <div style={{ fontSize: '10px', fontWeight: 700, color: 'oklch(65% 0.22 25)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
+              Cần cải thiện
+            </div>
+            <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+              {parsed.weaknesses}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {parsed.suggestions && (
+        <div style={{
+          padding: '10px 14px', borderRadius: '10px',
+          background: 'oklch(83.3% 0.145 321.434 / 0.06)',
+          border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+          display: 'flex', gap: '10px', alignItems: 'flex-start',
+        }}>
+          <Lightbulb size={14} style={{ color: 'var(--primary)', marginTop: '2px', flexShrink: 0 }} />
+          <div>
+            <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
+              Gợi ý AI cải thiện
+            </div>
+            <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+              {parsed.suggestions}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ── Main Component ─────────────────────────────────────────────────────────────
@@ -120,7 +227,7 @@ export default function HistoryPage() {
           <h1 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '6px' }}>
             <span className="gradient-text">Lịch sử phỏng vấn</span> 📊
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Theo dõi tiến trình luyện tập của bạn.</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Theo dõi tiến trình luyện tập và xem gợi ý AI chi tiết.</p>
         </div>
         <button
           onClick={fetchHistory}
@@ -272,28 +379,56 @@ export default function HistoryPage() {
                         <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                           Chi tiết {detail.questions.length} câu hỏi
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                           {detail.questions.map((q, i) => (
-                            <div key={q.id} style={{ padding: '10px 14px', borderRadius: '10px', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                              <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', marginBottom: q.user_answer ? '8px' : 0 }}>
-                                <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', flexShrink: 0 }}>#{i + 1}</span>
-                                <span style={{ fontSize: '13px', flex: 1, color: 'var(--text-primary)', fontWeight: 600, lineHeight: 1.4 }}>{q.question_text}</span>
+                            <div key={q.id} style={{
+                              padding: '14px 16px', borderRadius: '12px',
+                              background: 'var(--bg-card)', border: '1px solid var(--border)',
+                            }}>
+                              {/* Header câu hỏi */}
+                              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '8px' }}>
+                                <span style={{
+                                  fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)',
+                                  flexShrink: 0, marginTop: '2px',
+                                  background: 'oklch(83.3% 0.145 321.434 / 0.1)',
+                                  border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+                                  padding: '2px 8px', borderRadius: '6px',
+                                }}>#{i + 1}</span>
+                                <span style={{ fontSize: '13px', flex: 1, color: 'var(--text-primary)', fontWeight: 600, lineHeight: 1.5 }}>{q.question_text}</span>
                                 {q.score != null && (
-                                  <span style={{ fontWeight: 700, fontSize: '13px', flexShrink: 0, color: q.score >= 8 ? 'oklch(68% 0.2 145)' : q.score >= 6.5 ? 'oklch(70% 0.18 80)' : 'oklch(60% 0.22 25)' }}>
+                                  <span style={{
+                                    fontWeight: 800, fontSize: '13px', flexShrink: 0,
+                                    color: q.score >= 8 ? 'oklch(68% 0.2 145)' : q.score >= 6.5 ? 'oklch(70% 0.18 80)' : 'oklch(60% 0.22 25)',
+                                    background: q.score >= 8 ? 'oklch(72% 0.18 145 / 0.12)' : q.score >= 6.5 ? 'oklch(80% 0.18 80 / 0.12)' : 'oklch(65% 0.22 25 / 0.12)',
+                                    padding: '2px 10px', borderRadius: '999px',
+                                  }}>
                                     {Number(q.score).toFixed(1)}/10
                                   </span>
                                 )}
                               </div>
-                              {q.user_answer && (
-                                <div style={{ paddingLeft: '24px', fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5, borderLeft: '2px solid var(--border)' }}>
-                                  <span style={{ color: 'var(--text-muted)', fontWeight: 600 }}>Trả lời: </span>
-                                  {q.user_answer.length > 200 ? q.user_answer.slice(0, 200) + '…' : q.user_answer}
+
+                              {/* Câu trả lời đầy đủ */}
+                              {q.user_answer ? (
+                                <div style={{
+                                  paddingLeft: '14px', borderLeft: '3px solid oklch(83.3% 0.145 321.434 / 0.4)',
+                                  marginBottom: '10px',
+                                }}>
+                                  <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
+                                    Câu trả lời của bạn
+                                  </div>
+                                  <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>
+                                    {q.user_answer}
+                                  </p>
                                 </div>
-                              )}
-                              {!q.user_answer && (
-                                <div style={{ paddingLeft: '24px', fontSize: '12px', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                              ) : (
+                                <div style={{ paddingLeft: '14px', fontSize: '12px', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '8px' }}>
                                   (Chưa trả lời)
                                 </div>
+                              )}
+
+                              {/* Đánh giá AI đầy đủ */}
+                              {q.ai_evaluation && (
+                                <AiEvaluationPanel aiEvaluation={q.ai_evaluation} />
                               )}
                             </div>
                           ))}

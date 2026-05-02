@@ -199,6 +199,18 @@ export const api = {
     const data = await res.json();
     return data.candidates;
   },
+  adminGetUserDetail: async (userId) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}`, { credentials: "include" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.user;
+  },
+  adminGetRecentActivity: async (limit = 15) => {
+    const res = await fetch(`${API_BASE}/admin/recent-activity?limit=${limit}`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.activities || [];
+  },
 
   // ── Community ────────────────────────────────────────────────────────────
   getCommunityPosts: async (limit = 20, offset = 0, search = "", category = "", tag = "") => {
