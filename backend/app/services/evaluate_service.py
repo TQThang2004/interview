@@ -101,12 +101,14 @@ def evaluate_answer(
         f"{vinglish_note}\n\n"
         f"{scoring_guide}\n"
         f'Nhan xet bang ngon ngu "{lang_name}" theo cap do "{level}". '
-        "Tuy nhien, BAT BUOC cac tieu de cua form tra ve phai GIU NGUYEN DINH DANG y chang nhu sau "
-        "(KHONG DUNG ky tu markdown nhu in dam vao tieu de):\n"
+        "PHAN HOI PHAI NGAN GON, SUC TICH (moi muc toi da 2 cau). "
+        "Tuyet doi khong giai thich dai dong, khong liet ke nhieu y. "
+        "Tap trung vao diem quan trong nhat.\n"
+        "BAT BUOC giu nguyen dinh dang sau (KHONG dung markdown/in dam vao tieu de):\n"
         "DIEM: [X/10]\n"
-        "DIEM MANH: [nhan xet diem manh - cu the, chi tiet, mang tinh dong vien]\n"
-        "DIEM YEU: [nhan xet diem yeu - nhe nhang, xay dung, tap trung vao noi dung thieu]\n"
-        "GOI Y BO SUNG: [goi y cu the bo sung kien thuc, kem vi du hoac tai lieu neu can]"
+        "DIEM MANH: [1-2 cau ngan, dong vien cu the]\n"
+        "DIEM YEU: [1-2 cau ngan, nhe nhang, chi vao diem thieu chinh]\n"
+        "GOI Y BO SUNG: [1-2 cau ngan, goi y thiet thuc nhat]"
     ).strip()
 
     raw = client.generate(prompt)
@@ -194,8 +196,10 @@ def _parse_evaluation(raw: str) -> EvaluationResult:
             val = stripped.split(":", 1)[1].strip()
             score_str = val
             try:
-                score = float(val.split("/")[0].strip())
-            except ValueError:
+                # Chuẩn hóa: thay dấu phẩy → dấu chấm, bỏ khoảng trắng
+                raw_num = val.split("/")[0].strip().replace(",", ".")
+                score = float(raw_num)
+            except (ValueError, IndexError):
                 pass
 
         elif current_field and stripped:

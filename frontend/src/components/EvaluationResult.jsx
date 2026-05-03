@@ -27,44 +27,53 @@ export default function EvaluationResult({ evalResult, onNext, isLast }) {
              </div>
           </div>
           
-          <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-             <div>
-               <h4 style={{ fontSize: '12px', fontWeight: 800, color: 'var(--success)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
-                 Điểm Mạnh
+          <div style={{ padding: '20px 28px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+             {/* Điểm mạnh */}
+             <div style={{
+               padding: '10px 14px', borderRadius: '10px',
+               background: 'oklch(72% 0.18 145 / 0.07)',
+               border: '1px solid oklch(72% 0.18 145 / 0.25)',
+             }}>
+               <h4 style={{ fontSize: '11px', fontWeight: 800, color: 'var(--success)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '5px' }}>
+                 ✅ Điểm Mạnh
                </h4>
-               <p style={{ color: 'var(--text-primary)', fontSize: '15px', lineHeight: 1.6, margin: 0 }}>
+               <p style={{ color: 'var(--text-primary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
                  {evalResult.strengths || "Không có đáng kể."}
                </p>
              </div>
-             
-             <div>
-               <h4 style={{ fontSize: '12px', fontWeight: 800, color: 'oklch(65% 0.22 25)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
-                 Điểm Yếu / Cần Cải Thiện
+
+             {/* Điểm yếu */}
+             <div style={{
+               padding: '10px 14px', borderRadius: '10px',
+               background: 'oklch(65% 0.22 25 / 0.07)',
+               border: '1px solid oklch(65% 0.22 25 / 0.25)',
+             }}>
+               <h4 style={{ fontSize: '11px', fontWeight: 800, color: 'oklch(65% 0.22 25)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '5px' }}>
+                 ⚠️ Cần Cải Thiện
                </h4>
-               <p style={{ color: 'var(--text-primary)', fontSize: '15px', lineHeight: 1.6, margin: 0 }}>
+               <p style={{ color: 'var(--text-primary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
                  {evalResult.weaknesses || "Bạn đã trả lời rất tốt, không có điểm trừ."}
                </p>
              </div>
-             
-             <div style={{ 
-               background: 'var(--gradient-primary)', borderRadius: '16px', padding: '1px'
+
+             {/* Gợi ý */}
+             <div style={{
+               padding: '10px 14px', borderRadius: '10px',
+               background: 'oklch(83.3% 0.145 321.434 / 0.07)',
+               border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
              }}>
-               <div style={{ 
-                 background: 'oklch(14% 0.018 250 / 0.95)', borderRadius: '15px', padding: '20px',
-               }}>
-                 <h4 style={{ fontSize: '12px', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
-                   AI Gợi ý Bổ Sung
-                 </h4>
-                 <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
-                   {evalResult.suggestions}
-                 </p>
-               </div>
+               <h4 style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '5px' }}>
+                 💡 Gợi Ý AI
+               </h4>
+               <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
+                 {evalResult.suggestions}
+               </p>
              </div>
 
-             <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '16px', marginTop: '8px', borderTop: '1px solid var(--border)' }}>
+             <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '10px', borderTop: '1px solid var(--border)' }}>
                <button onClick={onNext} className="btn-primary"
-                 style={{ padding: '14px 28px', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                 {isLast ? "Xem kết quả chung cuộc" : "Đến câu tiếp theo"} <ChevronRight size={18}/>
+                 style={{ padding: '12px 24px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                 {isLast ? "Xem kết quả chung cuộc" : "Đến câu tiếp theo"} <ChevronRight size={16}/>
                </button>
              </div>
           </div>
