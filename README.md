@@ -1,92 +1,88 @@
-# AI Mock Interviewer System
+# Hệ thống Phỏng vấn thử bằng Trí Tuệ Nhân Tạo (AI Mock Interviewer)
 
-Dự án Hệ thống phỏng vấn thử bằng Trí Tuệ Nhân Tạo (AI Mock Interviewer) là một ứng dụng toàn diện giúp người dùng luyện tập kỹ năng phỏng vấn kỹ thuật từ Intern tới Senior. Thông qua dữ liệu được nạp vào cơ sở dữ liệu Vector và sự kết hợp của GenAI (Google Gemini), hệ thống có thể đóng vai trò như một Interviewer ảo: chọn lọc câu hỏi, đọc câu hỏi bằng giọng nói, thu âm nhận diện câu trả lời kết hợp cả Tiếng Anh và Tiếng Việt (Vinglish), và cuối cùng là chấm điểm kèm nhận xét chi tiết.
+## 📖 Giới thiệu Dự án
+Dự án **AI Mock Interviewer** là một nền tảng toàn diện hỗ trợ ứng viên rèn luyện và chuẩn bị cho các buổi phỏng vấn kỹ thuật từ vị trí Intern đến Senior. Thông qua việc kết hợp cơ sở dữ liệu Vector và sức mạnh của GenAI (Google Gemini), hệ thống mang đến trải nghiệm phỏng vấn mô phỏng sát với thực tế nhất: từ việc sinh câu hỏi cá nhân hoá dựa trên CV & JD, đọc câu hỏi bằng giọng nói, thu âm và nhận diện câu trả lời đa ngôn ngữ (Vinglish - Tiếng Việt pha Tiếng Anh chuyên ngành), cho đến chấm điểm và đưa ra nhận xét chi tiết.
+Hệ thống cũng tích hợp chức năng quản trị Admin Dashboard và tính năng Cộng đồng (Community).
 
 ---
 
-## 🛠 Những Thư viện / Công nghệ được sử dụng
+## 🛠 Những Thư viện & Công nghệ được sử dụng
 
 ### 1. Phía Frontend (Ứng dụng Client)
-Nằm trong thư mục `backend/`
-- **ReactJS & Vite**: Giúp xây dựng UI thành các Component modular chạy nhanh.
-- **Tailwind CSS**: Framework tiện lợi cho phép thiết kế giao diện theo sát chuẩn UI/UX hiện đại (gradient, animation).
-- **lucide-react**: Thư viện chứa các Icon SVG sử dụng trong ứng dụng.
-- Sử dụng trực tiếp `MediaRecorder API` và `Audio` API trên trình duyệt Web để thu phát âm thanh.
+Mã nguồn nằm trong thư mục `frontend/`
+- **ReactJS & Vite**: Xây dựng UI thành các Single Page Application (SPA) mượt mà và hiệu suất cao.
+- **Tailwind CSS**: Framework tiện lợi cho phép thiết kế giao diện theo sát chuẩn UI/UX hiện đại (gradient, glassmorphism, animation).
+- **React Router DOM**: Quản lý định tuyến giữa các trang.
+- **Google OAuth (`@react-oauth/google`)**: Tích hợp luồng xác thực bằng tài khoản Google.
+- **lucide-react**: Cung cấp các biểu tượng SVG chất lượng cao.
+- **Web APIs**: Sử dụng trực tiếp `MediaRecorder API` và `Audio` API trên trình duyệt Web để thu, phát âm thanh.
 
-### 2. Phía Backend (Máy chủ xử lý AI)
-Nằm trong thư mục `frontend/`
-- **FastAPI** & **Uvicorn**: Máy chủ Backend với hiệu năng truy xuất cao để dễ đóng mở luồng API nhanh chóng giữa React và GenAI.
-- **google-generativeai**: SDK chính thống tương tác với hệ thống AI của Google, sử dụng để: Vectorize (Embedding) văn bản, Transcribe Multi-modal nhận diện tiếng nói, và Chat Generative LLM đánh giá / dịch thuật ngữ AI.
-- **chromadb**: Cơ sở dữ liệu vec-tơ lưu trữ không gian semantic nhằm tìm nhanh câu trả lời theo ngữ cảnh RAG (Retrieval-Augmented Generation).
-- **gTTS** (Google Text-to-Speech): Chuyển văn bản câu hỏi thành Giọng đọc AI trả về cho Frontend phát.
-- **pydantic**, **python-dotenv**: Giúp quản lý schema validation API và load nhanh các biến bảo mật từ file hệ thống `.env`.
+### 2. Phía Backend (Máy chủ xử lý API & AI)
+Mã nguồn nằm trong thư mục `backend/`
+- **FastAPI & Uvicorn**: Framework Backend tốc độ cao, xử lý các endpoint bất đồng bộ (async), làm cầu nối giữa React và các dịch vụ AI.
+- **Google Generative AI (Gemini 2.5 Flash)**: SDK chính thống tương tác với AI của Google: Vectorize (Embedding) văn bản, Nhận diện tiếng nói từ Audio (Multimodal STT), và Prompt Generative LLM đánh giá/chấm điểm.
+- **PostgreSQL**: Cơ sở dữ liệu quan hệ dùng để lưu trữ dữ liệu người dùng, quản lý phiên bản xác thực, lưu trữ lịch sử phỏng vấn, điểm số và câu trả lời.
+- **ChromaDB**: Cơ sở dữ liệu Vector cục bộ lưu trữ không gian semantic nhằm tìm nhanh câu hỏi chuyên môn theo ngữ cảnh RAG (Retrieval-Augmented Generation).
+- **gTTS (Google Text-to-Speech)**: Dịch vụ chuyển đổi văn bản câu hỏi của AI thành giọng nói trả về cho Frontend.
+- **PyMuPDF (fitz)**: Phân tích file PDF, dùng để bóc tách text từ file CV ứng viên.
+- **Pydantic**: Quản lý Schema, cấu trúc và kiểm tra tính hợp lệ của dữ liệu đầu vào/đầu ra cho API.
 
 ---
 
-## 🚀 Logic chạy & Luồng hoạt động của Source Code
+## 🚀 Kiến trúc & Luồng hoạt động của Source Code
 
-Toàn bộ hệ thống chạy dựa trên hai luồng chia tách rõ ràng: **Tiền xử lý Data** và **Application Hoạt động thời gian thực**.
+Toàn bộ hệ thống chạy dựa trên các phân hệ luồng dữ liệu độc lập: **Tiền xử lý Data Pipeline**, **Kiến trúc RAG tối ưu**, và **Luồng Ứng dụng Live (Client-Server)**.
 
-### A. Luồng Tiền xử lý & Nạp Kiến Thức chuẩn bị (Data Pipeline)
-Được chạy dưới local terminal nội bộ bởi Dev với các file trực tiếp tại gốc nhằm chuẩn bị dữ liệu phỏng vấn:
+### A. Luồng Tiền xử lý & Nạp Kiến Thức (Data Pipeline)
+Thường được chạy tại môi trường local của Developer (trong thư mục `data_pipeline/`):
+1. **Xử lý dữ liệu thô**: Đọc dữ liệu CSV (chứa câu hỏi, đáp án, tag kinh nghiệm), làm sạch, gộp metadata và tạo các file JSON chunked được chuẩn hoá.
+2. **Nhúng Vector (Embedding - `embed_to_chroma.py`)**: Gửi dữ liệu chunk lên Gemini Embedding API để lấy vector, sau đó lưu toàn bộ vào thư mục ChromaDB cục bộ.
 
-1. **Xử lý thô (`process_sample.py`)**: Script này đọc dữ liệu CSV thô từ `sample.csv` (chứa input, answer, question origin). Làm sạch, gộp metadata (loại chủ đề, kinh nghiệm level) và dump ra một file JSON được chuẩn hoá gọi là `chunked_sample.json`.
-2. **Nhúng Vector Nâng Cao (`embed_to_chroma.py`)**: Đọc từng chunk file `chunked_sample.json` và yêu cầu Gemini Embedding API biểu thị chúng dưới dạng Vec-tơ số học. Sau đó lưu tất cả khối lượng lớn này vào một local DB là thư mục `chroma_db/`. (Quá trình này có tính năng tự động delay exponential mỗi khi hit threshold của Google rate limit API).
-3. **Kiểm tra trạng thái (`check_chroma.py`)**: Load thử xem thư mục local DB đắp xong chưa, test thử quá trình tìm kiếm với top K xem điểm số tương đương cao nhất. Log nằm tại `check_result.txt`.
+### B. Kiến trúc lõi AI: RAG Pipeline (Retrieve - Augment - Generate)
+Nhằm đảm bảo câu hỏi bám sát vào cả kỹ năng và thiếu sót của ứng viên, hệ thống RAG được chia rõ làm 3 bước:
+1. **RAG Retriever**: Dựa vào kỹ năng từ CV/JD, truy vấn ChromaDB để tìm các câu hỏi thô sát với chuyên môn.
+2. **RAG Augmentor (`rag_augmentor.py`)**: Gọi LLM phân tích điểm chênh lệch (Gap Analysis) giữa CV (ứng viên có gì) và JD (nhà tuyển dụng cần gì). Kết hợp tài liệu thô và Gap Analysis để LLM "Augment" ra các câu hỏi đánh đúng trọng tâm và điểm yếu.
+3. **RAG Evaluator/Generator**: Nhận câu trả lời và thông qua LLM để sinh ra điểm số và nhận xét.
 
-### B. Luồng hoạt động Ứng dụng AI Phỏng Vấn (Live App Workflow)
-
-Hệ thống hoạt động theo mô hình Client-Server hiện đại, kết hợp chặt chẽ giữa khả năng xử lý giao diện của React và khả năng xử lý AI đa phương thức của FastAPI.
+### C. Luồng hoạt động Ứng dụng Phỏng Vấn (Live Workflow)
 
 ```mermaid
 graph TD
-    A[User: Upload CV & JD] -->|POST /api/start-interview| B(Backend: API Server)
-    B -->|PyMuPDF| C[Extract Text]
-    C -->|Gemini RAG| D[Generate Questions]
-    D -->|JSON| E[Frontend: Start Interview]
-    E -->|API /api/tts| F[TTS Service: gTTS]
-    F -->|Audio MP3| G[User: Listen to Question]
-    G -->|MediaRecorder| H[Audio Record: WebM]
-    H -->|POST /api/transcribe| I[Backend: Gemini Multimodal STT]
-    I -->|Text String| J[User: Confirm Answer]
-    J -->|POST /api/evaluate| K[Backend: Gemini Eval Agent]
-    K -->|Detailed JSON| L[Frontend: Result & Next Question]
+    A[User: Tải lên CV & JD] -->|POST /api/start-interview| B(Backend: API Server)
+    B -->|PyMuPDF| C[Extract Text từ CV PDF]
+    C -->|RAG Augmentor| D[Phân tích Gap Analysis & Sinh Câu Hỏi JSON]
+    D -->|Trả về JSON| E[Frontend: Mở Giao diện Phỏng vấn]
+    E -->|GET /api/tts| F[TTS Service: gTTS chuyển Text -> MP3]
+    F -->|Phát Audio| G[User: Nghe câu hỏi và suy nghĩ]
+    G -->|MediaRecorder| H[Audio Record: Thu âm WebM]
+    H -->|POST /api/transcribe| I[Backend: Gemini Multimodal STT xử lý Vinglish]
+    I -->|Text đã nhận diện| J[User: Xác nhận lại nội dung trả lời]
+    J -->|POST /api/evaluate| K[Backend: Gemini Evaluator Chấm điểm]
+    K -->|Detailed JSON| L[Frontend: Hiển thị Kết quả & Lưu trữ vào PostgreSQL]
 ```
 
-#### 🛠 Chi tiết các giai đoạn hoạt động:
+#### 🛠 Chi tiết các giai đoạn thực thi:
 
-#### 1. Giai đoạn thiết lập & Phân tích (Setup Phase)
-- **Nhiệm vụ:** Thu thập hồ sơ ứng viên (CV) và yêu cầu công việc (JD).
-- **Công nghệ/Thư viện:** 
-    - **Frontend:** `SetupForm.jsx` sử dụng HTML5 File Input và Hooks để quản lý trạng thái.
-    - **Backend:** `pdf_parser.py` sử dụng thư viện **PyMuPDF (fitz)** để xử lý file PDF bytes thành văn bản thô.
-- **Cơ chế:** Backend nhận file và văn bản từ Form Data, trích xuất thông tin CV và chuẩn hóa nội dung JD trước khi chuyển sang bước tạo câu hỏi.
+#### 1. Giai đoạn Xác thực (Authentication)
+Người dùng đăng nhập bằng Email/Password hoặc Google OAuth. Backend tạo phiên làm việc thông qua JWT HTTP-Only Cookies để tăng cường bảo mật.
 
-#### 2. Khởi tạo buổi phỏng vấn (Question Generation)
-- **Nhiệm vụ:** Tạo danh sách câu hỏi phỏng vấn được cá nhân hóa hoàn toàn.
-- **Công nghệ/Thư viện:**
-    - **API Endpoint:** `/api/start-interview`.
-    - **Mô hình AI:** **Google Gemini 2.5 Flash**.
-- **Cơ chế:** Sử dụng kỹ thuật **System Prompting** để định danh Gemini làm chuyên gia tuyển dụng. AI dựa trên nội dung CV/JD để suy luận ra các câu hỏi kỹ thuật phù hợp với Level (Intern, Junior, Senior). Kết quả trả về là một danh sách JSON gồm nội dung câu hỏi và đáp án tham khảo lý tưởng.
+#### 2. Giai đoạn Thiết lập (Setup Phase)
+- Ứng viên tải lên tệp hồ sơ (CV) định dạng PDF và nhập Job Description (JD).
+- Giao diện `SetupForm` ở Frontend sẽ gửi tệp lên Backend. `PyMuPDF` giải mã file bytes và lấy toàn bộ text.
 
-#### 3. Tương tác Hỏi - Đáp Đa phương thức (Live Interaction)
-- **Nhiệm vụ:** Giả lập môi trường phỏng vấn thực tế bằng giọng nói (STT & TTS).
-- **Công nghệ/Thư viện:**
-    - **Chuyển văn bản thành tiếng (TTS):** Sử dụng **gTTS** (Google Text-to-Speech) để tạo giọng đọc tự nhiên.
-    - **Thu âm (Frontend):** Sử dụng **MediaRecorder API** ghi âm định dạng `audio/webm;codecs=opus`.
-    - **Nhận diện giọng nói (STT):** Endpoint `/api/transcribe` gửi audio trực tiếp sang **Gemini Multimodal**.
-- **Cơ chế:** Gemini xử lý audio đầu vào với khả năng nhận diện thuật ngữ **Vinglish** (tiếng Việt pha tiếng Anh chuyên ngành) cực tốt nhờ bộ Prompt được tối ưu hóa, đảm bảo trích xuất nội dung trả lời chính xác nhất.
+#### 3. Khởi tạo Câu Hỏi (Question Generation)
+- API endpoint: `/api/start-interview`.
+- Áp dụng cấu trúc **RAG Augmentor**, Gemini làm chuyên gia tuyển dụng để phân tích khoảng trống kinh nghiệm (Gap Analysis). Từ đó, trộn lẫn kiến thức ChromaDB để trả ra một mảng JSON các câu hỏi khó/dễ được tinh chỉnh theo chính ứng viên đó.
 
-#### 4. Chấm điểm & Nhận xét Chuyên sâu (Evaluation Phase)
-- **Nhiệm vụ:** Đánh giá chuyên môn và cung cấp phản hồi cho ứng viên.
-- **Công nghệ/Thư viện:**
-    - **Logic xử lý:** `rag_service.py` -> `evaluate_rag_answer`.
-    - **Định dạng dữ liệu:** Sử dụng **Pydantic Models** và **Gemini JSON Mode**.
-- **Cơ chế:** AI thực hiện so khớp ngữ nghĩa giữa câu trả lời của thí sinh và đáp án tham khảo. Hệ thống bóc tách kết quả thành các trường: Score (0-10), Strong Points, Weak Points, và Study Recommendations.
+#### 4. Tương tác Hỏi - Đáp Đa phương thức (Live Interaction)
+- **Đọc câu hỏi (TTS):** Khi sang câu hỏi mới, Frontend fetch API `/api/tts`, trả về file audio để phát bằng trình duyệt.
+- **Thu âm:** Ứng viên nói, `MediaRecorder API` thu giọng định dạng `.webm`.
+- **Nhận diện giọng nói (STT):** Bản thu âm được đẩy lên endpoint `/api/transcribe`. Mô hình **Gemini Multimodal** nghe và bóc tách chữ. Prompt được tùy chỉnh để nhận diện tốt thuật ngữ "Vinglish" (Tiếng Việt kết hợp các từ khóa IT Tiếng Anh).
 
-#### 5. Kết luận & Tổng hợp (Final Assessment)
-- **Nhiệm vụ:** Tổng kết hiệu suất buổi phỏng vấn.
-- **Công nghệ/Thư viện:** UI Components hiện đại với CSS Animation và Lucide Icons.
-- **Cơ chế:** Sau khi hoàn thành bộ câu hỏi, hệ thống tổng hợp lịch sử chấm điểm, tính toán điểm trung bình và đưa ra nhận định liệu ứng viên đã sẵn sàng cho buổi phỏng vấn thực tế hay chưa.
+#### 5. Chấm điểm & Nhận xét Chuyên sâu (Evaluation Phase)
+- Hàm `evaluate_service.py` yêu cầu AI đánh giá câu trả lời dựa trên đáp án lý tưởng.
+- Kết quả được phân tích chi tiết bằng Pydantic JSON Schema, bao gồm: **Điểm số (0-10), Điểm mạnh, Điểm yếu, và Khuyến nghị học tập**. 
+- Dữ liệu hoàn thành này được đẩy lưu trực tiếp vào cơ sở dữ liệu **PostgreSQL** để duy trì lịch sử (Persistent History).
 
-*(Lưu ý: Bạn cũng có một file `rag_interview_test.py` cung cấp chức năng CLI Mock Test để test Terminal thay vì chạy UI Graphic nếu backend muốn kiểm thử luồng nhanh chóng)*
+#### 6. Dashboard & Tổng kết
+- Sau phỏng vấn, điểm số được tổng hợp vào bảng Lịch sử Phỏng vấn (Interview History). Admin có thể sử dụng giao diện quản trị Admin Dashboard để đánh giá tổng thể người dùng, và người dùng có thể thảo luận tại khu vực Community.
