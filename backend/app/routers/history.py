@@ -42,7 +42,7 @@ class SaveQuestionBody(BaseModel):
 class UpdateAnswerBody(BaseModel):
     user_answer: str
     ai_evaluation: str
-    score: float
+    score: Optional[float] = None  # Optional để tránh 422 khi client gửi thiếu
 
 
 # ── Endpoints ────────────────────────────────────────────────────────────────
@@ -153,11 +153,13 @@ async def update_answer(
     current_user: dict = Depends(get_current_user),
 ):
     """Cập nhật câu trả lời và đánh giá AI cho một câu hỏi đã lưu."""
+    score_value = body.score if body.score is not None else 0.0
+    print(f"[update_answer] question_id={question_id}, score_nhận={body.score}, score_lưu={score_value}")
     ok = await interview_service.update_question_answer(
         question_db_id=question_id,
         user_answer=body.user_answer,
         ai_evaluation=body.ai_evaluation,
-        score=body.score,
+        score=score_value,
     )
     if not ok:
         raise HTTPException(status_code=404, detail="Không tìm thấy câu hỏi.")

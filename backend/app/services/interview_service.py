@@ -210,6 +210,7 @@ async def update_question_answer(
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
+        print(f"[interview_service] UPDATE question id={question_db_id}, score={score!r} (type={type(score).__name__})")
         result = await conn.execute(
             """
             UPDATE interview_questions
@@ -221,4 +222,5 @@ async def update_question_answer(
             """,
             question_db_id, user_answer, ai_evaluation, score,
         )
+        print(f"[interview_service] UPDATE result: {result}")
     return result == "UPDATE 1"

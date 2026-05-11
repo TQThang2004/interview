@@ -14,6 +14,17 @@ export const api = {
       credentials: "include",
       body: formData
     });
+
+    if (!res.ok) {
+      // Lấy message lỗi từ server (FastAPI trả về { detail: "..." })
+      let errorMsg = `Lỗi máy chủ (${res.status})`;
+      try {
+        const errData = await res.json();
+        if (errData?.detail) errorMsg = errData.detail;
+      } catch (_) { /* bỏ qua */ }
+      throw new Error(errorMsg);
+    }
+
     return res.json();
   },
 
@@ -95,7 +106,12 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_answer: userAnswer, ai_evaluation: aiEvaluation, score })
     });
-    return res.ok;
+    if (!res.ok) {
+      let detail = `HTTP ${res.status}`;
+      try { const d = await res.json(); detail = d?.detail || detail; } catch (_) {}
+      throw new Error(`updateAnswer thất bại: ${detail}`);
+    }
+    return true;
   },
 
   /** Đánh dấu hoàn thành phiên phỏng vấn, lưu điểm tổng. */
