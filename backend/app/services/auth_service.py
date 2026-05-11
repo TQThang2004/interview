@@ -1,29 +1,18 @@
 """
-Auth service: xử lý business logic đăng ký, đăng nhập.
+Auth Service – xử lý business logic đăng ký, đăng nhập, Google OAuth.
 """
 import os
-import bcrypt
 import httpx
 from dotenv import load_dotenv
 
+from app.core.security import hash_password, verify_password
 from app.database.connection import get_pool
 
 _env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.env"))
 load_dotenv(dotenv_path=_env_path, override=True)
 
 GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
-
 GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo"
-
-
-async def hash_password(plain: str) -> str:
-    """Hash mật khẩu bằng bcrypt."""
-    return bcrypt.hashpw(plain.encode(), bcrypt.gensalt()).decode()
-
-
-def verify_password(plain: str, hashed: str) -> bool:
-    """Kiểm tra mật khẩu raw so với hash."""
-    return bcrypt.checkpw(plain.encode(), hashed.encode())
 
 
 async def register_user(username: str, email: str, password: str) -> dict:
@@ -32,7 +21,7 @@ async def register_user(username: str, email: str, password: str) -> dict:
     Raise ValueError nếu username/email đã tồn tại.
     """
     pool = await get_pool()
-    password_hash = await hash_password(password)
+    password_hash = hash_password(password)
 
     async with pool.acquire() as conn:
         # Kiểm tra trùng email

@@ -1,5 +1,7 @@
 """
-Pydantic schemas cho Auth: Register, Login, Response, Google OAuth.
+Auth Schemas – Pydantic schemas cho các API xác thực.
+
+Bao gồm: Register, Login, Google OAuth, UserResponse.
 """
 from pydantic import BaseModel, EmailStr, field_validator
 

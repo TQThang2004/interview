@@ -8,8 +8,8 @@ Tách ra khỏi rag_service.py để:
 """
 from __future__ import annotations
 
-from app.config import GOOGLE_API_KEY_EVALUATE
-from app.services.llm_client import GeminiClient
+from app.core.config import GOOGLE_API_KEY_EVALUATE
+from app.utils.llm_client import GeminiClient
 
 
 # ---------------------------------------------------------------------------

@@ -4,7 +4,7 @@ Router: Audio – POST /api/transcribe, POST /api/tts
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from app.controllers import audio_controller
-from app.schemas.models import TTSRequest
+from app.schemas.interview_schemas import TTSRequest
 
 router = APIRouter(prefix="/api", tags=["Audio"])
 

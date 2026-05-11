@@ -5,7 +5,7 @@ import io
 import google.generativeai as genai
 from gtts import gTTS
 
-from app.config import GOOGLE_API_KEY, LLM_MODEL
+from app.core.config import GOOGLE_API_KEY, LLM_MODEL
 
 genai.configure(api_key=GOOGLE_API_KEY)
 

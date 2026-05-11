@@ -4,6 +4,7 @@ Router: Interview – POST /api/start-interview
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
 from app.controllers import interview_controller
+from app.core.constants import ALLOWED_CV_MIME_TYPES, ALLOWED_CV_EXTENSIONS
 
 router = APIRouter(prefix="/api", tags=["Interview"])
 
@@ -24,8 +25,8 @@ async def start_interview(
         )
 
     # 2. CV phải là file PDF (kiểm tra MIME type và đuôi file)
-    is_pdf_mime = cv.content_type in ("application/pdf", "application/x-pdf")
-    is_pdf_ext  = (cv.filename or "").lower().endswith(".pdf")
+    is_pdf_mime = cv.content_type in ALLOWED_CV_MIME_TYPES
+    is_pdf_ext  = (cv.filename or "").lower().endswith(ALLOWED_CV_EXTENSIONS)
     if not (is_pdf_mime or is_pdf_ext):
         raise HTTPException(
             status_code=422,

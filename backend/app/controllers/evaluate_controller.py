@@ -3,7 +3,7 @@ Evaluate Controller – business logic cho chức năng chấm điểm câu tr�
 
 Gọi trực tiếp evaluate_service thay vì qua rag_service facade.
 """
-from app.schemas.models import EvaluateAnswerRequest
+from app.schemas.interview_schemas import EvaluateAnswerRequest
 from app.services.evaluate_service import evaluate_answer
 
 

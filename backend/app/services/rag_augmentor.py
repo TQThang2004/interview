@@ -17,12 +17,12 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 
-from app.config import (
+from app.core.config import (
     GOOGLE_API_KEY_EXTRACT_TOPIC,
     GOOGLE_API_KEY_GENERATE_Q,
     NUM_QUESTIONS,
 )
-from app.services.llm_client import GeminiClient
+from app.utils.llm_client import GeminiClient
 from app.services.rag_retriever import RawDoc
 
 

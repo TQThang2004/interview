@@ -1,10 +1,14 @@
 """
-JWT helper: tạo và xác thực access token.
-Token được lưu vào HttpOnly cookie trong 1 ngày.
+Core Security – xử lý JWT token và password hashing.
+
+Bao gồm:
+- Tạo và giải mã JWT access token (lưu vào HttpOnly cookie).
+- Hash và verify mật khẩu bằng bcrypt.
 """
 import os
 from datetime import datetime, timedelta, timezone
 
+import bcrypt
 from jose import JWTError, jwt
 from dotenv import load_dotenv
 
@@ -17,6 +21,10 @@ ALGORITHM: str = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS: int = 1          # Cookie sống 1 ngày
 COOKIE_NAME: str = "access_token"
 
+
+# ---------------------------------------------------------------------------
+# JWT Token
+# ---------------------------------------------------------------------------
 
 def create_access_token(data: dict) -> str:
     """Tạo JWT với thời hạn ACCESS_TOKEN_EXPIRE_DAYS ngày."""
@@ -32,3 +40,17 @@ def decode_access_token(token: str) -> dict:
     Raise JWTError nếu token không hợp lệ hoặc đã hết hạn.
     """
     return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+
+
+# ---------------------------------------------------------------------------
+# Password Hashing
+# ---------------------------------------------------------------------------
+
+def hash_password(plain: str) -> str:
+    """Hash mật khẩu bằng bcrypt."""
+    return bcrypt.hashpw(plain.encode(), bcrypt.gensalt()).decode()
+
+
+def verify_password(plain: str, hashed: str) -> bool:
+    """Kiểm tra mật khẩu raw so với hash."""
+    return bcrypt.checkpw(plain.encode(), hashed.encode())

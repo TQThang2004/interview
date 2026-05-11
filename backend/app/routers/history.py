@@ -1,5 +1,5 @@
 """
-Router: Interview History (CRUD lịch sử phỏng vấn)
+Router: History – CRUD lịch sử phỏng vấn.
 
 Endpoints:
   POST   /api/interviews                     – Tạo phiên mới
@@ -10,42 +10,19 @@ Endpoints:
   POST   /api/interviews/{interview_id}/questions           – Lưu 1 câu hỏi
   PATCH  /api/interviews/{interview_id}/questions/{q_id}    – Lưu câu trả lời + đánh giá
 """
-from typing import Optional
-
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel
 
-from app.auth.dependencies import get_current_user
-from app.services import interview_service
+from app.core.dependencies import get_current_user
+from app.schemas.interview_schemas import (
+    CreateInterviewBody,
+    CompleteInterviewBody,
+    SaveQuestionBody,
+    UpdateAnswerBody,
+)
+from app.controllers import history_controller
 
 router = APIRouter(prefix="/api/interviews", tags=["History"])
 
-
-# ── Request Schemas ─────────────────────────────────────────────────────────
-
-class CreateInterviewBody(BaseModel):
-    topic: str
-    level: str
-    language: str = "vi"
-
-
-class CompleteInterviewBody(BaseModel):
-    overall_score: Optional[float] = None
-    overall_feedback: Optional[str] = None
-
-
-class SaveQuestionBody(BaseModel):
-    question_text: str
-    question_order: int
-
-
-class UpdateAnswerBody(BaseModel):
-    user_answer: str
-    ai_evaluation: str
-    score: Optional[float] = None  # Optional để tránh 422 khi client gửi thiếu
-
-
-# ── Endpoints ────────────────────────────────────────────────────────────────
 
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def create_interview(
@@ -53,13 +30,9 @@ async def create_interview(
     current_user: dict = Depends(get_current_user),
 ):
     """Tạo phiên phỏng vấn mới và trả về interview_id để frontend theo dõi."""
-    interview = await interview_service.create_interview(
-        user_id=current_user["id"],
-        topic=body.topic,
-        level=body.level,
-        language=body.language,
+    return await history_controller.handle_create_interview(
+        current_user["id"], body.topic, body.level, body.language
     )
-    return {"status": "success", "interview": interview}
 
 
 @router.get("")
@@ -69,12 +42,7 @@ async def list_interviews(
     current_user: dict = Depends(get_current_user),
 ):
     """Lấy danh sách lịch sử phỏng vấn của user hiện tại."""
-    interviews = await interview_service.get_user_interviews(
-        user_id=current_user["id"],
-        limit=limit,
-        offset=offset,
-    )
-    return {"status": "success", "interviews": interviews}
+    return await history_controller.handle_list_interviews(current_user["id"], limit, offset)
 
 
 @router.get("/{interview_id}")
@@ -83,13 +51,10 @@ async def get_interview(
     current_user: dict = Depends(get_current_user),
 ):
     """Chi tiết một phiên phỏng vấn kèm tất cả câu hỏi."""
-    detail = await interview_service.get_interview_detail(
-        interview_id=interview_id,
-        user_id=current_user["id"],
-    )
-    if not detail:
+    result = await history_controller.handle_get_interview(interview_id, current_user["id"])
+    if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn.")
-    return {"status": "success", "interview": detail}
+    return result
 
 
 @router.patch("/{interview_id}/complete")
@@ -99,15 +64,12 @@ async def complete_interview(
     current_user: dict = Depends(get_current_user),
 ):
     """Đánh dấu hoàn thành phiên và lưu điểm tổng / nhận xét tổng."""
-    updated = await interview_service.complete_interview(
-        interview_id=interview_id,
-        user_id=current_user["id"],
-        overall_score=body.overall_score,
-        overall_feedback=body.overall_feedback,
+    result = await history_controller.handle_complete_interview(
+        interview_id, current_user["id"], body.overall_score, body.overall_feedback
     )
-    if not updated:
+    if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy hoặc không có quyền.")
-    return {"status": "success", "interview": updated}
+    return result
 
 
 @router.patch("/{interview_id}/abandon")
@@ -120,14 +82,7 @@ async def abandon_interview(
     - Nếu chưa trả lời câu nào → xoá khỏi DB.
     - Nếu đã trả lời ít nhất 1 câu → đổi status='cancelled', lưu điểm TB.
     """
-    kept = await interview_service.abandon_interview(
-        interview_id=interview_id,
-        user_id=current_user["id"],
-    )
-    return {
-        "status": "success",
-        "kept": kept,  # True = lưu với cancelled, False = đã xoá
-    }
+    return await history_controller.handle_abandon_interview(interview_id, current_user["id"])
 
 
 @router.post("/{interview_id}/questions", status_code=status.HTTP_201_CREATED)
@@ -137,12 +92,9 @@ async def save_question(
     current_user: dict = Depends(get_current_user),
 ):
     """Lưu câu hỏi khi bắt đầu hỏi (chưa có câu trả lời)."""
-    q_id = await interview_service.save_question(
-        interview_id=interview_id,
-        question_text=body.question_text,
-        question_order=body.question_order,
+    return await history_controller.handle_save_question(
+        interview_id, body.question_text, body.question_order
     )
-    return {"status": "success", "question_id": q_id}
 
 
 @router.patch("/{interview_id}/questions/{question_id}")
@@ -154,12 +106,8 @@ async def update_answer(
 ):
     """Cập nhật câu trả lời và đánh giá AI cho một câu hỏi đã lưu."""
     score_value = body.score if body.score is not None else 0.0
-    print(f"[update_answer] question_id={question_id}, score_nhận={body.score}, score_lưu={score_value}")
-    ok = await interview_service.update_question_answer(
-        question_db_id=question_id,
-        user_answer=body.user_answer,
-        ai_evaluation=body.ai_evaluation,
-        score=score_value,
+    ok = await history_controller.handle_update_answer(
+        question_id, body.user_answer, body.ai_evaluation, score_value
     )
     if not ok:
         raise HTTPException(status_code=404, detail="Không tìm thấy câu hỏi.")

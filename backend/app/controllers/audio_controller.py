@@ -4,7 +4,7 @@ Audio Controller – business logic cho transcribe (STT) và TTS.
 from fastapi import UploadFile
 from fastapi.responses import Response
 
-from app.schemas.models import TTSRequest
+from app.schemas.interview_schemas import TTSRequest
 from app.services import audio_service
 
 

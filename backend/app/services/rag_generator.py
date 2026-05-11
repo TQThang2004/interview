@@ -12,7 +12,7 @@ Tổng: 2 LLM calls + 1 Embedding call.
 """
 from __future__ import annotations
 
-from app.config import NUM_QUESTIONS, TOP_K_RETRIEVE
+from app.core.config import NUM_QUESTIONS, TOP_K_RETRIEVE
 from app.services.rag_retriever import retrieve_raw_docs
 from app.services.rag_augmentor import (
     CVJDContext,

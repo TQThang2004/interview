@@ -16,7 +16,7 @@ import random
 import chromadb
 import google.generativeai as genai
 
-from app.config import (
+from app.core.config import (
     GOOGLE_API_KEY_EMBEDDING,
     EMBED_MODEL,
     CHROMA_DB_PATH,

@@ -1,28 +1,18 @@
 """
-FastAPI application factory – đăng ký middleware và routers.
+FastAPI application factory – đăng ký middleware, routers và exception handlers.
 """
-import sys
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
 from app.routers import interview, evaluate, audio, auth, history, admin, community
 from app.database.connection import get_pool, close_pool
+from app.middlewares.cors import register_cors
+from app.exceptions.handlers import register_exception_handlers
+from app.core.logging import setup_logging
 
-# Fix lỗi in Tiếng Việt trên Windows (charmap codec can't encode character)
-if sys.stdout.encoding.lower() != "utf-8":
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
-
-# Các origin được phép (thêm origin production khi deploy)
-ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:5173",
-    "http://127.0.0.1:3000",
-]
+# Cấu hình logging khi khởi động
+setup_logging()
 
 
 @asynccontextmanager
@@ -47,23 +37,10 @@ app = FastAPI(
 )
 
 # ── CORS phải được đăng ký TRƯỚC mọi thứ khác ────────────────────────────────
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+register_cors(app)
 
-
-# ── Global exception handler – đảm bảo mọi lỗi 500 đều có CORS header ───────
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception):
-    print(f"[Error] Unhandled exception: {exc}")
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Lỗi máy chủ nội bộ, vui lòng thử lại."},
-    )
+# ── Exception handlers ────────────────────────────────────────────────────────
+register_exception_handlers(app)
 
 
 # ── Health check ──────────────────────────────────────────────────────────────

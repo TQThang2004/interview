@@ -4,7 +4,7 @@ Router: Evaluate – POST /api/evaluate
 from fastapi import APIRouter, HTTPException
 
 from app.controllers import evaluate_controller
-from app.schemas.models import EvaluateAnswerRequest
+from app.schemas.interview_schemas import EvaluateAnswerRequest
 
 router = APIRouter(prefix="/api", tags=["Evaluate"])
 

@@ -1,8 +1,8 @@
 """
-LLM Client – helper dùng chung cho toàn bộ services.
+Utils LLM Client – helper dùng chung cho toàn bộ services LLM.
 
 Cung cấp:
-- GeminiClient: context-manager configure + gọi LLM có retry
+- GeminiClient: configure + gọi LLM có retry tự động
 - parse_json_safely: làm sạch markdown block rồi parse JSON
 """
 from __future__ import annotations
@@ -13,7 +13,7 @@ from typing import Any
 
 import google.generativeai as genai
 
-from app.config import LLM_MODEL, LLM_RETRY_WAIT
+from app.core.config import LLM_MODEL, LLM_RETRY_WAIT
 
 
 # ---------------------------------------------------------------------------

@@ -6,7 +6,7 @@ Gọi trực tiếp rag_generator thay vì qua rag_service facade.
 """
 from fastapi import UploadFile
 
-from app.services import pdf_parser
+from app.utils.file import extract_text_from_pdf_bytes
 from app.services.rag_generator import generate_questions_from_cv_jd
 
 
@@ -28,7 +28,7 @@ async def handle_start_interview(
     cv_text = ""
     if cv:
         cv_bytes = await cv.read()
-        cv_text = pdf_parser.extract_text_from_pdf_bytes(cv_bytes)
+        cv_text = extract_text_from_pdf_bytes(cv_bytes)
         print(">>> [LOG] TÌNH TRẠNG CV: CÓ NHẬN ĐƯỢC CV")
     else:
         print(">>> [LOG] TÌNH TRẠNG CV: KHÔNG NHẬN ĐƯỢC CV")

@@ -1,5 +1,6 @@
 """
-Cấu hình CORS middleware cho FastAPI.
+CORS Middleware – cấu hình Cross-Origin Resource Sharing cho FastAPI.
+
 Lưu ý: khi credentials=True, allow_origins KHÔNG được là ["*"].
 """
 from fastapi import FastAPI
@@ -10,6 +11,7 @@ ALLOWED_ORIGINS = [
     "http://localhost:5173",    # Vite dev server
     "http://localhost:3000",    # CRA / alternative
     "http://127.0.0.1:5173",
+    "http://127.0.0.1:3000",
 ]
 
 
