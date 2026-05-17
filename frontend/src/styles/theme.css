@@ -1,0 +1,29 @@
+/**
+ * theme.css
+ * CSS variables light/dark mode.
+ * File này được @import trong index.css.
+ * Có thể mở rộng thêm custom component overrides ở đây.
+ */
+
+/* Light mode overrides cho glassmorphism */
+[data-theme="light"] .glass-card {
+  background: oklch(100% 0 0 / 0.82);
+  border-color: oklch(85% 0.008 250 / 0.7);
+  box-shadow: 0 4px 24px oklch(0% 0 0 / 0.07);
+}
+
+/* Sidebar & topbar light mode */
+[data-theme="light"] .bg-animated {
+  background: var(--gradient-bg);
+}
+
+/* Input light mode adjustments */
+[data-theme="light"] select.input-field {
+  background: var(--input-bg);
+  color: var(--text-primary);
+}
+
+/* Scrollbar light mode */
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: oklch(78% 0.01 250);
+}

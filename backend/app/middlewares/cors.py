@@ -8,9 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Các origin được phép (thêm origin production khi deploy)
 ALLOWED_ORIGINS = [
-    "http://localhost:5173",    # Vite dev server
+    "http://localhost:5173",    # Vite dev server (default)
+    "http://localhost:5174",    # Vite dev server (fallback khi 5173 bị chiếm)
     "http://localhost:3000",    # CRA / alternative
     "http://127.0.0.1:5173",
+    "http://127.0.0.1:5174",
     "http://127.0.0.1:3000",
 ]
 

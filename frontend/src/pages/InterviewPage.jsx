@@ -4,11 +4,11 @@ import { useAuth } from '../context/AuthContext';
 import { useAudioRecorder } from '../hooks/useAudioRecorder';
 import { AlertCircle } from 'lucide-react';
 
-import SetupForm, { LEVELS } from '../components/SetupForm';
-import LoadingScreen from '../components/LoadingScreen';
-import InterviewPanel from '../components/InterviewPanel';
-import EvaluationResult from '../components/EvaluationResult';
-import FinalResult from '../components/FinalResult';
+import SetupForm, { LEVELS } from '../components/interview/SetupForm';
+import LoadingScreen from '../components/common/LoadingScreen';
+import InterviewPanel from '../components/interview/InterviewPanel';
+import EvaluationResult from '../components/interview/EvaluationResult';
+import FinalResult from '../components/interview/FinalResult';
 
 export default function InterviewPage() {
   const { user } = useAuth();

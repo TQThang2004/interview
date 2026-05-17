@@ -4,6 +4,7 @@ import {
   Mic, Brain, BarChart3, FileText, Zap, Shield,
   ChevronRight, Star, ArrowRight, Play, CheckCircle
 } from 'lucide-react';
+import ThemeToggle from '../components/common/ThemeToggle';
 
 /* ── Animated counter ────────────────────────────────────────── */
 function AnimatedNumber({ target, suffix = '' }) {
@@ -132,7 +133,7 @@ export default function LandingPage() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '0 24px',
-        background: isScrolled ? 'oklch(14% 0.018 250 / 0.92)' : 'transparent',
+        background: isScrolled ? 'var(--navbar-scrolled-bg)' : 'transparent',
         backdropFilter: isScrolled ? 'blur(16px)' : 'none',
         borderBottom: isScrolled ? '1px solid var(--border)' : 'none',
         transition: 'all 0.3s ease',
@@ -173,6 +174,7 @@ export default function LandingPage() {
               onMouseEnter={e => e.target.style.color = 'var(--primary)'}
               onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
             >Đăng nhập</Link>
+            <ThemeToggle />
             <Link to="/dashboard">
               <button id="nav-cta-btn" className="btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
                 Bắt đầu miễn phí

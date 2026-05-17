@@ -3,7 +3,8 @@
  * Gọi API xác thực backend. Token được quản lý qua HttpOnly cookie (server-side).
  */
 
-const AUTH_BASE = "http://localhost:8000/api/auth";
+import { AUTH_BASE_URL } from '../constants/api';
+const AUTH_BASE = AUTH_BASE_URL;
 
 /**
  * Helper gọi fetch với credentials (để gửi/nhận cookie).
