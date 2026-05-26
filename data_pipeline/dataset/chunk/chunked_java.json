@@ -1,0 +1,1394 @@
+[
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is JVM ? Why is Java called the Platform Independent Programming Language?\nTrả lời: A Java virtual machine (JVM) is a process virtual machine that can execute Java bytecode. Each Java source file is compiled\n    into a bytecode file, which is executed by the JVM. Java was designed to allow application programs to be built that could be\n    run on any platform, without having to be rewritten or recompiled by the programmer for each separate platform. A Java virtual\n    machine makes this possible, because it is aware of the specific instruction lengths and other particularities of the underlying\n    hardware platform.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "java_0_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 651
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the Difference between JDK and JRE ?\nTrả lời: The Java Runtime Environment (JRE) is basically the Java Virtual Machine (JVM) where your Java programs are being executed.\n    It also includes browser plugins for applet execution. The Java Development Kit (JDK) is the full featured Software Development\n    Kit for Java, including the JRE, the compilers and tools (like JavaDoc, and Java Debugger), in order for a user to develop, compile\n    and execute Java applications.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "java_1_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 502
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What does the “static” keyword mean ? Can you override private or static method in Java ?\nTrả lời: The static keyword denotes that a member variable or method can be accessed, without requiring an instantiation of the class to\n    which it belongs. A user cannot override static methods in Java, because method overriding is based upon dynamic binding at\n    runtime and static methods are statically binded at compile time. A static method is not associated with any instance of a class\n    so the concept is not applicable.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "java_2_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 547
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Can you access non static variable in static context ?\nTrả lời: A static variable in Java belongs to its class and its value remains the same for all its instances. A static variable is initialized\n    when the class is loaded by the JVM. If your code tries to access a non-static variable, without any instance, the compiler will\n    complain, because those variables are not created yet and they are not associated with any instance.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "java_3_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 457
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the Data Types supported by Java ? What is Autoboxing and Unboxing ?\nTrả lời: The eight primitive data types supported by the Java programming language are:\n    • byte\n    • short\n    • int\n    • long\n    • float\n    • double\n    • boolean\n    • char\n    Autoboxing is the automatic conversion made by the Java compiler between the primitive types and their corresponding object\n    wrapper classes. For example, the compiler converts an int to an Integer, a double to a Double, and so on. If the conversion goes\n    the other way, this operation is called unboxing.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "java_4_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 597
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is Function Overriding and Overloading in Java ?\nTrả lời: Method overloading in Java occurs when two or more methods in the same class have the exact same name, but different\n    parameters. On the other hand, method overriding is defined as the case when a child class redefines the same method as a parent\n    class. Overridden methods must have the same name, argument list, and return type. The overriding method may not limit the\n    access of the method it overrides.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "java_5_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 500
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a Constructor, Constructor Overloading in Java and Copy-Constructor\nTrả lời: A constructor gets invoked when a new object is created. Every class has a constructor. In case the programmer does not provide\n    a constructor for a class, the Java compiler (Javac) creates a default constructor for that class. The constructor overloading is\n    similar to method overloading in Java. Different constructors can be created for a single class. Each constructor must have its\n    own unique parameter list. Finally, Java does support copy constructors like C++, but the difference lies in the fact that Java\n    doesn’t create a default copy constructor if you don’t write your own.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "java_6_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 707
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Does Java support multiple inheritance ?\nTrả lời: No, Java does not support multiple inheritance. Each class is able to extend only on one class, but is able to implement more than\n    one interfaces.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "java_7_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 222
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between an Interface and an Abstract class ?\nTrả lời: Java provides and supports the creation both of abstract classes and interfaces. Both implementations share some common\n    characteristics, but they differ in the following features:\n    • All methods in an interface are implicitly abstract. On the other hand, an abstract class may contain both abstract and nonabstract methods.\n    • A class may implement a number of Interfaces, but can extend only one abstract class.\n    • In order for a class to implement an interface, it must implement all its declared methods. However, a class may not implement\n    all declared methods of an abstract class. Though, in this case, the sub-class must also be declared as abstract.\n    • Abstract classes can implement interfaces without even providing the implementation of interface methods.\n    • Variables declared in a Java interface is by default final. An abstract class may contain non-final variables.\n    • Members of a Java interface are public by default. A member of an abstract class can either be private, protected or public.\n    • An interface is absolutely abstract and cannot be instantiated. An abstract class also cannot be instantiated, but can be invoked\n    if it contains a main method.\n    Also check out the Abstract class and Interface differences for JDK 8.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "java_8_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1377
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are pass by reference and pass by value ?\nTrả lời: When an object is passed by value, this means that a copy of the object is passed. Thus, even if changes are made to that object,\n    it doesn’t affect the original value. When an object is passed by reference, this means that the actual object is not passed, rather\n    a reference of the object is passed. Thus, any changes made by the external method, are also reflected in all places.\n    Chapter 3\n    Java Threads",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "java_9_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 497
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between processes and threads ?\nTrả lời: A process is an execution of a program, while a Thread is a single execution sequence within a process. A process can contain\n    multiple threads. A Thread is sometimes called a lightweight process.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "java_10_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 285
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain different ways of creating a thread. Which one would you prefer and why ?\nTrả lời: There are three ways that can be used in order for a Thread to be created:\n    • A class may extend the Thread class.\n    • A class may implement the Runnable interface.\n    • An application can use the Executor framework, in order to create a thread pool.\n    The Runnable interface is preferred, as it does not require an object to inherit the Thread class. In case your application design\n    requires multiple inheritance, only interfaces can help you. Also, the thread pool is very efficient and can be implemented and\n    used very easily.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "java_11_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 658
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain the available thread states in a high-level.\nTrả lời: During its execution, a thread can reside in one of the following states:\n    • Runnable: A thread becomes ready to run, but does not necessarily start running immediately.\n    • Running: The processor is actively executing the thread code.\n    • Waiting: A thread is in a blocked state waiting for some external processing to finish.\n    • Sleeping: The thread is forced to sleep.\n    • Blocked on I/O: Waiting for an I/O operation to complete.\n    • Blocked on Synchronization: Waiting to acquire a lock.\n    • Dead: The thread has finished its execution.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "java_12_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 641
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between a synchronized method and a synchronized block ?\nTrả lời: In Java programming, each object has a lock. A thread can acquire the lock for an object by using the synchronized keyword.\n    The synchronized keyword can be applied in a method level (coarse grained lock) or block level of code (fine grained lock).",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "java_13_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 362
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How does thread synchronization occurs inside a monitor ? What levels of synchronization can you apply ?\nTrả lời: The JVM uses locks in conjunction with monitors. A monitor is basically a guardian that watches over a sequence of synchronized\n    code and ensuring that only one thread at a time executes a synchronized piece of code. Each monitor is associated with an object\n    reference. The thread is not allowed to execute the code until it obtains the lock.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "java_14_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 485
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What’s a deadlock ?\nTrả lời: A condition that occurs when two processes are waiting for each other to complete, before proceeding. The result is that both\n    processes wait endlessly.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "java_15_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 206
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How do you ensure that N threads can access N resources without deadlock ?\nTrả lời: A very simple way to avoid deadlock while using N threads is to impose an ordering on the locks and force each thread to follow\n    that ordering. Thus, if all threads lock and unlock the mutexes in the same order, no deadlocks can arise.\n    Chapter 4\n    Java Collections",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "java_16_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 379
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the basic interfaces of Java Collections Framework ?\nTrả lời: Java Collections Framework provides a well designed set of interfaces and classes that support operations on a collections of\n    objects. The most basic interfaces that reside in the Java Collections Framework are:\n    • Collection, which represents a group of objects known as its elements.\n    • Set, which is a collection that cannot contain duplicate elements.\n    • List, which is an ordered collection and can contain duplicate elements.\n    • Map, which is an object that maps keys to values and cannot contain duplicate keys.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "java_17_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 627
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Why Collection doesn’t extend Cloneable and Serializable interfaces ?\nTrả lời: The Collection interface specifies groups of objects known as elements. Each concrete implementation of a Collection can choose\n    its own way of how to maintain and order its elements. Some collections allow duplicate keys, while some other collections don’t.\n    The semantics and the implications of either cloning or serialization come into play when dealing with actual implementations.\n    Thus, the concrete implementations of collections should decide how they can be cloned or serialized.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "java_18_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 599
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is an Iterator ?\nTrả lời: The Iterator interface provides a number of methods that are able to iterate over any Collection. Each Java Collection contains\n    the iterator method that returns an Iterator instance. Iterators are capable of removing elements from the underlying collection\n    during the iteration.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "java_19_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 339
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What differences exist between Iterator and ListIterator ?\nTrả lời: The differences of these elements are listed below:\n    • An Iterator can be used to traverse the Set and List collections, while the ListIterator can be used to iterate only over Lists.\n    • The Iterator can traverse a collection only in forward direction, while the ListIterator can traverse a List in both directions.\n    • The ListIterator implements the Iterator interface and contains extra functionality, such as adding an element, replacing an\n    element, getting the index position for previous and next elements, etc.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "java_20_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 619
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is difference between fail-fast and fail-safe ?\nTrả lời: The Iterator’s fail-safe property works with the clone of the underlying collection and thus, it is not affected by any modification\n    in the collection. All the collection classes in java.util package are fail-fast, while the collection classes in java.util.concurrent\n    are fail-safe. Fail-fast iterators throw a ConcurrentModificationException, while fail-safe iterator never throws such\n    an exception.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "java_21_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 496
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How HashMap works in Java ?\nTrả lời: A HashMap in Java stores key-value pairs. The HashMap requires a hash function and uses hashCode and equals methods,\n    in order to put and retrieve elements to and from the collection respectively. When the put method is invoked, the HashMap\n    calculates the hash value of the key and stores the pair in the appropriate index inside the collection. If the key exists, its value\n    is updated with the new value. Some important characteristics of a HashMap are its capacity, its load factor and the threshold\n    resizing.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "java_22_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 585
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the importance of hashCode() and equals() methods ?\nTrả lời: In Java, a HashMap uses the hashCode and equals methods to determine the index of the key-value pair and to detect duplicates.\n    More specifically, the hashCode method is used in order to determine where the specified key will be stored. Since different keys\n    may produce the same hash value, the equals method is used, in order to determine whether the specified key actually exists in\n    the collection or not. Therefore, the implementation of both methods is crucial to the accuracy and efficiency of the HashMap.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "java_23_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 613
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What differences exist between HashMap and Hashtable ?\nTrả lời: Both the HashMap and Hashtable classes implement the Map interface and thus, have very similar characteristics. However, they\n    differ in the following features:\n    • A HashMap allows the existence of null keys and values, while a Hashtable doesn’t allow neither null keys, nor null values.\n    • A Hashtable is synchronized, while a HashMap is not. Thus, HashMap is preferred in single-threaded environments, while a\n    Hashtable is suitable for multi-threaded environments.\n    • A HashMap provides its set of keys and a Java application can iterate over them. Thus, a HashMap is fail-fast. On the other\n    hand, a Hashtable provides an Enumeration of its keys.\n    • The Hashtable class is considered to be a legacy class.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "java_24_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 816
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is difference between Array and ArrayList ? When will you use Array over\nTrả lời: ArrayList ?\n    The Array and ArrayList classes differ on the following features:\n    • Arrays can contain primitive or objects, while an ArrayList can contain only objects.\n    • Arrays have fixed size, while an ArrayList is dynamic.\n    • An ArrayList provides more methods and features, such as addAll, removeAll, iterator, etc.\n    • For a list of primitive data types, the collections use autoboxing to reduce the coding effort. However, this approach makes\n    them slower when working on fixed size primitive data types.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "java_25_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 636
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is difference between ArrayList and LinkedList ?\nTrả lời: Both the ArrayList and LinkedList classes implement the List interface, but they differ on the following features:\n    • An ArrayList is an index based data structure backed by an Array. It provides random access to its elements with a performance\n    equal to O(1). On the other hand, a LinkedList stores its data as list of elements and every element is linked to its previous and\n    next element. In this case, the search operation for an element has execution time equal to O(n).\n    • The Insertion, addition and removal operations of an element are faster in a LinkedList compared to an ArrayList, because\n    there is no need of resizing an array or updating the index when an element is added in some arbitrary position inside the\n    collection.\n    • A LinkedList consumes more memory than an ArrayList, because every node in a LinkedList stores two references, one for its\n    previous element and one for its next element.\n    Check also our article ArrayList vs. LinkedList.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "java_26_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1073
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is Comparable and Comparator interface ? List their differences.\nTrả lời: Java provides the Comparable interface, which contains only one method, called compareTo. This method compares two objects,\n    in order to impose an order between them. Specifically, it returns a negative integer, zero, or a positive integer to indicate that the\n    input object is less than, equal or greater than the existing object. Java provides the Comparator interface, which contains two\n    methods, called compare and equals. The first method compares its two input arguments and imposes an order between them.\n    It returns a negative integer, zero, or a positive integer to indicate that the first argument is less than, equal to, or greater than\n    the second. The second method requires an object as a parameter and aims to decide whether the input object is equal to the\n    comparator. The method returns true, only if the specified object is also a comparator and it imposes the same ordering as the\n    comparator.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "java_27_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1036
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is Java Priority Queue ?\nTrả lời: The PriorityQueue is an unbounded queue, based on a priority heap and its elements are ordered in their natural order. At the time\n    of its creation, we can provide a Comparator that is responsible for ordering the elements of the PriorityQueue. A PriorityQueue\n    doesn’t allow null values, those objects that doesn’t provide natural ordering, or those objects that don’t have any comparator\n    associated with them. Finally, the Java PriorityQueue is not thread-safe and it requires O(log(n)) time for its enqueing and\n    dequeing operations.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "java_28_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 610
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What do you know about the big-O notation and can you give some examples with respect to different data structures ?\nTrả lời: The Big-O notation simply describes how well an algorithm scales or performs in the worst case scenario as the number of elements in a data structure increases. The Big-O notation can also be used to describe other behavior such as memory consumption.\n    Since the collection classes are actually data structures, we usually use the Big-O notation to chose the best implementation to\n    use, based on time, memory and performance. Big-O notation can give a good indication about performance for large amounts\n    of data.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "java_29_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 671
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the tradeoff between using an unordered array versus an ordered array ?\nTrả lời: The major advantage of an ordered array is that the search times have time complexity of O(log n), compared to that of an\n    unordered array, which is O (n). The disadvantage of an ordered array is that the insertion operation has a time complexity of\n    O(n), because the elements with higher values must be moved to make room for the new element. Instead, the insertion operation\n    for an unordered array takes constant time of O(1).",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "java_30_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 550
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are some of the best practices relating to the Java Collection framework ?\nTrả lời: • Choosing the right type of the collection to use, based on the application’s needs, is very crucial for its performance. For\n    example if the size of the elements is fixed and know a priori, we shall use an Array, instead of an ArrayList.\n    • Some collection classes allow us to specify their initial capacity. Thus, if we have an estimation on the number of elements\n    that will be stored, we can use it to avoid rehashing or resizing.\n    • Always use Generics for type-safety, readability, and robustness. Also, by using Generics you avoid the ClassCastException\n    during runtime.\n    • Use immutable classes provided by the Java Development Kit (JDK) as a key in a Map, in order to avoid the implementation\n    of the hashCode and equals methods for our custom class.\n    • Program in terms of interface not implementation.\n    • Return zero-length collections or arrays as opposed to returning a null in case the underlying collection is actually empty.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "java_31_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1079
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What’s the difference between Enumeration and Iterator interfaces ?\nTrả lời: Enumeration is twice as fast as compared to an Iterator and uses very less memory. However, the Iterator is much safer compared\n    to Enumeration, because other threads are not able to modify the collection object that is currently traversed by the iterator. Also,\n    Iteratorsallow the caller to remove elements from the underlying collection, something which is not possible with Enumerations.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "java_32_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 496
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between HashSet and TreeSet ?\nTrả lời: The HashSet is Implemented using a hash table and thus, its elements are not ordered. The add, remove, and contains methods of\n    a HashSet have constant time complexity O(1). On the other hand, a TreeSet is implemented using a tree structure. The elements\n    in a TreeSet are sorted, and thus, the add, remove, and contains methods have time complexity of O(logn).\n    Chapter 5\n    Garbage Collectors",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "java_33_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 488
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the purpose of garbage collection in Java, and when is it used ?\nTrả lời: The purpose of garbage collection is to identify and discard those objects that are no longer needed by the application, in order\n    for the resources to be reclaimed and reused.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "java_34_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What does System.gc() and Runtime.gc() methods do ?\nTrả lời: These methods can be used as a hint to the JVM, in order to start a garbage collection. However, this it is up to the Java Virtual\n    Machine (JVM) to start the garbage collection immediately or later in time.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "java_35_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: When is the finalize() called ? What is the purpose of finalization ?\nTrả lời: The finalize method is called by the garbage collector, just before releasing the object’s memory. It is normally advised to release\n    resources held by the object inside the finalize method.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "java_36_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: If an object reference is set to null, will the Garbage Collector immediately free the memory held by that object ?\nTrả lời: No, the object will be available for garbage collection in the next cycle of the garbage collector.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "java_37_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is structure of Java Heap ? What is Perm Gen space in Heap ?\nTrả lời: The JVM has a heap that is the runtime data area from which memory for all class instances and arrays is allocated. It is created\n    at the JVM start-up. Heap memory for objects is reclaimed by an automatic memory management system which is known as a\n    garbage collector. Heap memory consists of live and dead objects. Live objects are accessible by the application and will not\n    be a subject of garbage collection. Dead objects are those which will never be accessible by the application, but have not been\n    collected by the garbage collector yet. Such objects occupy the heap memory space until they are eventually collected by the\n    garbage collector.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "java_38_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 763
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between Serial and Throughput Garbage collector ?\nTrả lời: The throughput garbage collector uses a parallel version of the young generation collector and is meant to be used with applications that have medium to large data sets. On the other hand, the serial collector is usually adequate for most small applications\n    (those requiring heaps of up to approximately 100MB on modern processors).",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "java_39_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 440
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: When does an Object becomes eligible for Garbage collection in Java ?\nTrả lời: A Java object is subject to garbage collection when it becomes unreachable to the program in which it is currently used.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "java_40_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 221
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Does Garbage collection occur in permanent generation space in JVM ?\nTrả lời: Garbage Collection does occur in PermGen space and if PermGen space is full or cross a threshold, it can trigger a full garbage\n    collection. If you look carefully at the output of the garbage collector, you will find that PermGen space is also garbage collected.\n    This is the reason why correct sizing of PermGen space is important to avoid frequent full garbage collections. Also check our\n    article Java 8: PermGen to Metaspace.\n    Chapter 6\n    Exception Handling",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "java_41_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 575
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the two types of Exceptions in Java ? Which are the differences between them ?\nTrả lời: Java has two types of exceptions: checked exceptions and unchecked exceptions. Unchecked exceptions do not need to be\n    declared in a method or a constructor’s throws clause, if they can be thrown by the execution of the method or the constructor,\n    and propagate outside the method or constructor boundary. On the other hand, checked exceptions must be declared in a method\n    or a constructor’s throws clause. See here for tips on Java exception handling.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "java_42_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 581
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between Exception and Error in java ?\nTrả lời: Exception and Error classes are both subclasses of the Throwable class. The Exception class is used for exceptional conditions\n    that a user’s program should catch. The Error class defines exceptions that are not excepted to be caught by the user program.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "java_43_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 349
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between throw and throws ?\nTrả lời: The throw keyword is used to explicitly raise a exception within the program. On the contrary, the throws clause is used to\n    indicate those exceptions that are not handled by a method. Each method must explicitly specify which exceptions does not\n    handle, so the callers of that method can guard against possible exceptions. Finally, multiple exceptions are separated by a\n    comma.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "java_44_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 470
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the importance of finally block in exception handling ?\nTrả lời: A finally block will always be executed, whether or not an exception is actually thrown. Even in the case where the catch\n    statement is missing and an exception is thrown, the finally block will still be executed. Last thing to mention is that the finally\n    block is used to release resources like I/O buffers, database connections, etc.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "java_45_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 437
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What will happen to the Exception object after exception handling ?\nTrả lời: The Exception object will be garbage collected in the next garbage collection.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "java_46_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 177
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How does finally block differ from finalize() method ?\nTrả lời: A finally block will be executed whether or not an exception is thrown and is used to release those resources held by the\n    application. Finalize is a protected method of the Object class, which is called by the Java Virtual Machine (JVM) just before an\n    object is garbage collected.\n    Chapter 7\n    Java Applets",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "java_47_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 405
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is an Applet ?\nTrả lời: A java applet is program that can be included in a HTML page and be executed in a java enabled client browser. Applets are used\n    for creating dynamic and interactive web applications.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "java_48_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 237
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain the life cycle of an Applet.\nTrả lời: An applet may undergo the following states:\n    • Init: An applet is initialized each time is loaded.\n    • Start: Begin the execution of an applet.\n    • Stop: Stop the execution of an applet.\n    • Destroy: Perform a final cleanup, before unloading the applet.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "java_49_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 330
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What happens when an applet is loaded ?\nTrả lời: First of all, an instance of the applet’s controlling class is created. Then, the applet initializes itself and finally, it starts running.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "java_50_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between an Applet and a Java Application ?\nTrả lời: Applets are executed within a java enabled browser, but a Java application is a standalone Java program that can be executed\n    outside of a browser. However, they both require the existence of a Java Virtual Machine (JVM). Furthermore, a Java application\n    requires a main method with a specific signature, in order to start its execution. Java applets don’t need such a method to start\n    their execution. Finally, Java applets typically use a restrictive security policy, while Java applications usually use more relaxed\n    security policies.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "java_51_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 647
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the restrictions imposed on Java applets ?\nTrả lời: Mostly due to security reasons, the following restrictions are imposed on Java applets:\n    • An applet cannot load libraries or define native methods.\n    • An applet cannot ordinarily read or write files on the execution host.\n    • An applet cannot read certain system properties.\n    • An applet cannot make network connections except to the host that it came from.\n    • An applet cannot start any program on the host that’s executing it.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "java_52_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 526
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are untrusted applets ?\nTrả lời: Untrusted applets are those Java applets that cannot access or execute local system files. By default, all downloaded applets are\n    considered as untrusted.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "java_53_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between applets loaded over the internet and applets loaded via the file system ?\nTrả lời: Regarding the case where an applet is loaded over the internet, the applet is loaded by the applet classloader and is subject to the\n    restrictions enforced by the applet security manager. Regarding the case where an applet is loaded from the client’s local disk,\n    the applet is loaded by the file system loader. Applets loaded via the file system are allowed to read files, write files and to load\n    libraries on the client. Also, applets loaded via the file system are allowed to execute processes and finally, applets loaded via the\n    file system are not passed through the byte code verifier.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "java_54_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 741
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the applet class loader, and what does it provide ?\nTrả lời: When an applet is loaded over the internet, the applet is loaded by the applet classloader. The class loader enforces the Java name\n    space hierarchy. Also, the class loader guarantees that a unique namespace exists for classes that come from the local file system,\n    and that a unique namespace exists for each network source. When a browser loads an applet over the net, that applet’s classes\n    are placed in a private namespace associated with the applet’s origin. Then, those classes loaded by the class loader are passed\n    through the verifier.The verifier checks that the class file conforms to the Java language specification . Among other things, the\n    verifier ensures that there are no stack overflows or underflows and that the parameters to all bytecode instructions are correct.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "java_55_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 892
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the applet security manager, and what does it provide ?\nTrả lời: The applet security manager is a mechanism to impose restrictions on Java applets. A browser may only have one security\n    manager. The security manager is established at startup, and it cannot thereafter be replaced, overloaded, overridden, or extended.\n    Chapter 8\n    Swing",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "java_56_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 374
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between a Choice and a List ?\nTrả lời: A Choice is displayed in a compact form that must be pulled down, in order for a user to be able to see the list of all available\n    choices. Only one item may be selected from a Choice. A List may be displayed in such a way that several List items are visible.\n    A List supports the selection of one or more List items.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "java_57_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 407
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a layout manager ?\nTrả lời: A layout manager is the used to organize the components in a container.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "java_58_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 129
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between a Scrollbar and a JScrollPane ?\nTrả lời: A Scrollbar is a Component, but not a Container. A ScrollPane is a Container. A ScrollPane handles its own events and performs\n    its own scrolling.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "java_59_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 243
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Which Swing methods are thread-safe ?\nTrả lời: There are only three thread-safe methods: repaint, revalidate, and invalidate.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "java_60_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 147
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Name three Component subclasses that support painting.\nTrả lời: The Canvas, Frame, Panel, and Applet classes support painting.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "java_61_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 148
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is clipping ?\nTrả lời: Clipping is defined as the process of confining paint operations to a limited area or shape.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "java_62_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 142
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between a MenuItem and a CheckboxMenuItem ?\nTrả lời: The CheckboxMenuItem class extends the MenuItem class and supports a menu item that may be either checked or unchecked.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "java_63_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 217
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How are the elements of a BorderLayout organized ?\nTrả lời: The elements of a BorderLayout are organized at the borders (North, South, East, and West) and the center of a container.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "java_64_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 203
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How are the elements of a GridBagLayout organized ?\nTrả lời: The elements of a GridBagLayout are organized according to a grid. The elements are of different sizes and may occupy more\n    than one row or column of the grid. Thus, the rows and columns may have different sizes.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "java_65_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between a Window and a Frame ?\nTrả lời: The Frame class extends the Window class and defines a main application window that can have a menu bar.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "java_66_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 189
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the relationship between clipping and repainting ?\nTrả lời: When a window is repainted by the AWT painting thread, it sets the clipping regions to the area of the window that requires\n    repainting.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "java_67_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the relationship between an event-listener interface and an eventadapter class ?\nTrả lời: An event-listener interface defines the methods that must be implemented by an event handler for a particular event. An event\n    adapter provides a default implementation of an event-listener interface.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "java_68_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How can a GUI component handle its own events ?\nTrả lời: A GUI component can handle its own events, by implementing the corresponding event-listener interface and adding itself as its\n    own event listener.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "java_69_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What advantage do Java’s layout managers provide over traditional windowing systems ?\nTrả lời: Java uses layout managers to lay out components in a consistent manner, across all windowing platforms. Since layout managers aren’t tied to absolute sizing and positioning, they are able to accomodate platform-specific differences among windowing\n    systems.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "java_70_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 377
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the design pattern that Java uses for all Swing components ?\nTrả lời: The design pattern used by Java for all Swing components is the Model View Controller (MVC) pattern.\n    Chapter 9\n    JDBC",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "java_71_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 223
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is JDBC ?\nTrả lời: JDBC is an abstraction layer that allows users to choose between databases. JDBC enables developers to write database applications in Java, without having to concern themselves with the underlying details of a particular database.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "java_72_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 276
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain the role of Driver in JDBC.\nTrả lời: The JDBC Driver provides vendor-specific implementations of the abstract classes provided by the JDBC API. Each driver\n    must provide implementations for the following classes of the java.sql package:Connection, Statement, PreparedStatement,\n    CallableStatement, ResultSet and Driver.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "java_73_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 355
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the purpose Class.forName method ?\nTrả lời: This method is used to method is used to load the driver that will establish a connection to the database.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "java_74_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 180
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the advantage of PreparedStatement over Statement ?\nTrả lời: PreparedStatements are precompiled and thus, their performance is much better. Also, PreparedStatement objects can be reused\n    with different input values to their queries.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "java_75_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the use of CallableStatement ? Name the method, which is used to prepare a CallableStatement.\nTrả lời: A CallableStatement is used to execute stored procedures. Stored procedures are stored and offered by a database. Stored\n    procedures may take input values from the user and may return a result. The usage of stored procedures is highly encouraged,\n    because it offers security and modularity.The method that prepares a CallableStatement is the following: CallableStament.\n    prepareCall();",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "java_76_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 527
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What does Connection pooling mean ?\nTrả lời: The interaction with a database can be costly, regarding the opening and closing of database connections. Especially, when the\n    number of database clients increases, this cost is very high and a large number of resources is consumed.A pool of database\n    connections is obtained at start up by the application server and is maintained in a pool. A request for a connection is served by a\n    connection residing in the pool. In the end of the connection, the request is returned to the pool and can be used to satisfy future\n    requests.\n    Chapter 10\n    Remote Method Invocation (RMI)",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "java_77_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 659
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is RMI ?\nTrả lời: The Java Remote Method Invocation (Java RMI) is a Java API that performs the object-oriented equivalent of remote procedure\n    calls (RPC), with support for direct transfer of serialized Java classes and distributed garbage collection. Remote Method Invocation (RMI) can also be seen as the process of activating a method on a remotely running object. RMI offers location transparency\n    because a user feels that a method is executed on a locally running object. Check some RMI Tips here.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 78,
+            "chunk_id": "java_78_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 536
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the basic principle of RMI architecture ?\nTrả lời: The RMI architecture is based on a very important principle which states that the definition of the behavior and the implementation of that behavior, are separate concepts. RMI allows the code that defines the behavior and the code that implements the\n    behavior to remain separate and to run on separate JVMs.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 79,
+            "chunk_id": "java_79_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 393
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the layers of RMI Architecture ?\nTrả lời: The RMI architecture consists of the following layers:\n    • Stub and Skeleton layer: This layer lies just beneath the view of the developer. This layer is responsible for intercepting\n    method calls made by the client to the interface and redirect these calls to a remote RMI Service.\n    • Remote Reference Layer: The second layer of the RMI architecture deals with the interpretation of references made from\n    the client to the server’s remote objects. This layer interprets and manages references made from clients to the remote service\n    objects. The connection is a one-to-one (unicast) link.\n    • Transport layer: This layer is responsible for connecting the two JVM participating in the service. This layer is based on\n    TCP/IP connections between machines in a network. It provides basic connectivity, as well as some firewall penetration\n    strategies.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 80,
+            "chunk_id": "java_80_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 945
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the role of Remote Interface in RMI ?\nTrả lời: The Remote interface serves to identify interfaces whose methods may be invoked from a non-local virtual machine. Any object\n    that is a remote object must directly or indirectly implement this interface. A class that implements a remote interface should\n    declare the remote interfaces being implemented, define the constructor for each remote object and provide an implementation\n    for each remote method in all remote interfaces.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 81,
+            "chunk_id": "java_81_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 515
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the role of the java.rmi.Naming Class ?\nTrả lời: The java.rmi.Naming class provides methods for storing and obtaining references to remote objects in the remote object registry.\n    Each method of the Naming class takes as one of its arguments a name that is a String in URL format.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 82,
+            "chunk_id": "java_82_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 312
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is meant by binding in RMI ?\nTrả lời: Binding is the process of associating or registering a name for a remote object, which can be used at a later time, in order to look\n    up that remote object. A remote object can be associated with a name using the bind or rebind methods of the Naming class.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 83,
+            "chunk_id": "java_83_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 324
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between using bind() and rebind() methods of Naming\nTrả lời: Class ?\n    The bind method bind is responsible for binding the specified name to a remote object, while the rebind method is responsible\n    for rebinding the specified name to a new remote object. In case a binding exists for that name, the binding is replaced.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 84,
+            "chunk_id": "java_84_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 369
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the steps involved to make work a RMI program ?\nTrả lời: The following steps must be involved in order for a RMI program to work properly:\n    • Compilation of all source files.\n    • Generatation of the stubs using rmic.\n    • Start the rmiregistry.\n    • Start the RMIServer.\n    • Run the client program.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 85,
+            "chunk_id": "java_85_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 338
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the role of stub in RMI ?\nTrả lời: A stub for a remote object acts as a client’s local representative or proxy for the remote object. The caller invokes a method on\n    the local stub, which is responsible for executing the method on the remote object. When a stub’s method is invoked, it undergoes\n    the following steps:\n    • It initiates a connection to the remote JVM containing the remote object.\n    • It marshals the parameters to the remote JVM.\n    • It waits for the result of the method invocation and execution.\n    • It unmarshals the return value or an exception if the method has not been successfully executed.\n    • It returns the value to the caller.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 86,
+            "chunk_id": "java_86_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 700
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is DGC ? And how does it work ?\nTrả lời: DGC stands for Distributed Garbage Collection. Remote Method Invocation (RMI) uses DGC for automatic garbage collection.\n    Since RMI involves remote object references across JVM’s, garbage collection can be quite difficult. DGC uses a reference\n    counting algorithm to provide automatic memory management for remote objects.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 87,
+            "chunk_id": "java_87_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 396
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the purpose of using RMISecurityManager in RMI ?\nTrả lời: RMISecurityManager provides a security manager that can be used by RMI applications, which use downloaded code. The class\n    loader of RMI will not download any classes from remote locations, if the security manager has not been set.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 88,
+            "chunk_id": "java_88_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 322
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain Marshalling and demarshalling.\nTrả lời: When an application wants to pass its memory objects across a network to another host or persist it to storage, the in-memory\n    representation must be converted to a suitable format. This process is called marshalling and the revert operation is called\n    demarshalling.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 89,
+            "chunk_id": "java_89_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 343
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain Serialization and Deserialization.\nTrả lời: Java provides a mechanism, called object serialization where an object can be represented as a sequence of bytes and includes\n    the object’s data, as well as information about the object’s type, and the types of data stored in the object. Thus, serialization can\n    be seen as a way of flattening objects, in order to be stored on disk, and later, read back and reconstituted. Deserialisation is the\n    reverse process of converting an object from its flattened state to a live object.\n    Chapter 11\n    Servlets",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 90,
+            "chunk_id": "java_90_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 591
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a Servlet ?\nTrả lời: The servlet is a Java programming language class used to process client requests and generate dynamic web content. Servlets are\n    mostly used to process or store data submitted by an HTML form, provide dynamic content and manage state information that\n    does not exist in the stateless HTTP protocol.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 91,
+            "chunk_id": "java_91_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 355
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain the architechure of a Servlet.\nTrả lời: The core abstraction that must be implemented by all servlets is the javax.servlet.Servlet interface. Each servlet must implement\n    it either directly or indirectly, either by extending javax.servlet.GenericServlet or javax.servlet.http.HTTPServlet. Finally, each\n    servlet is able to serve multiple requests in parallel using multithreading.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 92,
+            "chunk_id": "java_92_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 416
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between an Applet and a Servlet ?\nTrả lời: An Applet is a client side java program that runs within a Web browser on the client machine. On the other hand, a servlet is a\n    server side component that runs on the web server.An applet can use the user interface classes, while a servlet does not have a\n    user interface. Instead, a servlet waits for client’s HTTP requests and generates a response in every request.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 93,
+            "chunk_id": "java_93_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 462
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between GenericServlet and HttpServlet ?\nTrả lời: GenericServlet is a generalized and protocol-independent servlet that implements the Servlet and ServletConfig interfaces. Those\n    servlets extending the GenericServlet class shall override the service method. Finally, in order to develop an HTTP servlet for\n    use on the Web that serves requests using the HTTP protocol, your servlet must extend the HttpServlet instead. Check Servlet\n    examples here.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 94,
+            "chunk_id": "java_94_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 503
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Explain the life cycle of a Servlet.\nTrả lời: On every client’s request, the Servlet Engine loads the servlets and invokes its init methods, in order for the servlet to be\n    initialized. Then, the Servlet object handles all subsequent requests coming from that client, by invoking the service method for\n    each request separately. Finally, the servlet is removed by calling the server’s destroy method.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 95,
+            "chunk_id": "java_95_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 428
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the difference between doGet() and doPost() ? doGET: The GET method appends the name-value pairs on the request’s URL. Thus, there is a limit on the number of characters and subsequently on the number of values that can be used in a client’s request. Furthermore, the values of the request are made visible and thus, sensitive information must not be passed in that way. doPOST: The POST method overcomes the limit imposed by the GET request, by sending the values of the request inside its body. Also, there is no limitations on the number of values to be sent across. Finally, the sensitive information passed through a\nTrả lời: POST request is not visible to an external client.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 96,
+            "chunk_id": "java_96_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 711
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is meant by a Web Application ?\nTrả lời: A Web application is a dynamic extension of a Web or application server. There are two types of web applications: presentationoriented and service-oriented. A presentation-oriented Web application generates interactive web pages, which contain various\n    types of markup language and dynamic content in response to requests. On the other hand, a service-oriented web application\n    implements the endpoint of a web service. In general, a Web application can be seen as a collection of servlets installed under a\n    specific subset of the server’s URL namespace.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 97,
+            "chunk_id": "java_97_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 632
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a Server Side Include (SSI) ?\nTrả lời: Server Side Includes (SSI) is a simple interpreted server-side scripting language, used almost exclusively for the Web, and is\n    embedded with a servlet tag. The most frequent use of SSI is to include the contents of one or more files into a Web page on a\n    Web server. When a Web page is accessed by a browser, the Web server replaces the servlet tag in that Web page with the hyper\n    text generated by the corresponding servlet.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 98,
+            "chunk_id": "java_98_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 505
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is Servlet Chaining ?\nTrả lời: Servlet Chaining is the method where the output of one servlet is sent to a second servlet. The output of the second servlet can\n    be sent to a third servlet, and so on. The last servlet in the chain is responsible for sending the response to the client.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 99,
+            "chunk_id": "java_99_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 314
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How do you find out what client machine is making a request to your servlet ?\nTrả lời: The ServletRequest class has functions for finding out the IP address or host name of the client machine. getRemoteAddr() gets\n    the IP address of the client machine and getRemoteHost() gets the host name of the client machine. See example here.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 100,
+            "chunk_id": "java_100_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is the structure of the HTTP response ?\nTrả lời: The HTTP response consists of three parts:\n    • Status Code: describes the status of the response. It can be used to check if the request has been successfully completed. In\n    case the request failed, the status code can be used to find out the reason behind the failure. If your servlet does not return a\n    status code, the success status code, HttpServletResponse.SC_OK, is returned by default.\n    • HTTP Headers: they contain more information about the response. For example, the headers may specify the date/time after\n    which the response is considered stale, or the form of encoding used to safely transfer the entity to the user. See how to retrieve\n    headers in Servlet here.\n    • Body: it contains the content of the response. The body may contain HTML code, an image, etc. The body consists of the data\n    bytes transmitted in an HTTP transaction message immediately following the headers.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 101,
+            "chunk_id": "java_101_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 987
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a cookie ? What is the difference between session and cookie ?\nTrả lời: A cookie is a bit of information that the Web server sends to the browser. The browser stores the cookies for each Web server\n    in a local file. In a future request, the browser, along with the request, sends all stored cookies for that specific Web server.The\n    differences between session and a cookie are the following:\n    • The session should work, regardless of the settings on the client browser. The client may have chosen to disable cookies.\n    However, the sessions still work, as the client has no ability to disable them in the server side.\n    • The session and cookies also differ in the amount of information the can store. The HTTP session is capable of storing any\n    Java object, while a cookie can only store String objects.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 102,
+            "chunk_id": "java_102_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 851
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: Which protocol will be used by browser and servlet to communicate ?\nTrả lời: The browser communicates with a servlet by using the HTTP protocol.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 103,
+            "chunk_id": "java_103_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 166
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is HTTP Tunneling ?\nTrả lời: HTTP Tunneling is a technique by which, communications performed using various network protocols are encapsulated using\n    the HTTP or HTTPS protocols. The HTTP protocol therefore acts as a wrapper for a channel that the network protocol being\n    tunneled uses to communicate. The masking of other protocol requests as HTTP requests is HTTP Tunneling.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 104,
+            "chunk_id": "java_104_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 409
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What’s the difference between sendRedirect and forward methods ?\nTrả lời: The sendRedirect method creates a new request, while the forward method just forwards a request to a new target. The previous\n    request scope objects are not available after a redirect, because it results in a new request. On the other hand, the previous request\n    scope objects are available after forwarding. FInally, in general, the sendRedirect method is considered to be slower compare to\n    the forward method.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 105,
+            "chunk_id": "java_105_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 517
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is URL Encoding and URL Decoding ?\nTrả lời: The URL encoding procedure is responsible for replacing all the spaces and every other extra special character of a URL, into\n    their corresponding Hex representation. In correspondence, URL decoding is the exact opposite procedure.\n    Chapter 12\n    JSP",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 106,
+            "chunk_id": "java_106_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 328
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is a JSP Page ?\nTrả lời: A Java Server Page (JSP) is a text document that contains two types of text: static data and JSP elements. Static data can be\n    expressed in any text-based format, such as HTML or XML. JSP is a technology that mixes static content with dynamicallygenerated content. See JSP example here.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 107,
+            "chunk_id": "java_107_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: How are the JSP requests handled ?\nTrả lời: On the arrival of a JSP request, the browser first requests a page with a .jsp extension. Then, the Web server reads the request and\n    using the JSP compiler, the Web server converts the JSP page into a servlet class. Notice that the JSP file is compiled only on\n    the first request of the page, or if the JSP file has changed.The generated servlet class is invoked, in order to handle the browser’s\n    request. Once the execution of the request is over, the servlet sends a response back to the client. See how to get Request\n    parameters in a JSP.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 108,
+            "chunk_id": "java_108_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 622
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are the advantages of JSP ?\nTrả lời: The advantages of using the JSP technology are shown below:\n    • JSP pages are dynamically compiled into servlets and thus, the developers can easily make updates to presentation code.\n    • JSP pages can be pre-compiled.\n    • JSP pages can be easily combined to static templates, including HTML or XML fragments, with code that generates dynamic\n    content.\n    • Developers can offer customized JSP tag libraries that page authors access using an XML-like syntax.\n    • Developers can make logic changes at the component level, without editing the individual pages that use the application’s logic.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 109,
+            "chunk_id": "java_109_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 667
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are Directives ? What are the different types of Directives available in\nTrả lời: JSP ?\n    Directives are instructions that are processed by the JSP engine, when the page is compiled to a servlet. Directives are used to\n    set page-level instructions, insert data from external files, and specify custom tag libraries. Directives are defined between < %@\n    and % >. The different types of directives are shown below:\n    • Include directive: it is used to include a file and merges the content of the file with the current page.\n    • Page directive: it is used to define specific attributes in the JSP page, like error page and buffer.\n    • Taglib: it is used to declare a custom tag library which is used in the page.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 110,
+            "chunk_id": "java_110_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 751
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are JSP actions ?\nTrả lời: JSP actions use constructs in XML syntax to control the behavior of the servlet engine. JSP actions are executed when a JSP\n    page is requested. They can be dynamically inserted into a file, re-use JavaBeans components, forward the user to another page,\n    or generate HTML for the Java plugin.Some of the available actions are listed below:\n    • jsp:include - includes a file, when the JSP page is requested.\n    • jsp:useBean - finds or instantiates a JavaBean.\n    • jsp:setProperty - sets the property of a JavaBean.\n    • jsp:getProperty - gets the property of a JavaBean.\n    • jsp:forward - forwards the requester to a new page.\n    • jsp:plugin - generates browser-specific code.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 111,
+            "chunk_id": "java_111_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 745
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are Scriptlets ?\nTrả lời: In Java Server Pages (JSP) technology, a scriptlet is a piece of Java-code embedded in a JSP page. The scriptlet is everything\n    inside the tags. Between these tags, a user can add any valid scriplet.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 112,
+            "chunk_id": "java_112_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are Decalarations ?\nTrả lời: Declarations are similar to variable declarations in Java. Declarations are used to declare variables for subsequent use in expressions or scriptlets. To add a declaration, you must use the sequences to enclose your declarations.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 113,
+            "chunk_id": "java_113_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 285
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What are Expressions ?\nTrả lời: A JSP expression is used to insert the value of a scripting language expression, converted into a string, into the data stream\n    returned to the client, by the web server. Expressions are defined between <% =and %> tags.",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 114,
+            "chunk_id": "java_114_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 276
+        }
+    },
+    {
+        "page_content": "Chủ đề: Java\nCâu hỏi: What is meant by implicit objects and what are they ?\nTrả lời: JSP implicit objects are those Java objects that the JSP Container makes available to developers in each page. A developer can\n    call them directly, without being explicitly declared. JSP Implicit Objects are also called pre-defined variables.The following\n    objects are considered implicit in a JSP page:\n    • application\n    • page\n    • request\n    • response\n    • session • exception • out • config • pageContext",
+        "metadata": {
+            "source_file": "java_interview_question.md",
+            "original_row_id": 115,
+            "chunk_id": "java_115_chunk_0",
+            "instruction": "Java",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 507
+        }
+    }
+]

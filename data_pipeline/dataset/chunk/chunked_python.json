@@ -1,0 +1,3230 @@
+[
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the time complexity of a recursion function in python?\nTrả lời: The time complexity of recursion depends on the number of times the function calls itself. If a function calls itself two times then its time complexity is O(2 ^ N). if it calls three times, then its time complexity is O(3 ^ N) and so on.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "python_0_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 334
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the features Python can offer?\nTrả lời: Python can be used to create software, games, and web applications using several frameworks.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "python_1_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 165
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is  “The Zen of Python”?\nTrả lời: It is the principle that influences the design of Python programming.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "python_2_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 132
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: List the mutable and immutable types in Python\nTrả lời: Mutable built-in types: List, Sets, and Dictionaries. Immutable built-in types: String, Tuples, and numbers",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "python_3_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 187
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Name any programming paradigm which Python includes.\nTrả lời: Object-oriented, imperative, functional, and procedural is the programming paradigm that Python includes.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "python_4_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 191
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How are high-level languages executed by computers?\nTrả lời: High-level language are first needs to be converted to low-level language e.g. Java Virtual Machine does the Java language. This is an extra step which makes executing code slower compared to low-level language.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "python_5_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 296
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the extension of the Python source file?\nTrả lời: Python source file has a .py extension like test.py, is a Python file.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "python_6_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 152
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Define encapsulation.\nTrả lời: It is the process of transforming a sequence of statements into a function definition. Everything is encapsulated inside the function.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "python_7_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 189
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is an accumulator?\nTrả lời: Accumulator is a variable, which is generally used in the loop to accumulate the values in each iteration. E.g. if you want to add all the values in a list [1,2,3,4] . Then, you will be creating an accumulator which will hold the sum till the previous iteration.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "python_8_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you return more than 1 value from a function?\nTrả lời: You should have used tuple as a return value. If you want more than 1 value as a return value.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "python_9_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 181
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What do you know about PEP 8? Why is it considered to be important?\nTrả lời: PEP 8 is python’s style guide which has set of rules for how to format your python code.It is considered to be important because it shows how python code should be formatted.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "python_10_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 275
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the __init__ method?\nTrả lời: The __init__ method is run as soon as an object of a class is instantiated. The method is useful to do any initialization you want to do with your object.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "python_11_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 231
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: List the functions which are used to modify the string in Python?\nTrả lời: Split(), sub() and subn() are the functions that can be used to modify the strings in python.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "python_12_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between {} dictionary and “OrderedDict”?\nTrả lời: OrderedDict maintains the insertion order. In whatever order all the key value pairs added to the dictionary will be maintained and that cannot be possible with the regular dictionary.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "python_13_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a regular expression?\nTrả lời: A regular expression (regex or regexp for short) is a special text string for describing a search pattern. You can think of regular expressions as wildcards on steroids. You are probably familiar with wildcard notations such as *.txt to find all text files in a file manager.\n\n## Python Interview Questions for Freshers - Level 2\n\n    1: What is Python?\n\n    Python is a high-level, interpreted programming language known for its simplicity and readability. It is widely used in web development, data analysis, artificial intelligence, and more.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "python_14_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 608
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you install Python on your computer?\nTrả lời: You can download Python from the official website (python.org) and follow the installation instructions for your operating system.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "python_15_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 207
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between Python 2 and Python 3?\nTrả lời: Python 2 is an older version with ongoing support, while Python 3 is the latest version with many improvements and new features. It's recommended to use Python 3 for new projects.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "python_16_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 266
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you print \"Hello, World!\" in Python?\nTrả lời: You can print \"Hello, World!\" using the print() function like this:\n\n    print(\"Hello, World!\")",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "python_17_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 172
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain Python's indentation.\nTrả lời: Python uses indentation (whitespace) to define code blocks. It enforces code readability and consistency.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "python_18_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 168
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a variable in Python?\nTrả lời: A variable is a name used to store data values. In Python, you can create a variable like this:\n\n    x = 10",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "python_19_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 170
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you comment in Python?\nTrả lời: Use the # symbol for single-line comments, like this:\n\n    # This is a comment",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "python_20_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 141
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are data types in Python?\nTrả lời: Data types define the type of data a variable can hold. Common data types include int, float, str, bool, and more.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "python_21_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 178
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you check the data type of a variable?\nTrả lời: You can use the type() function, like this:\n\n    x = 10\n    print(type(x))  # Output: <class 'int'>",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "python_22_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 178
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a string in Python?\nTrả lời: A string is a sequence of characters enclosed in single (' ') or double (\" \") quotes.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "python_23_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 146
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you concatenate strings in Python?\nTrả lời: You can use the + operator or string formatting, like this:\n\n    name = \"John\"\n    greeting = \"Hello, \" + name",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "python_24_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 185
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain string indexing and slicing.\nTrả lời: String indexing allows you to access individual characters, while slicing lets you extract substrings using a range of indices.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "python_25_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 197
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a list in Python?\nTrả lời: A list in python is an ordered collection of items. It can hold elements of different data types.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "python_26_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 156
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you add an element to a list in Python?\nTrả lời: You can use the append() method to add an element to the end of a list.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "python_27_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 151
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a tuple? How is it different from a list?\nTrả lời: A tuple is similar to a list but is immutable, meaning its elements cannot be changed after creation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "python_28_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 184
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a dictionary in Python?\nTrả lời: A dictionary in Python is an unordered collection of key-value pairs. It is defined using curly braces {}.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "python_29_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 171
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you access values in a dictionary?\nTrả lời: You can access values by specifying the key in square brackets, like this:\n\n    my_dict = {\"name\": \"Alice\", \"age\": 30}\n    print(my_dict[\"name\"])  # Output: Alice",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "python_30_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 237
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a for loop? How does it work in Python?\nTrả lời: A for loop is used to iterate over a sequence (e.g., list, tuple, string) and perform an action for each element.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "python_31_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 194
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the while loop in Python.\nTrả lời: A while loop repeatedly executes a block of code as long as a specified condition is true.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "python_32_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 157
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a function in Python?\nTrả lời: A function in Python is a reusable block of code that performs a specific task. It is defined using the def keyword.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "python_33_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 179
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you call a function in Python?\nTrả lời: You can call a function by using its name followed by parentheses, like this:\n\n    def greet(name):\n    print(\"Hello, \" + name)\n\n    greet(\"Alice\")",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "python_34_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the concept of function parameters and arguments.\nTrả lời: Parameters are variables defined in a function's declaration, while arguments are values passed to a function when it's called.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "python_35_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a return statement in a function?\nTrả lời: A return statement is used to specify the value a function should return. It ends the function's execution.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "python_36_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 182
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you define a default parameter value in a function?\nTrả lời: You can specify default values for parameters in the function definition, like this:\n\n    def greet(name=\"Guest\"):\n    print(\"Hello, \" + name)",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "python_37_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the concept of scope in Python.\nTrả lời: Scope defines the region in a program where a variable is accessible. Python has local, enclosing, global, and built-in scopes.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "python_38_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 200
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are break and continue statements in Python?\nTrả lời: The break statement is used to exit a loop prematurely, while the continue statement is used to skip the current iteration and proceed to the next one in a loop.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "python_39_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 244
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the with statement in Python.\nTrả lời: The with statement is used for context management and ensures proper resource cleanup (e.g., file closure) when exiting the block. It is often used with file handling, database connections, and more.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "python_40_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 285
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between shallow copy and deep copy in Python?\nTrả lời: A shallow copy of an object creates a new object but does not create copies of the objects contained within the original object. In contrast, a deep copy creates a new object and recursively creates copies of all objects contained within the original object.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "python_41_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 360
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you handle exceptions in Python?\nTrả lời: Exceptions in Python are handled using try, except, and optionally finally blocks. The try block encloses code that may raise an exception, and the except block specifies what to do if an exception is raised.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "python_42_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a Python decorator, and how is it used?\nTrả lời: A decorator is a function that wraps another function and adds additional behavior to it. It is commonly used for tasks like logging, authentication, and access control.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "python_43_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 250
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create and use a Python class?\nTrả lời: To create a class, define it using the class keyword. To use a class, create an instance of it, and then you can access its attributes and methods using dot notation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "python_44_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 241
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the os module in Python?\nTrả lời: The os module provides functions for interacting with the operating system, such as working with files and directories, managing processes, and accessing environment variables.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "python_45_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 257
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the Global Interpreter Lock (GIL) in Python?\nTrả lời: The Global Interpreter Lock (GIL) is a mutex in the CPython interpreter that allows only one thread to execute Python bytecode at a time. This can limit the parallelism of multi-threaded Python programs.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "python_46_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 289
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you work with files in Python?\nTrả lời: You can open, read, write, and close files using Python's built-in open() function. Make sure to use a with statement for proper file handling.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "python_47_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the pickle module in Python.\nTrả lời: The pickle module is used for serializing and deserializing Python objects, allowing you to save and load data structures.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "python_48_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 207
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a module in Python?\nTrả lời: A module is a file containing Python code that can be reused in other Python programs. It can include functions, classes, and variables.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "python_49_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 197
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you import modules in Python?\nTrả lời: You can use the import statement to import modules and access their functions and variables.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "python_50_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 162
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a virtual environment in Python, and why is it useful?\nTrả lời: A virtual environment is an isolated Python environment that allows you to manage dependencies for a specific project. It helps avoid conflicts between different projects' dependencies.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "python_51_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you install external packages in Python?\nTrả lời: You can use Python package managers like pip or conda to install external packages. Specify the package name and version to install.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "python_52_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 213
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the requests library in Python.\nTrả lời: The requests library is used for making HTTP requests to web services or websites. It simplifies tasks like sending GET and POST requests.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "python_53_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the Beautiful Soup library in Python?\nTrả lời: Beautiful Soup is used for web scraping and parsing HTML or XML documents. It allows you to extract data from web pages.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "python_54_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are regular expressions, and how are they used in Python?\nTrả lời: Regular expressions (regex) are patterns used for searching and manipulating text. Python's re module provides functions for working with regular expressions.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "python_55_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the NumPy library in Python.\nTrả lời: NumPy is a library for numerical computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with mathematical functions to operate on them.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "python_56_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 262
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is matplotlib used for in Python?\nTrả lời: matplotlib is a library for creating static, animated, and interactive visualizations in Python. It is often used for data plotting and charting.\n\n    45: What is pandas in Python, and how is it used?\n\n    pandas is a library for data manipulation and analysis. It provides data structures like DataFrame and Series, along with functions for data cleaning, transformation, and analysis.\n\n    46: Explain the purpose of SQLAlchemy in Python.\n\n    SQLAlchemy is a library used for database interaction in Python. It provides an Object-Relational Mapping (ORM) system for working with databases.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "python_57_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 664
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a generator in Python, and how does it differ from a list?\nTrả lời: A generator is an iterable that generates values on-the-fly, saving memory compared to creating a full list of values. Generators are defined using functions with the yield keyword.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "python_58_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you handle date and time in Python?\nTrả lời: Python's datetime module provides classes and functions for working with date and time, including parsing, formatting, and arithmetic operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "python_59_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 221
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are lambdas (anonymous functions) in Python?\nTrả lời: Lambdas are small, anonymous functions defined using the lambda keyword. They are often used for short, simple operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "python_60_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 205
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the unittest library in Python?\nTrả lời: unittest is a built-in Python library for writing and running unit tests. It helps ensure the correctness of your code by automating the testing process.\n\n## Python Interview Questions and Answers for Experienced",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "python_61_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 300
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Differentiate between pickling and unpickling in python.\nTrả lời: Pickling in python is the process of converting python objects into bytes stream whereas unpickling is the reverse operation of pickling.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "python_62_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Which method will you use to find all the methods and attributes of an Object of a class?\nTrả lời: We will be using either help() or dir() method.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "python_63_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 170
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is self?\nTrả lời: Self is a first argument of a method. A method defined as do_something(self, a, b, c) should be called as object.do_something(a, b, c) for some instance object of the class in which the definition occurs; the called method will think it is called as do_something(self, a, b, c).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "python_64_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 325
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Can we override the dir() function behaviour?\nTrả lời: Yes, you can. By overriding __dir__ function.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "python_65_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 124
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Why isn’t the memory freed whenever the python exits?\nTrả lời: Memory isn’t freed because python did not try to destroy every single of its objects.   Also, certain bits of memory are distributed by the C library which is impossible to get free.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "python_66_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Is everything object in Python?\nTrả lời: Everything in Python is an object, and almost everything has attributes and methods. All functions have a built-in attribute __doc__, which returns the doc string defined in the function's source code. The sys module is an object which has (among other things) an attribute called path.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "python_67_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 351
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the term Monkey Patching in python?\nTrả lời: Monkey patching is a method by which we can extend or modify our code while runtime.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "python_68_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 161
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the Pass by Value and Pass by Reference?\nTrả lời: Whenever arguments are passed to the function, they are always passed by reference. It means if you change the value of the function inside the parameter, it will also change the value of the original parameter. However, if you are passing an immutable variable then it will be passing by value. Hence original copy of the variable will not be changed.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "python_69_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 434
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Which all are Python web scraping libraries?\nTrả lời: There are many Python web scrapping libraries -\n    The Farm: Requests\n    The St ew: Beautiful Soup 4\n    The Salad: lxml - The Restaurant: Selenium\n    The Chef: Scrapy",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "python_70_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain in detail about packages and libraries?\nTrả lời: Packages and libraries are collections of code written in a specific programming language that provides additional functionality to programs.\n\n    Packages are a collection of modules, while libraries are a collection of related packages. In Python, packages are usually stored in directories and are organized hierarchically, with subpackages and modules contained within them. A package can contain subpackages and modules, and each module can contain classes, functions, and variables.\n\n    Libraries, on the other hand, are collections of packages and modules that are designed to perform specific tasks. For example, NumPy is a library for numerical computing in Python, while Pandas is a library for data analysis and manipulation. Libraries can be installed in Python using a package manager like pip, and they can be imported into a program using the import statement.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "python_71_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 957
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the use of dictionaries in python?\nTrả lời: Dictionary in python are used for mapping of unique keys to values.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "python_72_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 143
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a sparse matrix in Python?\nTrả lời: You can create a sparse matrix in Python using the scipy.sparse module. For example, scipy.sparse.csr_matrix(matrix) creates a compressed sparse row matrix from a dense matrix.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "python_73_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a list and a NumPy array in Python?\nTrả lời: Lists are built-in Python data structures that can hold elements of different data types, while NumPy arrays are homogeneous arrays of fixed size and contiguous memory. NumPy arrays also support vectorized operations and mathematical functions, making them more efficient for numerical operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "python_74_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 397
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a NumPy array in Python?\nTrả lời: You can create a NumPy array in Python by importing the NumPy module and using the numpy.array() function. For example, import numpy as np and then np.array([1,2,3]).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "python_75_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 242
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is broadcasting in NumPy arrays?\nTrả lời: Broadcasting is a mechanism in NumPy arrays that allows for arithmetic operations between arrays with different shapes or sizes. NumPy broadcasts the smaller array to the shape of the larger array, allowing for element-wise operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "python_76_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 306
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a diagonal matrix in NumPy?\nTrả lời: You can create a diagonal matrix in NumPy using the numpy.diag() function. For example, numpy.diag([1,2,3]) creates a 3x3 diagonal matrix with the values 1, 2, and 3 on the diagonal.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "python_77_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you transpose a matrix in NumPy?\nTrả lời: You can transpose a matrix in NumPy using the numpy.transpose() function or the .T attribute of a NumPy array. For example, numpy.transpose(matrix) or matrix.T.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 78,
+            "chunk_id": "python_78_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you flatten a matrix in NumPy?\nTrả lời: You can flatten a matrix in NumPy using the numpy.flatten() function or the .flatten() method of a NumPy array. For example, numpy.flatten(matrix) or matrix.flatten().",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 79,
+            "chunk_id": "python_79_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you concatenate two matrices in NumPy?\nTrả lời: You can concatenate two matrices in NumPy using the numpy.concatenate() function or the numpy.vstack() and numpy.hstack() functions for vertical and horizontal concatenation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 80,
+            "chunk_id": "python_80_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you find the maximum and minimum values in a NumPy array?\nTrả lời: You can find the maximum and minimum values in a NumPy array using the numpy.amax() and numpy.amin() functions, respectively. For example, numpy.amax(array) or numpy.amin(array).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 81,
+            "chunk_id": "python_81_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 276
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you calculate the dot product of two matrices in NumPy?\nTrả lời: You can calculate the dot product of two matrices in NumPy using the numpy.dot() function. For example, numpy.dot(matrix1, matrix2).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 82,
+            "chunk_id": "python_82_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Why Python does not de-allocate all the memory on exits?\nTrả lời: Python does not de-allocate all the memory as soon as it exits, because some memory is reserved by C library and possible there could be some circular references exists. Hence, memory can not be deallocated immediately in Python.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 83,
+            "chunk_id": "python_83_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What do you mean by module object?\nTrả lời: A value created by an import statement that provides access to the values defined in a module. e.g import math , here math is a module object and using dot notation you can access the variables defined in this module for instance math.pi",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 84,
+            "chunk_id": "python_84_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 305
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you alter functions in python syntax?\nTrả lời: By using the decorators we can alter the functions easily.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 85,
+            "chunk_id": "python_85_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 137
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the docstring in python?\nTrả lời: Python documentation strings (or docstrings) provide a convenient way of associating documentation with Python modules, functions, classes, and methods.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 86,
+            "chunk_id": "python_86_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Which operator will help you get the remainder and quotient value in Python?\nTrả lời: There are two mathematical operator to help you get quotient and remainder. To get remainder use % modulus operator and / to get the quotient value",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 87,
+            "chunk_id": "python_87_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 257
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What do you mean by dead code?\nTrả lời: : A part of the code, which is never executed, is known as dead code. This is generally written after the return statement and will never be executed.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 88,
+            "chunk_id": "python_88_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is broadcasting in NumPy arrays?\nTrả lời: Broadcasting is a mechanism in NumPy arrays that allows for arithmetic operations between arrays with different shapes or sizes. NumPy broadcasts the smaller array to the shape of the larger array, allowing for element-wise operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 89,
+            "chunk_id": "python_89_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 306
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What do you mean by local variables?\nTrả lời: A variable which you define inside the function is known as local variable, you can not use local variable outside the function.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 90,
+            "chunk_id": "python_90_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 198
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Can we perform parallel computing in python?\nTrả lời: Parallel computing can be performed in Python using various libraries such as multiprocessing, threading, concurrent.futures, and asyncio.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 91,
+            "chunk_id": "python_91_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between multiprocessing and threading in python?\nTrả lời: Multiprocessing and threading are both ways to achieve parallel computing in Python, but multiprocessing uses multiple processes to execute tasks, while threading uses multiple threads within a single process.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 92,
+            "chunk_id": "python_92_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 314
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the Global Interpreter Lock (GIL)?\nTrả lời: The GIL is a mechanism in Python that ensures that only one thread at a time can execute Python bytecode. This can limit the performance of threaded programs, but it is necessary for ensuring the integrity of Python's memory management.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 93,
+            "chunk_id": "python_93_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 312
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you overcome the limitations of the GIL in Python?\nTrả lời: The limitations of the GIL can be overcome by using multiprocessing instead of threading, or by using external libraries that are designed to work around the GIL, such as numpy, pandas, and matplotlib.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 94,
+            "chunk_id": "python_94_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a thread and a process?\nTrả lời: A thread is a lightweight subprocess that shares memory with the parent process, while a process is a separate instance of a program that has its own memory space.\n\n    Python Interview Coding Questions\n\n\n## Python Interview Questions and Answers for Experience - Level 2",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 95,
+            "chunk_id": "python_95_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 359
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the Global Interpreter Lock (GIL) in Python, and how does it affect multi-threading?\nTrả lời: The GIL is a mutex that allows only one thread to execute Python bytecode at a time, limiting multi-threaded performance for CPU-bound tasks.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 96,
+            "chunk_id": "python_96_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the differences between Python 2 and Python 3.\nTrả lời: Python 2 is no longer supported, and Python 3 introduced changes like print() as a function, Unicode as the default string type, and improved syntax.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 97,
+            "chunk_id": "python_97_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 237
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are decorators in Python, and how do they work?\nTrả lời: Decorators are functions that modify other functions or methods. They are often used for aspects like logging, authentication, and memoization.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 98,
+            "chunk_id": "python_98_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How does memory management work in Python, including reference counting and garbage collection?\nTrả lời: Python uses reference counting to track object references. Garbage collection is used to reclaim memory from objects with zero references.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 99,
+            "chunk_id": "python_99_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of generators in Python, and how are they different from regular functions?\nTrả lời: Generators are functions that yield values one at a time, enabling efficient memory usage. They save and resume state between calls.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 100,
+            "chunk_id": "python_100_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the differences between a shallow copy and a deep copy of an object in Python.\nTrả lời: A shallow copy creates a new object with references to nested objects, while a deep copy creates a completely independent copy of the object and all its nested objects_._",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 101,
+            "chunk_id": "python_101_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 290
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the collections module in Python, and can you name some useful data structures it provides?\nTrả lời: The collections module offers specialized container datatypes like deque, Counter, and namedtuple for various use cases.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 102,
+            "chunk_id": "python_102_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you handle exceptions in Python, and what is the purpose of the finally block?\nTrả lời: Exceptions are handled using try, except, and optionally finally blocks. The finally block is executed regardless of whether an exception is raised.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 103,
+            "chunk_id": "python_103_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain how you can create a custom exception class in Python.\nTrả lời: To create a custom exception class, inherit from the built-in Exception class or one of its subclasses.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 104,
+            "chunk_id": "python_104_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 199
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a closure in Python, and when would you use one in your code?\nTrả lời: A closure is a function that retains the values of variables in the enclosing scope even after that scope has finished executing. Closures are used to create function factories and decorators, among other things.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 105,
+            "chunk_id": "python_105_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 315
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the asyncio library in Python, and how does it enable asynchronous programming?\nTrả lời: The `asyncio` library allows asynchronous I/O, making it possible to write concurrent code that performs I/O-bound tasks without blocking the event loop.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 106,
+            "chunk_id": "python_106_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 289
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain how you can profile the performance of a Python application and identify bottlenecks.\nTrả lời: Python offers various profiling tools, including the built-in `cProfile` module, which helps analyze code execution times``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 107,
+            "chunk_id": "python_107_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 251
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you manage and install external packages in Python, and what is a virtual environment?\nTrả lời: You use package managers like `pip` to install packages. A virtual environment is an isolated Python environment that allows you to manage dependencies for a specific project.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 108,
+            "chunk_id": "python_108_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 302
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are metaclasses in Python, and when would you use them in your code?\nTrả lời: Metaclasses are classes for classes. You use them to customize the behavior of classes, such as adding class-level methods or enforcing coding standards.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 109,
+            "chunk_id": "python_109_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 260
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the contextlib module and how it is used for managing resources in Python.\nTrả lời: The `contextlib` module provides utilities for creating and working with context managers using the `with` statement.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 110,
+            "chunk_id": "python_110_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is method resolution order (MRO) in Python, and how is it determined for classes with multiple inheritance?\nTrả lời: MRO determines the order in which base classes are searched for a method or attribute. It``'s determined using the C3 linearization algorithm in Python.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 111,
+            "chunk_id": "python_111_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with binary data in Python, and what are the benefits of using the struct module?\nTrả lời: You can work with binary data using the `struct` module``, which allows you to pack and unpack binary data into``/``from Python objects.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 112,
+            "chunk_id": "python_112_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the differences between Python wheels and source distributions (sdist) for packaging and distribution.\nTrả lời: Wheels are binary distribution formats, making installations faster. Source distributions contain source code and require compilation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 113,
+            "chunk_id": "python_113_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 278
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the GIL, and how does it affect CPU-bound and I/O-bound tasks differently?\nTrả lời: The GIL (``Global Interpreter Lock``) affects CPU``-``bound tasks by limiting multi``-``threading performance but has less impact on I``/``O``-``bound tasks``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 114,
+            "chunk_id": "python_114_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 275
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the key differences between the multiprocessing and threading modules in Python, and when would you use each for parallelism?\nTrả lời: multiprocessing``is used for CPU-bound tasks and creates separate processes,` `while` threading `is` `used` `for` `I/O-bound tasks and creates threads.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 115,
+            "chunk_id": "python_115_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the logging module in Python and how it can be configured for different logging levels and destinations.\nTrả lời: The `logging` module allows you to log messages with different levels (e.g., INFO``, DEBUG``) to various outputs (e.g., console``, file) with flexible configurations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 116,
+            "chunk_id": "python_116_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 327
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you work with regular expressions (regex) in Python, and what are some common use cases for regex?\nTrả lời: Python provides the `re` module for working with regular expressions. Common use cases include text parsing and pattern matching.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 117,
+            "chunk_id": "python_117_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Describe the concept of ABCs (Abstract Base Classes) in Python and when you would use them.\nTrả lời: ABCs define abstract methods that must be implemented by subclasses. They're used to enforce interfaces and create extensible frameworks.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 118,
+            "chunk_id": "python_118_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 262
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are Python descriptors, and how are they used to customize attribute access in classes?\nTrả lời: Descriptors are objects defining methods like `__get__` and `__set__` to customize attribute access in classes, allowing you to define properties, validators, and more.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 119,
+            "chunk_id": "python_119_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you create and work with asynchronous code in Python, and what is the purpose of the await keyword?\nTrả lời: Asynchronous code is created using the ` ```async``` ` and ` ```await``` ` keywords. ` ```await``` ` is used to pause the execution of a coroutine until the awaited task is complete.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 120,
+            "chunk_id": "python_120_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the differences between the os.path and pathlib modules in Python for file and directory manipulation?\nTrả lời: `os.path` provides functions for working with paths as strings, while `pathlib` introduces an object``-oriented approach for path manipulation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 121,
+            "chunk_id": "python_121_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you serialize and deserialize Python objects, and what is the purpose of libraries like pickle and json for data interchange?\nTrả lời: `pickle` is used to serialize Python objects to binary format, while `json` is used for human-readable data interchange in a portable format.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 122,
+            "chunk_id": "python_122_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 307
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the concept of context managers in Python, and how are they typically used?\nTrả lời: Context managers, implemented with ` ```with``` ` statements, manage resources like files and database connections, ensuring they``'re properly acquired and released.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 123,
+            "chunk_id": "python_123_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the unittest library in Python, and how can you write unit tests for your code?\nTrả lời: `unittest` is Python```'s built-in library for writing unit tests. You create test cases by subclassing unittest.TestCase` and defining test methods.``",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 124,
+            "chunk_id": "python_124_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with dates and times in Python, and what is the datetime module used for?\nTrả lời: The `datetime` module provides classes for working with dates and times, including parsing, formatting, and arithmetic operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 125,
+            "chunk_id": "python_125_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the benefits of using virtual environments in Python development, and how do you create and manage them?\nTrả lời: Virtual environments isolate project dependencies, preventing conflicts. You create them using `venv` or `` virtualenv ```, and activate/deactivate them accordingly.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 126,
+            "chunk_id": "python_126_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the differences between mutable and immutable data types in Python, and can you provide examples of each?\nTrả lời: Mutable types can be changed in place (e.g., lists), while immutable types cannot (e.g., tuples). Changing an immutable type creates a new object``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 127,
+            "chunk_id": "python_127_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 296
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you profile and optimize the performance of a Python application?\nTrả lời: Profiling tools like `cProfile` help identify bottlenecks. Optimization can include algorithmic improvements, caching, and using built-in functions``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 128,
+            "chunk_id": "python_128_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 257
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the zip and map functions in Python, and provide examples of their usage.\nTrả lời: `zip` combines iterables element-wise, and `map` applies a function to elements of iterables. For example, `zip([1, 2], [3, 4])` returns `[(1, 3), (2, 4)]` ```, and` map(lambda x: x*2, [1, 2, 3]) `returns` [2, 4, 6] ```.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 129,
+            "chunk_id": "python_129_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 350
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with JSON data in Python, and what is the purpose of the json module?\nTrả lời: The `json` module provides methods to serialize and deserialize JSON data. You can use `json.loads()` to parse JSON strings and `json.dumps()` to serialize Python objects to JSON``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 130,
+            "chunk_id": "python_130_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain how you can use the argparse module to parse command-line arguments in Python scripts.\nTrả lời: The `argparse` module simplifies the process of parsing command-line arguments``, allowing you to define options, arguments``, and help messages.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 131,
+            "chunk_id": "python_131_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the async and await keywords in Python, and how are they used in asynchronous programming?\nTrả lời: ` ```async``` ` defines a coroutine, and ` ```await``` ` is used to pause the execution of a coroutine until an awaited task is complete, enabling asynchronous programming.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 132,
+            "chunk_id": "python_132_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with databases in Python, and what are some commonly used database libraries and frameworks?\nTrả lời: Python offers various database libraries like SQLAlchemy and Django ORM. You can connect to databases, execute queries, and perform CRUD operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 133,
+            "chunk_id": "python_133_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the differences between the requests and urllib libraries for making HTTP requests in Python.\nTrả lời: `requests` is a popular library for making HTTP requests with a user-friendly API. `urllib` is a built-``in library with a lower-level interface``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 134,
+            "chunk_id": "python_134_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 282
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are Python wheels, and how do they differ from source distributions (sdist) when packaging and distributing Python libraries?\nTrả lời: Wheels are binary distribution formats that make installations faster. Source distributions (sdist) contain source code and require compilation during installation.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 135,
+            "chunk_id": "python_135_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 328
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create custom exceptions in Python, and why would you use them in your code?\nTrả lời: Custom exceptions are created by defining new classes that inherit from built-``in exception classes. They are used to raise specific errors in your code.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 136,
+            "chunk_id": "python_136_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 275
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the subprocess module in Python, and how can you use it to execute external processes?\nTrả lời: The `subprocess` module allows you to spawn new processes, connect to their input/output/``error pipes, and obtain return codes.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 137,
+            "chunk_id": "python_137_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the concept of method resolution order (MRO) in Python, and how does it affect class inheritance in multiple inheritance scenarios?\nTrả lời: MRO determines the order in which base classes are searched for attributes. It``'s resolved using the C3 linearization algorithm and affects attribute lookup in multiple inheritance.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 138,
+            "chunk_id": "python_138_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 355
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with XML and JSON data in Python, and what are some libraries and modules for parsing and generating XML and JSON data?\nTrả lời: Python provides libraries like `xml.etree.ElementTree` for XML and the `json` module for JSON``. You can parse, manipulate, and generate XML and JSON data with these libraries.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 139,
+            "chunk_id": "python_139_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 346
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the use of Python's built-in map, filter, and reduce functions, and provide examples of their usage.\nTrả lời: `map` applies a function to elements of an iterable, `filter` filters elements based on a function```'s result, and reduce` applies a function cumulatively to elements of an iterable.``",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 140,
+            "chunk_id": "python_140_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 327
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you implement memoization in Python, and why is it useful in recursive functions?\nTrả lời: Memoization involves caching results to avoid redundant calculations in recursive functions, improving performance. You can use dictionaries or functools' `lru_cache` for memoization``.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 141,
+            "chunk_id": "python_141_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 307
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of Python's contextlib module, and how can you create context managers using it?\nTrả lời: The `contextlib` module provides utilities for creating context managers using the `with` statement. You can define context managers as functions with the `@contextmanager` decorator.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 142,
+            "chunk_id": "python_142_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with binary data in Python, and what is the struct module used for?\nTrả lời: The `struct` module is used to pack and unpack binary data into``/``from Python objects, enabling you to work with binary data formats like network protocols and file formats.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 143,
+            "chunk_id": "python_143_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the benefits of using type hints (PEP 484) in Python code, and how can you use them to improve code readability and maintainability?\nTrả lời: Type hints provide static type checking and improved code documentation, making it easier to understand and maintain code. You can use type hints for variables``, function parameters, and return values.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 144,
+            "chunk_id": "python_144_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 376
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you work with threads in Python, and what are some common challenges and best practices when dealing with multi-threading?\nTrả lời: Python's `threading` module allows you to create and manage threads. Common challenges include thread safety and avoiding race conditions. Best practices include using locks and synchronization mechanisms.*\n\n    Interview Questions for Experienced Python Developers with Answers",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 145,
+            "chunk_id": "python_145_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 442
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the asyncio module in Python?\nTrả lời: The asyncio module is a library in Python that provides support for asynchronous programming using the async/await.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 146,
+            "chunk_id": "python_146_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 186
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a coroutine in Python?\nTrả lời: A coroutine is a specialized version of a Python generator that allows for asynchronous programming, using the async/await syntax.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 147,
+            "chunk_id": "python_147_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 194
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a future in the concurrent.futures module?\nTrả lời: A future is a container that represents the result of a computation that has not yet completed. It can be used to check the status of a computation, or to wait for it to complete.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 148,
+            "chunk_id": "python_148_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you represent a graph in Python?\nTrả lời: A graph can be represented in Python using an adjacency list or an adjacency matrix.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 149,
+            "chunk_id": "python_149_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 158
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you add a vertex to a graph in Python?\nTrả lời: To add a vertex to a graph in Python, you can simply append a new element to the adjacency list or add a new row and column to the adjacency matrix.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 150,
+            "chunk_id": "python_150_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you check if a graph is connected in Python?\nTrả lời: A graph is connected if there is a path between any two vertices. You can check if a graph is connected in Python by performing DFS or BFS from any vertex and checking if all the vertices are visited.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 151,
+            "chunk_id": "python_151_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you find the shortest path between two vertices in a graph in Python?\nTrả lời: The shortest path between two vertices in a graph can be found using BFS, where you keep track of the distance from the starting vertex to each visited vertex.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 152,
+            "chunk_id": "python_152_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you find the strongly connected components (SCCs) of a directed graph in Python?\nTrả lời: To find the strongly connected components (SCCs) of a directed graph in Python, we can use the Kosaraju's algorithm, which is a two-pass algorithm that first does a depth-first search (DFS) of the graph to find the finishing times of all vertices, and then does another DFS on the transpose of the graph (where all edges are reversed) to find the SCCs.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 153,
+            "chunk_id": "python_153_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 474
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How  *args and *kwargs are used in python\nTrả lời: *args is used to pass a variable number of non-keyword arguments to a function. It allows you to pass any number of arguments to a function by putting them in a tuple.\n\n    **kwargs is used to pass a variable number of keyword arguments to a function. It allows you to pass any number of key-value pairs to a function by putting them in a dictionary.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 154,
+            "chunk_id": "python_154_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 425
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How will you find bugs and errors in python code?\nTrả lời: To find bugs and errors in python code we can use Python Debgger Tool or PDB.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 155,
+            "chunk_id": "python_155_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 160
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Can you state the name of the tool which are used to find the bugs in python?\nTrả lời: Pychecker can be used to find the bugs in python. Pylint is another tool which can be used to detect errors.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 156,
+            "chunk_id": "python_156_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you check if a given IP address is valid in Python?\nTrả lời: You can use the ipaddress module in Python to check if a given IP address is valid.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 157,
+            "chunk_id": "python_157_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 175
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you convert a given integer to an IP address in Python?\nTrả lời: we can use the pack function from the struct module to convert the integer to a 32-bit packed binary format in network byte order.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 158,
+            "chunk_id": "python_158_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you find the IP address of a website in Python?\nTrả lời: we can use the gethostbyname function from the socket module to look up the IP address of the given domain name.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 159,
+            "chunk_id": "python_159_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 201
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you find the hostname of an IP address in Python?\nTrả lời: we can use the gethostbyaddr function from the socket module to look up the hostname of the given IP address.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 160,
+            "chunk_id": "python_160_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 200
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you check if two IP addresses are in the same subnet in Python?\nTrả lời: we first have to convert all the IP addresses and the netmask to integers using the ip_to_int function from earlier. Then, we have to use the bitwise AND operator (&) to mask out the subnet portion of the IP addresses, and compare the results. If they are equal, the two IP addresses are in the same subnet.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 161,
+            "chunk_id": "python_161_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 412
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you generate a list of IP addresses within a given range in Python?\nTrả lời: You can use the ipaddress.ip_address and ipaddress.ip_network functions from the ipaddress module in Python to generate a list of IP addresses within a given range.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 162,
+            "chunk_id": "python_162_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 272
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you check if a given MAC address is valid in Python?\nTrả lời: You can use a regular expression in Python to check if a given MAC address is valid.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 163,
+            "chunk_id": "python_163_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 177
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you get the MAC address of a network interface in Python?\nTrả lời: You can use the getmac module in Python to get the MAC address of a network interface.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 164,
+            "chunk_id": "python_164_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 184
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a syntax error and a runtime error in Python?\nTrả lời: A syntax error is a type of error that occurs when Python cannot parse the code due to a violation of the language grammar rules, such as a missing parenthesis or a typo in a keyword. A runtime error, on the other hand, occurs when Python is able to parse the code but encounters an error while running it, such as a division by zero or an undefined variable.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 165,
+            "chunk_id": "python_165_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 469
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the try and except keywords in Python?\nTrả lời: The try and except keywords in Python are used to handle runtime errors that may occur during the execution of a program. The try block contains the code that may raise an exception, and the except block contains the code that is executed if an exception is raised.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 166,
+            "chunk_id": "python_166_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 360
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between the except and finally blocks in Python?\nTrả lời: The except block in Python is executed only if an exception is raised in the try block, whereas the finally block is executed regardless of whether an exception is raised or not. The finally block is typically used to perform cleanup tasks, such as closing a file or releasing a resource.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 167,
+            "chunk_id": "python_167_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 393
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the raise keyword in Python?\nTrả lời: The raise keyword in Python is used to manually raise an exception. It can be used to handle specific error conditions that may not be handled by the built-in exception types or to create custom exceptions.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 168,
+            "chunk_id": "python_168_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between the assert statement and the raise keyword in Python?\nTrả lời: The assert statement in Python is used to check if a condition is true and raise an AssertionError if it is false. The raise keyword, on the other hand, is used to manually raise an exception. The assert statement is typically used for debugging purposes, while the raise keyword is used for error handling.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 169,
+            "chunk_id": "python_169_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 425
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the else block in a try statement in Python?\nTrả lời: The else block in a try statement in Python is executed if no exception is raised in the try block. It is typically used to perform additional operations that depend on the success of the try block.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 170,
+            "chunk_id": "python_170_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the finally block in a try statement in Python?\nTrả lời: The finally block in a try statement in Python is executed regardless of whether an exception is raised or not. It is typically used to perform cleanup tasks, such as closing a file or releasing a resource.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 171,
+            "chunk_id": "python_171_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 310
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between the try and else blocks in a try statement in Python?\nTrả lời: The try block in a try statement in Python contains the code that may raise an exception, whereas the else block contains the code that is executed if no exception is raised in the try block. The else block is typically used to perform additional operations that depend on the success of the try block.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 172,
+            "chunk_id": "python_172_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 420
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a built-in exception and a custom exception in Python?\nTrả lời: A built-in exception is an exception that is provided by the Python interpreter, such as TypeError or IndexError. A custom exception, on the other hand, is an exception that is defined by the user to handle specific error conditions in their program**.**",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 173,
+            "chunk_id": "python_173_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 373
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you handle multiple exceptions in Python?\nTrả lời: You can handle multiple exceptions in Python by using multiple except blocks or by using a single",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 174,
+            "chunk_id": "python_174_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 179
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a Python list and a NumPy array?\nTrả lời: NumPy arrays are more efficient than Python lists for numerical operations, especially for large data sets. They also support vectorized operations, which simultaneously perform operations on entire arrays.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 175,
+            "chunk_id": "python_175_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 303
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are some common NumPy functions?\nTrả lời: NumPy provides a wide range of functions for numerical operations, including arithmetic functions like add(), subtract(), multiply(), and divide(), as well as statistical functions like mean(), median(), and std().",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 176,
+            "chunk_id": "python_176_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 285
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are some key features of Pandas?\nTrả lời: Pandas provides several key features for data analysis, including data reading and writing, data cleaning and preprocessing, data merging and joining, and data reshaping and pivoting. It also provides powerful indexing and selection capabilities and tools for dealing with missing and time-series data.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 177,
+            "chunk_id": "python_177_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 373
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is Pandas aggregation?\nTrả lời: Pandas aggregation is the process of summarizing data by computing statistical measures like mean, median, mode, standard deviation, etc., on a group of rows in a dataframe.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 178,
+            "chunk_id": "python_178_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between merge() and join() in Pandas?\nTrả lời: In Pandas, merge() is used to combine dataframes based on common columns or indices, while join() is used to combine dataframes based on their indices.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 179,
+            "chunk_id": "python_179_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the groupby() function in Pandas?\nTrả lời: The groupby() function in Pandas is used to group rows of a dataframe based on one or more columns, and then perform aggregation functions like sum, mean, and count on each group.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 180,
+            "chunk_id": "python_180_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the apply() function in Pandas?\nTrả lời: The apply() function in Pandas is used to apply a custom function to each element or row of a dataframe. This can be useful for performing complex operations that are unavailable as built-in functions in Pandas.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 181,
+            "chunk_id": "python_181_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you perform a rolling window calculation on a Pandas dataframe column?\nTrả lời: A rolling window calculation can be performed on a Pandas dataframe column using the rolling() function, which allows you to specify the window size and the function to apply to each window.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 182,
+            "chunk_id": "python_182_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you merge Pandas dataframes using multiple keys?\nTrả lời: Pandas dataframes can be merged using multiple keys by passing a list of columns to the on parameter of the merge() function. This allows you to merge dataframes based on more than one common column.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 183,
+            "chunk_id": "python_183_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between Matplotlib and Seaborn?\nTrả lời: Matplotlib is a low-level plotting library in Python that provides a wide range of options for customization and control over plot elements. Seaborn is a higher-level library that builds on Matplotlib to provide more streamlined and aesthetic visualizations with less code. Seaborn also provides a range of built-in plot types and color palettes that make it easy to create attractive visualizations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 184,
+            "chunk_id": "python_184_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 488
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a line plot and a scatter plot?\nTrả lời: A line plot displays data as a series of connected points, with each point representing a value in the data. A scatter plot is a type of plot that displays data as a set of individual points, with each point representing a value in the data. Line plots are typically used to show trends or patterns in the data over time or other continuous variables. Scatter plots are typically used to show the relationship between two variables.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 185,
+            "chunk_id": "python_185_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 528
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is vectorization in NumPy, and why is it important?\nTrả lời: Vectorization is the process of performing mathematical operations on arrays of data rather than using loops to perform these operations on each individual element of the array. Vectorization in NumPy is important because it allows for faster and more efficient computation of numerical operations, making it a crucial tool for scientific computing and data analysis.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 186,
+            "chunk_id": "python_186_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 457
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the benefits of using vectorized code in NumPy?\nTrả lời: There are several benefits to using vectorized code in NumPy, including:\n\n    Faster computation: Vectorized code is generally much faster than traditional loops for array operations.\n\n    Cleaner code: Vectorized code is often more concise and easier to read than equivalent loop-based code.\n\n    Fewer bugs: Vectorized code is less error-prone than equivalent loop-based code, as it avoids common mistakes, such as off-by-one and index out-of-bounds errors.\n\n    Improved memory efficiency: Vectorized code is often more memory-efficient than equivalent loop-based code, as it avoids creating temporary variables and arrays.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 187,
+            "chunk_id": "python_187_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 716
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is caching in Joblib, and why is it important?\nTrả lời: Caching in Joblib refers to the ability to save the results of a computationally expensive function to disk or memory so that it can be reused later without recomputing the function. This is important because many data science and machine learning functions can take a long time to compute, especially on large datasets. By caching the results, we can save time and computational resources by reusing them rather than recomputing them.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 188,
+            "chunk_id": "python_188_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 520
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are some common strategies for optimizing code?\nTrả lời: Some common strategies for optimizing code include using efficient data structures, minimizing the use of loops and conditional statements, avoiding unnecessary calculations or function calls, and using vectorized operations when possible. It can also be helpful to profile the code to identify performance bottlenecks and optimize those sections of the code.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 189,
+            "chunk_id": "python_189_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 445
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are some potential drawbacks of code optimization?\nTrả lời: One potential drawback of code optimization is that it can make the code more complex and difficult to understand or maintain. Optimization can also make the code more difficult to debug or modify in the future and may not always result in a significant improvement in performance.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 190,
+            "chunk_id": "python_190_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 370
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you balance the tradeoff between code readability and performance?\nTrả lời: To balance the tradeoff between code readability and performance, it's important to prioritize readability when working on code that is likely to change frequently or be maintained by other developers. For code critical to performance, such as inner loops or frequently-called functions, it may be necessary to sacrifice some readability to achieve optimal performance.\n\n    Python 3 Interview Questions and Answers",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 191,
+            "chunk_id": "python_191_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 523
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between Python 2 and Python 3?\nTrả lời: Python 3 introduced several significant changes, including print() as a function, Unicode as the default string type, and improved syntax. It is not backward compatible with Python 2.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 192,
+            "chunk_id": "python_192_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is PEP 8, and why is it important?\nTrả lời: PEP 8 is Python's style guide, which provides guidelines for writing readable and consistent code. It is important for maintaining code quality and readability across projects.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 193,
+            "chunk_id": "python_193_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 249
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you comment out multiple lines of code in Python?\nTrả lời: You can use triple-quoted strings (''' or \"\"\") to comment out multiple lines of code, although using the # symbol for each line is more common.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 194,
+            "chunk_id": "python_194_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a virtual environment in Python, and why would you use one?\nTrả lời: A virtual environment is an isolated Python environment that allows you to manage dependencies separately for different projects. You use them to avoid conflicts between project-specific libraries.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 195,
+            "chunk_id": "python_195_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a virtual environment in Python 3?\nTrả lời: You can create a virtual environment using the venv module. For example: python3 -m venv myenv creates a virtual environment named \"myenv.\"",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 196,
+            "chunk_id": "python_196_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 225
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the __init__.py file in a Python package?\nTrả lời: The __init__.py file is used to indicate that a directory should be treated as a Python package. It can contain initialization code for the package.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 197,
+            "chunk_id": "python_197_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the if __name__ == \"__main__\": block in a Python script?\nTrả lời: The if __name__ == \"__main__\": block is used to check whether a Python script is being run as the main program or imported as a module. Code within this block will only execute if the script is run directly.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 198,
+            "chunk_id": "python_198_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 320
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the Global Interpreter Lock (GIL) in Python.\nTrả lời: The Global Interpreter Lock (GIL) is a mutex in the CPython interpreter that allows only one thread to execute Python bytecode at a time. This can limit multi-threading performance, especially for CPU-bound tasks.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 199,
+            "chunk_id": "python_199_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you remove duplicates from a list in Python?\nTrả lời: You can remove duplicates from a list using various methods, including converting it to a set or using list comprehensions. For example: my_list = list(set(my_list)).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 200,
+            "chunk_id": "python_200_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 252
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a lambda function in Python, and how is it different from a regular function?\nTrả lời: A lambda function is an anonymous, small, and inline function defined using the `lambda` keyword. They are typically used for short, simple operations and do not have a name.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 201,
+            "chunk_id": "python_201_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are list comprehensions, and how do they work in Python?\nTrả lời: List comprehensions are concise ways to create lists in Python. They consist of an expression followed by at least one `for` clause and zero or more `if` clauses to filter elements.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 202,
+            "chunk_id": "python_202_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 276
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you open and close files in Python?\nTrả lời: You can use the `open()` function to open files and the `close()` method to close them. It is recommended to use the `with` statement to ensure files are properly closed.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 203,
+            "chunk_id": "python_203_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the super() function in Python?\nTrả lời: The `super()` function is used to call a method from a parent or superclass. It is often used in the constructor (`__init__`) of a subclass to call the constructor of the parent class.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 204,
+            "chunk_id": "python_204_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 272
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you iterate over the items of a dictionary in Python?\nTrả lời: You can iterate over dictionary items using a `for` loop, iterating over keys, values, or both using the `items()` method.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 205,
+            "chunk_id": "python_205_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 217
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the global keyword in Python.\nTrả lời: The `global` keyword is used to indicate that a variable inside a function should be treated as a global variable (i.e., it should reference the global scope). This allows you to modify global variables within a function.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 206,
+            "chunk_id": "python_206_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 307
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a deep copy and a shallow copy of an object in Python?\nTrả lời: A shallow copy creates a new object but does not create copies of nested objects. A deep copy creates a completely independent copy of the object and all its nested objects.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 207,
+            "chunk_id": "python_207_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 292
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a decorator in Python, and how is it used?\nTrả lời: A decorator is a function that can modify or enhance the behavior of another function or method without changing its source code. They are often used for aspects like logging, authentication, and memoization.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 208,
+            "chunk_id": "python_208_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 292
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the try, except, and finally blocks in exception handling in Python.\nTrả lời: The `try` block encloses code that may raise an exception. The `except` block is used to handle specific exceptions. The `finally` block is executed regardless of whether an exception is raised and is used for cleanup.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 209,
+            "chunk_id": "python_209_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 343
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you create a custom exception class in Python?\nTrả lời: To create a custom exception class, inherit from the built-in `Exception` class or one of its subclasses.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 210,
+            "chunk_id": "python_210_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 193
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the is operator in Python?\nTrả lời: The `is` operator is used to test if two variables reference the same object in memory (i.e., they have the same identity).",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 211,
+            "chunk_id": "python_211_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 206
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you reverse a string in Python?\nTrả lời: You can reverse a string in Python using slicing. For example: `reversed_string = my_string[::-1]`.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 212,
+            "chunk_id": "python_212_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 172
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the pass statement in Python, and when is it used?\nTrả lời: The `pass` statement is a placeholder that does nothing. It is often used as a placeholder for code that will be implemented later.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 213,
+            "chunk_id": "python_213_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 223
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: Explain the purpose of the break and continue statements in Python loops.\nTrả lời: The `break` statement is used to exit a loop prematurely. The `continue` statement is used to skip the rest of the current iteration and continue to the next.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 214,
+            "chunk_id": "python_214_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a generator in Python, and how is it different from a regular function?\nTrả lời: A generator is a special type of iterable that yields values one at a time, allowing for efficient memory usage. Generators are created using functions with `yield` statements and save and resume state between calls.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 215,
+            "chunk_id": "python_215_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 329
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a list of unique random numbers in Python?\nTrả lời: You can create a list of unique random numbers by using the `random.sample()` function, specifying the range and the number of unique numbers you want.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 216,
+            "chunk_id": "python_216_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the built-in data types for numbers in Python, and how are they different?\nTrả lời: Python has three built-in numeric types: integers (`int`), floating-point numbers (`float`), and complex numbers (`complex`). Integers are whole numbers, floats have decimal points, and complex numbers have a real and imaginary part.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 217,
+            "chunk_id": "python_217_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 350
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are docstrings in Python, and why are they useful?\nTrả lời: Docstrings are string literals used to document functions, classes, and modules. They are used to provide information about the purpose and usage of code, making it more understandable and maintainable.\n\n    Python Pandas Interview Questions and Answers",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 218,
+            "chunk_id": "python_218_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 342
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is Pandas in Python?\nTrả lời: Pandas is an open-source library in Python used for data manipulation and analysis. It provides data structures and functions for efficiently handling large datasets.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 219,
+            "chunk_id": "python_219_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 225
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you install Pandas in Python?\nTrả lời: You can install Pandas using pip by running the command pip install pandas.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 220,
+            "chunk_id": "python_220_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 145
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What are the two primary data structures in Pandas?\nTrả lời: The two primary data structures in Pandas are Series and DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 221,
+            "chunk_id": "python_221_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 152
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a Series in Pandas?\nTrả lời: A Series is a one-dimensional labeled array capable of holding data of any type. It is similar to a column in a spreadsheet or a single column in a DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 222,
+            "chunk_id": "python_222_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a Series in Pandas?\nTrả lời: You can create a Series in Pandas using the pd.Series() constructor, passing a Python list or array as an argument.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 223,
+            "chunk_id": "python_223_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 186
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is a DataFrame in Pandas?\nTrả lời: A DataFrame is a two-dimensional, size-mutable, and heterogeneous tabular data structure with labeled axes (rows and columns). It is similar to a spreadsheet or SQL table.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 224,
+            "chunk_id": "python_224_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a DataFrame in Pandas?\nTrả lời: You can create a DataFrame using the pd.DataFrame() constructor, passing a dictionary, a list of dictionaries, or other data structures.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 225,
+            "chunk_id": "python_225_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between a Series and a DataFrame in Pandas?\nTrả lời: A Series is a one-dimensional data structure, while a DataFrame is a two-dimensional data structure. A DataFrame is essentially a collection of Series objects, and you can think of it as a table.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 226,
+            "chunk_id": "python_226_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 295
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you access the first five rows of a DataFrame in Pandas?\nTrả lời: You can use the .head() method on a DataFrame to access the first five rows. For example: df.head().",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 227,
+            "chunk_id": "python_227_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 198
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you read a CSV file into a DataFrame using Pandas?\nTrả lời: javascript\n\n    You can use the `pd.read_csv()` function``, providing the path to the CSV file as an argument. For example``: `` df = pd.read_csv('data.csv') ```.`",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 228,
+            "chunk_id": "python_228_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the index_col parameter in the pd.read_csv() function?\nTrả lời: The `index_col` parameter is used to specify which column from the CSV file should be used as the index (``row labels) of the DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 229,
+            "chunk_id": "python_229_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 247
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you select a single column from a DataFrame in Pandas?\nTrả lời: You can select a single column by using square brackets and the column name as a string``. For example: `df[````'column_name']`.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 230,
+            "chunk_id": "python_230_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 223
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you filter rows of a DataFrame based on a condition in Pandas?\nTrả lời: You can filter rows by specifying a condition within square brackets. For example: `df[df[```'column_name'] > 50```]filters``rows where the 'column_name' is greater than 50.```",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 231,
+            "chunk_id": "python_231_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 280
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .loc[] method in Pandas?\nTrả lời: The `.loc[]` method is used for label-based indexing. It allows you to select rows and columns by labels, rather than by their integer position.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 232,
+            "chunk_id": "python_232_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you drop a column from a DataFrame in Pandas?\nTrả lời: You can drop a column using the `.```drop```()` method``, specifying the column name and `axis=```1``` ` as arguments. For example: `df.drop(```'column_name', axis=1, inplace=True```)`.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 233,
+            "chunk_id": "python_233_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .fillna() method in Pandas?\nTrả lời: The `.fillna()` method is used to fill missing values (NaN) in a DataFrame or Series with specified values or methods, such as the mean or median.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 234,
+            "chunk_id": "python_234_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you merge two DataFrames in Pandas?\nTrả lời: You can merge two DataFrames using functions like `pd.concat()`, `pd.merge()`, or by using the `.append()` method.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 235,
+            "chunk_id": "python_235_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 190
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between an inner join and an outer join in Pandas?\nTrả lời: In an inner join``, only the common rows between two DataFrames are included in the result. In an outer join``, all rows from both DataFrames are included, and missing values are filled with NaN.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 236,
+            "chunk_id": "python_236_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 302
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you group data in a DataFrame using Pandas?\nTrả lời: You can use the `.groupby()` method to group data based on one or more columns and then apply aggregation functions to the groups.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 237,
+            "chunk_id": "python_237_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .pivot_table() method in Pandas?\nTrả lời: The `.pivot_table()` method is used to create a pivot table from a DataFrame, summarizing and aggregating data based on specified columns and functions.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 238,
+            "chunk_id": "python_238_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you handle duplicate values in a DataFrame in Pandas?\nTrả lời: You can use the `.drop_duplicates()` method to remove duplicate rows based on specific columns. You can also use the `.duplicated()` method to identify duplicates.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 239,
+            "chunk_id": "python_239_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the apply() function used for in Pandas?\nTrả lời: The `apply()` function is used to apply a function to each element, row, or column of a DataFrame or Series. It is often used for custom data transformations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 240,
+            "chunk_id": "python_240_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 240
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the pivot() function used for in Pandas?\nTrả lời: The `pivot()` function is used to reshape a DataFrame by converting columns into rows and rows into columns based on specified values.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 241,
+            "chunk_id": "python_241_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you rename columns in a DataFrame in Pandas?\nTrả lời: You can rename columns using the `.rename()` method``, passing a dictionary that maps old column names to new names as an argument.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 242,
+            "chunk_id": "python_242_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you change the data type of a column in a DataFrame in Pandas?\nTrả lời: You can use the `.astype()` method to change the data type of a column. For example: ` ```df['column_name'] = df['column_name'].astype('new_data_type'```)`.``",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 243,
+            "chunk_id": "python_243_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .corr() method in Pandas?\nTrả lời: The `.```corr```()` method is used to compute the correlation between numeric columns in a DataFrame, providing insights into the relationships between variables.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 244,
+            "chunk_id": "python_244_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you calculate basic statistics (mean, median, etc.) for a DataFrame in Pandas?\nTrả lời: You can use methods like `.mean()` ```,` .median() ,` `` `.sum()` , and``.std()``to calculate basic statistics for columns in a DataFrame.`",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 245,
+            "chunk_id": "python_245_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .to_csv() method in Pandas?\nTrả lời: The `.to_csv()` method is used to export a DataFrame to a CSV file, allowing you to save your data for future use.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 246,
+            "chunk_id": "python_246_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 202
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you handle missing data (NaN) in a DataFrame using Pandas?\nTrả lời: You can handle missing data using methods like `.dropna()`, `.fillna()`, or `.interpolate()`, depending on your specific needs.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 247,
+            "chunk_id": "python_247_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the MultiIndex feature in Pandas, and when is it used?\nTrả lời: `MultiIndex` is a feature in Pandas that allows you to have multiple levels of row and column labels in a DataFrame. It is used when dealing with complex, hierarchical data.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 248,
+            "chunk_id": "python_248_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you reset the index of a DataFrame in Pandas?\nTrả lời: You can reset the index of a DataFrame using the `.reset_index()` method. It will create a new DataFrame with a default integer index.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 249,
+            "chunk_id": "python_249_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .sample() method in Pandas?\nTrả lời: The `.sample()` method is used to select a random sample of rows or columns from a DataFrame, which can be useful for data exploration and testing.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 250,
+            "chunk_id": "python_250_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you concatenate two DataFrames vertically in Pandas?\nTrả lời: You can concatenate two DataFrames vertically using the `pd.concat()` function with the `axis=0` argument.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 251,
+            "chunk_id": "python_251_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 199
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the difference between inplace=True and inplace=False in Pandas DataFrame operations?\nTrả lời: When `inplace=```True``` `, DataFrame operations modify the original DataFrame. When `inplace=```False``` ` (the default``), a new DataFrame is returned, leaving the original DataFrame unchanged.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 252,
+            "chunk_id": "python_252_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 322
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you sort a DataFrame by a specific column in Pandas?\nTrả lời: You can use the `.sort_values()` method to sort a DataFrame by one or more columns, specifying the column(s) by which to sort.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 253,
+            "chunk_id": "python_253_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .str accessor in Pandas?\nTrả lời: The `.str` accessor is used to apply string methods and functions to elements of a Pandas Series containing string data.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 254,
+            "chunk_id": "python_254_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 205
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you handle datetime data in Pandas?\nTrả lời: You can use the `.to_datetime()` function to convert strings or integers to datetime objects and then perform various datetime operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 255,
+            "chunk_id": "python_255_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .merge() method in Pandas, and when is it used?\nTrả lời: The `.merge()` method is used to combine two DataFrames into a single DataFrame based on common columns or indices. It is similar to SQL JOIN operations.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 256,
+            "chunk_id": "python_256_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you rename the index of a DataFrame in Pandas?\nTrả lời: You can rename the index of a DataFrame using the `.rename_axis()` method, specifying the new name for the index.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 257,
+            "chunk_id": "python_257_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 200
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the crosstab() function in Pandas, and how is it used?\nTrả lời: The `crosstab()` function is used to compute a cross-tabulation table that shows the frequency of variables in a DataFrame. It is helpful for categorical data analysis.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 258,
+            "chunk_id": "python_258_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you apply a function to every element in a Pandas DataFrame or Series?\nTrả lời: You can use the `.applymap()` method for DataFrames and the `.apply()` method for Series to apply a function to every element.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 259,
+            "chunk_id": "python_259_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you set a column as the index of a DataFrame in Pandas?\nTrả lời: You can use the `.set_index()` method``, specifying the column name as an argument, to set a specific column as the index of a DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 260,
+            "chunk_id": "python_260_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the pd.to_numeric() function used for in Pandas?\nTrả lời: The `pd.to_numeric()` function is used to convert a Pandas Series to numeric data types, handling errors or missing values as specified.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 261,
+            "chunk_id": "python_261_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How can you find unique values in a column of a Pandas DataFrame?\nTrả lời: You can use the `.```unique```()` method to find unique values in a column of a Pandas DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 262,
+            "chunk_id": "python_262_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 196
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .nunique() method in Pandas?\nTrả lời: The `.nunique()` method is used to count the number of unique values in a column of a Pandas DataFrame.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 263,
+            "chunk_id": "python_263_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you create a new column in a Pandas DataFrame?\nTrả lời: You can create a new column by simply assigning values to it, like `df[```'new_column'] = values``` . The`` new column will be added to the DataFrame.`",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 264,
+            "chunk_id": "python_264_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the to_datetime() function in Pandas used for?\nTrả lời: The `to_datetime()` function is used to convert date``-``like or time``-``like strings or numbers into datetime objects in Pandas.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 265,
+            "chunk_id": "python_265_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you handle outliers in a DataFrame using Pandas?\nTrả lời: You can identify and handle outliers by using statistical methods like z-scores or IQR (Interquartile Range``) and filtering or transforming the data accordingly.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 266,
+            "chunk_id": "python_266_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 251
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: How do you calculate the percentage change between rows in a DataFrame in Pandas?\nTrả lời: You can use the `.pct_change()` method to calculate the percentage change between rows in a DataFrame, which is useful for time series data.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 267,
+            "chunk_id": "python_267_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Python\nCâu hỏi: What is the purpose of the .rolling() method in Pandas?\nTrả lời: The `.rolling()` method is used for rolling window calculations on time series data. It allows you to calculate moving averages and other statistics over a specified window of data.",
+        "metadata": {
+            "source_file": "python_interview_question.md",
+            "original_row_id": 268,
+            "chunk_id": "python_268_chunk_0",
+            "instruction": "Python",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    }
+]

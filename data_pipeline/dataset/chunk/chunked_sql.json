@@ -1,0 +1,1190 @@
+[
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is SQL?\nTrả lời: It stands for Structured Query Language, and it's a programming language used for interaction with relational database management systems (RDBMS). This includes fetching, updating, inserting, and removing data from tables.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "sql_0_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are SQL dialects? Give some examples.\nTrả lời: The various versions of SQL, both free and paid, are also called SQL dialects. All the dialects of SQL have a very similar syntax and vary insignificantly only in additional functionality. Some examples are Microsoft SQL Server, PostgreSQL, MySQL, SQLite, T-SQL, and Oracle.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "sql_1_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 347
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are the main applications of SQL?\nTrả lời: Using SQL, we can:\n\n    create, delete, and update tables in a database\n    access, manipulate, and modify data in a table\n    retrieve and summarize the necessary information from a table or several tables\n    add or remove certain rows or columns from a table\n\n## SQL Interview Questions for Beginners\n\n    Your interviewer may get the ball rolling by starting with the easier questions:",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "sql_2_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 458
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL statement?\nTrả lời: Also known as an SQL command. It's a string of characters interpreted by the SQL engine as a legal command and executed accordingly. Some examples of SQL statements are SELECT, CREATE, DELETE, DROP, REVOKE, and so on.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "sql_3_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL query?\nTrả lời: A query is a piece of code written in SQL to access or modify data from a database.\n\n    There are two types of SQL queries: queries for data retrieval and data modification. The first ones are used to retrieve the necessary data (this also includes limiting, grouping, ordering the data, extracting the data from multiple tables, etc.), while the second ones are used to create, add, delete, update, and rename the data.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "sql_4_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 473
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL subquery?\nTrả lời: Also called an inner query, a query placed inside another query, or an outer query. A subquery may occur in the clauses such as SELECT, FROM, WHERE, UPDATE, etc. It's also possible to have a subquery inside another subquery. The innermost subquery is run first, and its result is passed to the containing query (or subquery).",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "sql_5_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 380
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL join?\nTrả lời: A clause used to combine and retrieve records from two or multiple tables. SQL tables can be joined based on the relationship between the columns of those tables. Check out our SQL joins tutorial for more context, plus our dedicated guide to SQL joins interview questions.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "sql_6_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL comment?\nTrả lời: A human-readable clarification of what a particular piece of code does. SQL code comments can be single-line (preceded by a double dash --) or span over multiple lines (as follows: /*comment_text*/). When the SQL engine runs, it ignores code comments. The purpose of adding SQL code comments is to make the code more comprehensive for those people who will read it in the future.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "sql_7_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 433
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL alias?\nTrả lời: A temporary name given to a table (or a column in a table) while executing a certain SQL query. Aliases are used to improve the code readability and make the code more compact. An alias is introduced with the AS keyword:\n\n    SELECT col_1 AS column\n    FROM table_name;\n\n    Powered By\n    Technical SQL Interview Questions\n    Now, let's move on to the technical SQL interview questions and some potential answers to them.\n\n    When answering technical questions, the best strategy is to give as precise answers as possible. It may look like an attempt to deviate from the main topic. In addition, it may provoke additional questions about which you can feel less confident.\n\n    All in all, SQL allows querying a database in multiple ways. In addition, SQL easily integrates with other programming languages, such as Python or R, so we can use their combined power.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "sql_8_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 919
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of SQL commands do you know?\nTrả lời: Data Definition Language (DDL) – to define and modify the structure of a database.\n    Data Manipulation Language (DML) – to access, manipulate, and modify data in a database.\n    Data Control Language (DCL) – to control user access to the data in the database and give or revoke privileges to a specific user or a group of users.\n    Transaction Control Language (TCL) – to control transactions in a database.\n    Data Query Language (DQL) – to perform queries on the data in a database to retrieve the necessary information from it.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "sql_9_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 604
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: Give some examples of common SQL commands.\nTrả lời: DDL: CREATE, ALTER TABLE, DROP, TRUNCATE, and ADD COLUMN\n\n    DML: UPDATE, DELETE, and INSERT\n\n    DCL: GRANT and REVOKE\n\n    TCL: COMMIT, SET TRANSACTION, ROLLBACK, and SAVEPOINT\n\n    DQL: – SELECT",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "sql_10_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is DBMS, and what types of DBMS do you know?\nTrả lời: It stands for Database Management System, a software package used to perform various operations on the data stored in a database, such as accessing, updating, wrangling, inserting, and removing data. There are various types of DBMS, such as relational, hierarchical, network, graph, or object-oriented. These types are based on the way the data is organized, structured, and stored in the system.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "sql_11_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 476
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is RDBMS? Give some examples of RDBMS.\nTrả lời: It stands for Relational Database Management System. It's the most common type of DBMS used for working with data stored in multiple tables related to each other by means of shared keys. The SQL programming language is designed to interact with RDBMS. Some examples of RDBMS are MySQL, PostgreSQL, Oracle, MariaDB, etc.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "sql_12_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 393
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are tables and fields in SQL?\nTrả lời: A table is an organized set of related data stored in a tabular form, i.e., in rows and columns. A field is another term for a column of a table.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "sql_13_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of SQL subqueries do you know?\nTrả lời: Single-row – returns at most one row.\n    Multi-row – returns at least two rows.\n    Multi-column – returns at least two columns.\n    Correlated – a subquery related to the information from the outer query.\n    Nested – a subquery inside another subquery.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "sql_14_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 327
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a constraint, and why use constraints?\nTrả lời: A set of conditions defining the type of data that can be input into each column of a table. Constraints ensure data integrity in a table and block undesired actions.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "sql_15_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 243
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What SQL constraints do you know?\nTrả lời: DEFAULT – provides a default value for a column.\n\n    UNIQUE – allows only unique values.\n\n    NOT NULL – allows only non-null values.\n\n    PRIMARY KEY – allows only unique and strictly non-null values (NOT NULL and UNIQUE).\n\n    FOREIGN KEY – provides shared keys between two or more tables.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "sql_16_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of joins do you know?\nTrả lời: (INNER) JOIN – returns only those records that satisfy a defined join condition in both (or all) tables. It's a default SQL join.\n\n    LEFT (OUTER) JOIN – returns all records from the left table and those records from the right table that satisfy a defined join condition.\n\n    RIGHT (OUTER) JOIN – returns all records from the right table and those records from the left table that satisfy a defined join condition.\n\n    FULL (OUTER) JOIN – returns all records from both (or all) tables. It can be considered as a combination of left and right joins.\n\n    Note: FULL OUTER JOIN is supported by PostgreSQL, SQL Server, Oracle, and MySQL 8.0 and above, but MySQL only allows it through UNION patterns; meanwhile, SQLite does not support RIGHT JOIN, which can be emulated using LEFT JOIN in combination with UNION.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "sql_17_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 875
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a primary key in SQL?\nTrả lời: A column (or multiple columns) of a table to which the PRIMARY KEY constraint was imposed to ensure unique and non-null values in that column. In other words, a primary key is a combination of the NOT NULL and UNIQUE constraints.The primary key uniquely identifies each record of the table.\n\n    Related concept — Surrogate key: A surrogate key is an artificially generated identifier (typically a sequential integer or UUID) assigned to each record, independent of the actual data values. Unlike natural keys (e.g., an email address), surrogate keys remain stable when business data changes, making them a popular choice for primary keys in production databases.\n\n    Each table can define at most one PRIMARY KEY (which may be composite). A PRIMARY KEY  is strongly recommended but not strictly required by all engines.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "sql_18_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 881
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a unique key in SQL?\nTrả lời: A column (or multiple columns) of a table to which the UNIQUE constraint was imposed to ensure unique values in that column, including a possible NULL value (the only one).\n\n    Note:\n\n    SQL Server: Only one NULL allowed unless you use a filtered index.\n    PostgreSQL / Oracle / MySQL: Multiple NULLs allowed because NULL <> NULL.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "sql_19_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 392
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a foreign key in SQL?\nTrả lời: A column (or multiple columns) of a table to which the FOREIGN KEY (or UNIQUE key) constraint was imposed to link this column to the primary key in another table (or several tables).The purpose of foreign keys is to keep connected various tables of a database.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "sql_20_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 320
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is an SQL index?\nTrả lời: A special data structure related to a database table and used for storing its important parts and enabling faster data search and retrieval. Indexes are especially efficient for large databases, where they significantly enhance query performance.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "sql_21_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of indexes do you know?\nTrả lời: Unique index – doesn't allow duplicates in a table column and hence helps maintain data integrity.\n    Clustered index – defines the physical order of records of a database table and performs data searching based on the key values. A table can have only one clustered index.\n    Non-clustered index – keeps the order of the table records that don't match the physical order of the actual data on the disk. It means that the data is stored in one place and a non-clustered index – in another one. A table can have multiple non-clustered indexes.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "sql_22_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 609
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a schema?\nTrả lời: A collection of database structural elements such as tables, stored procedures, indexes, functions, and triggers. It shows the overall database architecture, specifies the relationships between various objects of a database, and defines different access permissions for them. Read our database schema guide for a deeper understanding.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "sql_23_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 382
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a SQL operator?\nTrả lời: A reserved character, a combination of characters, or a keyword used in SQL queries to perform a specific operation. SQL operators are commonly used with the WHERE clause to set a condition (or conditions) for filtering the data.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "sql_24_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of SQL operators do you know?\nTrả lời: Arithmetic (+, -, *, /, etc.)\n\n    Comparison (>, <, =, >=, etc.)\n\n    Compound (+=, -=, *=, /=, etc.)\n\n    Logical (AND, OR, NOT, BETWEEN, etc.)\n\n    String (%, _, +, ^, etc.)\n\n    Set (UNION, UNION ALL, INTERSECT, and MINUS (or EXCEPT))",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "sql_25_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 309
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a clause?\nTrả lời: A condition imposed on a SQL query to filter the data to obtain the desired result. Some examples are WHERE, LIMIT, HAVING, LIKE, AND, OR, ORDER BY, etc.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "sql_26_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 201
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are some common statements used with the SELECT query?\nTrả lời: The most common ones are FROM, GROUP BY, JOIN, WHERE, ORDER BY, LIMIT, and HAVING.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "sql_27_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 172
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you create a table in SQL?\nTrả lời: Using theCREATE TABLE statement. For example, to create a table with three columns of predefined datatypes, we apply the following syntax:\n\n    CREATE TABLE table_name (col_1 datatype,\n    col_2 datatype,\n    col_3 datatype);\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "sql_28_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 305
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to update a table?\nTrả lời: Using the UPDATE statement. The syntax is:\n\n    UPDATE table_name\n    SET col_1 = value_1, col_2 = value_2\n    WHERE condition;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "sql_29_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 196
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to delete a table from a database?\nTrả lời: Using the DROP TABLE statement. The syntax is: DROP TABLE table_name;.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "sql_30_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 139
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to get the count of records in a table?\nTrả lời: Using the COUNT() aggregate function with the asterisk passed as its argument: SELECT COUNT(*) FROM table_name;.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "sql_31_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 186
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to sort records in a table?\nTrả lời: Using the ORDER BY statement:\n\n    SELECT * FROM table_name\n    ORDER BY col_1;\n\n    Powered By\n    We can specify that we need a descending order using the DESC keyword; otherwise, the order will be ascending by default. Also, we can sort by more than one column and specify for each one, ascending or descending order separately. For example:\n\n    SELECT * FROM table_name\n    ORDER BY col_1 DESC, col_3, col_6 DESC;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "sql_32_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 496
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to select all columns from a table?\nTrả lời: Using the asterisk * with the SELECT statement. The syntax is: SELECT * FROM table_name;.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "sql_33_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 159
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to select common records from two tables?\nTrả lời: Using the INTERSECT statement:\n\n    SELECT col1, col2 FROM table_1\n    INTERSECT\n    SELECT col1, col2 FROM table_2;\n\n    Powered By\n    Note: INTERSECT requires the same number of columns and compatible types.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "sql_34_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the DISTINCT statement, and how do you use it?\nTrả lời: This statement is used with the SELECT statement to filter out duplicates and return only unique values from a column of a table. The syntax is:\n\n    SELECT DISTINCT col_1\n    FROM table_name;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "sql_35_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are relationships? Give some examples.\nTrả lời: Relationships are the connections and correlations between entities, basically meaning how two or more tables of a database are related to one another. For example, we can find an ID of the same client in a table on sales data and in a customer table.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "sql_36_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 325
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a NULL value? How is it different from zero or a blank space?\nTrả lời: A NULL value indicates the absence of data for a certain cell of a table. Instead, zero is a valid numeric value, and an empty string is a legal string of zero length.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "sql_37_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between SQL and NoSQL?\nTrả lời: SQL databases are relational, structured, and use tables with predefined schemas, while NoSQL databases are non-relational, schema-less, and designed to handle unstructured or semi-structured data.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "sql_38_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are some common challenges when working with SQL databases?\nTrả lời: Challenges include performance tuning for large datasets, managing indexing strategies, ensuring data integrity with constraints, handling concurrent transactions, and optimizing query execution.\n\n    Intermediate SQL Interview Questions",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "sql_39_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 332
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a Common Table Expression (CTE)?\nTrả lời: A Common Table Expression (CTE) is a temporary named result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. CTEs improve query readability and allow you to break complex queries into simpler, reusable parts. The syntax uses the WITH keyword:\n\n    WITH sales_summary AS (\n    SELECT product_id, SUM(amount) AS total_sales\n    FROM sales\n    GROUP BY product_id\n    )\n    SELECT p.product_name, s.total_sales\n    FROM products p\n    JOIN sales_summary s ON p.id = s.product_id\n    WHERE s.total_sales > 10000;\n\n    Powered By\n    CTEs are particularly useful for recursive queries (hierarchical data like org charts) and when you need to reference the same subquery multiple times.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "sql_40_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 783
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are window functions, and how do they differ from aggregate functions?\nTrả lời: Window functions perform calculations across a set of rows related to the current row, without collapsing the result into a single output row like aggregate functions do. They use the OVER() clause to define the window of rows.\n\n    Key window functions include:\n\n    ROW_NUMBER() – assigns a unique sequential number to each row\n    RANK() – assigns a rank with gaps for ties\n    DENSE_RANK() – assigns a rank without gaps for ties\n    LAG() / LEAD() – access data from previous/next rows\n    SUM() OVER(), AVG() OVER() – running or cumulative calculations\n    Example: Calculate running total of sales\n\n    SELECT\n    order_date,\n    amount,\n    SUM(amount) OVER (ORDER BY order_date) AS running_total\n    FROM orders;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "sql_41_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 842
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between RANK(), DENSE_RANK(), and ROW_NUMBER()?\nTrả lời: All three are ranking window functions, but they handle ties differently:\n\n    ROW_NUMBER() – always assigns unique sequential numbers (1, 2, 3, 4...), even for ties\n    RANK() – assigns the same rank to ties, then skips numbers (1, 2, 2, 4...)\n    DENSE_RANK() – assigns the same rank to ties, without skipping (1, 2, 2, 3...)\n    SELECT\n    name,\n    score,\n    ROW_NUMBER() OVER (ORDER BY score DESC) AS row_num,\n    RANK() OVER (ORDER BY score DESC) AS rank,\n    DENSE_RANK() OVER (ORDER BY score DESC) AS dense_rank\n    FROM students;\n\n    Powered By\n    Use DENSE_RANK() when finding the \"nth highest\" value where ties should share the same position.\n\n    In this section, we take a look at the most popular intermediate SQL questions and answers so that you'll know what to expect from your interviewer.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "sql_42_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 911
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a function in SQL?\nTrả lời: A database object representing a set of SQL statements frequently used for a certain task. A function takes in some input parameters, performs calculations or other manipulations on them, and returns the result. Functions help improve code readability and avoid repetition of the same code snippets.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "sql_43_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of SQL functions do you know?\nTrả lời: Aggregate functions – work on multiple, usually grouped records for the provided columns of a table, and return a single value (usually by group).\n    Scalar functions – work on each individual value and return a single value.\n    On the other hand, SQL functions can be built-in (defined by the system) or user-defined (created by the user for their specific needs).",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "sql_44_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 438
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What SQL aggregate functions do you know?\nTrả lời: AVG() – returns the average value\n\n    SUM() – returns the sum of values\n\n    MIN() – returns the minimum value\n\n    MAX() – returns the maximum value\n\n    COUNT() – returns the number of rows, including those with null values",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "sql_45_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What SQL scalar functions do you know?\nTrả lời: LEN() (in other SQL dialects – LENGTH()) – returns the length of a string, including the blank spaces\n\n    UCASE() (in other SQL dialects – UPPER()) – returns a string converted to the upper case\n\n    LCASE() (in other SQL dialects – LOWER()) – returns a string converted to the lower case\n\n    INITCAP() – returns a string converted to the title case (i.e., each word of the string starts from a capital letter)\n\n    MID() (in other SQL dialects – SUBSTR()) – extracts a substring from a string\n\n    ROUND() – returns the numerical value rounded to a specified number of decimals\n\n    NOW() – returns the current date and time",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "sql_46_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 696
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are case manipulation functions in SQL?\nTrả lời: Case manipulation functions represent a subset of character functions, and they're used to change the case of the text data. With these functions, we can convert the data into the upper, lower, or title case.\n\n    UCASE() (in other SQL dialects – UPPER()) – returns a string converted to the upper case\n\n    LCASE() (in other SQL dialects – LOWER()) – returns a string converted to the lower case\n\n    INITCAP() – returns a string converted to the title case (i.e., each word of the string starts from a capital letter)",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "sql_47_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 594
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are character manipulation functions in SQL?\nTrả lời: Character manipulation functions represent a subset of character functions, and they're used to modify the text data.\n\n    CONCAT() – joins two or more string values appending the second string to the end of the first one\n\n    SUBSTRING()/SUBSTR() – returns a part of a string satisfying the provided start and end points\n\n    LENGTH() (in other SQL dialects – LEN()) – returns the length of a string, including the blank spaces\n\n    REPLACE() – replaces all occurrences of a defined substring in a provided string with another substring\n\n    INSTR() – returns the numeric position of a defined substring in a provided string\n\n    LPAD() and RPAD() – return the padding of the left-side/right-side character for right-justified/left-justified value\n\n    TRIM() – removes all the defined characters, as well as white spaces, from the left, right, or both ends of a provided string",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "sql_48_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 959
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between local and global variables?\nTrả lời: Local variables can be accessed only inside the function in which they were declared. Instead, global variables, being declared outside any function, are stored in fixed memory structures and can be used throughout the entire program.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "sql_49_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between SQL and PL/SQL?\nTrả lời: SQL is a standard language for querying and managing relational databases, primarily used for data manipulation and retrieval. PL/SQL (Procedural Language/SQL) is an extension of SQL used in Oracle databases that includes procedural programming constructs like loops, conditions, and exception handling, allowing for complex business logic to be implemented within the database. We have another article on the Top 20 PL/SQL Interview Questions and Answers, which is a good review if you know you will be asked about your knowledge of Oracle.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "sql_50_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 618
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between LEFT JOIN and LEFT OUTER JOIN?\nTrả lời: There is no difference between LEFT JOIN and LEFT OUTER JOIN. They are interchangeable. SQL allows the OUTER keyword to be optional, so LEFT JOIN is simply a shorthand for LEFT OUTER JOIN. Both return all records from the left table and the matching records from the right table.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "sql_51_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 371
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is indexing in SQL, and how does it improve performance?\nTrả lời: Indexing creates a special data structure that speeds up data retrieval by allowing the database to find rows more efficiently. It works like an optimized lookup table, reducing the need for full table scans. However, excessive indexing can slow down insert, update, and delete operations due to the need for index maintenance.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "sql_52_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 419
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a stored procedure, and how is it different from a function?\nTrả lời: A stored procedure is a precompiled set of SQL statements executed as a unit to perform a task. Procedures can modify data or schema objects, manage transactions, and return zero or more result sets. Functions, on the other hand, are typically used in SQL expressions, must return a value (scalar or table-valued), and in many databases are restricted from side effects. Exact behavior differs by DB (e.g., T-SQL has scalar and table-valued functions; PostgreSQL distinguishes between functions and procedures).",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "sql_53_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 610
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the default data ordering with the ORDER BY statement, and how do you change it?\nTrả lời: Default is ascending (NULLS FIRST/LAST varies by DB). Use ASC/DESC per column keyword as follows:\n\n    SELECT * FROM table_name\n    ORDER BY col_1 DESC;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "sql_54_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are SQL set operators?\nTrả lời: UNION – returns the records obtained by at least one of two queries (excluding duplicates)\n\n    UNION ALL – returns the records obtained by at least one of two queries (including duplicates)\n\n    INTERSECT – returns the records obtained by both queries\n\n    EXCEPT (called MINUS in MySQL and Oracle) – returns only the records obtained by the first query but not the second one",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "sql_55_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 435
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What operator is used in the query for pattern matching?\nTrả lời: The LIKE operator in combination with the % and _ wildcards. The % wildcard represents any number of characters including zero, while _ – strictly one character.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "sql_56_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between a primary key and a unique key in SQL?\nTrả lời: While both types of keys ensure unique values in a column of a table, the first one uniquely identifies each record of the table, and the second one prevents duplicates in that column.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "sql_57_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 284
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a SQL composite primary key?\nTrả lời: The primary key of a table, based on multiple columns.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "sql_58_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 121
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the typical order of SQL clauses in a SELECT statement?\nTrả lời: SELECT – FROM – JOIN – ON – WHERE – GROUP BY – HAVING – ORDER BY – LIMIT",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "sql_59_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 166
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: In which order does the interpreter execute the common statements in the SELECT query?\nTrả lời: Here is the SQL order of execution:\n\n    FROM → ON → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT/OFFSET (FETCH)",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "sql_60_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a view in SQL?\nTrả lời: A virtual table containing a subset of data retrieved from one or more database tables (or other views). Standard views store no data; materialized views do.Views can simplify queries, encapsulate logic, and, combined with privileges, restrict columns/rows. They can join/aggregate data from multiple tables.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "sql_61_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 361
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: Can we create a view based on another view in SQL?\nTrả lời: Yes. This is also known as nested views. However, we should avoid nesting multiple views since the code becomes difficult to read and debug.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "sql_62_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 221
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: Can we still use a view if the original table is deleted?\nTrả lời: No. Any views based on that table will become invalid after deleting the base table. If we try to use such a view anyway, we'll receive an error message.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "sql_63_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 241
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What types of SQL relationships do you know?\nTrả lời: One-to-one – each record in one table corresponds to only one record in another table\n    One-to-many – each record in one table corresponds to several records in another table\n    Many-to-many – each record in both tables corresponds to several records in another table",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "sql_64_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 345
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are the possible values of a BOOLEAN data field?\nTrả lời: In some SQL dialects, such as PostgreSQL, the BOOLEAN data type exists explicitly and takes values TRUE, FALSE, or NULL. In other dialects, such as Microsoft SQL Server, the BIT datatype is used to store Boolean values as integers 1 (true) or 0 (false).",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "sql_65_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 337
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is normalization in SQL?\nTrả lời: Normalization is a process of database design that includes organizing and restructuring data in a way to reduce data redundancy, dependency, duplication, and inconsistency. This leads to enhanced data integrity, more tables within the database, more efficient data access and security control, and greater query flexibility.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "sql_66_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 385
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is denormalization in SQL?\nTrả lời: Denormalization is the process opposite of normalization: it introduces data redundancy and combines data from multiple tables. Denormalization optimizes the performance of the database infrastructure in situations when read operations are more important than write operations since it helps avoid complex joins and reduces the time of query running.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "sql_67_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 412
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between renaming a column and giving an alias to it?\nTrả lời: Renaming a column means permanently changing its actual name in the original table. Giving an alias to a column means giving it a temporary name while executing an SQL query, with the purpose to make the code more readable and compact.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "sql_68_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between nested and correlated subqueries?\nTrả lời: A correlated subquery is an inner query nested in a bigger (outer) query that refers to the values from the outer query for its execution, meaning that a correlated subquery depends on its outer query.Instead, a non-correlated subquery doesn't rely on the data from the outer query and can be run independently of it.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "sql_69_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 412
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between clustered and non-clustered indexes?\nTrả lời: While a clustered index defines the physical order of records of a table and performs data searching based on the key values, a non-clustered index keeps the order of records that do not match the physical order of the actual data on the disk. A table can have only one clustered index but many non-clustered ones.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "sql_70_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 412
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the CASE() function?\nTrả lời: The way to implement the if-then-else logic in SQL. This function sequentially checks the provided conditions in the WHEN clauses and returns the value from the corresponding THEN clause when the first condition is satisfied. If none of the conditions is satisfied, the function returns the value from the ELSE clause in case it's provided, otherwise, it returns NULL. The syntax is:\n\n    CASE\n    WHEN condition_1 THEN value_1\n    WHEN condition_2 THEN value_2\n    WHEN condition_3 THEN value_3\n    ...\n    ELSE value\n    END;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "sql_71_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 602
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between the DELETE and TRUNCATE statements?\nTrả lời: DELETE is a DML (Data Manipulation Language) command used to remove one or more rows from a table based on a condition in the WHERE clause. It is reversible only if wrapped in a transaction (via ROLLBACK).\n\n    TRUNCATE is a DDL (Data Definition Language) command that removes all rows from a table by deallocating pages. It is faster but generally irreversible, and cannot be used on tables that are referenced by a foreign key.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "sql_72_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 526
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between the DROP and TRUNCATE statements?\nTrả lời: DROP deletes a table from the database completely, including the table structure and all the associated constraints, relationships with other tables, and access privileges. TRUNCATE deletes all rows from a table without affecting the table structure and constraints.  Both are DDL. DROP removes the table and its metadata; TRUNCATE deletes all rows but keeps the table definition. Performance and transactional behavior depend on the DB engine.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "sql_73_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 539
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is the difference between the HAVING and WHERE statements?\nTrả lời: The first one works on aggregated data after they are grouped, while the second one checks each row individually. If both statements are present in a query, they appear in the following order:WHERE – GROUP BY – HAVING. The SQL engine interprets them also in the same order.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "sql_74_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 367
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you add a record to a table?\nTrả lời: Using the INSERT INTO statement in combination with VALUES. The syntax is:\n\n    INSERT INTO table_name\n    VALUES (value_1, value_2, ...);\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "sql_75_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you delete a record from a table?\nTrả lời: Using the DELETE statement. The syntax is:\n\n    DELETE FROM table_name\n    WHERE condition;\n\n    Powered By\n    In this way, we can also delete multiple records if they satisfy the provided condition.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "sql_76_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you add a column to a table?\nTrả lời: Using the ALTER TABLE statement in combination with ADD. The syntax is:\n\n    ALTER TABLE table_name\n    ADD column_name datatype;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "sql_77_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 211
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you rename a column of a table?\nTrả lời: Using the ALTER TABLE statement in combination with RENAME COLUMN ... TO ... The syntax is:\n\n    ALTER TABLE table_name\n    RENAME COLUMN old_column_name TO new_column_name;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 78,
+            "chunk_id": "sql_78_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you delete a column from a table?\nTrả lời: Using the ALTER TABLE statement in combination with DROP COLUMN. The syntax is:\n\n    ALTER TABLE table_name\n    DROP COLUMN column_name;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 79,
+            "chunk_id": "sql_79_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 223
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you select all even or all odd records in a table?\nTrả lời: By checking the remainder of the division by 2. In some SQL versions (e.g., PostgreSQL and MySQL), we use the MOD function, in the others (Microsoft SQL Server and SQLite) – the modulo operator (%). To select all even records using MOD:\n\n    SELECT * FROM table_name\n    WHERE MOD(ID_column, 2) = 0;\n\n    Powered By\n    To select all even records using %:\n\n    SELECT * FROM table_name\n    WHERE ID_column % 2 = 0;\n\n    Powered By\n    To select all odd records, the syntax is identical in both cases, only that we would use the inequality operator <> instead of =.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 80,
+            "chunk_id": "sql_80_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 652
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to prevent duplicate records when making a query?\nTrả lời: Using the DISTINCT statement in combination with SELECT or creating a unique key for that table.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 81,
+            "chunk_id": "sql_81_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 180
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you insert many rows in a table?\nTrả lời: Using the INSERT INTO statement in combination with VALUES. The syntax is:\n\n    INSERT INTO table_name\n    VALUES (value_1, value_2, ...),\n    (value_3, value_4, ...),\n    (value_5, value_6, ...),\n    ...;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 82,
+            "chunk_id": "sql_82_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find the nth highest value in a column of a table?\nTrả lời: Using window functions to handle ties correctly:\n\n    SELECT column_name\n    FROM (\n    SELECT column_name, DENSE_RANK() OVER (ORDER BY column_name DESC) AS rnk\n    FROM table_name\n    ) t\n    WHERE rnk = :n;\n\n    Powered By\n    For the nth row by order (ignoring ties): ORDER BY column_name DESC OFFSET n-1 ROWS FETCH NEXT 1 ROW ONLY.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 83,
+            "chunk_id": "sql_83_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 427
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find the values in a text column of a table that start with a certain letter?\nTrả lời: Using the LIKE operator in combination with the % and _ wildcards. For example, we need to find all surnames in a table that start with \"A\". The query is:\n\n    SELECT * FROM table_name\n    WHERE surname LIKE 'A_';\n\n    Powered By\n    Here, we assume that a surname must contain at least two letters. Without this assumption (meaning that a surname can be just A), the query is as follows:\n\n    SELECT * FROM table_name\n    WHERE surname LIKE 'A%';\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 84,
+            "chunk_id": "sql_84_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 582
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find the last id in a table?\nTrả lời: The simplest method is to use the aggregate function MAX().\n\n    SELECT MAX(id) AS highest_id\n    FROM table_name;\n\n    Powered By\n    Using ORDER BY with LIMIT or TOP\n\n    SELECT id\n    FROM table_name\n    ORDER BY id DESC\n    LIMIT 1;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 85,
+            "chunk_id": "sql_85_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 322
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How to select random rows from a table?\nTrả lời: Using the RAND() function in combination with ORDER BY and LIMIT. In some SQL dialects, such as PostgreSQL, it's called RANDOM(). For example, the following code will return five random rows from a table in MySQL:\n\n    SELECT * FROM table_name\n    ORDER BY RAND()\n    LIMIT 5;\n\n    Powered By\n    Scenario-Based SQL Interview Questions\n    Scenario-based questions test your ability to solve real-world business problems with SQL. Interviewers use these to assess not just your syntax knowledge, but your problem-solving approach and ability to handle edge cases like duplicates, NULL values, and ties.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 86,
+            "chunk_id": "sql_86_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 672
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find and remove duplicate records from a table?\nTrả lời: Finding duplicates:\n\n    SELECT email, COUNT(*) AS duplicate_count\n    FROM users\n    GROUP BY email\n    HAVING COUNT(*) > 1;\n\n    Powered By\n    Removing duplicates (keeping one record):\n\n    WITH duplicates AS (\n    SELECT id,\n    ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) AS rn\n    FROM users\n    )\n    DELETE FROM users\n    WHERE id IN (SELECT id FROM duplicates WHERE rn > 1);\n\n    Powered By\n    This approach uses a CTE with ROW_NUMBER() to identify duplicates, keeping the record with the lowest ID.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 87,
+            "chunk_id": "sql_87_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 605
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you calculate a running total (cumulative sum)?\nTrả lời: Use the SUM() window function with an ORDER BY clause:\n\n    SELECT\n    transaction_date,\n    amount,\n    SUM(amount) OVER (ORDER BY transaction_date) AS running_total\n    FROM transactions;\n\n    Powered By\n    For a running total per category (e.g., per customer):\n\n    SELECT\n    customer_id,\n    transaction_date,\n    amount,\n    SUM(amount) OVER (\n    PARTITION BY customer_id\n    ORDER BY transaction_date\n    ) AS customer_running_total\n    FROM transactions;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 88,
+            "chunk_id": "sql_88_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 565
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find employees who earn more than the average salary in their department?\nTrả lời: This is a classic correlated subquery scenario:\n\n    SELECT e.name, e.department, e.salary\n    FROM employees e\n    WHERE e.salary > (\n    SELECT AVG(salary)\n    FROM employees\n    WHERE department = e.department\n    );\n\n    Powered By\n    Alternatively, using a window function:\n\n    SELECT name, department, salary\n    FROM (\n    SELECT\n    name,\n    department,\n    salary,\n    AVG(salary) OVER (PARTITION BY department) AS dept_avg\n    FROM employees\n    ) t\n    WHERE salary > dept_avg;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 89,
+            "chunk_id": "sql_89_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 622
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find gaps in a sequence of numbers (e.g., missing invoice numbers)?\nTrả lời: Use LEAD() to compare each value with the next:\n\n    SELECT\n    invoice_number,\n    LEAD(invoice_number) OVER (ORDER BY invoice_number) AS next_invoice,\n    LEAD(invoice_number) OVER (ORDER BY invoice_number) - invoice_number - 1 AS gap_size\n    FROM invoices\n    WHERE LEAD(invoice_number) OVER (ORDER BY invoice_number) - invoice_number > 1;\n\n    Powered By\n    This identifies where the gap between consecutive invoice numbers is greater than 1.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 90,
+            "chunk_id": "sql_90_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 557
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find customers who made purchases in consecutive months?\nTrả lời: Use LAG() to compare with the previous row:\n\n    WITH monthly_purchases AS (\n    SELECT\n    customer_id,\n    DATE_TRUNC('month', purchase_date) AS purchase_month,\n    LAG(DATE_TRUNC('month', purchase_date)) OVER (\n    PARTITION BY customer_id\n    ORDER BY DATE_TRUNC('month', purchase_date)\n    ) AS prev_month\n    FROM purchases\n    GROUP BY customer_id, DATE_TRUNC('month', purchase_date)\n    )\n    SELECT DISTINCT customer_id\n    FROM monthly_purchases\n    WHERE purchase_month = prev_month + INTERVAL '1 month';\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 91,
+            "chunk_id": "sql_91_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 629
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you pivot data from rows to columns?\nTrả lời: Use conditional aggregation with CASE statements:\n\n    SELECT\n    product_name,\n    SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) = 1 THEN amount ELSE 0 END) AS jan_sales,\n    SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) = 2 THEN amount ELSE 0 END) AS feb_sales,\n    SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) = 3 THEN amount ELSE 0 END) AS mar_sales\n    FROM sales\n    GROUP BY product_name;\n\n    Powered By\n    Some databases (SQL Server, Oracle) have native PIVOT syntax for this operation.",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 92,
+            "chunk_id": "sql_92_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 565
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find the top 3 products by sales in each category?\nTrả lời: Use DENSE_RANK() with PARTITION BY:\n\n    WITH ranked_products AS (\n    SELECT\n    category,\n    product_name,\n    SUM(sales_amount) AS total_sales,\n    DENSE_RANK() OVER (\n    PARTITION BY category\n    ORDER BY SUM(sales_amount) DESC\n    ) AS sales_rank\n    FROM sales\n    GROUP BY category, product_name\n    )\n    SELECT category, product_name, total_sales\n    FROM ranked_products\n    WHERE sales_rank <= 3\n    ORDER BY category, sales_rank;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 93,
+            "chunk_id": "sql_93_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 551
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What are ACID properties in database transactions?\nTrả lời: ACID is an acronym for the four key properties that guarantee reliable database transactions:\n\n    Atomicity: A transaction is \"all or nothing\" – either all operations complete successfully, or none do\n    Consistency: A transaction brings the database from one valid state to another, maintaining all defined rules and constraints\n    Isolation: Concurrent transactions don't interfere with each other; each transaction sees a consistent snapshot of the data\n    Durability: Once a transaction is committed, the changes persist even if the system crashes\n    Example transaction:\n\n    BEGIN TRANSACTION;\n\n    UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;\n    UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;\n\n    COMMIT;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 94,
+            "chunk_id": "sql_94_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 855
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: What is a deadlock, and how do you prevent it?\nTrả lời: A deadlock occurs when two or more transactions are waiting for each other to release locks, creating a circular dependency where neither can proceed.\n\n    Example scenario: Transaction A locks Table X and waits for Table Y, while Transaction B locks Table Y and waits for Table X.\n\n    Prevention strategies:\n\n    Consistent lock ordering: Always acquire locks in the same order across all transactions\n    Keep transactions short: Commit or rollback as quickly as possible\n    Use appropriate isolation levels: Lower isolation levels reduce lock contention\n    Access only required data: Avoid locking unnecessary rows\n    Handle deadlock retries: Most databases automatically detect and resolve deadlocks by rolling back one transaction",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 95,
+            "chunk_id": "sql_95_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 816
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you optimize a slow-running SQL query?\nTrả lời: Key optimization strategies:\n\n    Add appropriate indexes: Create indexes on columns used in WHERE, JOIN, and ORDER BY clauses\n\n    Analyze execution plans: Use EXPLAIN (PostgreSQL/MySQL) or EXPLAIN PLAN (Oracle) to identify bottlenecks\n\n    Avoid SELECT *: Only retrieve the columns you need\n\n    Use JOINs instead of subqueries: JOINs are often more efficient than correlated subqueries\n\n    Limit result sets: Use LIMIT/TOP when you don't need all rows\n\n    Avoid functions on indexed columns: WHERE YEAR(date_col) = 2026 can't use an index; use WHERE date_col >= '2026-01-01' instead\n\n    Consider partitioning: For very large tables, partition by date or category",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 96,
+            "chunk_id": "sql_96_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 744
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you handle NULL values in calculations and comparisons?\nTrả lời: NULL represents missing or unknown data and requires special handling:\n\n    Comparisons: Use IS NULL or IS NOT NULL instead of = NULL\n\n    COALESCE(): Returns the first non-NULL value: COALESCE(column, 'default')\n\n    NULLIF(): Returns NULL if two values are equal: NULLIF(a, b)\n\n    ISNULL() / NVL(): Database-specific functions to replace NULL values\n\n    SELECT\n    name,\n    COALESCE(phone, email, 'No contact') AS contact_info,\n    CASE WHEN status IS NULL THEN 'Unknown' ELSE status END AS status\n    FROM customers;\n\n    Powered By",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 97,
+            "chunk_id": "sql_97_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 631
+        }
+    },
+    {
+        "page_content": "Chủ đề: SQL\nCâu hỏi: How do you find the longest streak of consecutive login days for a user?\nTrả lời: This is an advanced \"islands and gaps\" problem:\n\n    WITH login_groups AS (\n    SELECT\n    user_id,\n    login_date,\n    login_date - ROW_NUMBER() OVER (\n    PARTITION BY user_id\n    ORDER BY login_date\n    ) * INTERVAL '1 day' AS group_id\n    FROM user_logins\n    )\n    SELECT\n    user_id,\n    MIN(login_date) AS streak_start,\n    MAX(login_date) AS streak_end,\n    COUNT(*) AS streak_length\n    FROM login_groups\n    GROUP BY user_id, group_id\n    ORDER BY streak_length DESC\n    LIMIT 1;\n\n    Powered By\n    The trick is subtracting a row number from each date – consecutive dates will produce the same \"group_id\".",
+        "metadata": {
+            "source_file": "sql_interview_question.md",
+            "original_row_id": 98,
+            "chunk_id": "sql_98_chunk_0",
+            "instruction": "SQL",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 719
+        }
+    }
+]

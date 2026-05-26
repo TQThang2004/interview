@@ -1,0 +1,338 @@
+[
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How would you design a parking lot?\nTrả lời: This question is one of the most common questions in a system design interview. The interviewer would like to hear the following points:\n    \n    Capacity\n    \n    Always consider the capacity of the parking lot before designing it. How many levels would it have? Also, what is the plan in case the parking lot becomes full?\n    \n    Types of vehicles\n    \n    The allocation of various parking areas for different vehicles is also to be justified.\n    \n    Flexibility of payment\n    \n    Different modes of payment such as cash, credit, and other online methods should be accepted. There should be different points where customers can pay.\n    \n    Pricing\n    \n    Pricing should be handled well. Covering this aspect is very necessary. Pricing can be accommodated according to hourly rates.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "system_design_0_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 870
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How do you design a mass social media platform?\nTrả lời: The aim of designing a mass social media platform such as Instagram, Facebook, and Twitter is to design a platform that enables its users to view a newsfeed with posts.\n    \n    The basic features required by the social media service are stated below:\n    \n    Users can make public as well as private posts.\n    The option of commenting and liking a post is available to the users.\n    It should accommodate multiple users at once.\n    There should be a newsfeed and recommendation system.\n    Privacy controls are also to be taken care of.\n    Trending posts/tweets are supposed to be visible.\n    The tools which are useful in the designing of the mass social media platform are as follows:\n    \n    To maximize the availability, rolling updates and replica nodes can be utilized.\n    To recommend posts and news feeds, a trained machine learning algorithm can be used.\n    A database schema can be created to store celebrities and some users separately.\n    Some habits can be tracked using a social graph.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "system_design_1_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1098
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design a global chat service.\nTrả lời: We need to design a service that enables users to chat with each other over a global platform. The form of conversations can be either one-to-one or group chats.\n    \n    Following are the required features of the chat service:\n    \n    The chat service must allow the transfer of media such as photos, videos, stickers, and GIFs.\n    The sent message should be encrypted during transit and should be stored for later viewing.\n    The chat service should support one-to-one as well as group chats.\n    Following is the list of tools that can be considered while designing a chat service:\n    \n    The database schema can be split into multiple tables, namely a user table, a chat table, and a message table.\n    For bi-directional connections between the device and the server, WebSocket can be used.\n    Push Notifications are also a great tool to notify users even if they are offline.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "system_design_2_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 957
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How would you design Netflix?\nTrả lời: To design a video streaming service like Netflix, the main idea to keep in focus is that Netflix should be able to store and transmit video data.\n    \n    Basic features that are expected off of Netflix are listed down below:\n    \n    It should be able to upload videos on the internet.\n    Uninterrupted video streaming should be available to the users.\n    Other features such as comments and likes are also necessary.\n    It should also support high traffic of multiple users.\n    Following tools help design Netflix:\n    \n    Cloud technology can be used for storing and transmitting video data.\n    To recommend new video-related content, Machine Learning can be used.\n    Components in the designing of Netflix:\n    \n    OC – Content Delivery Network\n    Backend – Database\n    Client – Device to assess Netflix",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "system_design_3_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 887
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How do you design a Tic-Tac-Toe game?\nTrả lời: Tic-tac-toe is a game that is meant to be played between two players. Here, one player is the computer itself. The rules of the game are simple. A player chooses ‘O’, and the other player chooses ‘X’ to mark their cells. If a player can fill a row, column, or diagonal of cells with their chosen character, the player wins.\n    \n    tic-tac-toe-game\n    \n    The implementation of the design can be done by using the rand() function, as the moves taken by the computer are completely random. This program can be updated so as the players play optimally.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "system_design_4_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 631
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design a URL shortening service.\nTrả lời: A URL shortening service serves the dual purpose of:\n    \n    Generation of a unique short URL from a long URL\n    Return of the shortened URL to its original form\n    The required features of the URL shortening service are:\n    \n    The URL shortening service must return a URL that is shorter than the original URL.\n    Redirects should be allowed by the shortened URL.\n    The shortened URL must store the original URL.\n    The shortened URL should be able to link to the original one.\n    Following is a list of tools that can be considered while designing a URL shortening service:\n    \n    Multiple requests at once can be handled by the use of multithreading.\n    To balance high traffic, REST API can be used. It will also help to handle front-end client communication.\n    Hashing can be used to link old and new URLs.\n\n## High-Level System Design Interview Questions and Answers",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "system_design_5_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 961
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How would you design Uber?\nTrả lời: The architecture of Uber is monolithic or microservices.\n    \n    Following are the aspects to cover:\n    \n    Uber talks to the backend over the user’s mobile data.\n    Location data drives the dispatch system.\n    Maps and routes in Uber are to be considered as well.\n    Appropriate storage is required for multiple geographical locations.\n    Node.js can be used to build the dispatch.\n    The business logic services can be written in python.\n    Databases: Redis, Postgres, MySQL",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "system_design_6_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 552
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design an API Rate Limiter.\nTrả lời: The job of an AP Rate Limiter is to limit the number of API calls a particular service like Firebase can receive over a period to avoid overload.\n    \n    Following features are necessary to design an API Rate Limiter:\n    \n    The Limiter should notify the user if their request is denied.\n    Devices are limited to a particular number of requests on an hourly basis.\n    Following tools can help design an API Rate Limiter:\n    \n    Sliding time windows can be used to avoid hourly resets.\n    Instead of saving space, a counter integer can be saved.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "system_design_7_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 621
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design global file storage and sharing service.\nTrả lời: To design global file storage and sharing service, an asynchronous, cross-platform storage system is required in which users can store files and photos and assess them through multiple devices.\n    \n    The features necessary for designing the global file storage and sharing service are as follows:\n    \n    Old versions of the documents can be saved to rollback.\n    All the files should be updated across devices in sync.\n    Users can save, share, delete, and update files and photos over the internet.\n    Tools that may help design the service are as follows:\n    \n    Chunking can be used to divide files into multiple sections.\n    To handle internal databases, cloud storage can be used.\n    Updates are to be kept in check.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "system_design_8_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 821
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: How do you design a web crawler?\nTrả lời: A web crawler service collects information/crawl from the entire internet and fetches millions of web documents.\n    \n    Things to keep in mind while designing a web crawler are:\n    \n    The approach is taken to find new web pages\n    The approach to prioritize web pages that can change in a dynamic way\n    To ensure that the web crawler service is bounded on the same domain",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "system_design_9_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 452
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design Quora.\nTrả lời: Quora is a social network and message board service in which users can post links and questions. Users can also comment on the questions. Related questions and topics should also be accessible to the user.\n    \n    Features to include in the design of Quora are:\n    \n    Users can make posts with tags.\n    The comment section to every post must be included.\n    The app should support high traffic of posts and viewers.\n    The list of tools that might help in the design of Quora is as follows:\n    \n    An SQL database can be used to map the relational data.\n    Sharding can be used to break up the system.\n    Multithreading and load balancer can be used to help support the high traffic.\n    Machine learning can be used to find correlations between relations between tags.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "system_design_10_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 834
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Design a traffic control system.\nTrả lời: This question is one of the classic questions asked in a system design interview. The only aspect to cover here is the transition from RED to GREEN, etc.\n    \n\n## Object-Oriented System Design Interview Questions and Answers",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "system_design_11_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 297
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What is encapsulation?\nTrả lời: In visual terms, we can say that encapsulation is the technique of inserting all the resources required to fulfil the job inside a capsule, which is further given to the user. All the unnecessary data is hidden to a regular user, and the required data is bound together.\n    \n    encapsulation",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "system_design_12_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Differentiate between compile time polymorphism and runtime polymorphism.\nTrả lời: Compile Time Polymorphism\tRuntime Polymorphism\n    A. It is also called Static Polymorphism.\n    B. This type of polymorphism happens at the compile time.\n    C. The compiler gets to decide the shape or value that has to be taken by the entity in the photograph.\tA. It is also called Dynamic Polymorphism.\n    B. This type of polymorphism happens at the run time.\n    C. Here, the shape or value that has to be taken by the entity in the picture is not decided by the compiler.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "system_design_13_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 591
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Name different types of constructors in C++.\nTrả lời: There are three types of constructors in C++, which are as follows:\n    \n    Default Constructors: It does not take any argument and has zero parameters.\n    Parameterized Constructors: These types of constructors take some argument.\n    Copy Constructors: It is a member function, and its basic function is to initialize the object using another object of the same class.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "system_design_14_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 457
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Can a Java application be created without implementing the OOPs concept?\nTrả lời: A Java application cannot be created without implementing the OOPs concept. Java applications are completely based on the Object-oriented programming concept.\n    \n    types of inheritance",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "system_design_15_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What are the limitations of inheritance?\nTrả lời: Following are the limitations of inheritance:\n    \n    It is time-consuming because it needs to navigate through multiple classes for implementation.\n    The child class and the base class are tightly packed, which makes it difficult to make changes.\n    It is complex when it comes to implementation, which may result in errors if not implemented correctly.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "system_design_16_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 439
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What feature allows one class to derive features from another class?\nTrả lời: The Inheritance feature allows one class to derive features from another class.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "system_design_17_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 188
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Which language was the first language to be developed as a purely object-oriented programming language?\nTrả lời: Smalltalk was the first programming language to be developed as a purely object-oriented programming language.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "system_design_18_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Which is an OOPs language but does not support all inheritance types?\nTrả lời: Java is an OOPS programming language, but it does not support all inheritance types.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "system_design_19_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 194
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Name different types of Operating Systems. Also, mention one disadvantage of each type.\nTrả lời: There are five types of Operating Systems, which are as follows:\n    \n    Real-Time Operating System\n    \n    This kind of OS is used while dealing with real-time data. As soon as the data arrives, the execution of the process should be done without any delay. Its main disadvantage is the complexity of the algorithms used.\n    \n    Embedded Operating System\n    \n    Embedded operating systems are used to perform certain tasks for a specific device (not a computer). For example, the embedded OS is used for the functioning of the lift system. The disadvantage of the embedded operating system is that only one task can be performed.\n    \n    Time-Sharing Operating System\n    \n    It is also called a Multitasking Operating System. Multiple processes are performed at the same time. Its disadvantage is that prioritized tasks are not performed first. All tasks are given equal priority.\n    \n    Batch Operating System\n    \n    Similar tasks are grouped into batches, and the batches are executed one by one. The disadvantage of this type of Operating System is the manual intervention required between two batches.\n    \n    Distributed Operating System\n    \n    As the name suggests, the distributed operating system has different systems having their individual\n    \n    CPU, memory, and other resources. Its main disadvantage is that extra effort is required for the security of data due to shared data.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "system_design_20_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 1538
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Define RAID?\nTrả lời: RAID stands for a redundant array of independent disks. RAID is the technology that specializes in data storage that combines various physical disk drive components within one or numerous logical units as data redundancy and performance improvement.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "system_design_21_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 302
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: State the meaning of IPC along with different IPC mechanisms.\nTrả lời: IPC stands for Inter-Process Communication. It is a mechanism that needs the use of elements that are shared between threads or processes. In simpler terms, IPC is used to share data across various threads. Following are the various IPC mechanisms:\n    \n    Message queuing\n    Shared Memory\n    Semaphores\n    Sockets\n    Signals",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "system_design_22_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 432
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: List 5 examples of OS.\nTrả lời: A few examples of Operating Systems are listed below:\n    \n    Mac Operating System\n    MS-Windows\n    Android\n    Chrome Operating System\n    Free BSD",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "system_design_23_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 214
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What is a process, and what are its different states?\nTrả lời: A process is nothing but a program that is being executed. One of the main functions of an Operating System is to supervise the processes. A process can be divided into the following sections:\n    \n    Stack\n    Heap\n    Text\n    Data\n    A process goes through various stages, which are:\n    \n    New state: It marks the beginning of the process.\n    Running: The instructions of the process are followed by the CPU.\n    Waiting: The process is at a momentary pause as it waits for an event to occur.\n    Ready: At this stage, a process is waiting to get assigned by a processor even though it has all available resources to run.\n    Terminate: The process has ended when it reaches this state.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "system_design_24_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 789
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What are the prerequisite requirements to achieve a deadlock?\nTrả lời: In an OS, a deadlock happens when a process enters a state of pause because a requested system resource is held by another waiting system, which in turn is waiting for another resource held by another waiting process, and so on.\n    \n    Following are the necessary conditions to achieve a deadlock:\n    \n    Mutual Exclusion\n    Hold and Wait\n    No Preemption\n    Circular Wait",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "system_design_25_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 481
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: Explain fragmentation and state types of fragmentation that take place in the operating system?\nTrả lời: The process of fragmentation decreases the capacity and performance because space has been used inefficiently.\n    \n    In an operating system, two types of fragmentation take place:\n    \n    Internal fragmentation: This type of fragmentation occurs when those systems which have fixed size allocation units are dealt with.\n    External fragmentation: External fragmentation occurs when we deal with systems that have variable-size allocation units.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "system_design_26_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 585
+        }
+    },
+    {
+        "page_content": "Chủ đề: System Design\nCâu hỏi: What is starvation and aging in the Operating System?\nTrả lời: When a process has not been able to acquire the resources it requires for progress with its execution for an extended period, this situation is referred to as starvation.\n    \n    Aging, on the other hand, is the solution to starvation. The technique of aging increases the priority of certain processes that are waiting for resources for a long period.",
+        "metadata": {
+            "source_file": "sd_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "system_design_27_chunk_0",
+            "instruction": "System Design",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 447
+        }
+    }
+]

@@ -1,0 +1,938 @@
+[
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Mention the differences between Data Mining and Data Profiling?\nTrả lời: Data Profiling focuses on analyzing individual datasets for quality, patterns, and statistics. Data Mining focuses on discovering hidden patterns and relationships across large datasets to predict future trends.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "data_analysis_0_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 315
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Define the term 'Data Wrangling in Data Analytics.\nTrả lời: Data Wrangling (or Data Munging) is the process of cleaning, transforming, and mapping raw data into a more usable format for analysis.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "data_analysis_1_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the various steps involved in any analytics project?\nTrả lời: Typical steps include: 1. Understanding the problem; 2. Data collection; 3. Data cleaning; 4. Exploratory Data Analysis (EDA); 5. Statistical modeling/Data Mining; 6. Communication of results.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "data_analysis_2_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the common problems that data analysts encounter during analysis?\nTrả lời: Common problems include missing data, inconsistent data formats, outliers, duplicate records, and data from non-integrated sources.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "data_analysis_3_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Which are the technical tools that you have used for analysis and presentation purposes?\nTrả lời: [Personalized] Examples include Excel, SQL, Python (Pandas/Matplotlib), R, Tableau, Power BI, and Google Data Studio.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "data_analysis_4_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the best methods for data cleaning?\nTrả lời: Methods include removing duplicates, handling missing values (imputation or deletion), standardizing data formats, and detecting/removing outliers.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "data_analysis_5_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 232
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is the significance of Exploratory Data Analysis (EDA)?\nTrả lời: EDA helps understand the data's underlying structure, detect outliers, check assumptions, and identify initial patterns or relationships before formal modeling.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "data_analysis_6_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Explain descriptive, predictive, and prescriptive analytics.\nTrả lời: Descriptive: Tells you what happened in the past. Predictive: Tells you what might happen in the future. Prescriptive: Suggests actions to take based on the predictions.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "data_analysis_7_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the different types of sampling techniques used by data analysts?\nTrả lời: Techniques include Simple Random Sampling, Stratified Sampling, Cluster Sampling, and Systematic Sampling.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "data_analysis_8_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 221
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Describe univariate, bivariate, and multivariate analysis.\nTrả lời: Univariate: Analyzing one variable. Bivariate: Analyzing the relationship between two variables. Multivariate: Analyzing the relationship between three or more variables.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "data_analysis_9_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are your strengths and weaknesses as a data analyst?\nTrả lời: [Personalized] Strengths: Attention to detail, logical thinking, tool proficiency. Weaknesses: Over-analyzing, or learning to better present data to non-technical audiences.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "data_analysis_10_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the ethical considerations of data analysis?\nTrả lời: Key considerations include data privacy (protecting personal info), ensuring data security, avoiding algorithmic bias, maintaining transparency in methods, and obtaining proper informed consent.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "data_analysis_11_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are some common data visualization tools you have used?\nTrả lời: [Personalized] Common tools include Tableau, Power BI, QlikView, and Python libraries like Matplotlib, Seaborn, and Plotly for more customized charts.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "data_analysis_12_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 251
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How can you handle missing values in a dataset?\nTrả lời: Techniques include: 1. Deletion (listwise or pairwise); 2. Imputation (filling with mean, median, or mode); 3. Prediction models to estimate values; 4. Using algorithms that support missing values.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "data_analysis_13_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 285
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Explain the term Normal Distribution.\nTrả lời: A probability distribution that is symmetric about the mean, showing that data near the mean are more frequent in occurrence than data far from the mean (forming a bell curve).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "data_analysis_14_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is Time Series analysis?\nTrả lời: A statistical technique that deals with time series data, or trend analysis. It is used to extract meaningful statistics and characteristics to forecast future values based on previously observed values.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "data_analysis_15_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How is Overfitting different from Underfitting?\nTrả lời: Overfitting occurs when a model is too complex and learns noise in the training data. Underfitting occurs when a model is too simple to capture the underlying trend of the data.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "data_analysis_16_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How do you treat outliers in a dataset?\nTrả lời: Methods include: 1. Trimming/Removal; 2. Capping (Winsorization); 3. Data transformation (e.g., log transform); 4. Using robust statistical methods that are less sensitive to outliers.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "data_analysis_17_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the different types of Hypothesis testing?\nTrả lời: Common types include Z-test, T-test (paired/unpaired), ANOVA, Chi-square test, and F-test, depending on the data distribution and sample size.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "data_analysis_18_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Explain the Type I and Type II errors in Statistics?\nTrả lời: Type I error (False Positive) occurs when we reject a true null hypothesis. Type II error (False Negative) occurs when we fail to reject a false null hypothesis.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "data_analysis_19_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How would you handle missing data in a dataset?\nTrả lời: (Duplicate entry - See methods: Imputation, Deletion, and Predictive modeling mentioned above).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "data_analysis_20_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 183
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Explain the concept of outlier detection and how you would identify outliers in a dataset.\nTrả lời: Outlier detection finds data points that differ significantly from others. Identification methods include Z-score, IQR (Interquartile Range) method, and visual tools like Box plots and Scatter plots.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "data_analysis_21_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 330
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: In Microsoft Excel, a numeric value can be treated as a text value if it precedes with what?\nTrả lời: A numeric value is treated as text if it is preceded by a single apostrophe (').",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "data_analysis_22_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 213
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is the difference between COUNT, COUNTA, COUNTBLANK, and COUNTIF in Excel?\nTrả lời: COUNT: counts cells with numbers. COUNTA: counts non-empty cells. COUNTBLANK: counts empty cells. COUNTIF: counts cells that meet a specific criterion.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "data_analysis_23_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How do you make a dropdown list in MS Excel?\nTrả lời: Select the cell(s) -> Go to 'Data' tab -> 'Data Validation' -> Choose 'List' under 'Allow' -> Enter the source range or values separated by commas.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "data_analysis_24_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 232
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Can you provide a dynamic range in â€œData Sourceâ€ for a Pivot table?\nTrả lời: Yes, by creating a 'Table' (Ctrl+T) or using the OFFSET() and COUNTA() functions within a Named Range to automatically adjust as data is added.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "data_analysis_25_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is the function to find the day of the week for a particular date value?\nTrả lời: The WEEKDAY() function. It returns a number (1-7) representing the day of the week for a given date.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "data_analysis_26_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How does the AND() function work in Excel?\nTrả lời: It returns TRUE if all its arguments evaluate to TRUE, and FALSE if one or more arguments evaluate to FALSE.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "data_analysis_27_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 191
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Explain how VLOOKUP works in Excel?\nTrả lời: VLOOKUP (Vertical Lookup) searches for a value in the first column of a table array and returns a value in the same row from a specified column number.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "data_analysis_28_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What function would you use to get the current date and time in Excel?\nTrả lời: The NOW() function returns the current date and time. Use TODAY() if only the current date is needed.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "data_analysis_29_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 212
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How is joining different from blending in Tableau?\nTrả lời: Joining combines data from the same source at the row level. Blending combines data from different sources (databases/files) by aggregating data first and then linking on a common field.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "data_analysis_30_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 277
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What do you understand by LOD in Tableau?\nTrả lời: Level of Detail (LOD) expressions allow you to perform calculations at a specific dimension level (FIXED, INCLUDE, EXCLUDE) regardless of the visualization's granularity.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "data_analysis_31_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 252
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Can you discuss the process of feature selection and its importance in data analysis?\nTrả lời: Feature selection involves choosing a subset of relevant variables for use in model construction. It is important to reduce overfitting, improve model accuracy, and decrease computational time.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "data_analysis_32_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the different connection types in Tableau Software?\nTrả lời: There are two main types: Live (real-time connection to the database) and Extract (a snapshot of the data stored locally for better performance).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "data_analysis_33_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the different joins that Tableau provides?\nTrả lời: Tableau provides Inner Join, Left Join, Right Join, and Full Outer Join.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "data_analysis_34_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 164
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is a Gantt Chart in Tableau?\nTrả lời: A visualization used to show project schedules or time-based events. It displays the duration of tasks against a timeline using bars.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "data_analysis_35_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 207
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is the correct syntax for reshape() function in NumPy?\nTrả lời: The syntax is numpy.reshape(a, newshape, order='C'). 'a' is the array to be reshaped, and 'newshape' is the new dimensions (tuple or int).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "data_analysis_36_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are the different ways to create a data frame in Pandas?\nTrả lời: 1. From a Dictionary of lists; 2. From a List of dictionaries; 3. From an external file (CSV, Excel, SQL); 4. From a NumPy array.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "data_analysis_37_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 231
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: There are two arrays, â€˜aâ€™ and â€˜bâ€™. Stack the arrays a and b horizontally using the NumPy library in Python.\nTrả lời: Use numpy.hstack((a, b)) or numpy.concatenate((a, b), axis=1) to stack arrays horizontally.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "data_analysis_38_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 247
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How can you add a column to a Pandas Data Frame?\nTrả lời: 1. By assignment: df['new_col'] = values; 2. Using df.assign(new_col=values); 3. Using df.insert(location, 'column_name', values).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "data_analysis_39_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How will you print four random integers between 1 and 15 using NumPy?\nTrả lời: Use the command: numpy.random.randint(1, 16, size=4). Note that the high value (16) is exclusive.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "data_analysis_40_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 207
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Plot a sine graph using NumPy and Matplotlib library in Python.\nTrả lời: Generate x values with np.linspace, calculate y = np.sin(x), and then use plt.plot(x, y) followed by plt.show().",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "data_analysis_41_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What do you believe are the fundamental soft and hard skills needed as a data analytics professional?\nTrả lời: Hard skills: SQL, Python/R, Statistics, Data Visualization. Soft skills: Critical thinking, problem-solving, communication, and domain knowledge.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "data_analysis_42_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How would your current/previous supervisor or colleagues describe you?\nTrả lời: [Personalized] Focus on attributes like being analytical, detail-oriented, reliable, and a proactive communicator who simplifies complex data.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "data_analysis_43_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What do you enjoy most about data analytics? Is there anything you like least?\nTrả lời: [Personalized] Most: Uncovering hidden insights that drive decisions. Least: Data cleaning/wrangling, although I recognize its necessity for accuracy.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "data_analysis_44_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Why do you want to work for our organization as a data analytics professional?\nTrả lời: [Personalized] Align your skills with the company's mission and mention how their data-driven culture appeals to your professional growth.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "data_analysis_45_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 257
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What data analytics tasks or responsibilities do you think are most important to our organization?\nTrả lời: [Personalized] Usually involves turning raw data into actionable insights, ensuring data integrity, and automating reporting for stakeholders.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "data_analysis_46_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What do you do to keep up with data trends?\nTrả lời: Reading tech blogs (Towards Data Science), participating in Kaggle competitions, listening to data podcasts, and taking advanced certifications.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "data_analysis_47_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Tell me about your professional background or experience in data analytics.\nTrả lời: [Personalized] Summarize your education, key projects, and the specific impact you've had in previous roles or internships.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "data_analysis_48_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What data analytics certifications or training have you received?\nTrả lời: [Personalized] List relevant certifications such as Google Data Analytics, Microsoft Certified: Power BI, or specialized Python/SQL courses.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "data_analysis_49_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is the largest set of data you have ever worked with?\nTrả lời: [Personalized] Describe the number of rows/columns or the file size (e.g., 'A 5-million row dataset in SQL') and the tools used to handle it.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "data_analysis_50_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 240
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Tell me about a time when you disagreed with a supervisor or teammate and how you managed it.\nTrả lời: Focus on professional conflict resolution: presenting data-backed evidence, listening to their perspective, and finding a compromise for the project's benefit.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "data_analysis_51_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Do you have experience making data analytics presentations to stakeholders?\nTrả lời: [Personalized] Describe your experience using Tableau/PowerPoint to translate technical findings into business-friendly recommendations.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "data_analysis_52_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 252
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What experience do you have with databases and data engineering?\nTrả lời: Focus on your ability to write SQL queries, understanding of ETL processes, and experience with relational (PostgreSQL) or NoSQL (MongoDB) databases.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "data_analysis_53_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What data analysis tools do you have experience using?\nTrả lời: List your proficiency in Excel, SQL, Python (Pandas/Scikit-learn), and BI tools like Tableau or Power BI.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "data_analysis_54_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 200
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What scripting languages do you have experience using? Is there one you enjoy using most?\nTrả lời: Commonly Python or R. Mention why you prefer one (e.g., 'Python for its versatility and extensive libraries for machine learning').",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "data_analysis_55_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are your strengths as a data analytics professional?\nTrả lời: Examples: Strong logical reasoning, ability to clean complex data, and translating data into clear business narratives.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "data_analysis_56_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 217
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are your weaknesses as a data analytics professional? What have you done to overcome those weaknesses?\nTrả lời: Mention a real but solvable weakness (e.g., 'I used to struggle with public speaking') and the steps you've taken to improve it.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "data_analysis_57_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 276
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How have you used statistical models to solve business problems?\nTrả lời: Describe a specific instance, such as using linear regression to forecast sales or clustering to segment customers for a marketing campaign.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "data_analysis_58_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Define clustering and explain what properties a clustering algorithm includes.\nTrả lời: Clustering is an unsupervised learning task that groups similar data points. Properties include scalability, ability to handle different types of attributes, and discovery of clusters with arbitrary shapes.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "data_analysis_59_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 325
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is imputation? Describe the different types of imputation techniques you have used.\nTrả lời: Imputation is the process of replacing missing data with substituted values. Techniques include Mean/Median/Mode imputation, Hot-deck imputation, and KNN-based imputation.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "data_analysis_60_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 300
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is a hash table collision? How do you prevent it from happening?\nTrả lời: A collision occurs when two different keys hash to the same index. Prevention methods include Chaining (using linked lists) and Open Addressing (Linear Probing).",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "data_analysis_61_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What are some of the common challenges you encounter as a data analytics professional?\nTrả lời: Data quality issues, siloed data sources, changing requirements, and the difficulty of explaining technical results to non-technical leaders.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "data_analysis_62_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How would you handle a situation where you receive a data set that you believe has suspicious or missing data?\nTrả lời: I would first perform data profiling, document the inconsistencies, consult with the data owner to understand the source, and then apply appropriate cleaning or imputation.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "data_analysis_63_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Tell me about a significant data analytics project you worked on and how the insights you gained from it benefited your team or organization.\nTrả lời: [Personalized] Use the STAR method: explain the data you analyzed, the insights found, and the measurable business impact (e.g., 'reduced churn by 10%').",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "data_analysis_64_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 335
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Describe the steps you take during the data exploration process.\nTrả lời: 1. Check data types and summary statistics; 2. Identify missing values; 3. Detect outliers; 4. Visualize distributions and correlations between variables.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "data_analysis_65_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 259
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Describe the steps you take during the data preparation process.\nTrả lời: 1. Data cleaning (handling nulls/outliers); 2. Data transformation (scaling/normalization); 3. Feature engineering; 4. Splitting into train and test sets.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "data_analysis_66_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 259
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is logistic regression? What methods do you use to assess logistic regression analysis results?\nTrả lời: Logistic regression predicts the probability of a binary outcome. Assessment methods include the Confusion Matrix, Accuracy, Precision, Recall, F1-Score, and the AUC-ROC curve.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "data_analysis_67_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Tell me about the most recent data analytics project you worked on and the core steps you took to complete it.\nTrả lời: [Personalized] Detail the lifecycle: Problem definition -> Data gathering -> Cleaning -> Analysis -> Visualization -> Reporting.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "data_analysis_68_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Which steps of a data analytics project do you enjoy working on most and why?\nTrả lời: [Personalized] Common answers: EDA for the 'detective' work, or Visualization for the storytelling aspect.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "data_analysis_69_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 224
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What data analytics tools did you use on your most recent project, and why did you choose them?\nTrả lời: [Personalized] Example: 'I used Python for data manipulation because of its efficiency and Tableau for sharing an interactive dashboard with stakeholders.'",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "data_analysis_70_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Tell me about a challenging data analytics project you worked on and how you overcame those challenges or learned from them.\nTrả lời: Focus on technical hurdles (e.g., 'messy data') or stakeholder hurdles and how your perseverance/problem-solving led to success.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "data_analysis_71_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: At this job, you may often collaborate with colleagues or stakeholders who do not have a technical background in data analytics. What experience do you have explaining complicated or technical ideas in similar situations?\nTrả lời: Emphasize the use of visualizations, analogies, and focusing on 'the bottom line' (the 'so what?') rather than just the technical methodology.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "data_analysis_72_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 404
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: How do you determine which statistical methods to use when analyzing data?\nTrả lời: Based on the research question, the type of variables (categorical/continuous), the distribution of the data, and the number of groups being compared.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "data_analysis_73_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Describe a time when you failed to meet a deadline. What did you learn from that experience?\nTrả lời: Be honest, take responsibility, explain why it happened, and describe the systems you've put in place (like better time management tools) to prevent it from happening again.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "data_analysis_74_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 306
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: Describe a time when you had to persuade others to follow your idea or recommendation. How did you gain buy-in?\nTrả lời: Focus on using objective data evidence, building rapport, and aligning your idea with the team's or company's existing goals.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "data_analysis_75_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 277
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What is your decision-making process when creating data visualizations for clients or stakeholders?\nTrả lời: I identify the core message, choose the chart type that best represents that message (e.g., bar chart for comparisons), and remove clutter to focus on key insights.",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "data_analysis_76_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 304
+        }
+    },
+    {
+        "page_content": "Chủ đề: Data Analysis\nCâu hỏi: What steps have you taken to improve your analytics knowledge or skills in the past year?\nTrả lời: Mention specific courses, side projects, or new tools you've learned (e.g., 'I recently completed a certification in advanced SQL and started learning PySpark').",
+        "metadata": {
+            "source_file": "da_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "data_analysis_77_chunk_0",
+            "instruction": "Data Analysis",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    }
+]

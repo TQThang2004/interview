@@ -1,0 +1,914 @@
+[
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the Spring Framework?\nTrả lời: Spring is an open-source Java framework that simplifies enterprise application development. It provides tools for dependency injection, aspect-oriented programming, and integration with other frameworks.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "spring_0_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 266
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What are the core modules of Spring?\nTrả lời: Core modules include – Spring Core, Spring Context, Spring AOP, Spring Data, Spring Web, Spring Security, and Spring Boot.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "spring_1_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Dependency Injection in Spring?\nTrả lời: Dependency Injection (DI) is a design pattern where Spring manages object dependencies – allowing loose coupling between components.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "spring_2_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 205
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the Spring Bean Lifecycle?\nTrả lời: The lifecycle includes bean instantiation, property setting, initialization (via @PostConstruct or init-method), and destruction (via @PreDestroy or destroy-method).",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "spring_3_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of the ApplicationContext in Spring?\nTrả lời: ApplicationContext is a container providing configuration, lifecycle management, and dependency injection for Spring beans.\n    Spring Interview Questions for Freshers\n    Here are some common Spring Framework interview questions and answers for freshers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "spring_4_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 342
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between BeanFactory and ApplicationContext?\nTrả lời: BeanFactory is a basic container for bean management – while ApplicationContext offers advanced features like internationalization, event handling, and AOP support.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "spring_5_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring support transaction management?\nTrả lời: Spring supports both programmatic and declarative transaction management using @Transactional or the TransactionTemplate class.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "spring_6_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 208
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring IoC?\nTrả lời: This is one of the most important Spring IoC interview questions. Here is how you should answer it.\n    Spring IoC (Inversion of Control) is a container that manages object creation and their dependencies – promoting loose coupling through Dependency Injection.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "spring_7_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 314
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring achieve loose coupling?\nTrả lời: Spring achieves loose coupling through Dependency Injection and the use of interfaces – making modules independent and easily interchangeable.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "spring_8_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 215
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the DispatcherServlet in Spring?\nTrả lời: The DispatcherServlet is the front controller in Spring MVC that handles incoming HTTP requests and delegates them to appropriate handlers.\n    Spring Framework Interview Questions for Experienced\n    These are some important interview questions on Spring for experienced and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "spring_9_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 364
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring AOP, and why is it used?\nTrả lời: Spring AOP (Aspect-Oriented Programming) allows you to define cross-cutting concerns like logging, security, and transactions, separately from the application logic.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "spring_10_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you handle exceptions in Spring?\nTrả lời: Spring handles exceptions using @ExceptionHandler in controllers, @ControllerAdvice for global handling, and custom exceptions with proper HTTP status codes.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "spring_11_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 230
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @Transactional and programmatic transactions?\nTrả lời: @Transactional simplifies transaction management declaratively, while programmatic transactions use code (e.g., TransactionTemplate) for finer control.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "spring_12_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring Boot differ from the traditional Spring Framework?\nTrả lời: Spring Boot simplifies development by providing embedded servers. It also offers auto-configuration and starter dependencies. This reduces the need for manual setup.\n    Unlike the traditional Spring Framework – Spring Boot minimizes XML configurations. It focuses on convention over configuration – allowing developers to build production-ready applications quickly.\n    Spring Interview Questions for 2 Years Experienced Candidates\n    Here are some common Spring interview questions for experienced professionals.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "spring_13_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 616
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is a Spring Boot Starter?\nTrả lời: Spring Boot Starters are predefined dependencies. They help set up Spring applications quickly. They require minimal configuration. Examples include spring-boot-starter-web and spring-boot-starter-data-jpa.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "spring_14_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the use of @Qualifier annotation?\nTrả lời: @Qualifier is used when multiple beans of the same type exist. It helps specify which bean to inject. This resolves ambiguity in bean selection.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "spring_15_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring JDBC?\nTrả lời: You might also come across Spring JDBC interview questions like this one.\n    Spring JDBC simplifies database operations. It provides helper classes and templates. These classes reduce repetitive code. They also handle common tasks like connection management.\n    Spring Interview Questions for 3 Years Experienced Candidates\n    Let’s take a look at some Spring experienced interview questions and answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "spring_16_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 461
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of @Bean in Spring?\nTrả lời: @Bean is used to define a bean within a Java configuration class, – allowing Spring to manage its lifecycle and dependencies.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "spring_17_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 195
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @RequestMapping and @GetMapping?\nTrả lời: @RequestMapping is a generic annotation for handling HTTP requests, while @GetMapping is a shortcut for HTTP GET requests.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "spring_18_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring Boot Actuator?\nTrả lời: Spring Boot Actuator provides production-ready features like metrics, health checks, and application insights to monitor and manage Spring Boot applications.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "spring_19_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the use of Spring Profiles?\nTrả lời: Spring Profiles allow you to define different configurations for different environments (e.g., dev, prod) in a Spring application.\n    Spring Interview Questions for 5 Years Experienced Candidates\n    Here are some Spring Framework interview questions and answers for candidates with 5 years of experience.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "spring_20_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 375
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between Spring MVC and Spring WebFlux?\nTrả lời: Spring MVC is synchronous – while Spring WebFlux is asynchronous, built for handling non-blocking, reactive programming in web applications.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "spring_21_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the use of @PreAuthorize in Spring Security?\nTrả lời: @PreAuthorize is used to secure methods with specific roles or permissions before method execution, based on expression-based access control.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "spring_22_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring manage transactions?\nTrả lời: Spring uses @Transactional for declarative transaction management, allowing automatic transaction handling at the method level with rollback features.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "spring_23_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @Scope and @Singleton?\nTrả lời: @Scope defines the lifecycle of a Spring bean (e.g., singleton, prototype) – while @Singleton (in non-Spring contexts) restricts a class to one instance globally.\n    Spring Interview Questions for 7 Years Experienced Candidates\n    Here are some Spring Framework interview questions and answers for candidates with 7 years of experience.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "spring_24_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 425
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring support Aspect-Oriented Programming (AOP)?\nTrả lời: Spring AOP allows the separation of cross-cutting concerns like logging, security, and transactions from the main business logic using aspects.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "spring_25_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring Data JPA?\nTrả lời: Spring Data JPA simplifies database interaction by creating repositories for entities and providing built-in methods for CRUD operations.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "spring_26_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 195
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What are the advantages of using Spring Boot over Spring MVC?\nTrả lời: Spring Boot simplifies configuration, provides embedded servers, and includes auto-configuration, reducing the need for boilerplate code compared to Spring MVC.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "spring_27_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How can you enable Caching in Spring?\nTrả lời: You can enable caching by using the @EnableCaching annotation in a configuration class and @Cacheable on methods that require caching.\n    Spring Interview Questions for 10 Years Experienced Candidates\n    Here are some Spring Framework interview questions and answers for candidates with 10 years of experience.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "spring_28_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 383
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you implement microservices in Spring?\nTrả lời: Spring Boot, Spring Cloud, and Spring Data are used to build microservices, with tools like Eureka for service discovery and Ribbon for load balancing.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "spring_29_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 230
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What are the common design patterns used in Spring?\nTrả lời: Common patterns in Spring include Singleton, Factory, Proxy, and Observer patterns, which help manage beans and improve modularity.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "spring_30_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring Batch?\nTrả lời: Spring Batch is used for processing large volumes of data in batch jobs. It supports features like transaction management, job scheduling, and error handling.\n    Spring Scenario Based Interview Questions for Experienced Professionals\n    These are some common scenario-based Spring Framework interview questions and answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "spring_31_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 380
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How would you handle a situation where two beans of the same type are present in the Spring context?\nTrả lời: “I would use the @Qualifier annotation to specify which bean to inject. This helps me avoid ambiguity when multiple beans of the same type are present in the context.”",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "spring_32_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you manage a database transaction that requires rolling back only under certain conditions?\nTrả lời: “I would use the @Transactional annotation with the rollbackFor attribute. This allows me to specify which exceptions should trigger a rollback, giving me more control over transaction management.”",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "spring_33_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 329
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How would you handle a situation where the Spring Boot application starts very slowly?\nTrả lời: “I would first profile the application to identify bottlenecks. I’d review the autoconfiguration, lazy loading, and database connections. I might optimize startup performance by using @Lazy or adjusting application configurations.”",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "spring_34_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 351
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What would you do if a Spring MVC controller method is not handling the request as expected?\nTrả lời: “I would check if the request URL matches the method mapping and ensure the correct HTTP method (GET, POST) is used. I’d also validate the controller and method annotations like @RequestMapping or @GetMapping.”\n    Spring Programming Interview Questions\n    Here are some important Spring programming questions and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "spring_35_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 455
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you inject a dependency into a Spring bean using constructor injection?\nTrả lời: @Component\n    public class MyService {\n    private final MyRepository myRepository;\n    @Autowired\n    public MyService(MyRepository myRepository) {\n    this.myRepository = myRepository;\n    }\n    }",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "spring_36_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you handle a NullPointerException in a Spring application?\nTrả lời: @ExceptionHandler(NullPointerException.class)\n    public ResponseEntity<String> handleNullPointerException(NullPointerException e) {\n    return new ResponseEntity<>(“NullPointerException occurred: ” + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);\n    }",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "spring_37_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How would you implement a simple Spring Boot REST controller?\nTrả lời: @RestController\n    @RequestMapping(“/api”)\n    public class MyController {\n    @GetMapping(“/hello”)\n    public String sayHello() {\n    return “Hello, World!”;\n    }\n    }",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "spring_38_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you configure Spring Security with HTTP Basic Authentication?\nTrả lời: @Configuration\n    @EnableWebSecurity\n    public class SecurityConfig extends WebSecurityConfigurerAdapter {\n    @Override\n    protected void configure(HttpSecurity http) throws Exception {\n    http\n    .httpBasic()\n    .and()\n    .authorizeRequests()\n    .anyRequest().authenticated();\n    }\n    @Override\n    protected void configure(AuthenticationManagerBuilder auth) throws Exception {\n    auth.inMemoryAuthentication()\n    .withUser(“user”).password(“{noop}password”).roles(“USER”);\n    }\n    }\n    Spring MVC Interview Questions\n    Let’s take a look at Spring MVC Framework interview questions and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "spring_39_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 721
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of @RequestMapping in Spring MVC?\nTrả lời: @RequestMapping maps HTTP requests to specific handler methods in controllers. It can be used with different HTTP methods like GET, POST, etc.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "spring_40_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How do you handle form data in Spring MVC?\nTrả lời: Form data can be handled using @ModelAttribute for binding form fields to a model object. You can also use @RequestParam for individual form fields.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "spring_41_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 224
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of the @PathVariable annotation in Spring MVC?\nTrả lời: @PathVariable is used to bind a URI template variable to a method parameter. It allows dynamic values to be extracted from the URL.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "spring_42_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 231
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of the ModelAndView object in Spring MVC?\nTrả lời: ModelAndView holds both the model data and the view name. It is used to return a response from controller methods.\n    Spring Security Interview Questions\n    These are some important interview Spring questions about security and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "spring_43_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 336
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring Security?\nTrả lời: Spring Security is a framework for authentication and authorization. It secures web applications. It offers customizable solutions for login and role-based access control.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "spring_44_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of AuthenticationManager in Spring Security?\nTrả lời: AuthenticationManager is responsible for authenticating users. It validates credentials and grants authentication tokens if successful.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "spring_45_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 230
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How can you implement form-based authentication in Spring Security?\nTrả lời: To implement form-based authentication, use http.formLogin(). Configure the login page and success URL, allowing users to log in with a username and password.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "spring_46_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 259
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of @Secured annotation in Spring Security?\nTrả lời: @Secured is used to specify roles that are allowed to access a particular method. It restricts access based on roles like ROLE_USER or ROLE_ADMIN.\n    Core Spring Interview Questions\n    Here are some core questions on Spring Framework and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "spring_47_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 350
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @Component, @Service, and @Repository?\nTrả lời: @Component is a general-purpose annotation. @Service is for service layer beans. @Repository is for data access components and provides additional persistence-related features.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "spring_48_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of @Configuration annotation?\nTrả lời: @Configuration indicates that a class contains Spring bean definitions. It is used for Java-based configuration and can be combined with @Bean to define beans.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "spring_49_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 242
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the use of the @Value annotation in Spring?\nTrả lời: @Value is used to inject values into fields, methods, or constructor parameters from property files, system properties, or expression results.\n    Spring Data JPA Interview Questions\n    Now, let’s take a look at some Spring JPA interview questions and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "spring_50_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 352
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of @Entity annotation in Spring Data JPA?\nTrả lời: @Entity marks a class as a JPA entity. It tells Spring Data JPA to map the class to a database table.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "spring_51_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 196
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @OneToMany and @ManyToOne?\nTrả lời: @OneToMany represents a one-to-many relationship, while @ManyToOne represents a many-to-one relationship. Both are used to define associations between entities.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "spring_52_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 251
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the function of @Query annotation in Spring Data JPA?\nTrả lời: @Query allows defining custom JPQL or SQL queries in repository methods. It helps to write complex queries beyond the method name conventions.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "spring_53_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 237
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring Data JPA handle pagination and sorting?\nTrả lời: Spring Data JPA provides built-in support for pagination and sorting through Pageable and Sort objects, which can be passed to repository methods for efficient data retrieval.\n    Interview Questions on Spring Batch\n    Here are some important Java Spring questions and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "spring_54_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 373
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What are the main components of Spring Batch?\nTrả lời: Spring Batch has three main components – Job, Step, and ItemProcessor. A Job contains multiple Steps, each processing data in chunks.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "spring_55_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 212
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring Batch handle transaction management?\nTrả lời: Spring Batch provides built-in transaction management. It commits data in chunks and ensures that transactions are either fully completed or fully rolled back in case of errors.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "spring_56_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between ItemReader and ItemWriter in Spring Batch?\nTrả lời: ItemReader is used to read data from a source (e.g., database, file). ItemWriter writes processed data to a destination, such as a database or a file.\n    Spring Microservices Interview Questions\n    These are some Spring Framework interview questions and answers on Microservices.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "spring_57_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 388
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is API Gateway in microservices architecture?\nTrả lời: API Gateway acts as a reverse proxy. It routes requests from clients to the appropriate microservices. It also handles tasks like load balancing, security, and rate limiting.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "spring_58_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of Spring Cloud Sleuth in microservices?\nTrả lời: Spring Cloud Sleuth provides distributed tracing. It tracks the flow of requests across microservices, helping to troubleshoot performance issues and errors.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "spring_59_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of Spring Boot in microservices architecture?\nTrả lời: Spring Boot simplifies the creation of microservices. It provides embedded servers and auto-configuration, reducing the complexity of setting up and deploying services.\n    Spring Annotation Interview Questions\n    Here are some important Spring interview questions with answers on annotation.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "spring_60_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 392
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the @Autowired annotation used for in Spring?\nTrả lời: @Autowired automatically injects dependencies into Spring beans. It can be used on fields, constructors, or setter methods to resolve bean dependencies.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "spring_61_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the @PostConstruct annotation used for?\nTrả lời: @PostConstruct is used to define a method that should be executed after a bean’s initialization. It is typically used for custom initialization logic.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "spring_62_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 231
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the purpose of the @Scope annotation in Spring?\nTrả lời: @Scope defines the lifecycle and visibility of a Spring bean. It determines if a bean is singleton, prototype, request, session, etc.\n    Spring REST API Interview Questions\n    Here are some common Spring REST interview questions and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "spring_63_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 338
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is @ResponseBody used for in Spring REST?\nTrả lời: @ResponseBody tells Spring to convert the return value of a method into an HTTP response body. It’s used to return data in formats like JSON or XML.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "spring_64_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring handle HTTP status codes in REST APIs?\nTrả lời: Spring uses @ResponseStatus to specify HTTP status codes for methods or exceptions. Alternatively, you can manually set status codes using ResponseEntity.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "spring_65_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 242
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is @RequestParam used for in Spring REST?\nTrả lời: @RequestParam is used to extract query parameters from the URL in a GET request. It maps URL parameters to method arguments.\n    Spring AOP Interview Questions\n    These are some important Spring interview questions on AOP and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "spring_66_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 321
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is AOP in Spring?\nTrả lời: AOP (Aspect-Oriented Programming) allows separation of concerns. It enables adding functionality like logging, security, and transactions without modifying the core logic.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "spring_67_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What are the main components of AOP in Spring?\nTrả lời: The main components are Aspect, JoinPoint, Advice, Pointcut, and Weaving. These components work together to provide cross-cutting functionality.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "spring_68_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 224
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the difference between @Before and @After in Spring AOP?\nTrả lời: @Before runs before the method execution, while @After runs after the method execution, regardless of the method’s outcome.\n    Spring Cloud Interview Questions\n    Here are some Spring Framework Java interview questions on cloud and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "spring_69_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 346
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring Cloud?\nTrả lời: Spring Cloud is a set of tools for building microservices. It provides solutions for service discovery, configuration management, and fault tolerance.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "spring_70_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 205
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring Cloud enable service discovery?\nTrả lời: Spring Cloud uses Netflix Eureka for service discovery. It allows microservices to register themselves and discover other services dynamically.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "spring_71_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 224
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is the role of Spring Cloud Config?\nTrả lời: Spring Cloud Config provides centralized configuration management for microservices. It allows externalized configuration and helps manage different environments (e.g., development, production).\n    Spring WebFlux Interview Questions\n    Let’s cover some Java Spring interview questions on WebFlux and their answers.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "spring_72_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 390
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Spring WebFlux?\nTrả lời: Spring WebFlux is a reactive programming framework for building non-blocking web applications. It uses Reactor for handling asynchronous and event-driven applications.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "spring_73_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 224
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: What is Mono and Flux in Spring WebFlux?\nTrả lời: Mono represents a single asynchronous value or an empty value. Flux represents a sequence of asynchronous values. Both are part of the Reactor library.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "spring_74_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 225
+        }
+    },
+    {
+        "page_content": "Chủ đề: Spring\nCâu hỏi: How does Spring WebFlux handle concurrency?\nTrả lời: Spring WebFlux handles concurrency using non-blocking I/O. It processes requests asynchronously and scales efficiently by using the event-loop model and reactive streams.",
+        "metadata": {
+            "source_file": "spring_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "spring_75_chunk_0",
+            "instruction": "Spring",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 247
+        }
+    }
+]

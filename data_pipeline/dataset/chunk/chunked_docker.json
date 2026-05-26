@@ -1,0 +1,482 @@
+[
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker?\nTrả lời: Docker is an open-source platform for containerization. It allows developers to package an application and its dependencies into a lightweight, portable container that can run reliably across different computing environments.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 0,
+            "chunk_id": "docker_0_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 274
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is the difference between a Docker container and a virtual machine (VM)?\nTrả lời: A VM includes a full OS and runs on a hypervisor, which consumes more resources. A Docker container shares the host OS kernel, is more lightweight, and starts much faster. Containers provide process-level isolation rather than hardware-level.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 1,
+            "chunk_id": "docker_1_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 353
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is a Docker image?\nTrả lời: A Docker image is a read-only template that contains a filesystem snapshot, executable code, libraries, and dependencies needed to run an application. Images are used to create containers.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 2,
+            "chunk_id": "docker_2_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is a Docker container?\nTrả lời: A container is a runnable instance of an image. It includes a runtime environment, file system, environment variables, and execution commands, isolated from other containers.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 3,
+            "chunk_id": "docker_3_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Hub (or Docker Registry)?\nTrả lời: Docker Hub is a public registry for Docker images. It allows users to push, pull, and share images. A Docker registry more generally is a service that stores and distributes container images.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 4,
+            "chunk_id": "docker_4_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Explain the high-level architecture of Docker.\nTrả lời: Docker architecture includes the Docker client, Docker daemon (dockerd), Docker objects (images, containers, volumes, networks), and a registry. The client sends commands to the daemon, which builds, runs, and manages containers.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 5,
+            "chunk_id": "docker_5_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 309
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is a Dockerfile?\nTrả lời: A Dockerfile is a text file that contains instructions to build a Docker image. It defines base image, copies files, sets environment variables, runs commands, and sets the container's entrypoint or CMD.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 6,
+            "chunk_id": "docker_6_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is the difference between COPY and ADD in a Dockerfile?\nTrả lời: COPY is used to copy files or directories from the build context into the image. ADD can do the same plus additional things: it can unpack local tar archives and also fetch remote URLs — but using ADD for remote URLs is often discouraged due to unpredictability.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 7,
+            "chunk_id": "docker_7_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 356
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is the difference between CMD and ENTRYPOINT?\nTrả lời: CMD provides default arguments for the container's run command but can be overridden when you run the container. ENTRYPOINT sets the command that will always be executed, and you can pass arguments to it. Combining both allows flexibility.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 8,
+            "chunk_id": "docker_8_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is multi-stage build in Docker? Why is it useful?\nTrả lời: Multi-stage build uses multiple FROM statements in a single Dockerfile. One stage can build (compile) the application, another stage can produce the final runtime image. This results in a smaller final image and avoids shipping development dependencies.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 9,
+            "chunk_id": "docker_9_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How do you pass environment variables into a Docker container?\nTrả lời: You can pass env vars with docker run -e KEY=VALUE, or use --env-file to pass a file containing many environment variables.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 10,
+            "chunk_id": "docker_10_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is a Docker volume? Why do you use it?\nTrả lời: A volume is a persistent storage mechanism managed by Docker. It allows data to persist beyond the lifecycle of a container. You use volumes to store databases, logs, or any stateful data outside the container's transient filesystem.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 11,
+            "chunk_id": "docker_11_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 310
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What types of Docker storage mechanisms are there?\nTrả lời: There are named volumes, anonymous volumes, bind mounts (mounting host directories), and tmpfs mounts.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 12,
+            "chunk_id": "docker_12_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 186
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Where are Docker volumes stored on the host?\nTrả lời: On Linux, Docker volumes are typically stored under /var/lib/docker/volumes.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 13,
+            "chunk_id": "docker_13_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 154
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How can a container lose data when it is removed?\nTrả lời: If the container uses only the container's writable layer (no volume or bind mount), when the container is deleted, all changes in the layer are gone. That's why persistent storage (volumes) is necessary.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 14,
+            "chunk_id": "docker_14_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker networking?\nTrả lời: Docker networking defines how containers communicate with each other and with the outside world. Docker supports several network drivers: bridge, host, overlay, none, and macvlan.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 15,
+            "chunk_id": "docker_15_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Explain Docker namespaces and how they help.\nTrả lời: Namespaces are Linux primitives that isolate containers' processes, network, mount points, PID, and user. They ensure each container has its own isolated environment even though they share the same kernel.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 16,
+            "chunk_id": "docker_16_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How does Docker isolate system resources (CPU, memory, I/O) per container?\nTrả lời: Docker uses cgroups (control groups) to limit and control how much CPU, memory, and I/O a container can use.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 17,
+            "chunk_id": "docker_17_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Swarm, and how does it compare to Kubernetes?\nTrả lời: Docker Swarm is Docker's native orchestration tool. It supports clustering, service discovery, and scaling. Kubernetes is a more powerful and feature-rich orchestration system with a broader ecosystem, but it's more complex.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 18,
+            "chunk_id": "docker_18_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 318
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Machine?\nTrả lời: Docker Machine is a tool for provisioning and managing Docker hosts on local or cloud environments (e.g., VirtualBox, AWS). It helps create Docker-ready VMs automatically.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 19,
+            "chunk_id": "docker_19_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Compose?\nTrả lời: Docker Compose is a tool to define and run multi-container Docker applications using a YAML file (docker-compose.yml). It defines services, networks, volumes, and their relationships.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 20,
+            "chunk_id": "docker_20_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 240
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is the difference between docker-compose up, docker-compose run, and docker-compose start?\nTrả lời: docker-compose up: creates, (re)creates, starts, and attaches to containers for a service.\n    docker-compose run: runs a one-off command (like bash) in a new container for a service.\n    docker-compose start: starts existing containers but does not rebuild or recreate them.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 21,
+            "chunk_id": "docker_21_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 404
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How do you export and import a Docker image?\nTrả lời: Use docker save -o image.tar image_name to export, and docker load -i image.tar to import on another host.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 22,
+            "chunk_id": "docker_22_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 184
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How can you check logs of a running Docker container?\nTrả lời: Use docker logs <container_id_or_name> to view the container's stdout and stderr.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 23,
+            "chunk_id": "docker_23_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 168
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Can Docker containers auto-restart? How?\nTrả lời: Yes. Use --restart policies when running: no (default), on-failure, always, unless-stopped.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 24,
+            "chunk_id": "docker_24_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 165
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Describe the lifecycle of a Docker container.\nTrả lời: The lifecycle: Create (container created but not started), Start (running), Pause (suspended), Stop (graceful shutdown), Kill (force stop), Remove (container deleted).",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 25,
+            "chunk_id": "docker_25_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Engine?\nTrả lời: Docker Engine is the runtime that builds and runs containers. It includes the Docker daemon, REST API, and CLI.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 26,
+            "chunk_id": "docker_26_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 167
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How do you optimize Docker image size?\nTrả lời: Use multi-stage builds, choose minimal base images (like alpine), combine RUN commands to reduce number of layers, remove cache/temp files in build, and .dockerignore to exclude unnecessary files.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 27,
+            "chunk_id": "docker_27_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is Docker Content Trust (DCT)?\nTrả lời: Docker Content Trust enables image signing and verification, so you can ensure images are from a trusted source and haven't been tampered with.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 28,
+            "chunk_id": "docker_28_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 212
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is HEALTHCHECK in Docker?\nTrả lời: HEALTHCHECK in a Dockerfile defines a command that Docker will run inside the container at intervals to check if the container is healthy. If the check fails, Docker can mark the container as unhealthy.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 29,
+            "chunk_id": "docker_29_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 266
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How do you monitor Docker containers in production?\nTrả lời: Options: docker stats for live resource usage, docker events for event stream, or using tools like cAdvisor + Prometheus + Grafana, ELK stack, or container-native monitoring solutions.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 30,
+            "chunk_id": "docker_30_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How can you secure Docker containers?\nTrả lời: Use namespaces, cgroups, drop unnecessary capabilities, use user namespaces, scan images for vulnerabilities, sign images, and run containers with least privilege.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 31,
+            "chunk_id": "docker_31_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is the difference between daemon logging and container logging?\nTrả lời: Container logging is the logs generated by processes in the container (stdout/stderr). Daemon logging is the Docker engine's own logs (events, errors) about managing containers, images, and network.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 32,
+            "chunk_id": "docker_32_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 300
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: Can you use JSON instead of YAML for a Docker Compose file?\nTrả lời: Yes, the Compose specification supports both YAML and JSON, though YAML is more commonly used and more readable.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 33,
+            "chunk_id": "docker_33_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 205
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How do you scale a Docker service?\nTrả lời: In Docker Swarm, you can scale services using docker service scale <service_name>=<replica_count>. In Compose v3 (with Swarm mode), you can also set replicas in your docker-compose.yml.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 34,
+            "chunk_id": "docker_34_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What challenges might you face when using Docker in a large-scale environment?\nTrả lời: Challenges include image sprawl, container orchestration (networking, scaling), persistent storage, security, logging/monitoring, data management, and CI/CD integration.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 35,
+            "chunk_id": "docker_35_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 281
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: How does Docker integrate with CI/CD pipelines?\nTrả lời: Docker images can be built in CI (e.g., Jenkins, GitHub Actions), tested in containers, and then pushed to a registry. In CD, orchestration tools (like Swarm, Kubernetes, ECS) pull the images and deploy them.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 36,
+            "chunk_id": "docker_36_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 289
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What is an overlay network in Docker? When do you use it?\nTrả lời: An overlay network allows containers on different Docker hosts to communicate securely as if they were on the same network. This is useful in clustered or swarm environments.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 37,
+            "chunk_id": "docker_37_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: When should you not use Docker?\nTrả lời: Situations where Docker might not be ideal: extremely latency-sensitive applications, very small/simple scripts where container overhead is not justifiable, or when you need full kernel-level customization that containers can't provide.",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 38,
+            "chunk_id": "docker_38_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: Docker\nCâu hỏi: What are best practices when writing a Dockerfile?\nTrả lời: Use small base images, multi-stage builds, minimize number of layers, clean up after install (remove cache), use .dockerignore, avoid running as root, and make sure your image is secure (scan and sign).",
+        "metadata": {
+            "source_file": "docker_interview.question.md",
+            "original_row_id": 39,
+            "chunk_id": "docker_39_chunk_0",
+            "instruction": "Docker",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    }
+]

@@ -1,0 +1,602 @@
+[
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is Git and how does it differ from SVN (or traditional centralized VCS)?\nTrả lời: Git is a Distributed Version Control System (DVCS). Unlike SVN, which is a Centralized system where everyone shares a single central server, Git provides every developer with a full clone of the entire project repository history locally on their machine. This allows developers to work offline, commit faster, and eliminates the risk of data loss if the main server crashes.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "git_0_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 482
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the difference between Git and GitHub/GitLab?\nTrả lời: * Git: A local software tool installed on your computer used to track file changes and manage version history.\n    GitHub/GitLab: Cloud-based hosting services built to store and manage remote Git repositories, facilitating team collaboration and code sharing.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "git_1_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 343
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: Explain the Three States (or Areas) in Git.\nTrả lời: Git manages files across three distinct areas:\n    Working Directory: The local sandbox where you directly add, delete, and modify project files on your hard drive.\n    Staging Area (Index): A preparation zone that tracks which file modifications will be included in the next snapshot (operated via git add).\n    Local Repository: The permanent storage area where Git saves snapshots of your project as commits (operated via git commit).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "git_2_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 511
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the purpose of the git init command?\nTrả lời: This command initializes a brand-new Git repository in your current directory. Git creates a hidden .git folder containing all version history data and configuration files for the project.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "git_3_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How does the git clone command work?\nTrả lời: It copies an existing Remote Repository down to your local machine. It doesn't just download the latest version of the files; it pulls down the entire commit history and all branches associated with that project.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "git_4_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a \"Commit\" in Git?\nTrả lời: A commit is a snapshot of your project's files at a specific point in time. Each commit is identified by a unique SHA-1 hash, and records structural changes along with metadata such as the author, timestamp, and a commit message.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "git_5_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: Differentiate between these file states: Tracked, Untracked, Staged, and Modified.\nTrả lời: Untracked: A newly created file that Git is not yet aware of.\n    Tracked: A file that is already a part of Git's version tracking system.\n    Modified: A tracked file that has been edited in the Working Directory but hasn't been moved to the Staging Area yet.\n    Staged: A modified file that has been added to the Staging Area and is ready to be committed.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "git_6_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 471
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a .gitignore file? Provide examples.\nTrả lời: A .gitignore file contains a list of patterns specifying which files or directories Git should intentionally ignore and never track (e.g., the node_modules/ folder, local environment files like .env, compilation outputs like dist/, or system log files).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "git_7_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 328
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does the git status command do?\nTrả lời: It displays the current state of the Working Directory and the Staging Area. It highlights which files have been modified, which are staged for the next commit, and which files are currently untracked.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "git_8_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the difference between git add . and git add -A?\nTrả lời: Since Git version 2.0, both commands behave identically: they stage all new, modified, and deleted files within the entire project directory structure into the Staging Area.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "git_9_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 260
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you write a standard, high-quality Commit Message?\nTrả lời: A good commit message should be concise but descriptive (typically under 50 characters for the subject line) and written in the imperative mood (e.g., \"Fix login bug\" instead of \"Fixed login bug\"). If necessary, add a blank line followed by a body explaining the why behind the change, rather than just the what.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "git_10_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 400
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the HEAD pointer in Git?\nTrả lời: HEAD is a pointer referencing the specific commit you are currently working on in your Working Directory. By default, HEAD points to the tip (the latest commit) of your currently active branch.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "git_11_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 256
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the purpose of the git log command?\nTrả lời: It displays the commit history of the current branch in reverse chronological order (newest first), detailing the SHA-1 hash, author, date, and commit message for each entry.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "git_12_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How can you view the specific line changes made to a file before committing it?\nTrả lời: Use the git diff command. It presents line-by-line differences, showing added code (in green) and deleted code (in red) between your Working Directory and the Staging Area.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "git_13_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 282
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What are the main types of Repositories in Git?\nTrả lời: There are two types:\n    Local Repository: Hosted directly on an individual developer's computer.\n    Remote Repository: Hosted on a shared network server (like GitHub, GitLab, or Bitbucket) for team synchronization.\n    \n\n## Section 2: Branching & Merging (Questions 16 - 30)",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "git_14_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 354
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a Branch in Git?\nTrả lời: Under the hood, a branch in Git is simply a lightweight, movable pointer to a specific commit. Creating branches allows you to isolate a new stream of work to build features or fix bugs without affecting the stable main production code.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "git_15_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you create a new branch and switch to it immediately?\nTrả lời: * The traditional way: git branch <branch_name> followed by git checkout <branch_name>.\n    The combined shorthand: git checkout -b <branch_name> or git switch -c <branch_name>.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "git_16_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the difference between git checkout and git switch?\nTrả lời: git checkout is a multi-purpose command (used for switching branches, restoring files, etc.). To clear up confusion, modern versions of Git introduced git switch, which is explicitly dedicated only to switching between branches.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "git_17_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 318
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does the git merge command do?\nTrả lời: It integrates the commit history and source code modifications of a specified target branch into your currently active branch.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "git_18_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: Differentiate between a Fast-Forward Merge and a Three-Way Merge.\nTrả lời: Fast-Forward Merge: Occurs if the source branch hasn't diverged (received new commits) since the target branch was split off. Git simply moves the source branch pointer forward to the tip of the target branch.\n    Three-Way Merge: Occurs when both branches have diverged with independent commits. Git finds their common ancestor commit and creates a brand-new \"Merge Commit\" to bind both histories together.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "git_19_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 503
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a Merge Conflict and why does it occur?\nTrả lời: A merge conflict occurs when two branches modify the exact same line of code in the same file, or when one branch deletes a file that another branch is trying to edit. Because Git cannot programmatically determine which version is correct, it pauses the merge process and requires human intervention.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "git_20_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 378
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What are the steps to resolve a Merge Conflict?\nTrả lời: 1. Run git status to locate the conflicted files (marked as unmerged paths).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "git_21_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 154
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is git rebase and how does it differ from git merge?\nTrả lời: * git merge combines branches by generating a new merge commit, preserving the actual historical timeline of how the branches diverged.\n    git rebase takes all new commits from your current branch and replays them on top of the tip of the target branch. It rewrites the commit history into a clean, linear path but obscures the true historical sequence of branch splitting.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "git_26_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 462
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the Golden Rule of Git Rebase?\nTrả lời: Never rebase a public branch (like main or master) that other team members are actively collaborating on. Rewriting shared history forces everyone else to manually stitch their local histories back together, causing severe disruption.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "git_27_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 303
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you delete a branch both locally and remotely?\nTrả lời: Delete a local branch: git branch -d <branch_name> (use -D to force delete if the branch has unmerged work).\n    Delete a remote branch: git push origin --delete <branch_name>.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "git_28_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 260
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: When would you use the git cherry-pick command?\nTrả lời: You use it when you want to copy one specific commit from an entirely separate branch and apply it directly onto your current branch, without executing a full merge of that entire branch.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "git_29_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the difference between git fetch and git pull?\nTrả lời: git fetch downloads the latest updates from the Remote Server to your Local Repository but does not alter your Working Directory. It allows you to inspect changes before merging.\n    git pull is a combined shorthand for git fetch followed immediately by git merge. It downloads remote changes and instantly forces a merge into your active local branch.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "git_30_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 437
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does the git push command do?\nTrả lời: It uploads your local repository commits to a Remote Repository (like GitHub) so that your team members can access the updated codebase.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "git_31_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 201
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the purpose of the git remote -v command?\nTrả lời: It lists all the configured remote server connections mapped to your local repository, displaying their URL paths for both fetching and pushing operations.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "git_32_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does \"origin\" signify in the command git push origin main?\nTrả lời: origin is the default alias (or nickname) that Git gives to the URL of the Remote Repository from which you initially cloned the project.\n    \n\n## Section 3: Data Recovery & Reverting Mistakes (Questions 31 - 40)",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "git_33_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 306
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: When should you use the git stash command?\nTrả lời: Use it when you have uncommitted, messy changes on your active branch but need to quickly switch branches to work on an urgent bug fix. Running git stash temporarily saves your uncommitted changes to an internal stack, reverting your Working Directory to a clean state. Once finished elsewhere, switch back and run git stash pop to restore your work.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "git_34_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 423
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the difference between git stash apply and git stash pop?\nTrả lời: * git stash pop applies the most recently stashed changes back into your working code and permanently removes that stash entry from the stash stack.\n    git stash apply applies the stashed changes into your working code but retains the backup copy in the stash stack for future reuse.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "git_35_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 380
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you modify a commit message you just created (before pushing it online)?\nTrả lời: Run the command git commit --amend -m \"New descriptive message\". This replaces the previous commit with a new one containing the updated message without inflating your commit history.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "git_36_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What are the different modes of the git reset command?\nTrả lời: There are three primary modes:\n    --soft: Moves the HEAD pointer back to a prior commit, leaving all your modified file changes intact and staged in the Staging Area (no code is lost).\n    --mixed (default): Moves HEAD back, but unstages all modifications, pushing them back to your Working Directory (no code is lost).\n    --hard: Obliterates all modifications; resets both the Staging Area and the Working Directory to match the specified historical commit (uncommitted changes are permanently lost).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "git_37_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 588
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How does git revert work, and how does it differ from git reset?\nTrả lời: * git reset structurally deletes or alters history by moving branch pointers backward (best for unpushed local changes).\n    git revert undoes the changes of a target commit by generating a brand-new inverse commit. It does not delete historical entries, making it safe for public, shared remote branches.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "git_38_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 400
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you unstage a file that you accidentally ran git add on?\nTrả lời: Run the command git restore --staged <file_name> (or the older alternative git reset HEAD <file_name>). This removes the file from the Staging Area while keeping your edits in the Working Directory.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "git_39_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 292
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you discard all uncommitted changes made to a single file and restore it to the state of the last commit?\nTrả lời: Run git restore <file_name> (or the older alternative git checkout -- <file_name>). This permanently wipes out any uncommitted edits made to that file.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "git_40_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: If you mistakenly perform a git reset --hard and lose commits, can you recover them?\nTrả lời: Yes, provided the commits existed locally. You can use git reflog to view a comprehensive log of every movement made by the HEAD pointer (including references to deleted commits). Find the SHA-1 hash of the lost commit from the log, and run git reset --hard <sha_hash> to restore it.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "git_41_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 398
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does the git clean command do?\nTrả lời: It cleans up your Working Directory by recursively deleting files that are not tracked under Git version control. Running git clean -fd forces the removal of both untracked files and directories.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "git_42_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you remove a file from Git tracking while keeping the actual file on your local hard drive?\nTrả lời: Run git rm --cached <file_name>. The file will be deleted from the repository repository on subsequent commits, but the physical file remains untouched on your computer.\n    \n\n## Section 4: Advanced Features & Team Workflow (Questions 41 - 50)",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "git_43_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 372
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a Git Tag? Differentiate between a Lightweight Tag and an Annotated Tag.\nTrả lời: A tag points to a specific important commit in history, typically used to mark release versions (e.g., v1.0.0).\n    Lightweight Tag: A simple pointer directly to a commit, similar to a branch that does not move.\n    Annotated Tag: Stored as a full object in the Git database. It tracks who created it, the date, a tag message, and can be cryptographically signed using GPG.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "git_44_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 484
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is the purpose of the git blame command?\nTrả lời: It annotates each line of a specified file, showing the author, timestamp, and commit hash of the individual who last modified that line. It is useful for tracing code changes or identifying who to talk to about a bug.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "git_45_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How does git bisect work and when should it be used?\nTrả lời: Use it to locate which historical commit introduced a bug via a binary search. You give Git a known \"good\" commit from the past and a \"bad\" commit where the bug is visible. Git checks out a commit in the middle; you test it and mark it as \"good\" or \"bad\". Git repeats this process until it isolates the exact commit that introduced the bug.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "git_46_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 423
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a Git Submodule?\nTrả lời: A Git Submodule allows you to embed a separate external Git repository (e.g., a shared utility library) inside a subdirectory of your main project repository, while maintaining independent commit histories for both.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "git_47_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: Why is git push -f (Force Push) dangerous, and when is it acceptable to use?\nTrả lời: Force-pushing overrides the remote server's commit history with your local history, potentially deleting commits made by your colleagues. It is highly dangerous on shared public branches. It is only acceptable on your isolated, personal feature branches (for example, after cleaning up history with an interactive rebase).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "git_48_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 429
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What does a \"Detached HEAD\" state mean? How do you fix it?\nTrả lời: It means your HEAD pointer is referencing a specific concrete commit hash directly, rather than pointing to a named Branch pointer. Any new commits made in this state will become orphaned when you switch away. To fix it, simply switch back to an existing branch using git switch <branch_name>.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "git_49_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 382
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What are the most common Git workflows used in the industry?\nTrả lời: Common branching models include:\n    Git Flow: Utilizes highly structured, dedicated branches (main, develop, feature, release, hotfix). Ideal for structured, scheduled product release cycles.\n    GitHub Flow: A streamlined model where feature branches are branched directly from main and immediately opened as Pull Requests to be reviewed and merged back to main. Ideal for web applications with continuous deployment (CI/CD).",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "git_50_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 518
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you compress multiple small local commits into a single clean commit before pushing?\nTrả lời: Use an Interactive Rebase via the command git rebase -i HEAD~<number_of_commits>. In the interactive configuration window that appears, change the command keyword from pick to squash (or s) for the lower commits to merge them into the uppermost parent commit.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "git_51_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 381
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: What is a Pull Request (PR) or Merge Request (MR)?\nTrả lời: It is a feature native to code collaboration platforms (like GitHub or GitLab). It is a formal request submitted by a developer asking maintainers to review code built on an isolated branch before it is officially merged into the primary repository branch.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "git_52_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 337
+        }
+    },
+    {
+        "page_content": "Chủ đề: Git\nCâu hỏi: How do you update the destination URL of an existing Remote configuration?\nTrả lời: Execute the command: git remote set-url origin <new_remote_url>. You can confirm the successful path update by verifying with git remote -v.",
+        "metadata": {
+            "source_file": "git_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "git_53_chunk_0",
+            "instruction": "Git",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    }
+]

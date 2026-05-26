@@ -1,0 +1,1970 @@
+[
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Is it possible to use KNN for image processing?\nTrả lời: Yes, but not ideal. KNN is sensitive to the 'curse of dimensionality' and noise in high-dimensional image data. CNNs are much more effective at capturing spatial hierarchies.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "machine_learning_0_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Differentiate between K-Means and KNN algorithms?\nTrả lời: K-Means is an unsupervised clustering algorithm used to group similar data points. KNN is a supervised classification/regression algorithm that predicts labels based on the K-nearest neighbors.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "machine_learning_1_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the terms Artificial Intelligence (AI) Machine Learning (ML) and Deep Learning?\nTrả lời: AI is the broad concept of machines acting intelligently. ML is a subset where machines learn from data. Deep Learning is a subset of ML using multi-layered neural networks.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "machine_learning_2_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 304
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the different types of Learning/ Training models in ML?\nTrả lời: The four main types are: Supervised Learning (labeled data), Unsupervised Learning (unlabeled data), Semi-supervised Learning, and Reinforcement Learning (reward-based).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "machine_learning_3_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 277
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between deep learning and machine learning?\nTrả lời: ML requires manual feature engineering and works on smaller datasets. Deep Learning automates feature extraction via neural networks but requires massive data and GPU power.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "machine_learning_4_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the main key difference between supervised and unsupervised machine learning?\nTrả lời: Supervised learning uses labeled datasets to train algorithms to classify or predict outcomes. Unsupervised learning analyzes and clusters unlabeled datasets to find hidden patterns.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "machine_learning_5_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How do you select important variables while working on a data set?\nTrả lời: By using Filter methods (correlation), Wrapper methods (forward/backward selection), or Embedded methods (Lasso/Ridge regularization and Random Forest importance).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "machine_learning_6_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: There are many machine learning algorithms till now. If given a data set how can one determine which algorithm to be used for that?\nTrả lời: Based on the problem type (regression/classification), the size/quality of the data, the requirement for interpretability versus accuracy, and by testing multiple baseline models.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "machine_learning_7_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 354
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How are covariance and correlation different from one another?\nTrả lời: Covariance indicates the direction of the linear relationship between variables. Correlation is a standardized version that measures both the strength and direction from -1 to 1.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "machine_learning_8_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 284
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: State the differences between causality and correlation?\nTrả lời: Correlation describes a statistical association between two variables, while causality implies that one variable directly causes the change in the other.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "machine_learning_9_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: We look at machine learning software almost all the time. How do we apply Machine Learning to Hardware?\nTrả lời: Through chip design optimization, predictive maintenance of hardware components, power management, and deploying quantized models on FPGAs or ASICs.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "machine_learning_10_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 295
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain One-hot encoding and Label Encoding. How do they affect the dimensionality of the given dataset?\nTrả lời: Label Encoding assigns an integer to each category (no dimension change). One-hot encoding creates a binary column for each category, increasing dimensionality significantly.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "machine_learning_11_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 322
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: When does regularization come into play in Machine Learning?\nTrả lời: Regularization is used to prevent overfitting by adding a penalty term to the cost function, which shrinks the coefficients and simplifies the model.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "machine_learning_12_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Bias Variance and what do you mean by Bias-Variance Tradeoff?\nTrả lời: Bias is error from simplistic assumptions; Variance is error from over-complexity. The tradeoff is the process of finding the sweet spot that minimizes total error.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "machine_learning_13_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 277
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How can we relate standard deviation and variance?\nTrả lời: Variance is the average of the squared differences from the Mean. Standard deviation is the square root of the variance, expressed in the same units as the data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "machine_learning_14_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between a Test set and a Validation set?\nTrả lời: The validation set is used to tune hyperparameters and prevent overfitting during training. The test set is used only once at the end to evaluate the final model's performance.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "machine_learning_15_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the Latent Variable Model?\nTrả lời: A Latent Variable Model relates a set of observable variables to a set of latent (hidden) variables that are not directly measured but inferred from the data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "machine_learning_16_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 236
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between Array and List?\nTrả lời: Arrays are fixed-size and store elements of the same type. Lists are dynamic, can grow in size, and often store elements of varying types depending on the language.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "machine_learning_17_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a Fourier Transform?\nTrả lời: A mathematical transform that decomposes a function or signal (usually in time) into its constituent frequencies (sine and cosine waves).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "machine_learning_18_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 209
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the handling of missing or corrupted values in the given dataset.\nTrả lời: Common techniques include: 1. Deletion (removing rows/columns); 2. Mean/Median/Mode Imputation (filling with central values); 3. Predictive Imputation (using algorithms like KNN or MICE to estimate values); 4. Flagging (adding a binary variable to indicate missingness).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "machine_learning_19_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 387
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Time series?\nTrả lời: A Time Series is a sequence of data points recorded at specific, successive time intervals. It is used to analyze trends, seasonal variations, and cyclic patterns over time (e.g., stock prices, weather data).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "machine_learning_20_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 272
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a Box-Cox transformation?\nTrả lời: A statistical technique used to transform non-normal dependent variables into a normal distribution. it helps in stabilizing variance and making the data meet the assumptions of linear regression.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "machine_learning_21_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between stochastic gradient descent (SGD) and gradient descent (GD)?\nTrả lời: GD calculates the gradient using the entire dataset (stable but slow). SGD calculates the gradient using only one random sample per iteration (faster and can escape local minima but with high oscillations).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "machine_learning_22_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the exploding gradient problem while using the back propagation technique?\nTrả lời: It occurs when large error gradients accumulate, resulting in very large updates to neural network weights during training. This makes the model unstable and unable to learn. It is often solved by gradient clipping.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "machine_learning_23_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Can you mention some advantages and disadvantages of decision trees?\nTrả lời: Advantages: Easy to interpret, handles both numerical and categorical data, requires little data preparation. Disadvantages: High risk of overfitting, unstable (small changes in data change the tree), and biased toward features with more levels.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "machine_learning_24_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 357
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the differences between Random Forest and Gradient Boosting machines.\nTrả lời: Random Forest uses Bagging (building trees in parallel and averaging results) to reduce variance. Gradient Boosting uses Boosting (building trees sequentially, where each tree corrects the previous one's errors) to reduce bias.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "machine_learning_25_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 348
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a confusion matrix and why do you need it?\nTrả lời: A table used to evaluate the performance of a classification model. It shows True Positives, True Negatives, False Positives, and False Negatives, helping to calculate metrics like Accuracy, Precision, Recall, and F1-Score.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "machine_learning_26_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Whatâ€™s a Fourier transform?\nTrả lời: A mathematical tool that transforms a signal from its original domain (often time or space) into the frequency domain, showing the different frequencies that make up the signal.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "machine_learning_27_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 250
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you mean by Associative Rule Mining (ARM)?\nTrả lời: An unsupervised learning technique used to find interesting relationships or patterns between variables in large datasets, commonly used in market basket analysis (e.g., 'If a customer buys bread, they are likely to buy butter').",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "machine_learning_28_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 323
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Marginalisation? Explain the process.\nTrả lời: A method in probability where you sum or integrate out one or more variables from a joint probability distribution to obtain a 'marginal' distribution of the remaining variables.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "machine_learning_29_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the phrase â€œCurse of Dimensionalityâ€.\nTrả lời: As the number of features (dimensions) increases, the amount of data needed to generalize accurately grows exponentially. Data points become sparse, making distance-based algorithms like KNN less effective.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "machine_learning_30_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the Principle Component Analysis?\nTrả lời: An unsupervised dimensionality reduction technique that transforms high-dimensional data into a lower-dimensional form (Principal Components) while retaining as much variance (information) as possible.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "machine_learning_31_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 286
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Why is rotation of components so important in Principle Component Analysis (PCA)?\nTrả lời: Rotation (e.g., Varimax) is used to make the principal components easier to interpret by ensuring each original variable loads strongly onto only one or a few components.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "machine_learning_32_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 295
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are outliers? Mention three methods to deal with outliers.\nTrả lời: Outliers are data points that differ significantly from other observations. Methods: 1. Trimming (removal); 2. Winsorization (capping at a percentile); 3. Transformation (e.g., Log transform) or using robust algorithms like Random Forest.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "machine_learning_33_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 345
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between regularization and normalisation?\nTrả lời: Regularization (L1/L2) adds a penalty to the model complexity to prevent overfitting. Normalization scales individual samples or features to have a specific range (e.g., 0 to 1) to ensure features contribute equally.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "machine_learning_34_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 324
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the difference between Normalization and Standardization.\nTrả lời: Normalization (Min-Max) scales data to a fixed range like [0, 1]. Standardization (Z-score) scales data to have a mean of 0 and a standard deviation of 1, which is less sensitive to outliers.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "machine_learning_35_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 300
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List the most popular distribution curves along with scenarios where you will use them in an algorithm.\nTrả lời: 1. Normal (Linear Regression, PCA); 2. Bernoulli (Binary classification); 3. Poisson (Modeling frequency of events); 4. Binomial (Fixed number of trials).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "machine_learning_36_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 301
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How do we check the normality of a data set or a feature?\nTrả lời: Using visual methods like Q-Q plots and Histograms, or statistical tests like the Shapiro-Wilk test or Kolmogorov-Smirnov test.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "machine_learning_37_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Linear Regression?\nTrả lời: A supervised learning algorithm used to model the linear relationship between a dependent variable and one or more independent variables to predict continuous numerical values.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "machine_learning_38_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Differentiate between regression and classification.\nTrả lời: Regression predicts a continuous numerical output (e.g., price). Classification predicts a discrete categorical label or class (e.g., Spam vs. Not Spam).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "machine_learning_39_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 249
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is target imbalance? How do we fix it? A scenario where you have performed target imbalance on data. Which metrics and algorithms do you find suitable to input this data onto?\nTrả lời: Target imbalance occurs when one class significantly outweighs the other. Fixes: SMOTE (oversampling), undersampling, or adjusting class weights. Suitable metrics: F1-score, Precision-Recall AUC (not accuracy). Suitable algorithms: Random Forest, XGBoost.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "machine_learning_40_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 479
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List all assumptions for data to be met before starting with linear regression.\nTrả lời: 1. Linearity; 2. Independence of errors; 3. Homoscedasticity (constant variance); 4. Normality of residuals; 5. No Multicollinearity.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "machine_learning_41_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 256
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: When does the linear regression line stop rotating or finds an optimal spot where it is fitted on data?\nTrả lời: When the Cost Function (e.g., Mean Squared Error) reaches its global minimum, meaning the sum of the squared differences between predicted and actual values is minimized.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "machine_learning_42_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Why is logistic regression a type of classification technique and not a regression? Name the function it is derived from?\nTrả lời: Because it predicts probabilities that are mapped to discrete classes (0 or 1) using a decision threshold. It is derived from the Sigmoid (or Logistic) function.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "machine_learning_43_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 326
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What could be the issue when the beta value for a certain variable varies way too much in each subset when regression is run on different subsets of the given dataset?\nTrả lời: This usually indicates high Multicollinearity, where independent variables are highly correlated, making the model coefficients (beta values) unstable and sensitive to small changes in data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "machine_learning_44_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 401
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What does the term Variance Inflation Factor mean?\nTrả lời: VIF measures how much the variance of an estimated regression coefficient is increased due to multicollinearity. A VIF above 5 or 10 indicates high correlation between independent variables.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "machine_learning_45_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 284
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which machine learning algorithm is known as the lazy learner, and why is it called so?\nTrả lời: K-Nearest Neighbors (KNN). It is called 'lazy' because it does not have a training phase; it simply stores the training data and performs all computations during the prediction phase.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "machine_learning_46_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 314
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How does the SVM algorithm deal with self-learning?\nTrả lời: SVM 'learns' by finding the optimal hyperplane that maximizes the margin between classes. In a soft-margin SVM, it learns to ignore certain misclassifications (outliers) to achieve better generalization.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "machine_learning_47_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are Kernels in SVM? List popular kernels used in SVM along with a scenario of their applications.\nTrả lời: Kernels in SVM are used to map data into higher dimensions to find a linear separation when the data is not linearly separable in the original space. Popular kernels include: 1. Linear (for linearly separable data); 2. Polynomial (for polynomial boundaries); 3. RBF (Gaussian) (for complex, non-linear boundaries - very common); 4. Sigmoid (used in neural networks).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "machine_learning_48_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 512
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Kernel Trick in an SVM Algorithm?\nTrả lời: The Kernel Trick is a method that allows SVM to operate in a high-dimensional feature space without explicitly computing the coordinates of the data in that space. It uses a kernel function to calculate the dot product between data points in the higher dimension, avoiding the computational cost of transformation.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "machine_learning_49_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 399
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are ensemble models? Explain how ensemble techniques yield better learning as compared to traditional classification ML algorithms.\nTrả lời: Ensemble models combine the predictions from multiple individual models (base learners) to produce a single, more accurate prediction. They yield better results by reducing variance (Bagging, e.g., Random Forest) or reducing bias (Boosting, e.g., XGBoost), and by leveraging the 'wisdom of the crowd' to overcome the limitations of any single model.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "machine_learning_50_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 529
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are overfitting and underfitting? Why does the decision tree algorithm suffer often with overfitting problems?\nTrả lời: Overfitting occurs when a model learns the training data too well, including noise, resulting in poor generalization to new data. Underfitting occurs when a model is too simple to capture the underlying patterns. Decision trees often overfit because they can grow deep enough to perfectly memorize the training data, creating overly complex rules.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "machine_learning_51_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 506
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is OOB error and how does it occur?\nTrả lời: OOB (Out-of-Bag) error is an estimate of the generalization error in ensemble methods like Random Forest. It occurs because, during bagging, each tree is trained on a bootstrap sample (about 2/3 of the data), leaving the remaining 1/3 (the OOB samples) unused for that tree. The OOB samples can then be used to evaluate the model's performance without needing a separate validation set.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "machine_learning_52_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 470
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Why boosting is a more stable algorithm as compared to other ensemble algorithms?\nTrả lời: Boosting is generally more stable than bagging because it sequentially builds models, focusing on correcting the errors of the previous ones. This iterative refinement process reduces bias effectively. While it can be sensitive to noisy data (leading to overfitting if not regularized), its sequential nature makes it more stable in reducing overall error compared to the parallel, independent nature of bagging.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "machine_learning_53_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 537
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How do you handle outliers in the data?\nTrả lời: Methods include: 1. Removal (if clearly errors); 2. Capping/Winsorization (setting values to a max/min percentile); 3. Transformation (e.g., log, square root) to reduce skewness; 4. Using robust algorithms (e.g., Random Forest, SVM) that are less sensitive to outliers.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "machine_learning_54_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 352
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List popular cross validation techniques.\nTrả lời: 1. K-Fold Cross-Validation (most common); 2. Stratified K-Fold (for imbalanced data); 3. Leave-One-Out Cross-Validation (LOOCV); 4. Time Series Split (for sequential data); 5. Group K-Fold (for grouped data).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "machine_learning_55_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Is it possible to test for the probability of improving model accuracy without cross-validation techniques? If yes, please explain\nTrả lời: Yes, using a Hold-out Validation set. You split the data into training and testing sets (e.g., 80/20) before training. The test set acts as a proxy for future data. You can evaluate the model on this set to estimate accuracy improvement. However, this is less robust than cross-validation as the result depends heavily on the specific split.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "machine_learning_56_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 515
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Name a popular dimensionality reduction algorithm.\nTrả lời: Principal Component Analysis (PCA) is the most popular. Others include Linear Discriminant Analysis (LDA), t-SNE (for visualization), and Autoencoders.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "machine_learning_57_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How can we use a dataset without the target variable into supervised learning algorithms?\nTrả lời: We can use Unsupervised Learning techniques like Clustering (e.g., K-Means) to group similar data points, or Dimensionality Reduction (e.g., PCA) to find latent features. These features can then be used as inputs for supervised algorithms, or the clusters themselves can be treated as pseudo-labels.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "machine_learning_58_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 432
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List all types of popular recommendation systems? Name and explain two personalized recommendation systems along with their ease of implementation\nTrả lời: Types: 1. Collaborative Filtering; 2. Content-Based Filtering; 3. Hybrid Systems. Personalized Systems: 1. **Collaborative Filtering (User-Based/Item-Based):** Recommends items based on similar users' preferences or similar items. Ease: Easy to implement for basic versions, but suffers from the 'cold start' problem. 2. **Content-Based Filtering:** Recommends items similar to those the user liked in the past based on item features. Ease: Relatively easy, requires good feature engineering but no user interaction data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "machine_learning_59_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 711
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How do we deal with sparsity issues in recommendation systems? How do we measure its effectiveness? Explain.\nTrả lời: Sparsity is handled using Matrix Factorization (SVD), Hybrid Filtering, or Deep Learning (NCF). Effectiveness is measured using RMSE/MAE for rating predictions, or Precision@K, Recall@K, and NDCG for ranking/recommendation quality.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "machine_learning_60_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 383
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Name and define techniques used to find similarities in the recommendation system.\nTrả lời: 1. Cosine Similarity (measures the cosine of the angle between vectors); 2. Pearson Correlation (measures linear correlation); 3. Euclidean Distance (measures the straight-line distance between points).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "machine_learning_61_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 328
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: State the limitations of Fixed Basis Function.\nTrả lời: Fixed Basis Functions (like Polynomial or Gaussian) are not adaptive to data; they suffer from the 'curse of dimensionality' as the number of basis functions grows exponentially with input dimensions.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "machine_learning_62_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 290
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Define and explain the concept of Inductive Bias with some examples.\nTrả lời: Inductive Bias is the set of assumptions a learner uses to predict outputs for unseen inputs. Examples: Linear Regression assumes a linear relationship; Decision Trees assume a hierarchical axis-aligned split structure.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "machine_learning_63_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 331
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the term instance-based learning.\nTrả lời: A family of learning algorithms that, instead of performing explicit generalization, compares new problem instances with instances seen in training (stored in memory). Example: K-Nearest Neighbors (KNN).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "machine_learning_64_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Keeping train and test split criteria in mind, is it good to perform scaling before the split or after the split?\nTrả lời: After the split. You should fit the scaler only on the training data and then transform both train and test sets to prevent 'data leakage' from the test set into the training process.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "machine_learning_65_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 340
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Define precision, recall and F1 Score?\nTrả lời: Precision: Accuracy of positive predictions. Recall: Ability to find all positive instances. F1 Score: The harmonic mean of Precision and Recall, providing a balance between the two metrics.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "machine_learning_66_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 272
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Plot validation score and training score with data set size on the x-axis and another plot with model complexity on the x-axis.\nTrả lời: 1. Learning Curve (Data size x-axis): Shows if the model needs more data. 2. Complexity Curve (Complexity x-axis): Shows the point of underfitting vs. overfitting (where validation error starts to rise).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "machine_learning_67_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 374
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Bayesâ€™ Theorem? State at least 1 use case with respect to the machine learning context?\nTrả lời: A mathematical formula for calculating conditional probability: P(A|B) = [P(B|A) * P(A)] / P(B). Use case: Naive Bayes classifier for spam detection or medical diagnosis.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "machine_learning_68_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Naive Bayes? Why is it Naive?\nTrả lời: It is a classification algorithm based on Bayes' Theorem. It is called 'Naive' because it assumes that all features are completely independent of each other, which is rarely true in real-world data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "machine_learning_69_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain how a Naive Bayes Classifier works\nTrả lời: It calculates the posterior probability for each class based on the input features using Bayes' Theorem. The class with the highest probability is chosen as the final prediction.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "machine_learning_70_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do the terms prior probability and marginal likelihood in context of Naive Bayes theorem mean?\nTrả lời: Prior Probability: The initial belief/probability of a class before seeing data. Marginal Likelihood: The total probability of the evidence (data) occurring across all possible classes.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "machine_learning_71_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 328
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain the difference between Lasso and Ridge?\nTrả lời: Ridge (L2) adds the squared magnitude of coefficients as a penalty, shrinking them toward zero. Lasso (L1) adds the absolute magnitude, which can shrink some coefficients to exactly zero, performing feature selection.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "machine_learning_72_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 308
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Whatâ€™s the difference between probability and likelihood?\nTrả lời: Probability quantifies the outcome given fixed parameters. Likelihood quantifies how well the parameters explain the observed data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "machine_learning_73_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Why would you Prune your tree?\nTrả lời: To reduce the complexity of a Decision Tree and prevent overfitting. Pruning removes branches that provide little predictive power, leading to better generalization on unseen data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "machine_learning_74_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Model accuracy or Model performance? Which one will you prefer and why?\nTrả lời: Model performance is preferred. Accuracy can be misleading (especially in imbalanced data). Performance covers specific metrics like F1, Precision, Recall, or AUC-ROC that align with business goals.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "machine_learning_75_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 313
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List the advantages and limitations of the Temporal Difference Learning Method.\nTrả lời: Advantages: Learns online without needing a full model of the environment. Limitations: Can be sensitive to step-size parameters and may converge slowly or oscillate in complex environments.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "machine_learning_76_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 313
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How would you handle an imbalanced dataset?\nTrả lời: Using resampling (SMOTE for oversampling, or undersampling), using cost-sensitive learning (class weights), or choosing robust metrics like F1-score and Precision-Recall curves.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "machine_learning_77_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Mention some of the EDA Techniques?\nTrả lời: 1. Univariate analysis (histograms, boxplots); 2. Bivariate analysis (scatter plots, correlation matrices); 3. Missing value analysis; 4. Outlier detection.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 78,
+            "chunk_id": "machine_learning_78_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Mention why feature engineering is important in model building and list out some of the techniques used for feature engineering.\nTrả lời: It creates better inputs for models to improve accuracy. Techniques: One-hot encoding, scaling, interaction features, polynomial features, and handling date-time components.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 79,
+            "chunk_id": "machine_learning_79_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 345
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Differentiate between Statistical Modeling and Machine Learning?\nTrả lời: Statistical Modeling focuses on inferring relationships between variables and finding significance. Machine Learning focuses on making the most accurate predictions possible.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 80,
+            "chunk_id": "machine_learning_80_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 282
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Differentiate between Boosting and Bagging?\nTrả lời: Bagging (Random Forest) builds models in parallel to reduce variance. Boosting (XGBoost) builds models sequentially, each correcting the errors of its predecessor to reduce bias.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 81,
+            "chunk_id": "machine_learning_81_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 265
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the significance of Gamma and Regularization in SVM?\nTrả lời: Gamma defines how far the influence of a single training example reaches (low=far, high=close). Regularization (C) controls the trade-off between a smooth decision boundary and classifying training points correctly.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 82,
+            "chunk_id": "machine_learning_82_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Define ROC curve work\nTrả lời: An ROC curve plots the True Positive Rate vs. False Positive Rate at various threshold settings. The Area Under the Curve (AUC) measures the model's ability to distinguish between classes.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 83,
+            "chunk_id": "machine_learning_83_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between a generative and discriminative model?\nTrả lời: Generative models learn the joint probability distribution P(x,y) (how data is generated). Discriminative models learn the conditional probability P(y|x) (how to distinguish between classes).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 84,
+            "chunk_id": "machine_learning_84_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 304
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are hyperparameters and how are they different from parameters?\nTrả lời: Parameters are learned from the data during training (e.g., weights). Hyperparameters are set manually before training to control the learning process (e.g., learning rate, K in KNN).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 85,
+            "chunk_id": "machine_learning_85_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 295
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is shattering a set of points? Explain VC dimension.\nTrả lời: A set of points is shattered if a model can correctly classify any possible labeling of them. The VC dimension is the maximum number of points that can be shattered by a hypothesis space.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 86,
+            "chunk_id": "machine_learning_86_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are some differences between a linked list and an array?\nTrả lời: Arrays have fixed size and O(1) random access. Linked lists have dynamic size and O(n) access time, but offer O(1) insertion/deletion if the node location is known.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 87,
+            "chunk_id": "machine_learning_87_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the meshgrid () method and the contourf () method? State some usesof both.\nTrả lời: Meshgrid creates a coordinate matrix from coordinate vectors. Contourf plots filled contours. Together, they are used to visualize 3D surfaces or decision boundaries of ML models in 2D.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 88,
+            "chunk_id": "machine_learning_88_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Describe a hash table.\nTrả lời: A data structure that stores key-value pairs. It uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. It provides average O(1) time complexity for search, insert, and delete operations.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 89,
+            "chunk_id": "machine_learning_89_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: List the advantages and disadvantages of using Neural Networks.\nTrả lời: Advantages: Can model complex non-linear relationships, effective for unstructured data (images, audio), and can generalize well. Disadvantages: Requires massive data and compute power, lacks interpretability ('black box'), and is prone to overfitting if not regularized.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 90,
+            "chunk_id": "machine_learning_90_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 378
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: You have to train a 12GB dataset using a neural network with a machine which has only 3GB RAM. How would you go about it?\nTrả lời: Use 'Out-of-core learning' or 'Mini-batch training'. Instead of loading the entire dataset into RAM, use data generators (like ImageDataGenerator in Keras) to load and train on small batches of data from the disk sequentially.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 91,
+            "chunk_id": "machine_learning_91_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 391
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is an Array?\nTrả lời: A linear data structure that collects elements of the same data type stored in contiguous memory locations. It allows random access to elements using an index.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 92,
+            "chunk_id": "machine_learning_92_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the advantages and disadvantages of using an Array?\nTrả lời: Advantages: Fast O(1) access time via index and memory efficiency. Disadvantages: Fixed size (cannot be resized easily) and expensive O(n) insertions or deletions since elements must be shifted.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 93,
+            "chunk_id": "machine_learning_93_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Lists in Python?\nTrả lời: A built-in dynamic data structure in Python that can store a collection of items of different data types. Unlike arrays, lists are mutable and can be resized during runtime.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 94,
+            "chunk_id": "machine_learning_94_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 241
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Explain Eigenvectors and Eigenvalues.\nTrả lời: An eigenvector is a non-zero vector that changes only by a scalar factor when a linear transformation is applied. That scalar factor is the eigenvalue. In ML, they are the foundation for PCA to find the directions of maximum variance.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 95,
+            "chunk_id": "machine_learning_95_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 315
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How would you define the number of clusters in a clustering algorithm?\nTrả lời: Common methods include: 1. The Elbow Method (finding the 'k' where inertia decrease slows down); 2. Silhouette Score (measuring cluster separation); 3. Gap Statistic; 4. Business/domain requirements.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 96,
+            "chunk_id": "machine_learning_96_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 313
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the performance metrics that can be used to estimate the efficiency of a linear regression model?\nTrả lời: 1. Mean Squared Error (MSE); 2. Root Mean Squared Error (RMSE); 3. Mean Absolute Error (MAE); 4. R-squared (Coefficient of Determination) and Adjusted R-squared.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 97,
+            "chunk_id": "machine_learning_97_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the default method of splitting in decision trees?\nTrả lời: For Classification trees, the default is usually Gini Impurity (CART) or Information Gain (C4.5/ID3). For Regression trees, it is typically Variance Reduction or Mean Squared Error (MSE).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 98,
+            "chunk_id": "machine_learning_98_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 289
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How is p-value useful?\nTrả lời: A p-value helps determine the statistical significance of results. In ML, it is used in feature selection to test the null hypothesis that a feature has no effect on the target; a p-value < 0.05 typically suggests the feature is significant.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 99,
+            "chunk_id": "machine_learning_99_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 307
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Can logistic regression be used for classes more than 2?\nTrả lời: Yes, using 'Multinomial Logistic Regression' or strategies like 'One-vs-Rest' (OvR) and 'One-vs-One' (OvO) to handle multi-class classification problems.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 100,
+            "chunk_id": "machine_learning_100_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 253
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the hyperparameters of a logistic regression model?\nTrả lời: 1. C (Inverse of regularization strength); 2. Penalty type (L1, L2, Elasticnet); 3. Solver (e.g., liblinear, lbfgs); 4. Maximum iterations (max_iter).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 101,
+            "chunk_id": "machine_learning_101_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Name a few hyper-parameters of decision trees?\nTrả lời: 1. Max depth (limit tree growth); 2. Min samples split (minimum samples to split a node); 3. Min samples leaf; 4. Criterion (Gini or Entropy); 5. Max features.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 102,
+            "chunk_id": "machine_learning_102_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 249
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How to deal with multicollinearity?\nTrả lời: 1. Remove highly correlated independent variables; 2. Use Principal Component Analysis (PCA) to create uncorrelated features; 3. Use Regularization (Ridge or Lasso); 4. Combine correlated variables into a single feature.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 103,
+            "chunk_id": "machine_learning_103_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Heteroscedasticity?\nTrả lời: A condition in regression where the variance of the error terms (residuals) is not constant across all levels of the independent variables. It violates the assumptions of Linear Regression and can lead to inefficient estimates.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 104,
+            "chunk_id": "machine_learning_104_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Is ARIMA model a good fit for every time series problem?\nTrả lời: No. ARIMA is best for stationary or transformable-to-stationary linear time series. It struggles with non-linear patterns, highly seasonal data (unless using SARIMA), or data with long-term dependencies like financial 'black swans'.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 105,
+            "chunk_id": "machine_learning_105_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 332
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How do you deal with the class imbalance in a classification problem?\nTrả lời: 1. Resampling (Oversampling minority/Undersampling majority); 2. Synthetic data generation (SMOTE); 3. Using appropriate metrics (F1-score, AUC-ROC); 4. Adjusting class weights in the algorithm.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 106,
+            "chunk_id": "machine_learning_106_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 307
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the role of cross-validation?\nTrả lời: To assess the generalizability of a model and reduce bias. It involves partitioning data into 'k' subsets, training on 'k-1' and testing on the remaining one, ensuring every data point is used for both training and testing.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 107,
+            "chunk_id": "machine_learning_107_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 304
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a voting model?\nTrả lời: An ensemble learning method that combines predictions from multiple models. 'Hard voting' picks the class with the most votes; 'Soft voting' averages the predicted probabilities of each class.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 108,
+            "chunk_id": "machine_learning_108_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 259
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How to deal with very few data samples? Is it possible to make a model out of it?\nTrả lời: Yes, using: 1. Transfer Learning (fine-tuning a pre-trained model); 2. Data Augmentation; 3. Simpler models to avoid overfitting (Naive Bayes, Linear models); 4. Cross-validation to maximize data utility.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 109,
+            "chunk_id": "machine_learning_109_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 329
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the hyperparameters of an SVM?\nTrả lời: 1. C (Regularization parameter); 2. Kernel (Linear, RBF, Poly); 3. Gamma (Kernel coefficient for RBF/Poly); 4. Degree (for polynomial kernels).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 110,
+            "chunk_id": "machine_learning_110_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Pandas Profiling?\nTrả lời: An open-source Python library that generates comprehensive Exploratory Data Analysis (EDA) reports from a DataFrame, including statistics, correlations, missing values, and distribution plots.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 111,
+            "chunk_id": "machine_learning_111_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 261
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What impact does correlation have on PCA?\nTrả lời: PCA performs best when features are highly correlated because it aims to capture the maximum variance in fewer dimensions. If features are uncorrelated, PCA will not be able to effectively reduce dimensionality.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 112,
+            "chunk_id": "machine_learning_112_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 296
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How is PCA different from LDA?\nTrả lời: PCA is an unsupervised method that finds directions of maximum variance regardless of class labels. LDA is a supervised method that finds directions that maximize separation between different classes.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 113,
+            "chunk_id": "machine_learning_113_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 274
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What distance metrics can be used in KNN?\nTrả lời: 1. Euclidean Distance (L2 norm); 2. Manhattan Distance (L1 norm); 3. Minkowski Distance; 4. Hamming Distance (for categorical data); 5. Cosine Similarity.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 114,
+            "chunk_id": "machine_learning_114_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which metrics can be used to measure correlation of categorical data?\nTrả lời: 1. Chi-Square Test; 2. Cramerâ€™s V (measures strength of association); 3. Theilâ€™s U (Uncertainty Coefficient); 4. ANOVA (for categorical vs. continuous).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 115,
+            "chunk_id": "machine_learning_115_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which algorithm can be used in value imputation in both categorical and continuous categories of data?\nTrả lời: K-Nearest Neighbors (KNN Imputer) and MICE (Multivariate Imputation by Chained Equations). Random Forest (MissForest) is also highly effective for both data types.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 116,
+            "chunk_id": "machine_learning_116_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 309
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: When should ridge regression be preferred over lasso?\nTrả lời: Use Ridge when you have many features with small effects and you want to keep all of them. Use Lasso when you suspect only a few features are actually important, as Lasso can perform feature selection by shrinking coefficients to zero.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 117,
+            "chunk_id": "machine_learning_117_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 332
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which algorithms can be used for important variable selection?\nTrả lời: 1. Lasso Regression (L1 penalty); 2. Random Forest/XGBoost (Feature Importance scores); 3. Recursive Feature Elimination (RFE); 4. Decision Trees.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 118,
+            "chunk_id": "machine_learning_118_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 252
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What ensemble technique is used by Random forests?\nTrả lời: Random Forest uses Bagging (Bootstrap Aggregating). It builds multiple decision trees in parallel using different subsets of the data and features, then averages their results (for regression) or takes a majority vote (for classification).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 119,
+            "chunk_id": "machine_learning_119_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 333
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What ensemble technique is used by gradient boosting trees?\nTrả lời: It uses Boosting. Specifically, it builds trees sequentially, where each new tree attempts to correct the errors (residuals) made by the previous trees.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 120,
+            "chunk_id": "machine_learning_120_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: If we have a high bias error what does it mean? How to treat it?\nTrả lời: High bias means the model is too simple and is underfitting the data. To treat it: 1. Use a more complex model; 2. Add more features; 3. Reduce regularization; 4. Increase the number of training iterations.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 121,
+            "chunk_id": "machine_learning_121_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 314
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which type of sampling is better for a classification model and why?\nTrả lời: Stratified Sampling is better because it ensures that each class is represented in the same proportion in both the training and test sets as it is in the original dataset, preventing bias toward the majority class.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 122,
+            "chunk_id": "machine_learning_122_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 326
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a good metric for measuring the level of multicollinearity?\nTrả lời: Variance Inflation Factor (VIF). A VIF value above 5 or 10 is generally considered an indicator of high multicollinearity between independent variables.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 123,
+            "chunk_id": "machine_learning_123_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: When can be a categorical value treated as a continuous variable and what effect does it have when done so?\nTrả lời: When the categories have a meaningful order (ordinal data), like ratings 1-5. Treating them as continuous assumes equal distance between levels, which simplifies the model but may lose nuanced categorical relationships.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 124,
+            "chunk_id": "machine_learning_124_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 370
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the role of maximum likelihood in logistic regression.\nTrả lời: Maximum Likelihood Estimation (MLE) is the method used to estimate the coefficients of the model. It seeks the parameter values that maximize the likelihood of observing the actual data given the model.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 125,
+            "chunk_id": "machine_learning_125_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 308
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which distance do we measure in the case of KNN?\nTrả lời: The most common is Euclidean Distance. Other distances include Manhattan, Minkowski, and Hamming distance (for categorical data).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 126,
+            "chunk_id": "machine_learning_126_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 221
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a pipeline?\nTrả lời: A pipeline is a way to codify and automate the workflow of a machine learning project, ensuring that data preprocessing, feature engineering, and model training steps happen in a fixed, reproducible sequence.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 127,
+            "chunk_id": "machine_learning_127_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which sampling technique is most suitable when working with time-series data?\nTrả lời: Time-Series Split (or Walk-forward validation). Traditional random sampling is unsuitable because it breaks the chronological order; we must train on past data to predict future data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 128,
+            "chunk_id": "machine_learning_128_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 304
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the benefits of pruning?\nTrả lời: Pruning reduces the size of decision trees, which helps prevent overfitting, improves generalization on unseen data, and makes the model easier to interpret.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 129,
+            "chunk_id": "machine_learning_129_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is normal distribution?\nTrả lời: Also known as Gaussian distribution, it is a probability distribution that is symmetric about the mean, showing that data near the mean are more frequent in occurrence than data far from the mean.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 130,
+            "chunk_id": "machine_learning_130_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the 68 per cent rule in normal distribution?\nTrả lời: It states that in a normal distribution, approximately 68% of the data falls within one standard deviation of the mean (34% on each side).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 131,
+            "chunk_id": "machine_learning_131_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a chi-square test?\nTrả lời: A statistical test used to determine if there is a significant association between two categorical variables or to check if a sample distribution fits a theoretical distribution.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 132,
+            "chunk_id": "machine_learning_132_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 248
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a random variable?\nTrả lời: A variable whose value is subject to variations due to chance (stochasticity). It can be discrete (countable values) or continuous (infinite values within a range).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 133,
+            "chunk_id": "machine_learning_133_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the degree of freedom?\nTrả lời: The number of values in a final calculation that are free to vary. In statistics, it often relates to the sample size minus the number of parameters being estimated.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 134,
+            "chunk_id": "machine_learning_134_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which kind of recommendation system is used by amazon to recommend similar items?\nTrả lời: Item-to-Item Collaborative Filtering. It analyzes items that users have bought together in the past to recommend similar products based on user behavior patterns.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 135,
+            "chunk_id": "machine_learning_135_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a false positive?\nTrả lời: A Type I error where the model incorrectly predicts the positive class when the actual result is negative (e.g., a healthy person diagnosed with a disease).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 136,
+            "chunk_id": "machine_learning_136_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 225
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is a false negative?\nTrả lời: A Type II error where the model incorrectly predicts the negative class when the actual result is positive (e.g., a sick person diagnosed as healthy).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 137,
+            "chunk_id": "machine_learning_137_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 219
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the error term composed of in regression?\nTrả lời: It is composed of: 1. Bias (error from assumptions); 2. Variance (error from sensitivity to data fluctuations); and 3. Irreducible error (random noise inherent in the data).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 138,
+            "chunk_id": "machine_learning_138_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 266
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which performance metric is better R2 or adjusted R2?\nTrả lời: Adjusted R2 is better because it accounts for the number of predictors in the model. Unlike R2, it only increases if the new variable improves the model more than would be expected by chance.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 139,
+            "chunk_id": "machine_learning_139_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Whatâ€™s the difference between Type I and Type II error?\nTrả lời: Type I error is a 'false alarm' (rejecting a true null hypothesis). Type II error is a 'miss' (failing to reject a false null hypothesis).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 140,
+            "chunk_id": "machine_learning_140_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you understand by L1 and L2 regularization?\nTrả lời: L1 (Lasso) adds the absolute value of coefficients as a penalty, which can lead to sparse models (feature selection). L2 (Ridge) adds the squared value, which shrinks coefficients but keeps them non-zero.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 141,
+            "chunk_id": "machine_learning_141_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Which one is better, Naive Bayes Algorithm or Decision Trees?\nTrả lời: It depends on the data. Naive Bayes is faster and works well with high-dimensional text data. Decision Trees are better for capturing complex interactions and non-linear relationships.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 142,
+            "chunk_id": "machine_learning_142_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 289
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you mean by the ROC curve?\nTrả lời: The Receiver Operating Characteristic curve is a plot of the True Positive Rate (Sensitivity) against the False Positive Rate (1-Specificity) at various threshold settings.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 143,
+            "chunk_id": "machine_learning_143_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 250
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you mean by AUC curve?\nTrả lời: AUC (Area Under the Curve) measures the entire two-dimensional area underneath the entire ROC curve. It provides an aggregate measure of performance across all possible classification thresholds.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 144,
+            "chunk_id": "machine_learning_144_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 269
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is log likelihood in logistic regression?\nTrả lời: It is the natural logarithm of the likelihood function. We maximize the log-likelihood because it is mathematically easier to work with than the raw likelihood and results in the same optimal parameters.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 145,
+            "chunk_id": "machine_learning_145_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How would you evaluate a logistic regression model?\nTrả lời: Using metrics like Accuracy, Precision, Recall, F1-Score, Confusion Matrix, and the AUC-ROC curve.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 146,
+            "chunk_id": "machine_learning_146_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 193
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the advantages of SVM algorithms?\nTrả lời: SVM is effective in high-dimensional spaces, uses memory efficiently through support vectors, and is versatile due to the 'kernel trick' for non-linear data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 147,
+            "chunk_id": "machine_learning_147_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 243
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Why does XGBoost perform better than SVM?\nTrả lời: XGBoost is an ensemble method that handles missing values, provides built-in regularization to prevent overfitting, and is generally faster and more scalable for large, tabular datasets.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 148,
+            "chunk_id": "machine_learning_148_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between SVM Rank and SVR (Support Vector Regression)?\nTrả lời: SVR is used to predict continuous numerical values (regression). SVM Rank is a variation used for 'learning to rank' problems, where the goal is to predict the relative order or relevance of items.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 149,
+            "chunk_id": "machine_learning_149_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between the normal soft margin SVM and SVM with a linear kernel?\nTrả lời: A linear kernel specifies the shape of the decision boundary (a straight line). A soft margin is a configuration that allows some misclassifications to achieve better generalization on noisy data.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 150,
+            "chunk_id": "machine_learning_150_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 327
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How is linear classifier relevant to SVM?\nTrả lời: SVM is fundamentally a linear classifier that finds the optimal hyperplane to separate classes. It becomes non-linear only when using the 'kernel trick' to map data into higher dimensions.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 151,
+            "chunk_id": "machine_learning_151_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 273
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are the advantages of using a naive Bayes for classification?\nTrả lời: It is extremely fast, easy to implement, works well with high-dimensional data (like text), and requires relatively little training data to perform well.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 152,
+            "chunk_id": "machine_learning_152_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: Are Gaussian Naive Bayes the same as binomial Naive Bayes?\nTrả lời: No. Gaussian NB assumes features follow a normal distribution (continuous data). Bernoulli (Binomial) NB is used for discrete data where features are binary (0 or 1).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 153,
+            "chunk_id": "machine_learning_153_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 268
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between the Naive Bayes Classifier and the Bayes classifier?\nTrả lời: The Bayes Classifier is the theoretically optimal classifier but requires knowing true probabilities. Naive Bayes is a practical implementation that assumes all features are independent.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 154,
+            "chunk_id": "machine_learning_154_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 313
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: In what real world applications is Naive Bayes classifier used?\nTrả lời: Commonly used in Spam filtering, Sentiment Analysis, Document Classification, and Real-time prediction systems due to its speed.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 155,
+            "chunk_id": "machine_learning_155_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 235
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you understand by selection bias in Machine Learning?\nTrả lời: It occurs when the data used to train the model is not representative of the real-world population, leading to a model that performs poorly in production.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 156,
+            "chunk_id": "machine_learning_156_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 259
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What do you understand by Precision and Recall?\nTrả lời: Precision measures the accuracy of positive predictions (True Positives / Predicted Positives). Recall measures the ability to find all actual positives (True Positives / Actual Positives).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 157,
+            "chunk_id": "machine_learning_157_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 280
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What Are the Three Stages of Building a Model in Machine Learning?\nTrả lời: 1. Model Building (preprocessing and algorithm selection); 2. Model Testing (evaluating on a test set); 3. Model Deployment (putting the model into production).",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 158,
+            "chunk_id": "machine_learning_158_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: How Do You Design an Email Spam Filter in Machine Learning?\nTrả lời: 1. Collect and clean email data; 2. Preprocess text (tokenization, stop-word removal); 3. Convert text to numbers (TF-IDF/Bag-of-Words); 4. Train a classifier (like Naive Bayes); 5. Evaluate and tune.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 159,
+            "chunk_id": "machine_learning_159_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 303
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the difference between Entropy and Information Gain?\nTrả lời: Entropy measures the impurity or randomness in a dataset. Information Gain is the reduction in entropy achieved by splitting the dataset on a specific feature.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 160,
+            "chunk_id": "machine_learning_160_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 263
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What are collinearity and multicollinearity?\nTrả lời: Collinearity is a high correlation between two independent variables. Multicollinearity occurs when three or more independent variables are highly correlated.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 161,
+            "chunk_id": "machine_learning_161_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 246
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is Kernel SVM?\nTrả lời: A type of SVM that uses a 'kernel function' to map non-linearly separable data into a higher-dimensional space where a linear hyperplane can separate the classes.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 162,
+            "chunk_id": "machine_learning_162_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 225
+        }
+    },
+    {
+        "page_content": "Chủ đề: Machine Learning\nCâu hỏi: What is the process of carrying out a linear regression?\nTrả lời: 1. Define the problem; 2. Collect and clean data; 3. Check assumptions (linearity, etc.); 4. Train the model (find best coefficients); 5. Evaluate using metrics like R-squared; 6. Predict.",
+        "metadata": {
+            "source_file": "ml_interview_question.md",
+            "original_row_id": 163,
+            "chunk_id": "machine_learning_163_chunk_0",
+            "instruction": "Machine Learning",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 288
+        }
+    }
+]

@@ -1,0 +1,1202 @@
+[
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is Node.js?\nTrả lời: Node.js is an open-source, cross-platform runtime environment that allows the execution of JavaScript code outside a browser. It is built on Chrome’s V8 JavaScript engine and is primarily used for developing server-side and networking applications.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 0,
+            "chunk_id": "nodejs_0_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: Why is Node.js Single-Threaded?\nTrả lời: Node.js operates on a single-threaded event loop model, enabling it to handle multiple client requests efficiently without creating multiple threads. This design is particularly effective for I/O-bound applications.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 1,
+            "chunk_id": "nodejs_1_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 280
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the use of the Event Loop in Node.js?\nTrả lời: The Event Loop handles asynchronous callbacks in Node.js. It allows non-blocking I/O operations by delegating tasks to the system kernel whenever possible and executing callbacks after tasks are complete.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 2,
+            "chunk_id": "nodejs_2_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the major advantages of using Node.js?\nTrả lời: Asynchronous and Event-Driven architecture\n    Fast Execution with Chrome’s V8 engine\n    Unified JavaScript Development (both frontend and backend)\n    Extensive ecosystem with npm modules",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 3,
+            "chunk_id": "nodejs_3_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 270
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is npm?\nTrả lời: npm stands for Node Package Manager. It is the largest software registry that provides access to reusable packages and tools for dependency management in Node.js applications.\n\n    **Related Read: Coding and Programming Interview Questions [[curent_year]]**",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 4,
+            "chunk_id": "nodejs_4_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 303
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between Node.js and JavaScript?\nTrả lời: JavaScript: A client-side scripting language mainly used inside browsers.\n    Node.js: A server-side runtime environment for executing JavaScript outside the browser.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 5,
+            "chunk_id": "nodejs_5_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: Explain the concept of Non-blocking I/O in Node.js.\nTrả lời: Non-blocking I/O means that Node.js can initiate multiple operations without waiting for any to finish. It uses events and callbacks to handle completed tasks asynchronously, resulting in higher efficiency for I/O-bound applications.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 6,
+            "chunk_id": "nodejs_6_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 318
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are Streams in Node.js?\nTrả lời: Streams are objects that enable reading or writing data continuously. Instead of loading entire files into memory, streams handle data in chunks. Types include:\n    Readable\n    Writable\n    Duplex (both readable and writable)\n    Transform (modify data while reading or writing)",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 7,
+            "chunk_id": "nodejs_7_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 341
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between process.nextTick() and setImmediate()?\nTrả lời: process.nextTick(): Executes the callback before any I/O events, immediately after the current operation completes.\n    setImmediate(): Executes the callback on the next iteration of the event loop, after I/O events are processed.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 8,
+            "chunk_id": "nodejs_8_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 333
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How does Node.js handle child processes?\nTrả lời: Node.js uses the child_process module to spawn new system processes. These child processes can communicate with the parent via standard input/output streams and can be used for parallel execution to improve performance.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 9,
+            "chunk_id": "nodejs_9_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the REPL in Node.js?\nTrả lời: REPL stands for Read, Eval, Print, and Loop. It is an interactive shell provided by Node.js that processes user input, evaluates it, outputs the result, and loops again. It is useful for testing simple snippets and debugging.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 10,
+            "chunk_id": "nodejs_10_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 287
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are Global Objects in Node.js?\nTrả lời: Global objects are available throughout a Node.js application without the need to import modules. Common examples include:\n    __dirname – Directory name of the current module\n    __filename – Filename of the current module\n    global – Global namespace object\n    process – Information and control about the current Node.js process",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 11,
+            "chunk_id": "nodejs_11_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 401
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is a Callback function in Node.js?\nTrả lời: A callback function is a function passed as an argument to another function, to be called once the parent function completes. Callbacks are essential for handling asynchronous operations in Node.js.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 12,
+            "chunk_id": "nodejs_12_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are Promises in Node.js?\nTrả lời: A Promise represents a value that may be available now, later, or never. It simplifies chaining asynchronous operations and avoids callback hell by providing then and catch methods.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 13,
+            "chunk_id": "nodejs_13_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 244
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you avoid callback hell in Node.js?\nTrả lời: Use Promises instead of nested callbacks\n    Use async/await syntax for cleaner, more synchronous-looking code\n    Split complex logic into smaller reusable functions\n    Leverage control flow libraries like async.js",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 14,
+            "chunk_id": "nodejs_14_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 293
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the EventEmitter class in Node.js?\nTrả lời: EventEmitter is a core module that facilitates the implementation of event-driven architecture. It allows emitting and handling events through listener functions using on and emit methods.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 15,
+            "chunk_id": "nodejs_15_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 264
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How do you create a simple server in Node.js?\nTrả lời: Using the built-in http module:\n    const http = require('http');\n    const server = http.createServer((req, res) =>  );\n    server.listen(3000, () => console.log('Server running on port 3000'));",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 16,
+            "chunk_id": "nodejs_16_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 274
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the use of streams over buffers?\nTrả lời: Streams are more memory-efficient because they process large data chunk-by-chunk rather than loading it all into memory at once, making them ideal for working with large files and real-time data processing.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 17,
+            "chunk_id": "nodejs_17_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 280
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the purpose of Buffers in Node.js?\nTrả lời: Buffers are used to represent a fixed-size chunk of memory allocated outside the V8 engine. They are primarily used for binary data manipulation, such as when reading from a file or receiving packets over a network.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 18,
+            "chunk_id": "nodejs_18_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 291
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the use of process.env in Node.js?\nTrả lời: process.env allows you to access environment variables in a Node.js application, commonly used for sensitive configurations like API keys, database URIs, and environment settings.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 19,
+            "chunk_id": "nodejs_19_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 255
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is middleware in Express.js?\nTrả lời: Middleware are functions that execute during the lifecycle of a request to the server. Each middleware function can modify the request and response objects or end the request-response cycle or call the next middleware in the stack.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 20,
+            "chunk_id": "nodejs_20_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 298
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How do you handle exceptions in Node.js?\nTrả lời: Use try-catch blocks for synchronous code.\n    Use .catch() or async/await with try-catch for asynchronous code.\n    Use process.on('uncaughtException') and process.on('unhandledRejection') events for global error handling.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 21,
+            "chunk_id": "nodejs_21_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 297
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you improve Node.js application performance?\nTrả lời: Use asynchronous APIs wherever possible\n    Implement caching strategies\n    Optimize database queries\n    Use load balancers and clustering\n    Minimize dependencies\n    Monitor and optimize the event loop lag",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 22,
+            "chunk_id": "nodejs_22_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 296
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are template engines in Node.js?\nTrả lời: Template engines generate dynamic HTML pages on the server side. Popular Node.js template engines include:\n    EJS (Embedded JavaScript Templates)\n    Pug (formerly Jade)\n    Handlebars",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 23,
+            "chunk_id": "nodejs_23_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 256
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the role of package.json in Node.js?\nTrả lời: package.json is the metadata file for any Node.js project. It defines project dependencies, scripts, versions, licensing information, and helps manage project configurations easily through npm.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 24,
+            "chunk_id": "nodejs_24_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are CommonJS Modules in Node.js?\nTrả lời: CommonJS is the module system used by Node.js by default. Modules are loaded using require() and exported using module.exports. Each module in Node.js has its own scope.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 25,
+            "chunk_id": "nodejs_25_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 240
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between exports and module.exports?\nTrả lời: exports is a shorthand reference to module.exports. If you assign a new object to exports, it will not affect module.exports unless you explicitly reassign it. Always use module.exports for consistency.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 26,
+            "chunk_id": "nodejs_26_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 294
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the phases of the Event Loop in Node.js?\nTrả lời: The phases are:\n    Timers\n    Pending callbacks\n    Idle, prepare\n    Poll\n    Check\n    Close callbacks\n    Each phase has a FIFO queue of callbacks to execute.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 27,
+            "chunk_id": "nodejs_27_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 245
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How is the ‘this’ keyword handled in Node.js modules?\nTrả lời: Inside a Node.js module, this refers to module.exports, not the global object. However, inside a function declared within the module, this refers to the global object.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 28,
+            "chunk_id": "nodejs_28_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is middleware chaining in Express.js?\nTrả lời: Middleware chaining happens when multiple middleware functions are executed sequentially. After one middleware completes, it calls next() to pass control to the next middleware in the stack.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 29,
+            "chunk_id": "nodejs_29_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 266
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the purpose of process.env.NODE_ENV?\nTrả lời: process.env.NODE_ENV is used to distinguish between environments like development, testing, and production. This enables loading environment-specific configurations.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 30,
+            "chunk_id": "nodejs_30_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 243
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you share data between Node.js modules?\nTrả lời: You can export variables, objects, or functions using module.exports and then require them in other files where needed.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 31,
+            "chunk_id": "nodejs_31_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 200
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the differences between spawn and fork methods in Node.js?\nTrả lời: spawn() launches a new process with a given command. Used for non-Node.js processes.\n    fork() creates a new Node.js process specifically designed for IPC (Inter-Process Communication) with the parent process.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 32,
+            "chunk_id": "nodejs_32_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 311
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is clustering in Node.js?\nTrả lời: Clustering allows Node.js to create multiple child processes (workers) sharing the same server port, leveraging multi-core systems for better scalability and performance.\n\n    **Related Read: Front End Developer Interview Questions and Answers [[curent_year]]**",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 33,
+            "chunk_id": "nodejs_33_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 325
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you secure a Node.js application?\nTrả lời: Security best practices:\n    Use HTTPS\n    Sanitize user input\n    Store secrets securely (environment variables, vaults)\n    Keep dependencies updated\n    Use security middleware like Helmet in Express.js",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 34,
+            "chunk_id": "nodejs_34_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 280
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between process.exit() and process.kill()?\nTrả lời: process.exit() terminates the Node.js process immediately with an optional exit code.\n    process.kill() sends a signal to another process to terminate it.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 35,
+            "chunk_id": "nodejs_35_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the advantages of using streams instead of buffers?\nTrả lời: Streams are memory-efficient and allow processing data piece-by-piece. They are particularly useful for handling large amounts of data, such as reading files or streaming video.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 36,
+            "chunk_id": "nodejs_36_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: Explain module caching in Node.js.\nTrả lời: When a module is required for the first time, Node.js caches it. Any subsequent require() call returns the same cached instance, improving performance and reducing I/O.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 37,
+            "chunk_id": "nodejs_37_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 236
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is API rate limiting and how is it implemented in Node.js?\nTrả lời: API rate limiting restricts the number of requests a client can make to an API within a time frame. Libraries like express-rate-limit are commonly used to implement this in Express apps.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 38,
+            "chunk_id": "nodejs_38_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 283
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the purpose of async/await in Node.js?\nTrả lời: async/await is syntactic sugar over Promises. It allows writing asynchronous code in a synchronous-looking manner, making it easier to read and maintain.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 39,
+            "chunk_id": "nodejs_39_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you handle file uploads in Node.js?\nTrả lời: Libraries like multer are used in Node.js to handle multipart/form-data, which is primarily used for uploading files.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 40,
+            "chunk_id": "nodejs_40_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 194
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is CORS and how do you manage it in Node.js?\nTrả lời: CORS (Cross-Origin Resource Sharing) is a security feature that restricts resource sharing between different origins. In Express.js, it can be managed easily using the cors middleware.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 41,
+            "chunk_id": "nodejs_41_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 267
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the differences between PUT and PATCH methods in REST APIs?\nTrả lời: PUT: Replaces an entire resource.\n    PATCH: Partially updates a resource.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 42,
+            "chunk_id": "nodejs_42_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 176
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How do you implement session management in Node.js?\nTrả lời: Session management is implemented using libraries like express-session. Sessions can be stored in-memory, in databases like Redis, or using secure cookies.\n\n    **Related Read: Full Stack Developer Skills You Can Add in Your Resume**",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 43,
+            "chunk_id": "nodejs_43_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 318
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you monitor a Node.js application in production?\nTrả lời: Tools like PM2, New Relic, or Datadog are used to monitor Node.js applications. They help track performance metrics, memory usage, error rates, and uptime.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 44,
+            "chunk_id": "nodejs_44_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 247
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is Helmet in Node.js?\nTrả lời: Helmet is a middleware package for Express.js that sets various HTTP headers to secure your app from common vulnerabilities like cross-site scripting and clickjacking.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 45,
+            "chunk_id": "nodejs_45_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is Cross-Site Scripting (XSS) and how can you prevent it in Node.js?\nTrả lời: XSS is an attack where malicious scripts are injected into trusted websites. Prevention involves sanitizing user input, escaping output, and using security libraries like Helmet and DOMPurify.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 46,
+            "chunk_id": "nodejs_46_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 299
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you handle asynchronous errors in Express.js routes?\nTrả lời: Wrap async route handlers inside try-catch blocks, or use libraries like express-async-errors to automatically catch async errors and pass them to Express’s error handling middleware.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 47,
+            "chunk_id": "nodejs_47_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the advantage of using Redis with Node.js?\nTrả lời: Redis provides a fast, in-memory key-value store, making it ideal for caching, session management, real-time analytics, and message brokering with Node.js.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 48,
+            "chunk_id": "nodejs_48_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 239
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the process of deploying a Node.js application?\nTrả lời: Prepare production build\n    Set environment variables\n    Use process managers like PM2\n    Reverse proxy with Nginx or Apache\n    Deploy to servers like AWS EC2, DigitalOcean, or Heroku\n\n## Node.js Advanced Interview Questions",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 49,
+            "chunk_id": "nodejs_49_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 317
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between synchronous and asynchronous code in Node.js?\nTrả lời: Synchronous: Blocks the execution until the current operation finishes.\n    Asynchronous: Executes without blocking; uses callbacks, promises, or async/await to handle results later.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 50,
+            "chunk_id": "nodejs_50_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 292
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the use of process.nextTick()?\nTrả lời: process.nextTick() defers the execution of a function until after the current operation completes but before any I/O operations. It is used to prioritize certain tasks.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 51,
+            "chunk_id": "nodejs_51_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 240
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are Worker Threads in Node.js?\nTrả lời: Worker Threads allow running JavaScript in parallel on multiple threads. Useful for CPU-intensive tasks without blocking the main event loop.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 52,
+            "chunk_id": "nodejs_52_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How does load balancing work in Node.js applications?\nTrả lời: Load balancing can be achieved by clustering multiple Node.js instances across CPU cores, and externally through load balancers like Nginx or AWS Elastic Load Balancing.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 53,
+            "chunk_id": "nodejs_53_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 256
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between global and local installation of npm packages?\nTrả lời: Global installation (-g): Makes the package available system-wide, usually for CLI tools.\n    Local installation: Installs the package inside node_modules of the project for project-specific usage.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 54,
+            "chunk_id": "nodejs_54_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 308
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the HTTP2 module in Node.js?\nTrả lời: The HTTP2 module allows Node.js to support HTTP/2 protocol, enabling faster communication through multiplexing, header compression, and server push.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 55,
+            "chunk_id": "nodejs_55_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is middleware error handling in Express.js?\nTrả lời: Error-handling middleware functions have four arguments (err, req, res, next) and handle errors by sending appropriate responses or delegating them further.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 56,
+            "chunk_id": "nodejs_56_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 238
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you create your own EventEmitter in Node.js?\nTrả lời: const EventEmitter = require('events');\n    const emitter = new EventEmitter();\n    emitter.on('event', () => console.log('An event occurred!'));\n    emitter.emit('event');",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 57,
+            "chunk_id": "nodejs_57_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 258
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between readFile and createReadStream in Node.js?\nTrả lời: readFile: Reads the entire file into memory before processing it.\n    createReadStream: Reads the file chunk-by-chunk using streams, making it memory-efficient for large files.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 58,
+            "chunk_id": "nodejs_58_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 282
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the role of libuv in Node.js?\nTrả lời: libuv is a multi-platform C library that Node.js uses to handle asynchronous I/O operations through its event-driven architecture. It abstracts non-blocking I/O across platforms.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 59,
+            "chunk_id": "nodejs_59_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 249
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is process.on(‘exit’) in Node.js?\nTrả lời: process.on('exit', callback) registers a callback that executes when the Node.js process is about to exit, allowing cleanup tasks before shutdown.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 60,
+            "chunk_id": "nodejs_60_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are Signals in Node.js?\nTrả lời: Signals are a limited form of inter-process communication used to notify a process that a specific event occurred. Example: SIGINT for Ctrl+C termination.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 61,
+            "chunk_id": "nodejs_61_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is a Zombie Process? Can it occur in Node.js?\nTrả lời: A zombie process is a process that has completed execution but still has an entry in the process table. While rare in Node.js, improper child process handling could theoretically lead to zombies.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 62,
+            "chunk_id": "nodejs_62_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 279
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is Server Push in HTTP/2?\nTrả lời: Server Push allows servers to send resources to clients proactively without waiting for explicit requests, improving page load times by preloading resources.\n\n    **Related Read: Must-Have Resume Skills for a Tech Lead Role in 2026**",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 63,
+            "chunk_id": "nodejs_63_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 297
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is TLS/SSL in Node.js?\nTrả lời: TLS/SSL encrypts data between the server and the client to ensure secure transmission. Node.js has a built-in tls module to implement secure sockets.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 64,
+            "chunk_id": "nodejs_64_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How does garbage collection work in Node.js?\nTrả lời: Node.js relies on V8’s garbage collector to automatically reclaim memory occupied by objects no longer in use, helping prevent memory leaks.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 65,
+            "chunk_id": "nodejs_65_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the async_hooks module?\nTrả lời: The async_hooks module provides an API to track asynchronous resources in Node.js, useful for performance monitoring and debugging.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 66,
+            "chunk_id": "nodejs_66_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 196
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is DNS module in Node.js?\nTrả lời: The dns module provides functions to perform DNS lookup and name resolution functions, like resolving domain names to IP addresses asynchronously.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 67,
+            "chunk_id": "nodejs_67_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 210
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the cluster module in Node.js?\nTrả lời: The cluster module enables creation of child processes (workers) that all share the same server port, allowing full CPU core utilization in Node.js applications.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 68,
+            "chunk_id": "nodejs_68_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the difference between fork() and spawn() methods?\nTrả lời: spawn(): Launches a new process with a given command.\n    fork(): Specifically spawns a Node.js process and sets up IPC communication channel with the parent.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 69,
+            "chunk_id": "nodejs_69_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 250
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are sticky sessions in Node.js clustering?\nTrả lời: Sticky sessions ensure that the same user is always routed to the same server worker based on their session ID, which is essential for maintaining session persistence in load-balanced applications.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 70,
+            "chunk_id": "nodejs_70_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 278
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you debug a Node.js application?\nTrả lời: Using built-in --inspect flag with Chrome DevTools\n    Using IDE debuggers (like VSCode)\n    Logging strategically with libraries like Winston",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 71,
+            "chunk_id": "nodejs_71_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 216
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is npm audit?\nTrả lời: npm audit is a command that performs a security audit of project dependencies and highlights known vulnerabilities that should be addressed.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 72,
+            "chunk_id": "nodejs_72_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are peer dependencies in npm?\nTrả lời: Peer dependencies specify that a package expects another package to be installed alongside it, but does not install it automatically. Useful in plugin systems.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 73,
+            "chunk_id": "nodejs_73_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 227
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are cyclic dependencies in Node.js and how to avoid them?\nTrả lời: Cyclic dependencies occur when two or more modules depend on each other circularly. They can cause unpredictable behavior. To avoid them, refactor shared logic into a separate module.\n\n## Node.js Scenario-Based and Practical Questions",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 74,
+            "chunk_id": "nodejs_74_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 330
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you handle a sudden spike in traffic in a Node.js application?\nTrả lời: Scale horizontally using clustering and load balancers, implement caching strategies with Redis, optimize database queries, and use CDNs for static content delivery.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 75,
+            "chunk_id": "nodejs_75_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 271
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement logging in a Node.js app?\nTrả lời: Use libraries like Winston, Morgan, or Bunyan. Log critical information with timestamps, and separate logs by severity levels (info, warn, error).",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 76,
+            "chunk_id": "nodejs_76_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 229
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you secure sensitive data like API keys in a Node.js project?\nTrả lời: Store sensitive data in environment variables using dotenv files (.env), and never hardcode credentials in the source code.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 77,
+            "chunk_id": "nodejs_77_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 228
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you design a RESTful API using Node.js?\nTrả lời: Use Express.js to define routes, separate controllers, services, and models, follow HTTP methods appropriately (GET, POST, PUT, DELETE), and structure resources logically.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 78,
+            "chunk_id": "nodejs_78_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 254
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you handle file uploads securely in Node.js?\nTrả lời: Use multer for handling uploads, validate file types, limit file sizes, store uploads in secure directories, and scan files for malware if needed.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 79,
+            "chunk_id": "nodejs_79_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 234
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How can you schedule background tasks in Node.js?\nTrả lời: Use libraries like node-cron or Agenda.js to schedule recurring or time-based tasks like email notifications, report generation, or database cleanups.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 80,
+            "chunk_id": "nodejs_80_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 233
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement WebSocket communication in Node.js?\nTrả lời: Use the ws library or frameworks like Socket.IO for real-time, bi-directional communication between the client and server.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 81,
+            "chunk_id": "nodejs_81_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 215
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you design a chat server using Node.js?\nTrả lời: Use Socket.IO to manage rooms, broadcast messages, store chat history in a database like MongoDB, and implement authentication for users.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 82,
+            "chunk_id": "nodejs_82_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 220
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement API versioning in Node.js?\nTrả lời: Organize routes based on versions (e.g., /api/v1/, /api/v2/) and separate controllers for each version to avoid breaking existing API clients.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 83,
+            "chunk_id": "nodejs_83_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 226
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you optimize a Node.js app for performance?\nTrả lời: Use asynchronous code\n    Implement caching (Redis, CDN)\n    Use clustering\n    Optimize database queries\n    Compress HTTP responses (gzip)\n    Use monitoring tools to detect bottlenecks\n\n## Node.js Interview Questions for Freshers",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 84,
+            "chunk_id": "nodejs_84_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What are the key features of Node.js?\nTrả lời: Event-driven, asynchronous, single-threaded, scalable, and built on the V8 JavaScript engine.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 85,
+            "chunk_id": "nodejs_85_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 164
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the role of package-lock.json?\nTrả lời: package-lock.json locks the dependency tree, ensuring consistent installations across different environments.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 86,
+            "chunk_id": "nodejs_86_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 181
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is an HTTP module in Node.js?\nTrả lời: The HTTP module allows Node.js to create HTTP servers and handle client requests and responses natively.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 87,
+            "chunk_id": "nodejs_87_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 172
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is the use of util module in Node.js?\nTrả lời: The util module provides helpful utility functions like promisify() for converting callback-based functions into promises.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 88,
+            "chunk_id": "nodejs_88_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 198
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How does require() work in Node.js?\nTrả lời: require() reads and executes a JavaScript file and returns the exports object, making it available for use in other modules.\n\n\n## Node.js Interview Questions for Experienced Professionals",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 89,
+            "chunk_id": "nodejs_89_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 256
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement rate limiting in a Node.js API?\nTrả lời: Use express-rate-limit middleware to set limits based on IP addresses and define time windows for API usage.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 90,
+            "chunk_id": "nodejs_90_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 197
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you manage environment variables securely in production?\nTrả lời: Use encrypted environment variable management services like AWS Secrets Manager, Vault by HashiCorp, or environment-specific .env files.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 91,
+            "chunk_id": "nodejs_91_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 236
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you use Redis in a Node.js project?\nTrả lời: Redis can be used for caching, session storage, message queues, and real-time analytics in a Node.js application.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 92,
+            "chunk_id": "nodejs_92_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 192
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you protect an Express API from brute-force attacks?\nTrả lời: Implement rate-limiting middleware, IP blacklisting, CAPTCHA challenges, and account lockout mechanisms after repeated failed attempts.\n\n    **Related Read: React and next.js Interview Questions and Answers [current_year]**",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 93,
+            "chunk_id": "nodejs_93_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 319
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement global error handling in Node.js?\nTrả lời: Create a centralized error-handling middleware, handle unhandled promise rejections with process.on('unhandledRejection'), and manage uncaught exceptions with process.on('uncaughtException').",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 94,
+            "chunk_id": "nodejs_94_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 282
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you implement JWT authentication in Node.js?\nTrả lời: Use libraries like jsonwebtoken to sign tokens on login and verify them on protected routes in the Express middleware.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 95,
+            "chunk_id": "nodejs_95_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 206
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How do you perform load testing on a Node.js application?\nTrả lời: Use tools like Artillery, k6, or Apache JMeter to simulate high traffic and evaluate the application’s performance under load.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 96,
+            "chunk_id": "nodejs_96_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 217
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How do you handle race conditions in Node.js?\nTrả lời: Handle shared resources carefully, use database-level locks or optimistic concurrency control strategies, and design code flow predictably.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 97,
+            "chunk_id": "nodejs_97_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 218
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: What is Event Loop Starvation in Node.js?\nTrả lời: Event loop starvation happens when heavy synchronous operations block the event loop, preventing the processing of pending events, leading to application slowdowns or freezes.",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 98,
+            "chunk_id": "nodejs_98_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 250
+        }
+    },
+    {
+        "page_content": "Chủ đề: NodeJS\nCâu hỏi: How would you optimize memory usage in a Node.js application?\nTrả lời: Use streams for large data\n    Release unused references\n    Profile and analyze memory leaks with Chrome DevTools\n    Apply batching or throttling techniques for heavy processing",
+        "metadata": {
+            "source_file": "nodejs_interview_question.md",
+            "original_row_id": 99,
+            "chunk_id": "nodejs_99_chunk_0",
+            "instruction": "NodeJS",
+            "level": "",
+            "has_context_input": false,
+            "chunk_length": 274
+        }
+    }
+]
