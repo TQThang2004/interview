@@ -57,12 +57,19 @@ def generate_questions_from_cv_jd(
         fallback_context = CVJDContext(
             topics=["software engineering core technical interview questions"],
             tech_stack=[],
+            matching_skills=[],
             gap_areas=[],
+            matching_topics=["software engineering core technical interview questions"],
+            gap_topics=[],
             candidate_summary="Ứng viên không cung cấp CV.",
             position_summary="Vị trí kỹ thuật phần mềm tổng quát.",
         )
         # Retrieve ngân hàng → Augment sinh ra num_q câu
-        raw_docs = retrieve_raw_docs(fallback_context.topics, level)
+        raw_docs = retrieve_raw_docs(
+            fallback_context.topics, level,
+            matching_topics=fallback_context.matching_topics,
+            gap_topics=fallback_context.gap_topics,
+        )
         questions = augment_questions(raw_docs, fallback_context, level, language, num_q)
         return _to_dict_list(questions)
 
@@ -72,7 +79,12 @@ def generate_questions_from_cv_jd(
 
     # ── Bước 2: Retrieve từ ChromaDB ─────────────────────────────────────────
     print(f"\n>>> [RAGGenerator] Bước 2/3: Retrieve {TOP_K_RETRIEVE} docs từ ChromaDB (ngân hàng)...")
-    raw_docs = retrieve_raw_docs(context.topics, level)   # luôn trả về TOP_K_RETRIEVE docs
+    print(f"    matching_topics={context.matching_topics}, gap_topics={context.gap_topics}")
+    raw_docs = retrieve_raw_docs(
+        context.topics, level,
+        matching_topics=context.matching_topics,
+        gap_topics=context.gap_topics,
+    )
 
     # ── Bước 3: Augmented Generation ─────────────────────────────────────────
     print(f"\n>>> [RAGGenerator] Bước 3/3: Augment – chọn lọc từ {len(raw_docs)} docs → sinh {num_q} câu...")

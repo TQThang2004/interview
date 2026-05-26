@@ -2,10 +2,10 @@
 RAG Augmentor – Bước A (Augmented Generation) trong pipeline RAG.
 
 Chức năng:
-1. extract_cv_jd_context(): phân tích sâu CV + JD bằng Gap Analysis
-   → trả về CVJDContext (topics, stack, gap_areas, candidate_summary).
+1. extract_cv_jd_context(): phân tích sâu CV + JD bằng Matching + Gap Analysis
+   → trả về CVJDContext (matching_skills, gap_areas, topics riêng cho từng loại).
 2. augment_questions(): đưa tài liệu retrieved + context vào LLM
-   → LLM tổng hợp, điều chỉnh, sinh câu hỏi phù hợp cụ thể với ứng viên.
+   → LLM tổng hợp, sinh câu hỏi theo tỷ lệ 60% matching / 40% gap.
 
 Flow (được gọi từ rag_generator.py):
   CVJDContext ← extract_cv_jd_context(cv, jd)      [1 LLM call]
@@ -15,6 +15,7 @@ Flow (được gọi từ rag_generator.py):
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass, field
 
 from app.core.config import (
@@ -33,10 +34,13 @@ from app.services.rag_retriever import RawDoc
 @dataclass
 class CVJDContext:
     """Kết quả phân tích CV + JD – đầu vào cho Retriever và Augmentor."""
-    topics: list[str]               # query strings cho ChromaDB (topic chính trước)
+    topics: list[str]               # ALL query strings cho ChromaDB (backward compat)
     tech_stack: list[str]           # các công nghệ chính
-    gap_areas: list[str]            # JD yêu cầu nhưng CV chưa thể hiện rõ
-    candidate_summary: str          # tóm tắt ngắn về ứng viên để context cho LLM
+    matching_skills: list[str]      # Kỹ năng JD cần MÀ CV đã có (60%)
+    gap_areas: list[str]            # Kỹ năng JD cần nhưng CV chưa thể hiện (40%)
+    matching_topics: list[str]      # Query ChromaDB cho matching skills
+    gap_topics: list[str]           # Query ChromaDB cho gap areas
+    candidate_summary: str          # tóm tắt ngắn về ứng viên
     position_summary: str           # tóm tắt vị trí ứng tuyển
 
 
@@ -54,9 +58,11 @@ class Question:
 # ---------------------------------------------------------------------------
 
 _CONTEXT_SCHEMA = """{
-  "topics": ["<query1 cho ChromaDB>", "<query2>", "<query3>", "<query4>"],
-  "tech_stack": ["React", "Node.js", "PostgreSQL"],
+  "matching_skills": ["React hooks", "REST API design", "PostgreSQL"],
   "gap_areas": ["Thiếu kinh nghiệm Docker/CI-CD theo JD", "Chưa đề cập System Design"],
+  "matching_topics": ["ReactJS hooks useState useEffect performance interview questions", "REST API design best practices interview"],
+  "gap_topics": ["Docker containerization CI CD pipeline interview questions", "System design scalability interview"],
+  "tech_stack": ["React", "Node.js", "PostgreSQL"],
   "candidate_summary": "3 năm FE React, có dự án thương mại điện tử, chưa có BE rõ ràng",
   "position_summary": "Fullstack vị trí mid-level tại startup fintech, cần Node.js + React"
 }"""
@@ -76,10 +82,10 @@ _QUESTION_SCHEMA = """[
 
 def extract_cv_jd_context(cv_text: str, jd_text: str) -> CVJDContext:
     """
-    Phân tích CV và JD bằng Gap Analysis để lấy:
-    - Topics cho ChromaDB query (có cấu trúc tốt hơn simple keyword).
-    - Danh sách công nghệ cốt lõi.
-    - Gap areas: JD đòi hỏi gì mà CV chưa thể hiện – để hỏi sâu hơn.
+    Phân tích CV và JD bằng Matching + Gap Analysis để lấy:
+    - matching_skills: Kỹ năng JD yêu cầu MÀ CV ứng viên đã có (ưu tiên hỏi sâu)
+    - gap_areas: Kỹ năng JD yêu cầu nhưng CV chưa thể hiện
+    - matching_topics / gap_topics: query riêng cho ChromaDB
     - Tóm tắt ứng viên và vị trí.
 
     Chi phí: 1 LLM call.
@@ -88,21 +94,23 @@ def extract_cv_jd_context(cv_text: str, jd_text: str) -> CVJDContext:
 
     prompt = f"""Bạn là chuyên gia tuyển dụng kỹ thuật. Phân tích CV và JD sau đây.
 
-CV (tối đa 2000 ký tự):
-{cv_text[:2000]}
+CV:
+{cv_text[:4000]}
 
-Job Description (tối đa 1500 ký tự):
-{jd_text[:1500]}
+Job Description:
+{jd_text[:3000]}
 
-NHIỆM VỤ – thực hiện Gap Analysis và trả về JSON theo schema sau (KHÔNG có markdown, KHÔNG giải thích):
+NHIỆM VỤ – thực hiện Matching + Gap Analysis và trả về JSON theo schema sau (KHÔNG có markdown, KHÔNG giải thích):
 
 Schema:
 {_CONTEXT_SCHEMA}
 
 Hướng dẫn chi tiết:
-- "topics": 3–4 chuỗi query tìm kiếm vector (tiếng Anh, chi tiết, có tên công nghệ + từ khoá technical interview). Phần tử ĐẦU TIÊN là topic QUAN TRỌNG NHẤT (công nghệ chính nhất theo JD). Ví dụ: "ReactJS hooks useState useEffect performance interview questions".
-- "tech_stack": liệt kê ngắn gọn các công nghệ chính.
-- "gap_areas": tối đa 3 điểm – JD yêu cầu gì mà CV của ứng viên chưa thể hiện hoặc còn yếu. Đây là điểm cần hỏi sâu thêm.
+- "matching_skills": Liệt kê các kỹ năng/công nghệ mà JD yêu cầu VÀ CV ứng viên đã thể hiện có kinh nghiệm. Đây là điểm mạnh cần hỏi sâu để đánh giá năng lực thực tế. Tối đa 5 kỹ năng.
+- "gap_areas": Tối đa 3 điểm – kỹ năng/công nghệ JD yêu cầu nhưng CV chưa thể hiện hoặc còn yếu. Đây là điểm cần đánh giá tiềm năng.
+- "matching_topics": 2–3 chuỗi query tìm kiếm vector (tiếng Anh, chi tiết, có tên công nghệ + từ khoá technical interview) cho CÁC KỸ NĂNG KHỚP. Ví dụ: "ReactJS hooks useState useEffect performance interview questions".
+- "gap_topics": 1–2 chuỗi query tìm kiếm vector cho CÁC KỸ NĂNG THIẾU. Ví dụ: "Docker containerization CI CD pipeline interview questions".
+- "tech_stack": liệt kê ngắn gọn các công nghệ chính từ cả CV và JD.
 - "candidate_summary": 1–2 câu tóm tắt profile ứng viên.
 - "position_summary": 1–2 câu mô tả vị trí ứng tuyển.
 
@@ -110,7 +118,7 @@ Nếu CV hoặc JD trống, hãy tự suy luận hợp lý từ phần còn lạ
 CHỈ trả về JSON object, tuyệt đối không có text thừa."""
 
     print("\n" + "=" * 60)
-    print(">>> [Augmentor] Bắt đầu Extract CV/JD Context (Gap Analysis)...")
+    print(">>> [Augmentor] Bắt đầu Extract CV/JD Context (Matching + Gap Analysis)...")
 
     result = client.generate_json(prompt)
 
@@ -119,18 +127,34 @@ CHỈ trả về JSON object, tuyệt đối không có text thừa."""
         return CVJDContext(
             topics=["software engineering technical interview questions"],
             tech_stack=[],
+            matching_skills=[],
             gap_areas=[],
+            matching_topics=["software engineering technical interview questions"],
+            gap_topics=[],
             candidate_summary="Không rõ thông tin ứng viên.",
             position_summary="Vị trí kỹ thuật phần mềm.",
         )
 
-    print(f">>> [Augmentor] Context extracted: topics={result.get('topics', [])}")
+    matching_topics = result.get("matching_topics", [])[:3]
+    gap_topics = result.get("gap_topics", [])[:2]
+    # topics = matching_topics + gap_topics (backward compat)
+    all_topics = matching_topics + gap_topics
+    if not all_topics:
+        all_topics = ["software engineering interview questions"]
+
+    print(f">>> [Augmentor] Context extracted:")
+    print(f"    matching_skills={result.get('matching_skills', [])}")
     print(f"    gap_areas={result.get('gap_areas', [])}")
+    print(f"    matching_topics={matching_topics}")
+    print(f"    gap_topics={gap_topics}")
 
     return CVJDContext(
-        topics=result.get("topics", ["software engineering interview questions"])[:4],
+        topics=all_topics,
         tech_stack=result.get("tech_stack", []),
+        matching_skills=result.get("matching_skills", []),
         gap_areas=result.get("gap_areas", []),
+        matching_topics=matching_topics,
+        gap_topics=gap_topics,
         candidate_summary=result.get("candidate_summary", ""),
         position_summary=result.get("position_summary", ""),
     )
@@ -168,28 +192,21 @@ def augment_questions(
 ) -> list[Question]:
     """
     Đưa tài liệu retrieved + CVJDContext vào LLM để:
-    - Tổng hợp, tinh chỉnh câu hỏi phù hợp với ứng viên cụ thể.
-    - Ưu tiên câu hỏi liên quan gap_areas (điểm yếu ứng viên).
+    - Sinh câu hỏi theo tỷ lệ 60% matching / 40% gap.
+    - Câu hỏi ngắn gọn, tập trung, chỉ hỏi 1 ý.
     - Điều chỉnh độ khó theo level.
-    - Sinh ra câu hỏi cuối cùng bằng ngôn ngữ phù hợp.
 
-    Chi phí: 1 LLM call (thay vì 2 call cũ: translate + custom_q).
-
-    Args:
-        raw_docs: Tài liệu thô từ Retriever.
-        context:  CVJDContext từ extract_cv_jd_context().
-        level:    Cấp độ phỏng vấn.
-        language: "vi" hoặc "en".
-        num_q:    Số câu hỏi muốn sinh ra.
-
-    Returns:
-        list[Question] đã augment, sắp xếp theo độ ưu tiên.
+    Chi phí: 1 LLM call.
     """
     if not raw_docs:
         print("[Augmentor] Không có tài liệu retrieved, trả về list rỗng.")
         return []
 
     client = GeminiClient(api_key=GOOGLE_API_KEY_GENERATE_Q)
+
+    # ── Tính toán phân bổ 60/40 ──────────────────────────────────────────────
+    num_matching = math.ceil(num_q * 0.6)   # 60% matching (làm tròn lên)
+    num_gap = num_q - num_matching            # 40% gap
 
     # ── Chuẩn bị retrieved docs dưới dạng text ngắn gọn ─────────────────────
     retrieved_excerpts = []
@@ -201,14 +218,19 @@ def augment_questions(
         )
     retrieved_block = "\n\n".join(retrieved_excerpts)
 
-    # ── Chuẩn bị gap context ─────────────────────────────────────────────────
+    # ── Chuẩn bị matching + gap context ──────────────────────────────────────
+    matching_block = ""
+    if context.matching_skills:
+        matching_items = "\n".join(f"  - {s}" for s in context.matching_skills)
+        matching_block = (
+            f"\nKỸ NĂNG KHỚP (CV có + JD cần) – hỏi SÂU để đánh giá năng lực thực tế:\n{matching_items}\n"
+        )
+
     gap_block = ""
     if context.gap_areas:
         gap_items = "\n".join(f"  - {g}" for g in context.gap_areas)
         gap_block = (
-            f"\nGap Analysis – Điểm JD yêu cầu mà CV chưa thể hiện:\n{gap_items}\n"
-            f"→ Hãy ưu tiên tạo ít nhất {min(2, len(context.gap_areas))} câu hỏi "
-            f"khai thác sâu các gap này.\n"
+            f"\nKỸ NĂNG THIẾU (JD cần nhưng CV chưa thể hiện) – hỏi để đánh giá tiềm năng:\n{gap_items}\n"
         )
 
     lang_instruction = (
@@ -224,17 +246,37 @@ def augment_questions(
 Profile: {context.candidate_summary}
 Vị trí ứng tuyển: {context.position_summary}
 Tech stack chính: {stack_hint}
+{matching_block}
 {gap_block}
 === TÀI LIỆU CÂU HỎI RETRIEVED (từ knowledge base) ===
 {retrieved_block}
 
+=== PHÂN BỔ CÂU HỎI BẮT BUỘC ===
+- {num_matching} câu (60%) từ KỸ NĂNG KHỚP: Hỏi sâu kỹ năng ứng viên ĐÃ CÓ theo JD → đánh giá năng lực thực tế. Dùng source="rag_augmented".
+- {num_gap} câu (40%) từ KỸ NĂNG THIẾU: Hỏi về kỹ năng ứng viên CÒN THIẾU theo JD → đánh giá tiềm năng. Dùng source="gap_generated".
+
+=== QUY TẮC CHẤT LƯỢNG CÂU HỎI (BẮT BUỘC TUÂN THỦ) ===
+1. MỖI CÂU CHỈ HỎI MỘT VẤN ĐỀ DUY NHẤT – tuyệt đối không gộp 2-3 ý vào 1 câu.
+2. ĐI THẲNG VÀO VẤN ĐỀ – không mở đầu bằng ngữ cảnh hay giới thiệu dài dòng.
+3. CÂU HỎI NGẮN GỌN – tối đa 2 câu, dưới 50 từ.
+4. CỤ THỂ VÀ KỸ THUẬT – hỏi về kỹ thuật/công nghệ cụ thể, tránh hỏi chung chung.
+5. KHÔNG lặp lại ý nghĩa giữa các câu hỏi.
+
+VÍ DỤ TỐT:
+✅ "Giải thích sự khác biệt giữa useMemo và useCallback trong React."
+✅ "Bạn xử lý N+1 query problem trong ORM như thế nào?"
+✅ "Khi nào nên dùng index trong PostgreSQL và khi nào không nên?"
+
+VÍ DỤ XẤU (TUYỆT ĐỐI KHÔNG TẠO KIỂU NÀY):
+❌ "Trong dự án thương mại điện tử, khi cần xử lý giỏ hàng, bạn đã dùng React hooks nào, tại sao chọn hooks đó, và xử lý performance ra sao?"
+❌ "Hãy cho biết kinh nghiệm của bạn với Docker, bạn đã triển khai CI/CD chưa, và bạn dùng orchestration tool nào?"
+
 === NHIỆM VỤ ===
-Dựa vào tài liệu retrieved ở trên và thông tin ứng viên:
-1. Chọn lọc và ĐIỀU CHỈNH các câu hỏi phù hợp nhất với profile và vị trí cụ thể này.
-2. Cá nhân hoá câu hỏi: tham chiếu kinh nghiệm trong CV nếu có thể.
-3. Điều chỉnh độ khó phù hợp với cấp độ "{level}".
-4. Nếu có gap areas, thêm câu hỏi khai thác sâu các điểm đó.
-5. Loại bỏ câu hỏi trùng ý nghĩa hoặc quá chung chung.
+Dựa vào tài liệu retrieved và thông tin ứng viên:
+1. Chọn lọc và ĐIỀU CHỈNH câu hỏi phù hợp với profile và vị trí.
+2. Điều chỉnh độ khó phù hợp với cấp độ "{level}".
+3. Tuân thủ ĐÚNG tỷ lệ {num_matching} câu matching + {num_gap} câu gap.
+4. Tuân thủ ĐÚNG quy tắc chất lượng câu hỏi ở trên.
 
 YÊU CẦU OUTPUT:
 - Ngôn ngữ: {lang_instruction}
@@ -244,11 +286,9 @@ YÊU CẦU OUTPUT:
 Schema:
 {_QUESTION_SCHEMA}
 
-Với "source": dùng "rag_augmented" nếu dựa trên retrieved doc, "gap_generated" nếu sinh ra từ gap analysis.
-
 CHỈ trả về JSON array, tuyệt đối không có text thừa."""
 
-    print(f"\n>>> [Augmentor] Gọi LLM augment {len(raw_docs)} docs → {num_q} câu hỏi...")
+    print(f"\n>>> [Augmentor] Gọi LLM augment {len(raw_docs)} docs → {num_q} câu hỏi ({num_matching} matching + {num_gap} gap)...")
 
     result = client.generate_json(prompt)
 
@@ -267,7 +307,10 @@ CHỈ trả về JSON array, tuyệt đối không có text thừa."""
             source=item.get("source", "rag_augmented"),
         ))
 
-    print(f">>> [Augmentor] Sinh được {len(questions)} câu hỏi augmented.")
+    # Thống kê phân bổ thực tế
+    n_match = sum(1 for q in questions if q.source == "rag_augmented")
+    n_gap = sum(1 for q in questions if q.source == "gap_generated")
+    print(f">>> [Augmentor] Sinh được {len(questions)} câu hỏi: {n_match} matching + {n_gap} gap.")
     for q in questions:
         print(f"  [{q.source}] {q.question[:100]}...")
 

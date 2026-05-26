@@ -75,22 +75,37 @@ def _sorted_by_distance_bands(candidates: list[RawDoc]) -> list[RawDoc]:
 def retrieve_raw_docs(
     topics: list[str],
     level: str,
+    matching_topics: list[str] | None = None,
+    gap_topics: list[str] | None = None,
 ) -> list[RawDoc]:
     """
     Truy vấn ChromaDB và trả về ngân hàng câu hỏi đầy đủ (TOP_K_RETRIEVE docs).
 
-    Retriever KHÔNG giới hạn số lượng output theo num_q – đó là việc của Augmentor.
-    Nhiệm vụ duy nhất ở đây là lấy đủ TOP_K_RETRIEVE tài liệu liên quan nhất,
-    phân bổ slot hợp lý theo topic chính/phụ, rồi trả về toàn bộ ngân hàng.
+    Phân bổ slot:
+    - 60% cho matching_topics (kỹ năng ứng viên ĐÃ CÓ theo JD)
+    - 40% cho gap_topics (kỹ năng ứng viên THIẾU theo JD)
 
     Args:
-        topics:  List topic/query string. Phần tử đầu = topic chính (~60% slot).
-        level:   Cấp độ phỏng vấn (junior/mid/senior…) để lọc metadata.
+        topics:           All query strings (backward compat, dùng khi matching/gap chưa có).
+        level:            Cấp độ phỏng vấn (junior/mid/senior…) để lọc metadata.
+        matching_topics:  Query strings cho kỹ năng khớp (60%).
+        gap_topics:       Query strings cho kỹ năng thiếu (40%).
 
     Returns:
         list[RawDoc] tối đa TOP_K_RETRIEVE phần tử, sắp xếp theo relevance.
     """
-    if not topics:
+    # Nếu có matching/gap topics, dùng chúng; ngược lại fallback về topics cũ
+    if matching_topics or gap_topics:
+        m_topics = matching_topics or []
+        g_topics = gap_topics or []
+        all_query_topics = m_topics + g_topics
+    else:
+        # Backward compat: topic đầu = matching, còn lại = gap
+        all_query_topics = topics
+        m_topics = topics[:1] if topics else []
+        g_topics = topics[1:] if len(topics) > 1 else []
+
+    if not all_query_topics:
         return []
 
     collection = _get_collection()
@@ -100,7 +115,7 @@ def retrieve_raw_docs(
     try:
         embed_result = genai.embed_content(
             model=EMBED_MODEL,
-            content=topics,
+            content=all_query_topics,
             task_type="retrieval_query",
         )
         query_embeddings = embed_result["embedding"]
@@ -123,11 +138,11 @@ def retrieve_raw_docs(
         return []
 
     # ── Phân loại: valid (đúng level) vs fallback ────────────────────────────
-    valid_per_topic: dict[str, list[RawDoc]] = {t: [] for t in topics}
+    valid_per_topic: dict[str, list[RawDoc]] = {t: [] for t in all_query_topics}
     fallback: list[RawDoc] = []
     seen_docs: set[str] = set()
 
-    for i, topic in enumerate(topics):
+    for i, topic in enumerate(all_query_topics):
         for doc, meta, dist in zip(
             results["documents"][i],
             results["metadatas"][i],
@@ -143,31 +158,25 @@ def retrieve_raw_docs(
             else:
                 fallback.append(raw)
 
-    # ── Phân bổ slot theo TOP_K_RETRIEVE (ngân hàng đầy đủ) ─────────────────
-    # Topic chính chiếm ~60% ngân hàng, các topic phụ chia đều phần còn lại.
-    # Mục tiêu: trả về TỐI ĐA TOP_K_RETRIEVE docs, không cắt theo num_q.
-    primary_topic = topics[0]
-    secondary_topics = topics[1:]
-
-    if secondary_topics:
-        primary_slots = max(5, round(TOP_K_RETRIEVE * 0.6))   # ít nhất 5 docs cho topic chính
-        secondary_slots = TOP_K_RETRIEVE - primary_slots
-    else:
-        primary_slots = TOP_K_RETRIEVE
-        secondary_slots = 0
+    # ── Phân bổ slot: 60% matching, 40% gap ─────────────────────────────────
+    matching_slots = max(5, round(TOP_K_RETRIEVE * 0.6)) if g_topics else TOP_K_RETRIEVE
+    gap_slots = TOP_K_RETRIEVE - matching_slots if g_topics else 0
 
     selected: list[RawDoc] = []
 
-    # Slot chủ đề chính
-    primary_sorted = _sorted_by_distance_bands(valid_per_topic[primary_topic])
-    selected.extend(primary_sorted[:primary_slots])
+    # Slot matching topics (60%)
+    if m_topics:
+        per_m = max(1, matching_slots // len(m_topics))
+        for t in m_topics:
+            candidates = _sorted_by_distance_bands(valid_per_topic.get(t, []))
+            selected.extend(candidates[:per_m])
 
-    # Slot chủ đề phụ
-    if secondary_slots > 0 and secondary_topics:
-        per_sec = max(1, secondary_slots // len(secondary_topics))
-        for t in secondary_topics:
-            candidates = _sorted_by_distance_bands(valid_per_topic[t])
-            selected.extend(candidates[:per_sec])
+    # Slot gap topics (40%)
+    if gap_slots > 0 and g_topics:
+        per_g = max(1, gap_slots // len(g_topics))
+        for t in g_topics:
+            candidates = _sorted_by_distance_bands(valid_per_topic.get(t, []))
+            selected.extend(candidates[:per_g])
 
     # Fallback nếu vẫn chưa đủ TOP_K_RETRIEVE
     if len(selected) < TOP_K_RETRIEVE:
@@ -177,6 +186,8 @@ def retrieve_raw_docs(
     # ── Log ──────────────────────────────────────────────────────────────────
     print("\n" + "-" * 50)
     print(f">>> [Retriever] Ngân hàng câu hỏi: {len(selected)}/{TOP_K_RETRIEVE} docs từ ChromaDB")
+    print(f"    Matching topics ({matching_slots} slots): {m_topics}")
+    print(f"    Gap topics ({gap_slots} slots): {g_topics}")
     for i, doc in enumerate(selected):
         print(
             f"  [{i+1}] topic={doc.topic!r} dist={doc.distance:.4f}\n"

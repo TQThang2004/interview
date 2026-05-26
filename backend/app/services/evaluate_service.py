@@ -8,7 +8,7 @@ Tách ra khỏi rag_service.py để:
 """
 from __future__ import annotations
 
-from app.core.config import GOOGLE_API_KEY
+from app.core.config import GOOGLE_API_KEY_EVALUATE
 from app.utils.llm_client import GeminiClient
 import json
 import re
@@ -44,7 +44,7 @@ class EvaluationResult:
 
 def evaluate_cv(cv_text: str) -> dict:
     """Đánh giá CV và trả về JSON có cấu trúc."""
-    client = GeminiClient(api_key=GOOGLE_API_KEY)
+    client = GeminiClient(api_key=GOOGLE_API_KEY_EVALUATE)
     
     prompt = (
         "Bạn là một chuyên gia tuyển dụng (Headhunter/HR Manager) giàu kinh nghiệm. "
@@ -106,7 +106,7 @@ def evaluate_answer(
     Returns:
         EvaluationResult với score, strengths, weaknesses, suggestions.
     """
-    client = GeminiClient(api_key=GOOGLE_API_KEY)
+    client = GeminiClient(api_key=GOOGLE_API_KEY_EVALUATE)
 
     vinglish_note = ""
     if language == "vi":
@@ -157,12 +157,34 @@ def evaluate_answer(
 
 
 def _parse_evaluation(raw: str) -> EvaluationResult:
-    """Parse output text LLM thanh EvaluationResult – luu day du noi dung multi-line."""
+    """Parse output text LLM thanh EvaluationResult – dung regex robust, khong phu thuoc format cung."""
     score = 0.0
     score_str = "0/10"
     strengths = ""
     weaknesses = ""
     suggestions = ""
+
+    # ── Regex patterns (case-insensitive) bat moi bien the LLM output ─────
+    # Bat: "DIEM:", "Điểm:", "điểm:", "ĐIỂM:", "Diem:", "Score:", "DIEM :" ...
+    # QUAN TRONG: phai check DIEM MANH/YEU truoc de tranh match nham
+    re_strengths = re.compile(
+        r'^[\s*]*(DIEM\s*MANH|ĐIỂM\s*MẠNH|Điểm\s*mạnh|STRENGTHS?)\s*:\s*(.*)',
+        re.IGNORECASE
+    )
+    re_weaknesses = re.compile(
+        r'^[\s*]*(DIEM\s*YEU|ĐIỂM\s*YẾU|Điểm\s*yếu|WEAKNESSES?)\s*:\s*(.*)',
+        re.IGNORECASE
+    )
+    re_suggestions = re.compile(
+        r'^[\s*]*(GOI\s*Y(\s*BO\s*SUNG)?|GỢI\s*Ý(\s*BỔ\s*SUNG)?|SUGGESTIONS?)\s*:\s*(.*)',
+        re.IGNORECASE
+    )
+    re_score_line = re.compile(
+        r'^[\s*]*(DIEM|ĐIỂM|Điểm|điểm|Score|SCORE)\s*:\s*(.*)',
+        re.IGNORECASE
+    )
+    # Pattern trích score dạng X/10 từ chuỗi bất kỳ
+    re_score_value = re.compile(r'(\d+[.,]?\d*)\s*/\s*10')
 
     lines = raw.split("\n")
     current_field = None
@@ -171,90 +193,82 @@ def _parse_evaluation(raw: str) -> EvaluationResult:
     def flush_buffer() -> str:
         return " ".join(buffer).strip()
 
+    def flush_current():
+        nonlocal strengths, weaknesses, suggestions
+        if current_field == "strengths":
+            strengths = flush_buffer()
+        elif current_field == "weaknesses":
+            weaknesses = flush_buffer()
+        elif current_field == "suggestions":
+            suggestions = flush_buffer()
+
     for line in lines:
         stripped = line.strip().replace("*", "")
 
-        # QUAN TRONG: phai check DIEM MANH / DIEM YEU / GOI Y TRUOC
-        # vi "DIEM MANH:".startswith("DIEM:") == True → parse sai diem
-        if (
-            stripped.startswith("DIEM MANH:")
-            or stripped.startswith("DIEM MANH :")
-            or stripped.startswith("\u0110I\u1ec2M M\u1ea0NH:")
-        ):
-            if current_field == "strengths":
-                strengths = flush_buffer()
-            elif current_field == "weaknesses":
-                weaknesses = flush_buffer()
-            elif current_field == "suggestions":
-                suggestions = flush_buffer()
-            buffer = [stripped.split(":", 1)[1].strip()]
+        # QUAN TRONG: check DIEM MANH / DIEM YEU / GOI Y TRUOC "DIEM:"
+        m_str = re_strengths.match(stripped)
+        m_weak = re_weaknesses.match(stripped)
+        m_sug = re_suggestions.match(stripped)
+        m_score = re_score_line.match(stripped)
+
+        if m_str:
+            flush_current()
+            buffer = [m_str.group(2).strip()]
             current_field = "strengths"
 
-        elif (
-            stripped.startswith("DIEM YEU:")
-            or stripped.startswith("DIEM YEU :")
-            or stripped.startswith("\u0110I\u1ec2M Y\u1ebeU:")
-        ):
-            if current_field == "strengths":
-                strengths = flush_buffer()
-            elif current_field == "weaknesses":
-                weaknesses = flush_buffer()
-            elif current_field == "suggestions":
-                suggestions = flush_buffer()
-            buffer = [stripped.split(":", 1)[1].strip()]
+        elif m_weak:
+            flush_current()
+            buffer = [m_weak.group(2).strip()]
             current_field = "weaknesses"
 
-        elif (
-            stripped.startswith("GOI Y BO SUNG:")
-            or stripped.startswith("GOI Y:")
-            or stripped.startswith("G\u1ee2I \u00dd B\u1ed4 SUNG:")
-            or stripped.startswith("G\u1ee2I \u00dd:")
-        ):
-            if current_field == "strengths":
-                strengths = flush_buffer()
-            elif current_field == "weaknesses":
-                weaknesses = flush_buffer()
-            elif current_field == "suggestions":
-                suggestions = flush_buffer()
-            buffer = [stripped.split(":", 1)[1].strip()]
+        elif m_sug:
+            flush_current()
+            # group(4) la noi dung sau dau ":"
+            content = m_sug.group(4) if m_sug.group(4) else m_sug.group(2)
+            buffer = [content.strip() if content else ""]
             current_field = "suggestions"
 
-        elif (
-            stripped.startswith("DIEM:")
-            or stripped.startswith("DIEM :")
-            or stripped.startswith("\u0110I\u1ec2M:")
-            or stripped.startswith("\u0110I\u1ec2M :")
-        ):
-            if current_field == "strengths":
-                strengths = flush_buffer()
-            elif current_field == "weaknesses":
-                weaknesses = flush_buffer()
-            elif current_field == "suggestions":
-                suggestions = flush_buffer()
+        elif m_score:
+            flush_current()
             buffer = []
             current_field = None
 
-            val = stripped.split(":", 1)[1].strip()
+            val = m_score.group(2).strip()
             score_str = val
-            try:
-                # Chuẩn hóa: thay dấu phẩy → dấu chấm, bỏ khoảng trắng
-                raw_num = val.split("/")[0].strip().replace(",", ".")
-                score = float(raw_num)
-            except (ValueError, IndexError):
-                pass
+            # Trích score từ pattern X/10
+            score_match = re_score_value.search(val)
+            if score_match:
+                try:
+                    score = float(score_match.group(1).replace(",", "."))
+                except (ValueError, IndexError):
+                    pass
 
         elif current_field and stripped:
             buffer.append(stripped)
 
-    # Flush cuoi
-    if current_field == "strengths":
-        strengths = flush_buffer()
-    elif current_field == "weaknesses":
-        weaknesses = flush_buffer()
-    elif current_field == "suggestions":
-        suggestions = flush_buffer()
+    # Flush field cuối cùng
+    flush_current()
 
-    # Fallback neu parse that bai
+    # ── Fallback 1: Nếu chưa parse được score, tìm X/10 BẤT KỲ ĐÂU trong toàn bộ output ──
+    if score == 0.0:
+        fallback_match = re_score_value.search(raw)
+        if fallback_match:
+            try:
+                score = float(fallback_match.group(1).replace(",", "."))
+                score_str = fallback_match.group(0)
+                print(f"[_parse_evaluation] [WARNING] Dung fallback regex: tim thay score={score} tu '{score_str}'")
+            except (ValueError, IndexError):
+                pass
+
+    # ── Cảnh báo khi score=0 nhưng LLM có trả output ──
+    if score == 0.0 and raw.strip():
+        print(f"[_parse_evaluation] [WARNING] Score=0.0 nhung LLM co output ({len(raw)} chars)")
+        print(f"[_parse_evaluation] Raw output (200 chars dau): {raw[:200]}")
+
+    # Clamp score vào khoảng hợp lệ [0, 10]
+    score = max(0.0, min(10.0, score))
+
+    # Fallback nếu parse hoàn toàn thất bại
     if not strengths and not weaknesses:
         suggestions = "Da co loi phan tich tu AI. Vui long thu lai."
         strengths = raw[:300]

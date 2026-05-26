@@ -79,4 +79,4 @@ class SaveQuestionBody(BaseModel):
 class UpdateAnswerBody(BaseModel):
     user_answer: str
     ai_evaluation: str
-    score: Optional[float] = None  # Optional để tránh 422 khi client gửi thiếu
+    score: float = 0.0  # Bắt buộc là float, default 0.0 (không dùng None để tránh bug ghi đè điểm)

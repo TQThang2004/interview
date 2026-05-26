@@ -105,7 +105,13 @@ async def update_answer(
     current_user: dict = Depends(get_current_user),
 ):
     """Cập nhật câu trả lời và đánh giá AI cho một câu hỏi đã lưu."""
-    score_value = body.score if body.score is not None else 0.0
+    # Validate score range
+    score_value = max(0.0, min(10.0, body.score))
+    if score_value != body.score:
+        print(f"[History] [WARNING] Score bi clamp: {body.score} -> {score_value}")
+
+    print(f"[History] Lưu answer: interview={interview_id}, question={question_id}, score={score_value}")
+
     ok = await history_controller.handle_update_answer(
         question_id, body.user_answer, body.ai_evaluation, score_value
     )

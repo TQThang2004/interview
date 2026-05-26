@@ -13,6 +13,7 @@ from app.core.config import (  # noqa: F401 – re-export
     GOOGLE_API_KEY_EXTRACT_TOPIC,
     GOOGLE_API_KEY_GENERATE_Q,
     GOOGLE_API_KEY_EVALUATE,
+    GOOGLE_API_KEY_AUDIO,
     LLM_MODEL,
     EMBED_MODEL,
     CHROMA_DB_PATH,
