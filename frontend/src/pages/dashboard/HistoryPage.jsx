@@ -359,7 +359,7 @@ export default function HistoryPage() {
 
                 {/* ── Detail expand ── */}
                 {expanded === h.id && (
-                  <div style={{ borderTop: '1px solid var(--border)', padding: '16px 22px', background: 'oklch(22% 0.015 250 / 0.4)' }}>
+                  <div style={{ borderTop: '1px solid var(--border)', padding: '16px 22px', background: 'var(--bg-elevated)' }}>
                     {!detail ? (
                       <div style={{ color: 'var(--text-muted)', fontSize: '13px', textAlign: 'center', padding: '16px' }}>
                         Đang tải chi tiết...

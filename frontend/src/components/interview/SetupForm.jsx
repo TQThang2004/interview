@@ -101,7 +101,7 @@ export default function SetupForm({ cvFile, setCvFile, jd, setJd, level, setLeve
                 ? 'oklch(65% 0.2 25 / 0.07)'
                 : cvFile
                   ? 'oklch(72% 0.18 145 / 0.08)'
-                  : 'oklch(22% 0.015 250 / 0.4)',
+                  : 'var(--bg-elevated)',
               padding: '20px'
             }}
               onMouseEnter={e => {
@@ -113,7 +113,7 @@ export default function SetupForm({ cvFile, setCvFile, jd, setJd, level, setLeve
               onMouseLeave={e => {
                 if (!cvFile && !hasError('cv')) {
                   e.currentTarget.style.borderColor = 'var(--border)';
-                  e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.4)';
+                  e.currentTarget.style.background = 'var(--bg-elevated)';
                 }
               }}
             >

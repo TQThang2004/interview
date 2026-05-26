@@ -11,3 +11,4 @@ python-jose[cryptography]
 # Google OAuth
 google-auth
 httpx
+cloudinary

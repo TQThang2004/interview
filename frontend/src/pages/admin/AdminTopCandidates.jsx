@@ -15,7 +15,7 @@ function CandidateRow({ candidate, index }) {
   return (
     <tr
       style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.15s' }}
-      onMouseEnter={e => e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.3)'}
+      onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
     >
       <td style={{ padding: '16px', width: '60px', textAlign: 'center' }}>
@@ -36,12 +36,12 @@ function CandidateRow({ candidate, index }) {
           <div style={{
             width: '40px', height: '40px', borderRadius: '50%',
             background: isTop3 ? rank.bg : 'var(--gradient-primary)',
+            padding: isTop3 ? '2px' : '0px',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 800, fontSize: '15px',
-            color: isTop3 && index > 0 ? rank.color : 'oklch(15% 0.01 250)',
             flexShrink: 0,
+            overflow: 'hidden'
           }}>
-            {(candidate.username || '?').slice(0, 2).toUpperCase()}
+            <img src={candidate.avatar_url || '/avatar-default.jpg'} alt="avatar" style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
           </div>
           <div>
             <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '2px' }}>{candidate.username}</div>
@@ -144,7 +144,7 @@ export default function AdminTopCandidates() {
       <div className="glass-card" style={{ overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid var(--border)', background: 'oklch(22% 0.015 250 / 0.5)' }}>
+            <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
               {['Rank', 'Ứng viên', 'Số PV hoàn thành', 'Điểm cao nhất', 'Điểm TB ⭐'].map(h => (
                 <th key={h} style={{ padding: '14px 16px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: h === 'Điểm TB ⭐' ? 'right' : 'left' }}>{h}</th>
               ))}

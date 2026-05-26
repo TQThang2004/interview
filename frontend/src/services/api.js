@@ -39,6 +39,22 @@ export const api = {
     return res.json();
   },
 
+  evaluateCv: async (cvFile) => {
+    const formData = new FormData();
+    formData.append("cv", cvFile);
+    const res = await fetch(`${API_BASE}/evaluate/cv`, {
+      method: "POST",
+      credentials: "include",
+      body: formData
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
+  },
+
   transcribe: async (audioBlob) => {
     const formData = new FormData();
     formData.append("audio", audioBlob, "recording.webm");
@@ -241,14 +257,30 @@ export const api = {
     if (!res.ok) return { posts: [], total: 0 };
     return res.json();
   },
-  createCommunityPost: async (title, content, category, tags) => {
+  createCommunityPost: async (title, content, category, tags, imageUrl = null) => {
     const res = await fetch(`${API_BASE}/community/posts`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, content, category, tags })
+      body: JSON.stringify({ title, content, category, tags, image_url: imageUrl })
     });
     if (!res.ok) return null;
+    return res.json();
+  },
+
+  uploadImage: async (imageFile) => {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    const res = await fetch(`${API_BASE}/upload`, {
+      method: "POST",
+      credentials: "include",
+      body: formData
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
     return res.json();
   },
   toggleLikePost: async (postId) => {
@@ -270,6 +302,21 @@ export const api = {
     if (!res.ok) return [];
     const data = await res.json();
     return data.tags;
+  },
+
+  updateProfile: async (profileData) => {
+    const res = await fetch(`${API_BASE}/auth/profile`, {
+      method: "PUT",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(profileData)
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
   }
 };
 

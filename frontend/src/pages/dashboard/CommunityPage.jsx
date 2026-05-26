@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Users, MessageSquare, ThumbsUp, Bookmark, Search, TrendingUp, Hash, ChevronRight, AlertCircle, Plus } from 'lucide-react';
+import { Users, MessageSquare, ThumbsUp, Bookmark, Search, TrendingUp, Hash, ChevronRight, AlertCircle, Plus, Image, UploadCloud } from 'lucide-react';
 import { api } from '../../services/api';
-
-const MOCK_POSTS = []; // Removed mock data
-const TAGS = []; // Removed mock data
 
 const CATEGORY_COLOR = {
   'Kinh nghiệm': { bg: 'oklch(75% 0.17 150 / 0.12)', color: 'oklch(68% 0.2 145)', border: 'oklch(75% 0.17 150 / 0.3)' },
@@ -21,6 +18,8 @@ export default function CommunityPage() {
   const [newContent, setNewContent] = useState('');
   const [newCategory, setNewCategory] = useState('Thảo luận');
   const [newTags, setNewTags] = useState('');
+  const [newImageUrl, setNewImageUrl] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
@@ -63,16 +62,33 @@ export default function CommunityPage() {
     }
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploadingImage(true);
+    try {
+      const res = await api.uploadImage(file);
+      if (res && res.url) {
+        setNewImageUrl(res.url);
+      }
+    } catch (err) {
+      alert("Lỗi tải ảnh lên: " + err.message);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
   const handleCreatePost = async (e) => {
     e.preventDefault();
     if (!newTitle.trim() || !newContent.trim()) return alert('Vui lòng nhập đủ tiêu đề và nội dung');
     const tagsArray = newTags.split(',').map(t => t.trim()).filter(t => t);
     try {
-      await api.createCommunityPost(newTitle, newContent, newCategory, tagsArray);
+      await api.createCommunityPost(newTitle, newContent, newCategory, tagsArray, newImageUrl || null);
       setShowCreate(false);
       setNewTitle('');
       setNewContent('');
       setNewTags('');
+      setNewImageUrl('');
       loadData();
     } catch (err) {
       alert('Lỗi khi đăng bài');
@@ -119,8 +135,23 @@ export default function CommunityPage() {
                   <option value="Tài nguyên">Tài nguyên</option>
                 </select>
                 <textarea className="input-field" placeholder="Nội dung bài viết..." value={newContent} onChange={e => setNewContent(e.target.value)} rows={4} required></textarea>
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <div className="input-group" style={{ flex: 1 }}>
+                    <Image className="input-icon" size={16} />
+                    <input className="input-field" placeholder="Đường dẫn ảnh hoặc tải lên..." value={newImageUrl} onChange={e => setNewImageUrl(e.target.value)} style={{ paddingLeft: '44px' }} />
+                  </div>
+                  <label className="btn-ghost" style={{ padding: '10px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+                    <UploadCloud size={16} /> {uploadingImage ? 'Đang tải...' : 'Tải lên'}
+                    <input type="file" hidden accept="image/*" onChange={handleImageUpload} disabled={uploadingImage} />
+                  </label>
+                </div>
+                {newImageUrl && (
+                  <div style={{ marginTop: '8px', borderRadius: '12px', overflow: 'hidden', height: '150px', background: 'oklch(18% 0.02 260 / 0.6)' }}>
+                    <img src={newImageUrl} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+                  </div>
+                )}
                 <input className="input-field" placeholder="Tags (cách nhau bởi dấu phẩy, vd: react, js)" value={newTags} onChange={e => setNewTags(e.target.value)} />
-                <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start', marginTop: '8px' }}>Đăng bài</button>
+                <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start', marginTop: '8px' }} disabled={uploadingImage}>Đăng bài</button>
               </form>
             </div>
           )}
@@ -141,7 +172,7 @@ export default function CommunityPage() {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '12px', color: 'oklch(15% 0.01 250)' }}>
-                        {post.author_avatar ? <img src={post.author_avatar} alt="avatar" style={{width:'100%', height:'100%', borderRadius:'50%'}}/> : (post.author_name ? post.author_name.substring(0,2).toUpperCase() : 'U')}
+                        <img src={post.author_avatar || '/avatar-default.jpg'} alt="avatar" style={{width:'100%', height:'100%', borderRadius:'50%', objectFit: 'cover'}}/>
                       </div>
                       <div>
                         <div style={{ fontWeight: 600, fontSize: '13px' }}>{post.author_name}</div>
@@ -155,6 +186,13 @@ export default function CommunityPage() {
 
                   <h3 style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', lineHeight: 1.4 }}>{post.title}</h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.65, marginBottom: '14px' }}>{post.content}</p>
+                  
+                  {/* Image */}
+                  {post.image_url && (
+                    <div style={{ marginBottom: '14px', borderRadius: '12px', overflow: 'hidden' }}>
+                      <img src={post.image_url} alt="post" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+                    </div>
+                  )}
 
                   {/* Tags */}
                   <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '14px' }}>

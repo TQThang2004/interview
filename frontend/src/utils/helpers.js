@@ -7,12 +7,8 @@
  * Lấy 2 chữ cái đầu của username hoặc email để làm avatar.
  */
 export function getAvatar(user) {
-  if (!user) return '?';
-  return (
-    user.username?.slice(0, 2).toUpperCase() ||
-    user.email?.slice(0, 2).toUpperCase() ||
-    '?'
-  );
+  if (!user) return '/avatar-default.jpg';
+  return user.avatar_url || '/avatar-default.jpg';
 }
 
 /**

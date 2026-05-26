@@ -49,6 +49,7 @@ async def list_posts(
                 p.content,
                 p.category,
                 p.tags,
+                p.image_url,
                 p.created_at,
                 u.id::text AS author_id,
                 u.username AS author_name,
@@ -63,7 +64,7 @@ async def list_posts(
             ORDER BY p.created_at DESC
             LIMIT ${idx+1} OFFSET ${idx+2}
             """,
-            *params, current_user_id, current_user_id, limit, offset,
+            *params, current_user_id, limit, offset,
         )
 
         count_query = f"SELECT COUNT(*) FROM community_posts p {where}"
@@ -78,17 +79,18 @@ async def create_post(
     content: str,
     category: str,
     tags: list[str],
+    image_url: Optional[str] = None,
 ) -> dict:
     """Tạo bài viết mới. Trả về dict bài viết đã tạo."""
     pool = await get_pool()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
             """
-            INSERT INTO community_posts (author_id, title, content, category, tags)
-            VALUES ($1, $2, $3, $4, $5)
-            RETURNING id::text, title, content, category, tags, created_at
+            INSERT INTO community_posts (author_id, title, content, category, tags, image_url)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id::text, title, content, category, tags, image_url, created_at
             """,
-            author_id, title, content, category, tags,
+            author_id, title, content, category, tags, image_url,
         )
     return serialize_record(row)
 
@@ -100,7 +102,7 @@ async def get_post_detail(post_id: str, current_user_id: str) -> Optional[dict]:
         post = await conn.fetchrow(
             """
             SELECT
-                p.id::text, p.title, p.content, p.category, p.tags, p.created_at,
+                p.id::text, p.title, p.content, p.category, p.tags, p.image_url, p.created_at,
                 u.id::text AS author_id, u.username AS author_name, u.avatar_url AS author_avatar,
                 (SELECT COUNT(*) FROM community_likes l WHERE l.post_id = p.id) AS likes_count,
                 (SELECT COUNT(*) FROM community_comments c WHERE c.post_id = p.id) AS comments_count,
@@ -281,7 +283,7 @@ async def get_my_saves(user_id: str, limit: int, offset: int) -> list[dict]:
         rows = await conn.fetch(
             """
             SELECT
-                p.id::text, p.title, p.content, p.category, p.tags, p.created_at,
+                p.id::text, p.title, p.content, p.category, p.tags, p.image_url, p.created_at,
                 u.username AS author_name, u.avatar_url AS author_avatar,
                 (SELECT COUNT(*) FROM community_likes l WHERE l.post_id = p.id) AS likes_count,
                 (SELECT COUNT(*) FROM community_comments c WHERE c.post_id = p.id) AS comments_count

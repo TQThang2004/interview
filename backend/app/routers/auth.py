@@ -70,3 +70,15 @@ async def logout(response: Response):
 async def me(current_user: dict = Depends(get_current_user)):
     """Trả về thông tin user đang đăng nhập (dùng cookie)."""
     return UserResponse(**current_user).model_dump()
+
+from app.schemas.auth_schemas import UpdateProfileRequest
+
+@router.put("/profile")
+async def update_profile(body: UpdateProfileRequest, current_user: dict = Depends(get_current_user)):
+    """Cập nhật thông tin profile của user hiện tại."""
+    try:
+        return await auth_controller.handle_update_profile(
+            current_user["id"], body.model_dump(exclude_unset=True)
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

@@ -5,16 +5,16 @@ import {
   RefreshCw, X, Shield, Mail, Calendar, Mic, Star,
 } from 'lucide-react';
 
-function Avatar({ name, size = 36 }) {
-  const letters = (name || '?').slice(0, 2).toUpperCase();
+function Avatar({ name, avatar_url, size = 36 }) {
+  const url = avatar_url || '/avatar-default.jpg';
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%',
-      background: 'var(--gradient-primary)', display: 'flex',
-      alignItems: 'center', justifyContent: 'center',
-      fontWeight: 800, fontSize: size * 0.38, color: 'oklch(15% 0.01 250)',
-      flexShrink: 0,
-    }}>{letters}</div>
+      background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex',
+      alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden'
+    }}>
+      <img src={url} alt={name || 'avatar'} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+    </div>
   );
 }
 
@@ -68,7 +68,7 @@ function UserDetailModal({ userId, onClose }) {
           <div style={{ padding: '24px' }}>
             {/* Profile */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', padding: '16px', borderRadius: '12px', background: 'var(--bg-elevated)', border: '1px solid var(--border)' }}>
-              <Avatar name={user.username} size={52} />
+              <Avatar name={user.username} avatar_url={user.avatar_url} size={52} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 700, fontSize: '17px', marginBottom: '4px' }}>{user.username}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '13px', marginBottom: '6px' }}>
@@ -267,7 +267,7 @@ export default function AdminUsers() {
       <div className="glass-card" style={{ overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid var(--border)', background: 'oklch(22% 0.015 250 / 0.5)' }}>
+            <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
               {['Người dùng', 'Email', 'Role', 'Thống kê', 'Ngày tham gia', 'Hành động'].map(h => (
                 <th key={h} style={{ padding: '14px 16px', fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
               ))}
@@ -283,12 +283,12 @@ export default function AdminUsers() {
             ) : users.map(u => (
               <tr key={u.id}
                 style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.3)'}
+                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 <td style={{ padding: '14px 16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Avatar name={u.username} size={36} />
+                    <Avatar name={u.username} avatar_url={u.avatar_url} size={36} />
                     <div>
                       <button
                         onClick={() => setSelectedUserId(u.id)}
@@ -327,7 +327,7 @@ export default function AdminUsers() {
                       <button
                         onClick={() => setConfirm({ type: 'role', userId: u.id, role: 'user', message: `Hạ quyền "${u.username}" xuống User?` })}
                         title="Hạ quyền User"
-                        style={{ padding: '7px', background: 'oklch(22% 0.015 250 / 0.5)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex' }}
+                        style={{ padding: '7px', background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex' }}
                       >
                         <User size={16} />
                       </button>

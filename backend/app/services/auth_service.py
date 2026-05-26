@@ -40,7 +40,7 @@ async def register_user(username: str, email: str, password: str) -> dict:
             """
             INSERT INTO users (username, email, password_hash)
             VALUES ($1, $2, $3)
-            RETURNING id::text, username, email, role::text, avatar_url, phone_number
+            RETURNING id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications
             """,
             username, email, password_hash
         )
@@ -57,7 +57,7 @@ async def authenticate_user(email: str, password: str) -> dict | None:
         row = await conn.fetchrow(
             """
             SELECT id::text, username, email, password_hash,
-                   role::text, avatar_url, phone_number
+                   role::text, avatar_url, phone_number, fullname, bio, level, language, notifications
             FROM users WHERE email = $1
             """,
             email
@@ -105,7 +105,7 @@ async def google_login_or_register(access_token: str, user_info: dict | None = N
     async with pool.acquire() as conn:
         # 1. Tìm user theo google_id
         user = await conn.fetchrow(
-            "SELECT id::text, username, email, role::text, avatar_url, phone_number "
+            "SELECT id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications "
             "FROM users WHERE google_id = $1",
             google_id,
         )
@@ -113,7 +113,7 @@ async def google_login_or_register(access_token: str, user_info: dict | None = N
         if not user:
             # 2. Tìm theo email (tài khoản email/pass đã tồn tại → liên kết)
             user = await conn.fetchrow(
-                "SELECT id::text, username, email, role::text, avatar_url, phone_number "
+                "SELECT id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications "
                 "FROM users WHERE email = $1",
                 email,
             )
@@ -125,7 +125,7 @@ async def google_login_or_register(access_token: str, user_info: dict | None = N
                 )
                 # Lấy lại bản ghi sau update
                 user = await conn.fetchrow(
-                    "SELECT id::text, username, email, role::text, avatar_url, phone_number "
+                    "SELECT id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications "
                     "FROM users WHERE email = $1",
                     email,
                 )
@@ -143,9 +143,38 @@ async def google_login_or_register(access_token: str, user_info: dict | None = N
                     """
                     INSERT INTO users (username, email, google_id, avatar_url)
                     VALUES ($1, $2, $3, $4)
-                    RETURNING id::text, username, email, role::text, avatar_url, phone_number
+                    RETURNING id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications
                     """,
                     username, email, google_id, picture,
                 )
 
     return dict(user)
+
+async def update_profile(user_id: str, updates: dict) -> dict:
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        set_clauses = []
+        values = []
+        idx = 1
+        for k, v in updates.items():
+            if v is not None:
+                set_clauses.append(f"{k} = ${idx}")
+                values.append(v)
+                idx += 1
+        
+        if not set_clauses:
+            row = await conn.fetchrow(
+                "SELECT id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications FROM users WHERE id = $1",
+                user_id
+            )
+            return dict(row)
+            
+        values.append(user_id)
+        query = f"""
+            UPDATE users
+            SET {', '.join(set_clauses)}, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ${idx}
+            RETURNING id::text, username, email, role::text, avatar_url, phone_number, fullname, bio, level, language, notifications
+        """
+        row = await conn.fetchrow(query, *values)
+        return dict(row)

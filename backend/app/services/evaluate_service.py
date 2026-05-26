@@ -8,8 +8,10 @@ Tách ra khỏi rag_service.py để:
 """
 from __future__ import annotations
 
-from app.core.config import GOOGLE_API_KEY_EVALUATE
+from app.core.config import GOOGLE_API_KEY
 from app.utils.llm_client import GeminiClient
+import json
+import re
 
 
 # ---------------------------------------------------------------------------
@@ -40,6 +42,45 @@ class EvaluationResult:
             "suggestions": self.suggestions,
         }
 
+def evaluate_cv(cv_text: str) -> dict:
+    """Đánh giá CV và trả về JSON có cấu trúc."""
+    client = GeminiClient(api_key=GOOGLE_API_KEY)
+    
+    prompt = (
+        "Bạn là một chuyên gia tuyển dụng (Headhunter/HR Manager) giàu kinh nghiệm. "
+        "Hãy đánh giá nội dung CV sau đây và trả về kết quả DƯỚI DẠNG JSON. "
+        "Yêu cầu cấu trúc JSON chính xác như sau:\n"
+        "{\n"
+        '  "overall": <số điểm từ 1 đến 10>,\n'
+        '  "sections": [\n'
+        '    { "name": "<Tên phần, VD: Thông tin cá nhân>", "score": <số điểm 1-10>, "feedback": "<nhận xét chi tiết, chỉ ra điểm làm tốt và chưa tốt>" }\n'
+        "  ],\n"
+        '  "suggestions": [\n'
+        '    "<hướng dẫn cải thiện cụ thể 1>",\n'
+        '    "<hướng dẫn cải thiện cụ thể 2>"\n'
+        "  ]\n"
+        "}\n\n"
+        "NỘI DUNG CV:\n"
+        f"{cv_text}\n\n"
+        "Chỉ trả về chuỗi JSON hợp lệ, không kèm markdown, không kèm lời giải thích."
+    )
+    
+    raw = client.generate(prompt)
+    
+    try:
+        # Xóa markdown code block nếu có
+        raw_clean = re.sub(r'```json|```', '', raw).strip()
+        result = json.loads(raw_clean)
+        return result
+    except Exception as e:
+        print(f"Error parsing CV evaluation JSON: {e}")
+        return {
+            "overall": 5.0,
+            "sections": [
+                { "name": "Nội dung", "score": 5, "feedback": "Không thể phân tích cấu trúc CV." }
+            ],
+            "suggestions": ["Vui lòng đảm bảo CV rõ ràng và thử lại."]
+        }
 
 # ---------------------------------------------------------------------------
 # Public API
@@ -65,7 +106,7 @@ def evaluate_answer(
     Returns:
         EvaluationResult với score, strengths, weaknesses, suggestions.
     """
-    client = GeminiClient(api_key=GOOGLE_API_KEY_EVALUATE)
+    client = GeminiClient(api_key=GOOGLE_API_KEY)
 
     vinglish_note = ""
     if language == "vi":

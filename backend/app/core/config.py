@@ -20,6 +20,11 @@ GOOGLE_API_KEY_EXTRACT_TOPIC: str = os.getenv("GOOGLE_API_KEY_EXTRACT_TOPIC", GO
 GOOGLE_API_KEY_GENERATE_Q: str = os.getenv("GOOGLE_API_KEY_GENERATE_Q", GOOGLE_API_KEY)
 GOOGLE_API_KEY_EVALUATE: str = os.getenv("GOOGLE_API_KEY_EVALUATE", GOOGLE_API_KEY)
 
+# -- Cloudinary --
+CLOUDINARY_CLOUD_NAME: str = os.getenv("CLOUDINARY_CLOUD_NAME", "")
+CLOUDINARY_API_KEY: str = os.getenv("CLOUDINARY_API_KEY", "")
+CLOUDINARY_API_SECRET: str = os.getenv("CLOUDINARY_API_SECRET", "")
+
 if not GOOGLE_API_KEY:
     print("Warning: Không tìm thấy GOOGLE_API_KEY trong file .env, các module có thể gặp lỗi nếu thiếu key chi tiết.")
 

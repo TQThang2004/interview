@@ -23,6 +23,7 @@
     --bg-surface:     oklch(16% 0.018 250);
     --bg-elevated:    oklch(22% 0.015 250 / 0.5);
     --bg-card:        oklch(18% 0.02 260 / 0.85);
+    --bg-hover:       oklch(22% 0.015 250 / 0.3);
 
     /* Layout-specific */
     --sidebar-bg:          oklch(16% 0.018 250 / 0.8);
@@ -72,6 +73,7 @@
     --bg-surface:     oklch(94% 0.005 250);
     --bg-elevated:    oklch(91% 0.006 250 / 0.7);
     --bg-card:        oklch(100% 0 0 / 0.85);
+    --bg-hover:       oklch(94% 0.005 250 / 0.8);
 
     /* Layout-specific */
     --sidebar-bg:          oklch(98% 0.003 250 / 0.92);

@@ -58,3 +58,10 @@ async def handle_google_callback(
         "message": "Đăng nhập Google thành công.",
         "user": UserResponse(**user).model_dump(),
     }
+
+async def handle_update_profile(user_id: str, body: dict) -> dict:
+    user = await auth_service.update_profile(user_id, body)
+    return {
+        "message": "Cập nhật thành công.",
+        "user": UserResponse(**user).model_dump(),
+    }

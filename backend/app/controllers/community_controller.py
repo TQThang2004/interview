@@ -19,9 +19,9 @@ async def handle_list_posts(
 
 async def handle_create_post(
     author_id: str, author_username: str, author_avatar: Optional[str],
-    title: str, content: str, category: str, tags: list[str],
+    title: str, content: str, category: str, tags: list[str], image_url: Optional[str] = None
 ) -> dict:
-    post = await community_service.create_post(author_id, title, content, category, tags)
+    post = await community_service.create_post(author_id, title, content, category, tags, image_url)
     post["author_name"] = author_username
     post["author_avatar"] = author_avatar
     post["likes_count"] = 0

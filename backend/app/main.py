@@ -4,8 +4,10 @@ FastAPI application factory – đăng ký middleware, routers và exception han
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+import os
 
-from app.routers import interview, evaluate, audio, auth, history, admin, community
+from app.routers import interview, evaluate, audio, auth, history, admin, community, upload
 from app.database.connection import get_pool, close_pool
 from app.middlewares.cors import register_cors
 from app.exceptions.handlers import register_exception_handlers
@@ -42,6 +44,11 @@ register_cors(app)
 # ── Exception handlers ────────────────────────────────────────────────────────
 register_exception_handlers(app)
 
+# ── Static Files ──────────────────────────────────────────────────────────────
+upload_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../uploads"))
+os.makedirs(upload_dir, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=upload_dir), name="uploads")
+
 
 # ── Health check ──────────────────────────────────────────────────────────────
 @app.get("/", tags=["Health"])
@@ -57,3 +64,4 @@ app.include_router(audio.router)
 app.include_router(history.router)
 app.include_router(admin.router)
 app.include_router(community.router)
+app.include_router(upload.router)

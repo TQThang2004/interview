@@ -55,7 +55,7 @@ async def create_post(
 
     return await community_controller.handle_create_post(
         current_user["id"], current_user["username"], current_user.get("avatar_url"),
-        body.title.strip(), body.content.strip(), body.category, body.tags,
+        body.title.strip(), body.content.strip(), body.category, body.tags, body.image_url
     )
 
 

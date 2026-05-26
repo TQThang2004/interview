@@ -4,6 +4,7 @@ Auth Schemas – Pydantic schemas cho các API xác thực.
 Bao gồm: Register, Login, Google OAuth, UserResponse.
 """
 from pydantic import BaseModel, EmailStr, field_validator
+from typing import Optional
 
 
 class RegisterRequest(BaseModel):
@@ -49,5 +50,20 @@ class UserResponse(BaseModel):
     avatar_url: str | None = None
     phone_number: str | None = None
 
+    fullname: Optional[str] = None
+    bio: Optional[str] = None
+    level: Optional[str] = None
+    language: Optional[str] = None
+    notifications: Optional[bool] = None
+
     class Config:
         from_attributes = True
+
+class UpdateProfileRequest(BaseModel):
+    username: Optional[str] = None
+    fullname: Optional[str] = None
+    bio: Optional[str] = None
+    level: Optional[str] = None
+    language: Optional[str] = None
+    notifications: Optional[bool] = None
+    avatar_url: Optional[str] = None

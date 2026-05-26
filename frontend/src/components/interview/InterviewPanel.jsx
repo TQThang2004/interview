@@ -19,13 +19,13 @@ export default function InterviewPanel({
             {Array.from({ length: totalQuestions }).map((_, i) => (
               <div key={i} style={{ 
                 height: '6px', width: '32px', borderRadius: '4px', transition: 'all 0.3s',
-                background: i < currentIdx ? 'var(--primary)' : i === currentIdx ? 'oklch(83.3% 0.145 321.434 / 0.6)' : 'oklch(22% 0.015 250)'
+                background: i < currentIdx ? 'var(--primary)' : i === currentIdx ? 'oklch(83.3% 0.145 321.434 / 0.6)' : 'var(--bg-elevated)'
               }}></div>
             ))}
           </div>
           <div style={{ 
             fontSize: '13px', fontWeight: 700, color: 'var(--text-secondary)',
-            background: 'oklch(22% 0.015 250 / 0.6)', padding: '6px 14px', borderRadius: '20px', 
+            background: 'var(--bg-elevated)', padding: '6px 14px', borderRadius: '20px', 
             border: '1px solid var(--border)' 
           }}>
             Câu hỏi {currentIdx + 1} / {totalQuestions}
@@ -47,12 +47,12 @@ export default function InterviewPanel({
             borderTopLeftRadius: '4px', boxShadow: 'none' 
           }}>
             <button onClick={onSpeak} title="Đọc lại câu hỏi" style={{ 
-              absolute: true, right: '20px', top: '20px', background: 'oklch(22% 0.015 250 / 0.5)',
+              absolute: true, right: '20px', top: '20px', background: 'var(--bg-elevated)',
               border: 'none', color: 'var(--text-muted)', padding: '8px', borderRadius: '50%',
               cursor: 'pointer', transition: 'all 0.2s', display: 'flex'
             }}
             onMouseEnter={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.15)'; }}
-            onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.5)'; }}>
+            onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'var(--bg-elevated)'; }}>
               <Volume2 size={20} />
             </button>
             <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.6, paddingRight: '40px' }}>
@@ -101,7 +101,7 @@ export default function InterviewPanel({
               <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)' }}>Kết quả nhận diện:</span>
               {!isRecording && !isTranscribing && (
                 <button onClick={() => setIsEditing(!isEditing)} style={{ 
-                  background: 'oklch(22% 0.015 250)', border: '1px solid var(--border)', cursor: 'pointer',
+                  background: 'var(--bg-elevated)', border: '1px solid var(--border)', cursor: 'pointer',
                   color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, padding: '6px 12px',
                   borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px', transition: 'all 0.2s'
                 }}
@@ -144,7 +144,7 @@ export default function InterviewPanel({
                 padding: '14px 28px', borderRadius: '12px', fontSize: '15px', fontWeight: 700, 
                 display: 'flex', alignItems: 'center', gap: '8px', transition: 'all 0.25s', border: 'none',
                 cursor: !userAnswer.trim() || isRecording || isTranscribing ? 'not-allowed' : 'pointer',
-                background: !userAnswer.trim() || isRecording || isTranscribing ? 'oklch(22% 0.015 250)' : 'white',
+                background: !userAnswer.trim() || isRecording || isTranscribing ? 'var(--bg-elevated)' : 'white',
                 color: !userAnswer.trim() || isRecording || isTranscribing ? 'var(--text-muted)' : 'oklch(14% 0.018 250)',
                 transform: !userAnswer.trim() || isRecording || isTranscribing ? 'none' : 'translateY(-2px)',
                 boxShadow: !userAnswer.trim() || isRecording || isTranscribing ? 'none' : '0 8px 16px oklch(0% 0 0 / 0.2)',

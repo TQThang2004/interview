@@ -1,12 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Brain, Mic, BarChart3, Trophy, Clock, ArrowRight, PlayCircle, TrendingUp, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-const MOCK_RECENT = [
-  { topic: 'ReactJS Fullstack', level: 'Junior', score: 8.2, date: '14/04/2026', questions: 7 },
-  { topic: 'Node.js Backend', level: 'Middle', score: 6.5, date: '12/04/2026', questions: 7 },
-  { topic: 'Python Data Analysis', level: 'Junior', score: 9.0, date: '10/04/2026', questions: 7 },
-];
+import { api } from '../../services/api';
 
 const QUICK_ACTIONS = [
   { icon: <PlayCircle size={22} />, label: 'Bắt đầu phỏng vấn', color: 'var(--primary)', bg: 'oklch(83.3% 0.145 321.434 / 0.12)', border: 'oklch(83.3% 0.145 321.434 / 0.3)', action: 'interview' },
@@ -15,18 +9,50 @@ const QUICK_ACTIONS = [
 ];
 
 function ScoreBadge({ score }) {
-  const color = score >= 8 ? 'oklch(72% 0.18 145)' : score >= 6 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)';
+  if (score === null || score === undefined) return <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Chưa có điểm</span>;
+  const numScore = parseFloat(score);
+  const color = numScore >= 8 ? 'oklch(72% 0.18 145)' : numScore >= 6 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)';
   return (
-    <span style={{ color, fontWeight: 700, fontSize: '15px' }}>{score}/10</span>
+    <span style={{ color, fontWeight: 700, fontSize: '15px' }}>{numScore.toFixed(1)}/10</span>
   );
 }
 
 export default function DashboardHome({ onNavigate }) {
+  const [interviews, setInterviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const data = await api.getInterviews(10, 0);
+        setInterviews(data);
+        const res = await fetch(`${api.API_BASE || 'http://localhost:8000/api'}/auth/me`, { credentials: "include" });
+        if (res.ok) {
+          const u = await res.json();
+          setUser(u);
+        }
+      } catch (err) {
+        console.error('Failed to load dashboard data:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  const completed = interviews.filter(i => i.status === 'completed');
+  const avgScore = completed.length > 0 
+    ? (completed.reduce((sum, i) => sum + (parseFloat(i.overall_score) || 0), 0) / completed.length).toFixed(1)
+    : '0.0';
+  const totalQuestions = completed.reduce((sum, i) => sum + (i.questions_count || 0), 0);
+  const excellentSessions = completed.filter(i => parseFloat(i.overall_score) >= 8.5).length;
+
   const stats = [
-    { label: 'Phiên phỏng vấn', value: '12', icon: <Mic size={20} />, color: 'oklch(83.3% 0.145 321.434)', trend: '+3 tuần này' },
-    { label: 'Điểm trung bình', value: '7.9', icon: <Star size={20} />, color: 'oklch(80% 0.18 80)', trend: '+0.4 vs tuần trước' },
-    { label: 'Câu hỏi đã trả lời', value: '84', icon: <Brain size={20} />, color: 'oklch(68% 0.16 230)', trend: '+21 tuần này' },
-    { label: 'Phiên xuất sắc', value: '5', icon: <Trophy size={20} />, color: 'oklch(75% 0.17 150)', trend: 'score ≥ 8.5' },
+    { label: 'Phiên phỏng vấn', value: interviews.length, icon: <Mic size={20} />, color: 'oklch(83.3% 0.145 321.434)' },
+    { label: 'Điểm trung bình', value: avgScore, icon: <Star size={20} />, color: 'oklch(80% 0.18 80)' },
+    { label: 'Câu hỏi đã trả lời', value: totalQuestions, icon: <Brain size={20} />, color: 'oklch(68% 0.16 230)' },
+    { label: 'Phiên xuất sắc', value: excellentSessions, icon: <Trophy size={20} />, color: 'oklch(75% 0.17 150)' },
   ];
 
   return (
@@ -34,7 +60,7 @@ export default function DashboardHome({ onNavigate }) {
       {/* Greeting */}
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '6px' }}>
-          Chào buổi sáng, <span className="gradient-text">Người dùng</span> 👋
+          Chào buổi sáng, <span className="gradient-text">{user?.username || 'Người dùng'}</span> 👋
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '15px' }}>
           Hôm nay là ngày tốt để luyện tập thêm một phiên phỏng vấn!
@@ -54,7 +80,6 @@ export default function DashboardHome({ onNavigate }) {
             <div style={{ fontSize: 'clamp(26px, 3vw, 32px)', fontWeight: 900, marginBottom: '4px', color: 'var(--text-primary)' }}>
               {s.value}
             </div>
-            <div style={{ fontSize: '12px', color: s.color, fontWeight: 500 }}>{s.trend}</div>
           </div>
         ))}
       </div>
@@ -95,22 +120,28 @@ export default function DashboardHome({ onNavigate }) {
             </button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {MOCK_RECENT.map((r, i) => (
+            {loading ? <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)' }}>Đang tải...</div> : 
+              interviews.slice(0, 3).map((r, i) => (
               <div key={i} style={{
                 padding: '12px 14px', borderRadius: '10px',
-                background: 'oklch(22% 0.015 250 / 0.5)',
+                background: 'var(--bg-elevated)',
                 border: '1px solid var(--border)',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               }}>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '2px' }}>{r.topic}</div>
                   <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                    {r.level} · {r.questions} câu · {r.date}
+                    {r.level} · {r.questions_count || 0} câu · {new Date(r.started_at).toLocaleDateString('vi-VN')}
                   </div>
                 </div>
-                <ScoreBadge score={r.score} />
+                <ScoreBadge score={r.overall_score} />
               </div>
             ))}
+            {!loading && interviews.length === 0 && (
+              <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)', fontSize: '14px' }}>
+                Chưa có phiên phỏng vấn nào.
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -140,3 +171,4 @@ export default function DashboardHome({ onNavigate }) {
     </div>
   );
 }
+

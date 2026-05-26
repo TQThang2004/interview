@@ -101,9 +101,9 @@ export default function Sidebar({
             width: '42px', height: '42px', borderRadius: '12px', flexShrink: 0,
             background: 'var(--bg-surface)', border: '1px solid var(--border)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 800, fontSize: '18px', color: 'var(--primary)', cursor: 'pointer',
+            fontWeight: 800, fontSize: '18px', color: 'var(--primary)', cursor: 'pointer', overflow: 'hidden'
           }} title={user?.username}>
-            {getAvatar(user)}
+            <img src={getAvatar(user)} alt="avatar" style={{width: '100%', height: '100%', borderRadius: 'inherit', objectFit: 'cover'}} />
           </div>
           {!collapsed && (
             <div style={{ overflow: 'hidden', flex: 1 }}>

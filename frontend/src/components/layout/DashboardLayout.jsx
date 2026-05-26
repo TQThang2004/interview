@@ -104,10 +104,10 @@ export default function DashboardLayout({
                   background: 'var(--gradient-primary)',
                   border: '2px solid var(--primary-glow)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontWeight: 800, fontSize: '12px', color: 'oklch(15% 0.01 250)', cursor: 'pointer',
+                  fontWeight: 800, fontSize: '12px', color: 'oklch(15% 0.01 250)', cursor: 'pointer', overflow: 'hidden', padding: 0
                 }}
               >
-                {getAvatar(user)}
+                <img src={getAvatar(user)} alt="avatar" style={{width: '100%', height: '100%', borderRadius: 'inherit', objectFit: 'cover'}} />
               </button>
             )}
           </div>

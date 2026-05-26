@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UploadCloud, FileText, CheckCircle2, AlertCircle, Star, Zap, Target, X } from 'lucide-react';
+import { api } from '../../services/api';
 
 const MOCK_RESULT = {
   overall: 7.8,
@@ -36,10 +37,17 @@ export default function CVEvaluationPage() {
   const handleFile = (f) => { if (f && f.type === 'application/pdf') setFile(f); };
   const handleDrop = (e) => { e.preventDefault(); setDragging(false); handleFile(e.dataTransfer.files[0]); };
 
-  const handleEvaluate = () => {
+  const handleEvaluate = async () => {
     if (!file) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setResult(MOCK_RESULT); }, 1800);
+    try {
+      const data = await api.evaluateCv(file);
+      setResult(data.result);
+    } catch (err) {
+      alert("Lỗi khi phân tích CV: " + err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const overallColor = result ? (result.overall >= 8 ? 'oklch(72% 0.18 145)' : result.overall >= 6.5 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)') : 'var(--primary)';

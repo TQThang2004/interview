@@ -141,7 +141,7 @@ export default function AdminInterviews() {
       <div className="glass-card" style={{ overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid var(--border)', background: 'oklch(22% 0.015 250 / 0.5)' }}>
+            <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
               {['Chủ đề / Cấp độ', 'Người dùng', 'Trạng thái', 'Tiến độ', 'Điểm', 'Thao tác'].map(h => (
                 <th key={h} style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
               ))}
@@ -157,7 +157,7 @@ export default function AdminInterviews() {
             ) : interviews.map(iv => (
               <tr key={iv.id}
                 style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.background = 'oklch(22% 0.015 250 / 0.3)'}
+                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 <td style={{ padding: '14px 16px' }}>
