@@ -55,6 +55,67 @@ export const api = {
     return res.json();
   },
 
+  // ── CV Evaluation History ────────────────────────────────────────────────
+
+  /** Lưu bản đánh giá CV lên Cloudinary + DB. */
+  saveCvEvaluation: async (cvFile, evaluationResult, cvText) => {
+    const formData = new FormData();
+    formData.append("cv", cvFile);
+    formData.append("evaluation_result", JSON.stringify(evaluationResult));
+    formData.append("cv_text", cvText || "");
+    const res = await fetch(`${API_BASE}/evaluate/cv/save`, {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
+  },
+
+  /** Đếm số bản đánh giá CV hiện có và giới hạn. */
+  getCvEvaluationCount: async () => {
+    const res = await fetch(`${API_BASE}/evaluate/cv/count`, { credentials: "include" });
+    if (!res.ok) return { count: 0, limit: 2, can_save: true };
+    return res.json();
+  },
+
+  /** Lấy danh sách lịch sử đánh giá CV. */
+  getCvEvaluations: async (limit = 10, offset = 0) => {
+    const res = await fetch(`${API_BASE}/evaluate/cv/history?limit=${limit}&offset=${offset}`, {
+      credentials: "include",
+    });
+    if (!res.ok) return { evaluations: [], count: 0, limit: 2 };
+    return res.json();
+  },
+
+  /** Chi tiết 1 bản đánh giá CV. */
+  getCvEvaluationDetail: async (evaluationId) => {
+    const res = await fetch(`${API_BASE}/evaluate/cv/history/${evaluationId}`, {
+      credentials: "include",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.evaluation || null;
+  },
+
+  /** Xóa bản đánh giá CV (DB + Cloudinary). */
+  deleteCvEvaluation: async (evaluationId) => {
+    const res = await fetch(`${API_BASE}/evaluate/cv/history/${evaluationId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
+  },
+
   transcribe: async (audioBlob) => {
     const formData = new FormData();
     formData.append("audio", audioBlob, "recording.webm");

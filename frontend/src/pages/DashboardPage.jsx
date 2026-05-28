@@ -3,13 +3,14 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Users, FileText, Mic, History,
-  User, ArrowLeft, LogOut,
+  User, ArrowLeft, LogOut, FileSearch,
 } from 'lucide-react';
 
 import DashboardLayout  from '../components/layout/DashboardLayout';
 import DashboardHome    from './dashboard/DashboardHome';
 import CommunityPage    from './dashboard/CommunityPage';
 import CVEvaluationPage from './dashboard/CVEvaluationPage';
+import CVHistoryPage    from './dashboard/CVHistoryPage';
 import HistoryPage      from './dashboard/HistoryPage';
 import ProfilePage      from './dashboard/ProfilePage';
 import InterviewPage    from './InterviewPage';
@@ -21,6 +22,7 @@ const NAV = [
   { id: 'cv-evaluation', label: 'CV Evaluation', icon: <FileText size={18} /> },
   { id: 'interview',     label: 'Interview',     icon: <Mic size={18} /> },
   { id: 'history',       label: 'History',       icon: <History size={18} /> },
+  { id: 'cv-history',    label: 'CV History',    icon: <FileSearch size={18} /> },
   { id: 'profile',       label: 'Profile',       icon: <User size={18} /> },
 ];
 
@@ -76,6 +78,7 @@ function renderContent(activePage, setActivePage) {
     case 'cv-evaluation': return <CVEvaluationPage />;
     case 'interview':     return <InterviewPage />;
     case 'history':       return <HistoryPage />;
+    case 'cv-history':    return <CVHistoryPage />;
     case 'profile':       return <ProfilePage />;
     default:              return <DashboardHome onNavigate={setActivePage} />;
   }

@@ -29,5 +29,7 @@ async def handle_evaluate_cv_file(cv: UploadFile) -> dict:
     cv_bytes = await cv.read()
     cv_text = extract_text_from_pdf_bytes(cv_bytes)
     result = evaluate_cv(cv_text)
-    return {"status": "success", "result": result}
+    # Trả thêm cv_text để frontend dùng khi lưu bản đánh giá
+    return {"status": "success", "result": result, "cv_text": cv_text}
+
 

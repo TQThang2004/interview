@@ -9,6 +9,7 @@ Tách ra khỏi rag_service.py để:
 from __future__ import annotations
 
 from app.core.config import GOOGLE_API_KEY_EVALUATE
+from app.core.config import GOOGLE_API_KEY_TRANSLATE
 from app.utils.llm_client import GeminiClient
 import json
 import re
@@ -44,7 +45,7 @@ class EvaluationResult:
 
 def evaluate_cv(cv_text: str) -> dict:
     """Đánh giá CV và trả về JSON có cấu trúc."""
-    client = GeminiClient(api_key=GOOGLE_API_KEY_EVALUATE)
+    client = GeminiClient(api_key=GOOGLE_API_KEY_TRANSLATE)
     
     prompt = (
         "Bạn là một chuyên gia tuyển dụng (Headhunter/HR Manager) giàu kinh nghiệm. "

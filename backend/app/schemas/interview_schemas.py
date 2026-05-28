@@ -80,3 +80,15 @@ class UpdateAnswerBody(BaseModel):
     user_answer: str
     ai_evaluation: str
     score: float = 0.0  # Bắt buộc là float, default 0.0 (không dùng None để tránh bug ghi đè điểm)
+
+
+# ---------------------------------------------------------------------------
+# CV Evaluation History
+# ---------------------------------------------------------------------------
+
+class SaveCVEvaluationBody(BaseModel):
+    """Body cho request lưu bản đánh giá CV (multipart/form-data).
+    File CV được gửi riêng qua UploadFile, các field này gửi kèm."""
+    evaluation_result: dict   # JSON kết quả đánh giá từ AI { overall, sections, suggestions }
+    cv_text: str              # Text đã parse từ PDF
+
