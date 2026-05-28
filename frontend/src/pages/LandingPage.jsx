@@ -117,13 +117,207 @@ const FAQ = [
   { q: 'Tôi cần upload CV không?', a: 'Không bắt buộc. Bạn có thể bỏ qua và chọn chủ đề + cấp độ để nhận câu hỏi tổng quát.' },
 ];
 
+/* ── 3D Floating Tech Cubes ─────────────────────────────────── */
+const TECH_CUBES = [
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', color: '#F7DF1E', size: 70, x: 15, y: 40, z: 40, delay: 0 },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', color: '#3776AB', size: 85, x: 75, y: 45, z: 0, delay: 0.5 },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', color: '#61DAFB', size: 100, x: 45, y: 70, z: 80, delay: 1.2 },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', color: '#339933', size: 65, x: 20, y: 90, z: -20, delay: 0.8 },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg', color: '#007396', size: 75, x: 80, y: 85, z: 30, delay: 1.5 },
+  { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg', color: '#6DB33F', size: 60, x: 50, y: 35, z: -40, delay: 0.3 },
+  { name: 'Machine Learning', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg', color: '#FF6F00', size: 80, x: 30, y: 15, z: -10, delay: 1.8 },
+  { name: 'OOP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg', color: '#00599C', size: 60, x: 90, y: 60, z: -50, delay: 0.9 },
+  { name: 'AI', text: 'AI', color: '#8B5CF6', size: 75, x: 70, y: 15, z: 20, delay: 0.6 },
+  { name: 'SQL', text: 'SQL', color: '#3B82F6', size: 60, x: 10, y: 65, z: -30, delay: 2.1 },
+];
+
+function FloatingTechCubes() {
+  const containerRef = useRef(null);
+  const sceneRef = useRef(null);
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
+  const rafId = useRef(null);
+
+  useEffect(() => {
+    const animate = () => {
+      current.current.x += (target.current.x - current.current.x) * 0.08;
+      current.current.y += (target.current.y - current.current.y) * 0.08;
+      
+      if (sceneRef.current) {
+        sceneRef.current.style.transform = `rotateY(${current.current.x * 40}deg) rotateX(${-current.current.y * 40}deg)`;
+      }
+      rafId.current = requestAnimationFrame(animate);
+    };
+    rafId.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId.current);
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    target.current.x = (e.clientX - rect.left) / rect.width - 0.5;
+    target.current.y = (e.clientY - rect.top) / rect.height - 0.5;
+  };
+
+  const handleMouseLeave = () => {
+    target.current.x = 0;
+    target.current.y = 0;
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '500px',
+        perspective: '1200px',
+        transformStyle: 'preserve-3d',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10
+      }}
+    >
+      <style>{`
+        @keyframes float-cube {
+          0%, 100% { transform: translate3d(-50%, -50%, var(--z)) translateY(0); }
+          50% { transform: translate3d(-50%, -50%, var(--z)) translateY(-25px); }
+        }
+        @keyframes spin-cube {
+          0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+          100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+        }
+        .cube-scene {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+        }
+        .tech-cube-wrapper {
+          position: absolute;
+          transform-style: preserve-3d;
+          animation: float-cube 6s ease-in-out infinite;
+          will-change: transform;
+        }
+        .tech-cube {
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          animation: spin-cube 20s linear infinite;
+          will-change: transform;
+        }
+        .tech-cube-face {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--bg-card);
+          backface-visibility: visible;
+        }
+      `}</style>
+      
+      <div 
+        ref={sceneRef}
+        className="cube-scene"
+      >
+        {TECH_CUBES.map((cube, i) => {
+          const half = cube.size / 2;
+          const faceStyle = {
+            width: `${cube.size}px`,
+            height: `${cube.size}px`,
+            border: `1px solid ${cube.color}66`,
+            boxShadow: `inset 0 0 20px ${cube.color}33`,
+          };
+          
+          const faceContent = cube.text ? (
+            <span style={{ fontSize: `${cube.size * 0.4}px`, fontWeight: 800, color: cube.color, letterSpacing: '-1px' }}>{cube.text}</span>
+          ) : (
+            <img src={cube.icon} alt={cube.name} style={{ width: '65%', height: '65%' }} draggable={false} />
+          );
+          
+          return (
+            <div 
+              key={i}
+              className="tech-cube-wrapper"
+              style={{
+                left: `${cube.x}%`,
+                top: `${cube.y}%`,
+                width: `${cube.size}px`,
+                height: `${cube.size}px`,
+                '--z': `${cube.z}px`,
+                animationDelay: `${cube.delay}s`,
+                zIndex: Math.round(cube.z)
+              }}
+            >
+              <div 
+                className="tech-cube"
+                style={{ animationDelay: `${-cube.delay * 5}s`, animationDuration: `${25 + i*4}s` }}
+              >
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `translateZ(${half}px)` }}>
+                  {faceContent}
+                </div>
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `rotateY(180deg) translateZ(${half}px)` }}>
+                  {faceContent}
+                </div>
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `rotateY(90deg) translateZ(${half}px)` }}>
+                  {faceContent}
+                </div>
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `rotateY(-90deg) translateZ(${half}px)` }}>
+                  {faceContent}
+                </div>
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `rotateX(90deg) translateZ(${half}px)` }}>
+                  {faceContent}
+                </div>
+                <div className="tech-cube-face" style={{ ...faceStyle, transform: `rotateX(-90deg) translateZ(${half}px)` }}>
+                  {faceContent}
+                  <div style={{ position: 'absolute', width: '80%', height: '80%', background: cube.color, filter: 'blur(20px)', opacity: 0.3, borderRadius: '50%' }} />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Central glow */}
+      <div style={{
+        position: 'absolute',
+        width: '300px',
+        height: '300px',
+        background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+        opacity: 0.2,
+        filter: 'blur(50px)',
+        transform: 'translateZ(-200px)',
+        pointerEvents: 'none'
+      }} />
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -209,11 +403,11 @@ export default function LandingPage() {
               fontSize: '13px', color: 'var(--primary-light)', fontWeight: 500,
             }}>
               <Zap size={13} style={{ color: 'var(--primary)' }} />
-              Được hỗ trợ bởi Gemini 2.5 Flash
+              Được hỗ trợ bởi LLM AI
             </div>
 
             <h1 className="fade-in-up fade-in-up-delay-1" style={{
-              fontSize: 'clamp(36px, 5.5vw, 66px)', fontWeight: 900,
+              fontSize: 'clamp(32px, 5.5vw, 66px)', fontWeight: 800,
               lineHeight: 1.08, letterSpacing: '-0.03em', marginBottom: '24px',
             }}>
               Luyện phỏng vấn<br />
@@ -267,82 +461,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* ── RIGHT: Hero image ── */}
+          {/* ── RIGHT: 3D Floating Tech Cubes ── */}
           <div className="fade-in-up fade-in-up-delay-2" style={{ position: 'relative' }}>
-            {/* Glow behind image */}
-            <div style={{
-              position: 'absolute', inset: '-20px',
-              background: 'radial-gradient(ellipse 80% 70% at 50% 50%, oklch(83.3% 0.145 321.434 / 0.18) 0%, transparent 70%)',
-              borderRadius: '32px',
-              pointerEvents: 'none',
-              animation: 'orbFloat 5s ease-in-out infinite',
-            }} />
-
-            {/* Image frame */}
-            <div style={{
-              position: 'relative',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
-              boxShadow: '0 32px 80px oklch(0% 0 0 / 0.5), 0 0 0 1px oklch(83.3% 0.145 321.434 / 0.1)',
-              transform: 'perspective(1000px) rotateY(-3deg) rotateX(1deg)',
-              transition: 'transform 0.4s ease',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.01)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(1000px) rotateY(-3deg) rotateX(1deg)'; }}
-            >
-              <img
-                src="/hero-mockup.png"
-                alt="AI Interviewer – giao diện phỏng vấn thông minh"
-                style={{ width: '100%', height: 'auto', display: 'block', userSelect: 'none' }}
-                draggable={false}
-              />
-              {/* Overlay gradient bottom */}
-              <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-                background: 'linear-gradient(to top, oklch(13% 0.02 250 / 0.6), transparent)',
-                pointerEvents: 'none',
-              }} />
-            </div>
-
-            {/* Floating badge: Score */}
-            <div style={{
-              position: 'absolute', bottom: '20px', left: '-20px',
-              background: 'oklch(18% 0.02 260 / 0.95)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid oklch(83.3% 0.145 321.434 / 0.35)',
-              borderRadius: '14px', padding: '12px 16px',
-              boxShadow: '0 8px 24px oklch(0% 0 0 / 0.4)',
-              animation: 'orbFloat 4s ease-in-out infinite',
-              animationDelay: '1s',
-            }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '4px', fontWeight: 500 }}>Điểm đánh giá</div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                <span style={{ fontSize: '24px', fontWeight: 900, background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>8.5</span>
-                <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>/10</span>
-              </div>
-            </div>
-
-            {/* Floating badge: AI */}
-            <div style={{
-              position: 'absolute', top: '16px', right: '-16px',
-              background: 'oklch(18% 0.02 260 / 0.95)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid oklch(65% 0.2 280 / 0.4)',
-              borderRadius: '12px', padding: '10px 14px',
-              boxShadow: '0 8px 24px oklch(0% 0 0 / 0.35)',
-              animation: 'orbFloat 4.5s ease-in-out infinite',
-              animationDelay: '2s',
-              display: 'flex', alignItems: 'center', gap: '8px',
-            }}>
-              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'oklch(65% 0.2 280 / 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Brain size={16} style={{ color: 'oklch(72% 0.18 280)' }} />
-              </div>
-              <div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)', lineHeight: 1 }}>Powered by</div>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.3 }}>Gemini AI</div>
-              </div>
-            </div>
+            <FloatingTechCubes />
           </div>
         </div>
       </section>
@@ -350,7 +471,7 @@ export default function LandingPage() {
       {/* ── Stats ──────────────────────────────────────────────── */}
       <section style={{ paddingInline: '24px', paddingBottom: '80px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div className="glass-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', borderRadius: '20px', overflow: 'hidden' }}>
+          <div className="glass-card scroll-reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', borderRadius: '20px', overflow: 'hidden' }}>
             {[
               { label: 'Người dùng active', value: 500, suffix: '+' },
               { label: 'Câu hỏi trong kho', value: 15000, suffix: '+' },
@@ -372,7 +493,7 @@ export default function LandingPage() {
           </div>
 
           {/* Tech stack badges */}
-          <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
+          <div className="scroll-reveal scroll-reveal-delay-1" style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
             <div style={{ width: '100%', textAlign: 'center', fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>Hỗ trợ kiến thức kỹ thuật về</div>
             {TECH_STACK.map(tech => (
               <span key={tech} style={{
@@ -389,7 +510,7 @@ export default function LandingPage() {
       {/* ── Features ───────────────────────────────────────────── */}
       <section id="features" style={{ paddingInline: '24px', paddingBottom: '100px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="scroll-reveal" style={{ textAlign: 'center', marginBottom: '60px' }}>
             <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
               Tính năng
             </p>
@@ -402,7 +523,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+          <div className="scroll-reveal scroll-reveal-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
             {FEATURES.map((f, i) => (
               <div key={i} className="glass-card" style={{
                 padding: '28px', transition: 'all 0.3s ease',
@@ -436,7 +557,7 @@ export default function LandingPage() {
       {/* ── How it works ───────────────────────────────────────── */}
       <section id="how-it-works" style={{ paddingInline: '24px', paddingBottom: '100px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="scroll-reveal" style={{ textAlign: 'center', marginBottom: '60px' }}>
             <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
               Cách hoạt động
             </p>
@@ -445,7 +566,7 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="scroll-reveal scroll-reveal-delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {STEPS.map((s, i) => (
               <div key={i} className="glass-card" style={{ padding: '28px 32px', display: 'flex', alignItems: 'flex-start', gap: '24px', transition: 'all 0.3s', cursor: 'default' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(8px)'; e.currentTarget.style.borderColor = 'oklch(83.3% 0.145 321.434 / 0.4)'; }}
@@ -477,7 +598,7 @@ export default function LandingPage() {
       {/* ── Testimonials ───────────────────────────────────────── */}
       <section id="testimonials" style={{ paddingInline: '24px', paddingBottom: '100px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="scroll-reveal" style={{ textAlign: 'center', marginBottom: '60px' }}>
             <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
               Đánh giá
             </p>
@@ -486,7 +607,7 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+          <div className="scroll-reveal scroll-reveal-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="glass-card" style={{ padding: '28px', transition: 'all 0.3s' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
@@ -521,13 +642,13 @@ export default function LandingPage() {
       {/* ── FAQ ─────────────────────────────────────────────────── */}
       <section style={{ paddingInline: '24px', paddingBottom: '100px' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div className="scroll-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
             <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>FAQ</p>
             <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 800, letterSpacing: '-0.03em' }}>
               Câu hỏi <span className="gradient-text">thường gặp</span>
             </h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div className="scroll-reveal scroll-reveal-delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {FAQ.map((item, i) => (
               <FAQItem key={i} q={item.q} a={item.a} />
             ))}
@@ -538,7 +659,7 @@ export default function LandingPage() {
       {/* ── CTA Banner ─────────────────────────────────────────── */}
       <section style={{ paddingInline: '24px', paddingBottom: '100px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-          <div className="glass-card" style={{
+          <div className="glass-card scroll-reveal" style={{
             padding: 'clamp(40px, 6vw, 72px) clamp(28px, 6vw, 72px)',
             textAlign: 'center', position: 'relative', overflow: 'hidden',
             background: 'oklch(83.3% 0.145 321.434 / 0.06)',
