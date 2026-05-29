@@ -268,3 +268,192 @@ async def get_recent_activity(limit: int) -> list[dict]:
             limit,
         )
     return [serialize_record(r) for r in rows]
+
+
+# ---------------------------------------------------------------------------
+# Community Posts (admin view)
+# ---------------------------------------------------------------------------
+
+async def list_community_posts_admin(
+    limit: int,
+    offset: int,
+    status_filter: Optional[str],
+    search: Optional[str] = None,
+) -> tuple[int, list[dict]]:
+    """Danh sách tất cả bài viết community kèm filter status/search."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        conditions = []
+        params: list = []
+        idx = 1
+
+        if status_filter and status_filter in ("pending", "approved", "rejected"):
+            conditions.append(f"p.status = ${idx}")
+            params.append(status_filter)
+            idx += 1
+
+        if search:
+            conditions.append(
+                f"(p.title ILIKE ${idx} OR p.content ILIKE ${idx} OR u.username ILIKE ${idx})"
+            )
+            params.append(f"%{search}%")
+            idx += 1
+
+        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+
+        rows = await conn.fetch(
+            f"""
+            SELECT
+                p.id::text, p.title, p.content, p.category, p.tags,
+                p.image_url, p.status, p.created_at,
+                u.id::text AS author_id,
+                u.username AS author_name,
+                u.email AS author_email,
+                u.avatar_url AS author_avatar,
+                (SELECT COUNT(*) FROM community_likes l WHERE l.post_id = p.id) AS likes_count,
+                (SELECT COUNT(*) FROM community_comments c WHERE c.post_id = p.id) AS comments_count
+            FROM community_posts p
+            JOIN users u ON u.id = p.author_id
+            {where}
+            ORDER BY
+                CASE p.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END,
+                p.created_at DESC
+            LIMIT ${idx} OFFSET ${idx+1}
+            """,
+            *params, limit, offset,
+        )
+
+        count_query = (
+            f"SELECT COUNT(*) FROM community_posts p "
+            f"JOIN users u ON u.id = p.author_id {where}"
+        )
+        total = await conn.fetchval(count_query, *params)
+
+    return total, [serialize_record(r) for r in rows]
+
+
+async def approve_community_post(post_id: str) -> Optional[dict]:
+    """Duyệt bài viết. Trả về dict bao gồm author_id để gửi notification."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            """
+            UPDATE community_posts SET status = 'approved'
+            WHERE id = $1 AND status = 'pending'
+            RETURNING id::text, title, author_id::text, status
+            """,
+            post_id,
+        )
+    return serialize_record(row) if row else None
+
+
+async def reject_community_post(post_id: str) -> Optional[tuple]:
+    """
+    Từ chối và XÓA bài viết.
+    Trả về (author_id, title) để gửi notification, None nếu không tìm thấy.
+    """
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "SELECT author_id::text, title FROM community_posts WHERE id = $1", post_id
+        )
+        if not row:
+            return None
+        await conn.execute("DELETE FROM community_posts WHERE id = $1", post_id)
+    return row["author_id"], row["title"]
+
+
+async def admin_delete_community_post(post_id: str) -> bool:
+    """Admin xóa thẳng bài viết. Trả về True nếu thành công."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        result = await conn.execute(
+            "DELETE FROM community_posts WHERE id = $1", post_id
+        )
+    return result != "DELETE 0"
+
+
+# ---------------------------------------------------------------------------
+# CV Evaluations (admin view)
+# ---------------------------------------------------------------------------
+
+async def list_all_cv_evaluations(
+    limit: int,
+    offset: int,
+    search: Optional[str] = None,
+) -> tuple[int, list[dict]]:
+    """Danh sách tất cả CV evaluations của mọi user (admin)."""
+    import json
+
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        if search:
+            rows = await conn.fetch(
+                """
+                SELECT
+                    e.id::text, e.user_id::text,
+                    u.username, u.email, u.avatar_url,
+                    e.original_filename, e.cloudinary_url, e.cloudinary_public_id,
+                    e.file_size_bytes, e.overall_score,
+                    e.evaluation_result::text, e.evaluated_at
+                FROM cv_evaluations e
+                JOIN users u ON u.id = e.user_id
+                WHERE u.username ILIKE $1 OR u.email ILIKE $1 OR e.original_filename ILIKE $1
+                ORDER BY e.evaluated_at DESC
+                LIMIT $2 OFFSET $3
+                """,
+                f"%{search}%", limit, offset,
+            )
+            total = await conn.fetchval(
+                """
+                SELECT COUNT(*) FROM cv_evaluations e
+                JOIN users u ON u.id = e.user_id
+                WHERE u.username ILIKE $1 OR u.email ILIKE $1 OR e.original_filename ILIKE $1
+                """,
+                f"%{search}%",
+            )
+        else:
+            rows = await conn.fetch(
+                """
+                SELECT
+                    e.id::text, e.user_id::text,
+                    u.username, u.email, u.avatar_url,
+                    e.original_filename, e.cloudinary_url, e.cloudinary_public_id,
+                    e.file_size_bytes, e.overall_score,
+                    e.evaluation_result::text, e.evaluated_at
+                FROM cv_evaluations e
+                JOIN users u ON u.id = e.user_id
+                ORDER BY e.evaluated_at DESC
+                LIMIT $1 OFFSET $2
+                """,
+                limit, offset,
+            )
+            total = await conn.fetchval("SELECT COUNT(*) FROM cv_evaluations")
+
+    results = []
+    for r in rows:
+        d = dict(r)
+        if isinstance(d.get("evaluation_result"), str):
+            try:
+                d["evaluation_result"] = json.loads(d["evaluation_result"])
+            except Exception:
+                pass
+        for k in ("id", "user_id"):
+            if k in d and d[k]:
+                d[k] = str(d[k])
+        if d.get("evaluated_at"):
+            d["evaluated_at"] = d["evaluated_at"].isoformat()
+        results.append(d)
+
+    return total, results
+
+
+async def admin_delete_cv_evaluation(eval_id: str) -> Optional[str]:
+    """Admin xóa CV evaluation. Trả về cloudinary_public_id để xóa file, None nếu không tìm thấy."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "DELETE FROM cv_evaluations WHERE id = $1 RETURNING cloudinary_public_id",
+            eval_id,
+        )
+    return row["cloudinary_public_id"] if row else None

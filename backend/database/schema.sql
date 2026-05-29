@@ -1,5 +1,5 @@
 -- =============================================================================
--- AI Mock Interview - Database Schema (v2 - Cap nhat 2026-04)
+-- AI Mock Interview - Database Schema (v3 - Cap nhat 2026-05)
 -- =============================================================================
 -- Mo ta: Script khoi tao toan bo cau truc database cho ung dung AI Mock Interview.
 -- Chay script nay tren PostgreSQL de tao cac bang, kieu du lieu va index can thiet.
@@ -7,6 +7,7 @@
 -- NEU database da ton tai, chay cac file migration thay vi script nay:
 --   1. backend/database/migrate_add_interview_columns.sql
 --   2. backend/database/migrate_cleanup_old_schema.sql
+--   3. backend/database/migrate_community_moderation.sql  <-- THEM MOI 2026-05
 -- =============================================================================
 
 -- Kich hoat extension de tao UUID tu dong
@@ -66,9 +67,31 @@ CREATE TABLE IF NOT EXISTS interview_questions (
 );
 
 -- =============================================================================
+-- Bang community_posts (neu da co thi bo qua - dung trong migration rieng)
+-- Them cot status cho kiem duyet bai viet
+-- =============================================================================
+-- ALTER TABLE community_posts ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'pending'
+--     CHECK (status IN ('pending', 'approved', 'rejected'));
+
+-- =============================================================================
+-- Bang Notifications
+-- Luu thong bao cho nguoi dung (bai duoc duyet / bi tu choi)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS notifications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    type VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =============================================================================
 -- INDEX - Toi uu hoa truy van
 -- =============================================================================
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id);
 CREATE INDEX IF NOT EXISTS idx_interviews_user_id ON interviews(user_id);
 CREATE INDEX IF NOT EXISTS idx_interview_questions_interview_id ON interview_questions(interview_id);
+CREATE INDEX IF NOT EXISTS idx_notifications_user_id ON notifications(user_id);
+CREATE INDEX IF NOT EXISTS idx_notifications_user_unread ON notifications(user_id, is_read);

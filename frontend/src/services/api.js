@@ -365,6 +365,46 @@ export const api = {
     return data.tags;
   },
 
+  getMyPosts: async (limit = 20, offset = 0) => {
+    const url = new URL(`${API_BASE}/community/my-posts`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { posts: [], total: 0 };
+    return res.json();
+  },
+
+  deleteCommunityPost: async (postId) => {
+    const res = await fetch(`${API_BASE}/community/posts/${postId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    return res.ok;
+  },
+
+  // ── Notifications ─────────────────────────────────────────────────────────
+  getNotifications: async (limit = 20) => {
+    const res = await fetch(`${API_BASE}/community/notifications?limit=${limit}`, {
+      credentials: "include",
+    });
+    if (!res.ok) return { notifications: [], unread_count: 0 };
+    return res.json();
+  },
+  markNotificationRead: async (id) => {
+    const res = await fetch(`${API_BASE}/community/notifications/${id}/read`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+    return res.ok;
+  },
+  markAllNotificationsRead: async () => {
+    const res = await fetch(`${API_BASE}/community/notifications/read-all`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+    return res.ok;
+  },
+
   updateProfile: async (profileData) => {
     const res = await fetch(`${API_BASE}/auth/profile`, {
       method: "PUT",
@@ -378,6 +418,65 @@ export const api = {
       throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
     }
     return res.json();
-  }
+  },
+
+  // ── Admin Community Posts ─────────────────────────────────────────────────
+  adminGetCommunityPosts: async (limit = 20, offset = 0, statusFilter = "", search = "") => {
+    const url = new URL(`${API_BASE}/admin/community/posts`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    if (statusFilter) url.searchParams.append("status", statusFilter);
+    if (search) url.searchParams.append("search", search);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { posts: [], total: 0 };
+    return res.json();
+  },
+  adminApprovePost: async (postId) => {
+    const res = await fetch(`${API_BASE}/admin/community/posts/${postId}/approve`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      let errData; try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi (${res.status})`);
+    }
+    return res.json();
+  },
+  adminRejectPost: async (postId) => {
+    const res = await fetch(`${API_BASE}/admin/community/posts/${postId}/reject`, {
+      method: "POST",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      let errData; try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi (${res.status})`);
+    }
+    return res.json();
+  },
+  adminDeleteCommunityPost: async (postId) => {
+    const res = await fetch(`${API_BASE}/admin/community/posts/${postId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    return res.ok;
+  },
+
+  // ── Admin CV Evaluations ─────────────────────────────────────────────────
+  adminGetCVEvaluations: async (limit = 20, offset = 0, search = "") => {
+    const url = new URL(`${API_BASE}/admin/cv-evaluations`);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("offset", offset);
+    if (search) url.searchParams.append("search", search);
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return { evaluations: [], total: 0 };
+    return res.json();
+  },
+  adminDeleteCVEvaluation: async (evalId) => {
+    const res = await fetch(`${API_BASE}/admin/cv-evaluations/${evalId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    return res.ok;
+  },
 };
 

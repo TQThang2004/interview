@@ -2,8 +2,8 @@
 Community Router – Quản lý bài viết cộng đồng.
 
 Endpoints:
-  GET    /api/community/posts              - Danh sách bài viết (phân trang + tìm kiếm)
-  POST   /api/community/posts              - Tạo bài viết mới
+  GET    /api/community/posts              - Danh sách bài viết đã duyệt (phân trang + tìm kiếm)
+  POST   /api/community/posts              - Tạo bài viết mới (status=pending, chờ duyệt)
   GET    /api/community/posts/{post_id}    - Chi tiết bài viết + comments
   DELETE /api/community/posts/{post_id}    - Xóa bài viết (owner hoặc admin)
   POST   /api/community/posts/{post_id}/like    - Toggle like
@@ -13,6 +13,10 @@ Endpoints:
   DELETE /api/community/comments/{comment_id}    - Xóa comment
   GET    /api/community/tags               - Danh sách tags phổ biến
   GET    /api/community/my-saves           - Bài viết đã lưu của user
+  GET    /api/community/my-posts           - Bài viết của user (kể cả pending)
+  GET    /api/community/notifications      - Thông báo của user
+  PATCH  /api/community/notifications/{id}/read  - Đánh dấu đã đọc
+  PATCH  /api/community/notifications/read-all   - Đánh dấu tất cả đã đọc
 """
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
@@ -34,7 +38,7 @@ async def list_posts(
     tag: Optional[str] = Query(default=None),
     current_user: dict = Depends(get_current_user),
 ):
-    """Lấy danh sách bài viết với phân trang và tìm kiếm."""
+    """Lấy danh sách bài viết ĐÃ DUYỆT với phân trang và tìm kiếm."""
     return await community_controller.handle_list_posts(
         limit, offset, search, category, tag, current_user
     )
@@ -45,7 +49,7 @@ async def create_post(
     body: CreatePostBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """Tạo bài viết mới."""
+    """Tạo bài viết mới. Bài sẽ ở trạng thái 'pending' cho đến khi admin duyệt."""
     if not body.title.strip():
         raise HTTPException(status_code=400, detail="Tiêu đề không được để trống.")
     if not body.content.strip():
@@ -56,6 +60,18 @@ async def create_post(
     return await community_controller.handle_create_post(
         current_user["id"], current_user["username"], current_user.get("avatar_url"),
         body.title.strip(), body.content.strip(), body.category, body.tags, body.image_url
+    )
+
+
+@router.get("/my-posts")
+async def get_my_posts(
+    limit: int = Query(default=20, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    current_user: dict = Depends(get_current_user),
+):
+    """Lấy tất cả bài viết của user hiện tại (kể cả pending, rejected)."""
+    return await community_controller.handle_get_my_posts(
+        current_user["id"], limit, offset
     )
 
 
@@ -107,7 +123,7 @@ async def add_comment(
     body: CreateCommentBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """Thêm comment vào bài viết."""
+    """Thêm comment vào bài viết (chỉ bài đã được duyệt)."""
     if not body.content.strip():
         raise HTTPException(status_code=400, detail="Nội dung comment không được để trống.")
 
@@ -116,7 +132,7 @@ async def add_comment(
         current_user.get("avatar_url"), body.content.strip(),
     )
     if not result:
-        raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy bài viết hoặc bài chưa được duyệt.")
     return result
 
 
@@ -149,3 +165,33 @@ async def get_my_saves(
 ):
     """Lấy danh sách bài viết đã lưu của user hiện tại."""
     return await community_controller.handle_get_my_saves(current_user["id"], limit, offset)
+
+
+# ---------------------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------------------
+
+@router.get("/notifications")
+async def get_notifications(
+    limit: int = Query(default=20, ge=1, le=50),
+    current_user: dict = Depends(get_current_user),
+):
+    """Lấy thông báo của user hiện tại."""
+    return await community_controller.handle_get_notifications(current_user["id"], limit)
+
+
+@router.patch("/notifications/read-all", status_code=status.HTTP_200_OK)
+async def mark_all_read(current_user: dict = Depends(get_current_user)):
+    """Đánh dấu tất cả thông báo là đã đọc."""
+    return await community_controller.handle_mark_all_notifications_read(current_user["id"])
+
+
+@router.patch("/notifications/{notification_id}/read")
+async def mark_notification_read(
+    notification_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    """Đánh dấu một thông báo là đã đọc."""
+    return await community_controller.handle_mark_notification_read(
+        notification_id, current_user["id"]
+    )

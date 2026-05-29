@@ -3,22 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Users, Mic, Trophy, User, LogOut,
+  MessageSquare, FileText,
 } from 'lucide-react';
 
 import DashboardLayout     from '../components/layout/DashboardLayout';
 import AdminStats          from './admin/AdminStats';
 import AdminUsers          from './admin/AdminUsers';
 import AdminInterviews     from './admin/AdminInterviews';
-import AdminTopCandidates  from './admin/AdminTopCandidates';
+import AdminCommunityPosts from './admin/AdminCommunityPosts';
+import AdminCVEvaluations  from './admin/AdminCVEvaluations';
 import ProfilePage         from './dashboard/ProfilePage';
 
 /* ── Nav items ── */
 const NAV = [
-  { id: 'stats',      label: 'Thống kê',          icon: <LayoutDashboard size={18} /> },
-  { id: 'users',      label: 'Người dùng',         icon: <Users size={18} /> },
-  { id: 'interviews', label: 'Lịch sử phỏng vấn',  icon: <Mic size={18} /> },
-  { id: 'candidates', label: 'Top Ứng viên',        icon: <Trophy size={18} /> },
-  { id: 'profile',    label: 'Profile Admin',       icon: <User size={18} /> },
+  { id: 'stats',         label: 'Thống kê',          icon: <LayoutDashboard size={18} /> },
+  { id: 'users',         label: 'Người dùng',         icon: <Users size={18} /> },
+  { id: 'interviews',    label: 'Lịch sử phỏng vấn',  icon: <Mic size={18} /> },
+  { id: 'community',     label: 'Bài viết Community',  icon: <MessageSquare size={18} /> },
+  { id: 'cv-evals',      label: 'Đánh giá CV',         icon: <FileText size={18} /> },
+  { id: 'profile',       label: 'Profile Admin',       icon: <User size={18} /> },
 ];
 
 /* ── Bottom sidebar actions ── */
@@ -50,7 +53,8 @@ function renderContent(activePage) {
     case 'stats':      return <AdminStats />;
     case 'users':      return <AdminUsers />;
     case 'interviews': return <AdminInterviews />;
-    case 'candidates': return <AdminTopCandidates />;
+    case 'community':  return <AdminCommunityPosts />;
+    case 'cv-evals':   return <AdminCVEvaluations />;
     case 'profile':    return <ProfilePage />;
     default:           return <AdminStats />;
   }

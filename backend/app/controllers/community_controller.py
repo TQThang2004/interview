@@ -28,7 +28,11 @@ async def handle_create_post(
     post["comments_count"] = 0
     post["is_liked"] = False
     post["is_saved"] = False
-    return {"status": "success", "post": post}
+    return {
+        "status": "success",
+        "post": post,
+        "message": "Bài viết đã được gửi và đang chờ admin kiểm duyệt."
+    }
 
 
 async def handle_get_post_detail(post_id: str, current_user_id: str) -> dict | None:
@@ -110,3 +114,32 @@ async def handle_get_popular_tags(limit: int) -> dict:
 async def handle_get_my_saves(user_id: str, limit: int, offset: int) -> dict:
     posts = await community_service.get_my_saves(user_id, limit, offset)
     return {"status": "success", "posts": posts}
+
+
+async def handle_get_my_posts(user_id: str, limit: int, offset: int) -> dict:
+    total, posts = await community_service.get_my_posts(user_id, limit, offset)
+    return {"status": "success", "total": total, "posts": posts}
+
+
+# ---------------------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------------------
+
+async def handle_get_notifications(user_id: str, limit: int = 20) -> dict:
+    notifications = await community_service.get_user_notifications(user_id, limit)
+    unread_count = await community_service.count_unread_notifications(user_id)
+    return {
+        "status": "success",
+        "notifications": notifications,
+        "unread_count": unread_count,
+    }
+
+
+async def handle_mark_notification_read(notification_id: str, user_id: str) -> dict:
+    success = await community_service.mark_notification_read(notification_id, user_id)
+    return {"status": "success" if success else "not_found"}
+
+
+async def handle_mark_all_notifications_read(user_id: str) -> dict:
+    await community_service.mark_all_notifications_read(user_id)
+    return {"status": "success"}

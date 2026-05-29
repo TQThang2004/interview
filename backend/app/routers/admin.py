@@ -12,6 +12,16 @@ Endpoints:
   GET    /api/admin/interviews               - Tất cả phiên phỏng vấn
   GET    /api/admin/top-candidates           - Top ứng viên theo điểm
   GET    /api/admin/recent-activity          - Hoạt động gần đây
+
+  -- Community moderation --
+  GET    /api/admin/community/posts                      - Tất cả bài viết (filter status)
+  PATCH  /api/admin/community/posts/{post_id}/approve   - Duyệt bài
+  POST   /api/admin/community/posts/{post_id}/reject    - Từ chối bài (xóa + notify)
+  DELETE /api/admin/community/posts/{post_id}           - Xóa thẳng bài
+
+  -- CV Evaluations --
+  GET    /api/admin/cv-evaluations           - Tất cả đánh giá CV
+  DELETE /api/admin/cv-evaluations/{id}      - Xóa đánh giá CV
 """
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
@@ -117,3 +127,85 @@ async def get_recent_activity(
 ):
     """Hoạt động phỏng vấn gần đây trên toàn hệ thống."""
     return await admin_controller.handle_get_recent_activity(limit)
+
+
+# =============================================================================
+# Community Post Moderation
+# =============================================================================
+
+@router.get("/community/posts")
+async def list_community_posts(
+    limit: int = Query(default=20, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    status_filter: Optional[str] = Query(default=None, alias="status"),
+    search: Optional[str] = Query(default=None),
+    admin: dict = Depends(get_admin_user),
+):
+    """Tất cả bài viết community (kể cả pending). Lọc theo status, tìm kiếm."""
+    return await admin_controller.handle_list_community_posts(
+        limit, offset, status_filter, search
+    )
+
+
+@router.patch("/community/posts/{post_id}/approve")
+async def approve_community_post(
+    post_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Duyệt bài viết community. Gửi notification cho tác giả."""
+    result = await admin_controller.handle_approve_community_post(post_id)
+    if not result:
+        raise HTTPException(
+            status_code=404,
+            detail="Không tìm thấy bài viết hoặc bài đã được duyệt rồi."
+        )
+    return result
+
+
+@router.post("/community/posts/{post_id}/reject", status_code=status.HTTP_200_OK)
+async def reject_community_post(
+    post_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Từ chối bài viết (xóa bài + gửi notification cho tác giả)."""
+    result = await admin_controller.handle_reject_community_post(post_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
+    return result
+
+
+@router.delete("/community/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def admin_delete_community_post(
+    post_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Admin xóa thẳng bài viết community."""
+    deleted = await admin_controller.handle_admin_delete_community_post(post_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
+
+
+# =============================================================================
+# CV Evaluations (Admin)
+# =============================================================================
+
+@router.get("/cv-evaluations")
+async def list_all_cv_evaluations(
+    limit: int = Query(default=20, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    search: Optional[str] = Query(default=None),
+    admin: dict = Depends(get_admin_user),
+):
+    """Danh sách tất cả đánh giá CV của mọi người dùng."""
+    return await admin_controller.handle_list_all_cv_evaluations(limit, offset, search)
+
+
+@router.delete("/cv-evaluations/{eval_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def admin_delete_cv_evaluation(
+    eval_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Admin xóa đánh giá CV (DB + Cloudinary)."""
+    result = await admin_controller.handle_admin_delete_cv_evaluation(eval_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Không tìm thấy đánh giá CV.")
