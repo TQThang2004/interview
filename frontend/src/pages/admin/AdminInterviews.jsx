@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { api } from '../../services/api';
-import { Clock, CheckCircle, XCircle, RefreshCw, ChevronLeft, ChevronRight, Eye, X } from 'lucide-react';
+import { Clock, CheckCircle, XCircle, RefreshCw, ChevronLeft, ChevronRight, Eye, X, Trash2 } from 'lucide-react';
+import { useModal } from '../../context/ModalContext';
 
 function StatusBadge({ status }) {
   if (status === 'completed')
@@ -22,13 +23,29 @@ function ScoreCell({ score }) {
 
 // Modal xem chi tiết phỏng vấn (câu hỏi + câu trả lời)
 function InterviewDetailModal({ interview, onClose }) {
+  const [detail, setDetail] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!interview?.id) return;
+    setLoading(true);
+    api.adminGetInterviewDetail(interview.id).then(data => {
+      setDetail(data);
+      setLoading(false);
+    }).catch(err => {
+      console.error(err);
+      setLoading(false);
+    });
+  }, [interview?.id]);
+
   if (!interview) return null;
+
   return (
     <div
       style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'oklch(0% 0 0 / 0.65)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => e.target === e.currentTarget && onClose()}
     >
-      <div className="glass-card" style={{ width: '100%', maxWidth: '600px', maxHeight: '80vh', display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
+      <div className="glass-card" style={{ width: '100%', maxWidth: '700px', maxHeight: '85vh', display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
         <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexShrink: 0 }}>
           <div>
             <h3 style={{ fontWeight: 700, fontSize: '16px', marginBottom: '4px' }}>{interview.topic}</h3>
@@ -45,33 +62,63 @@ function InterviewDetailModal({ interview, onClose }) {
             </button>
           </div>
         </div>
-        <div style={{ padding: '16px 24px', overflowY: 'auto', flex: 1 }}>
-          <div style={{ display: 'flex', gap: '16px', marginBottom: '16px', flexWrap: 'wrap' }}>
-            {[
-              { label: 'Tổng câu', value: interview.total_questions },
-              { label: 'Đã trả lời', value: interview.answered_questions },
-              { label: 'Bắt đầu', value: interview.started_at ? new Date(interview.started_at).toLocaleString('vi-VN') : '—' },
-            ].map((item, i) => (
-              <div key={i} style={{ padding: '10px 14px', borderRadius: '10px', background: 'var(--bg-elevated)', border: '1px solid var(--border)', minWidth: '110px' }}>
-                <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>{item.label}</div>
-                <div style={{ fontWeight: 700, fontSize: '14px' }}>{item.value}</div>
+
+        <div style={{ padding: '16px 24px', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {loading ? (
+            <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+              <RefreshCw size={24} style={{ animation: 'spin 1s linear infinite', margin: '0 auto 10px' }} />
+              <div>Đang tải chi tiết...</div>
+            </div>
+          ) : detail ? (
+            <>
+              {/* Tổng quan nhận xét nếu có */}
+              {detail.overall_feedback && (
+                <div style={{ padding: '16px', borderRadius: '12px', background: 'oklch(72% 0.18 145 / 0.1)', border: '1px solid oklch(72% 0.18 145 / 0.3)', marginBottom: '10px' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: 'oklch(72% 0.18 145)', marginBottom: '6px', textTransform: 'uppercase' }}>Nhận xét tổng quan</div>
+                  <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--text-primary)' }}>{detail.overall_feedback}</div>
+                </div>
+              )}
+
+              {/* Danh sách câu hỏi */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <h4 style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', margin: 0 }}>
+                  Chi tiết các câu hỏi ({detail.questions?.length || 0})
+                </h4>
+                {detail.questions?.length > 0 ? detail.questions.map((q, idx) => (
+                  <div key={idx} style={{ padding: '16px', borderRadius: '12px', background: 'var(--bg-elevated)', border: '1px solid var(--border)' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                      <div style={{ width: '24px', height: '24px', borderRadius: '12px', background: 'var(--bg-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)', flexShrink: 0 }}>{idx + 1}</div>
+                      <div>
+                        <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '8px', lineHeight: 1.5, color: 'var(--text-primary)' }}>{q.question_text}</div>
+                        {q.user_answer ? (
+                          <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5, padding: '10px 14px', background: 'var(--bg-surface)', borderRadius: '8px', borderLeft: '3px solid var(--primary)', marginBottom: '12px' }}>
+                            <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '4px', fontWeight: 600 }}>CÂU TRẢ LỜI CỦA ỨNG VIÊN</div>
+                            {q.user_answer}
+                          </div>
+                        ) : (
+                          <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '12px' }}>Chưa trả lời</div>
+                        )}
+
+                        {q.ai_evaluation && (
+                          <div style={{ fontSize: '13px', color: 'var(--text-primary)', lineHeight: 1.5, padding: '10px 14px', background: 'var(--bg-surface)', borderRadius: '8px', borderLeft: '3px solid oklch(75% 0.17 150)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                              <div style={{ fontSize: '11px', color: 'oklch(75% 0.17 150)', fontWeight: 700 }}>ĐÁNH GIÁ CỦA AI</div>
+                              {q.score != null && <div style={{ fontSize: '13px', fontWeight: 800, color: 'oklch(75% 0.17 150)' }}>{Number(q.score).toFixed(1)}/10</div>}
+                            </div>
+                            {q.ai_evaluation}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )) : (
+                  <div style={{ color: 'var(--text-muted)', fontSize: '13px', fontStyle: 'italic' }}>Chưa có câu hỏi nào được lưu.</div>
+                )}
               </div>
-            ))}
-          </div>
-          {/* Progress bar */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '6px' }}>
-              Tiến độ: {interview.answered_questions}/{interview.total_questions} câu ({interview.total_questions > 0 ? Math.round((interview.answered_questions / interview.total_questions) * 100) : 0}%)
-            </div>
-            <div style={{ height: '6px', borderRadius: '3px', background: 'var(--bg-elevated)', overflow: 'hidden' }}>
-              <div style={{
-                height: '100%', borderRadius: '3px',
-                background: 'var(--gradient-primary)',
-                width: `${interview.total_questions > 0 ? (interview.answered_questions / interview.total_questions) * 100 : 0}%`,
-                transition: 'width 0.5s ease',
-              }} />
-            </div>
-          </div>
+            </>
+          ) : (
+            <div style={{ color: 'var(--text-muted)' }}>Không thể tải dữ liệu chi tiết.</div>
+          )}
         </div>
       </div>
     </div>
@@ -81,6 +128,7 @@ function InterviewDetailModal({ interview, onClose }) {
 const PAGE_SIZE = 15;
 
 export default function AdminInterviews() {
+  const { showConfirm } = useModal();
   const [interviews, setInterviews] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -106,6 +154,16 @@ export default function AdminInterviews() {
   useEffect(() => { loadData(); }, [loadData]);
 
   const handleStatusChange = (val) => { setStatusFilter(val); setPage(0); };
+
+  const handleDelete = async (id) => {
+    if (!await showConfirm("Bạn có chắc chắn muốn xóa lịch sử phỏng vấn này?", "Xác nhận xóa", { danger: true })) return;
+    try {
+      await api.adminDeleteInterview(id);
+      loadData();
+    } catch (e) {
+      alert("Xóa thất bại: " + (e.message || "Lỗi không xác định"));
+    }
+  };
 
   return (
     <div>
@@ -182,13 +240,22 @@ export default function AdminInterviews() {
                 </td>
                 <td style={{ padding: '14px 16px' }}><ScoreCell score={iv.overall_score} /></td>
                 <td style={{ padding: '14px 16px' }}>
-                  <button
-                    onClick={() => setSelected(iv)}
-                    title="Xem chi tiết"
-                    style={{ padding: '7px 10px', borderRadius: '8px', border: '1px solid var(--border)', background: 'transparent', cursor: 'pointer', color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', fontWeight: 600 }}
-                  >
-                    <Eye size={14} /> Xem
-                  </button>
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <button
+                      onClick={() => setSelected(iv)}
+                      title="Xem chi tiết"
+                      style={{ padding: '7px 10px', borderRadius: '8px', border: '1px solid var(--border)', background: 'transparent', cursor: 'pointer', color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', fontWeight: 600 }}
+                    >
+                      <Eye size={14} /> Xem
+                    </button>
+                    <button
+                      onClick={() => handleDelete(iv.id)}
+                      title="Xóa"
+                      style={{ padding: '7px', borderRadius: '8px', border: '1px solid oklch(65% 0.22 25 / 0.3)', background: 'oklch(65% 0.22 25 / 0.1)', cursor: 'pointer', color: 'oklch(65% 0.22 25)', display: 'flex', alignItems: 'center', gap: '4px' }}
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

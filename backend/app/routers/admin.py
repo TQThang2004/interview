@@ -28,7 +28,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 
 from app.core.dependencies import get_admin_user
 from app.core.constants import VALID_ROLES
-from app.schemas.admin_schemas import UpdateRoleBody
+from app.schemas.admin_schemas import UpdateRoleBody, CreateUserBody
 from app.controllers import admin_controller
 
 router = APIRouter(prefix="/api/admin", tags=["Admin"])
@@ -67,6 +67,23 @@ async def get_user_detail(user_id: str, admin: dict = Depends(get_admin_user)):
     if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy người dùng.")
     return result
+
+
+@router.post("/users", status_code=status.HTTP_201_CREATED)
+async def create_user(
+    body: CreateUserBody,
+    admin: dict = Depends(get_admin_user),
+):
+    """Admin tạo người dùng mới."""
+    if body.role not in VALID_ROLES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Role không hợp lệ. Chỉ chấp nhận: {', '.join(VALID_ROLES)}."
+        )
+    try:
+        return await admin_controller.handle_create_user(body)
+    except ValueError as exc:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc))
 
 
 @router.patch("/users/{user_id}/role")
@@ -109,6 +126,29 @@ async def list_all_interviews(
 ):
     """Danh sách tất cả phiên phỏng vấn của mọi người dùng."""
     return await admin_controller.handle_list_all_interviews(limit, offset, status_filter)
+
+
+@router.get("/interviews/{interview_id}")
+async def get_interview_detail(
+    interview_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Admin lấy chi tiết một phiên phỏng vấn (không check user_id)."""
+    result = await admin_controller.handle_admin_get_interview_detail(interview_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn.")
+    return result
+
+
+@router.delete("/interviews/{interview_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_interview(
+    interview_id: str,
+    admin: dict = Depends(get_admin_user),
+):
+    """Admin xóa thẳng một phiên phỏng vấn."""
+    deleted = await admin_controller.handle_admin_delete_interview(interview_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn.")
 
 
 @router.get("/top-candidates")

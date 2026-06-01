@@ -240,6 +240,20 @@ export const api = {
     return data.interview || null;
   },
 
+  /** Người dùng xóa lịch sử phỏng vấn. */
+  deleteInterview: async (interviewId) => {
+    const res = await fetch(`${API_BASE}/interviews/${interviewId}`, {
+      method: "DELETE",
+      credentials: "include"
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return true;
+  },
+
   // ── Admin ────────────────────────────────────────────────────────────────
   adminGetStats: async () => {
     const res = await fetch(`${API_BASE}/admin/stats`, { credentials: "include" });
@@ -260,6 +274,20 @@ export const api = {
     if (search) url.searchParams.append("search", search);
     const res = await fetch(url, { credentials: "include" });
     if (!res.ok) return { users: [], total: 0 };
+    return res.json();
+  },
+  adminCreateUser: async (userData) => {
+    const res = await fetch(`${API_BASE}/admin/users`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData)
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
     return res.json();
   },
   adminUpdateUserRole: async (userId, role) => {
@@ -286,6 +314,26 @@ export const api = {
     const res = await fetch(url, { credentials: "include" });
     if (!res.ok) return { interviews: [], total: 0 };
     return res.json();
+  },
+  adminGetInterviewDetail: async (interviewId) => {
+    const res = await fetch(`${API_BASE}/admin/interviews/${interviewId}`, {
+      credentials: "include"
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.interview || null;
+  },
+  adminDeleteInterview: async (interviewId) => {
+    const res = await fetch(`${API_BASE}/admin/interviews/${interviewId}`, {
+      method: "DELETE",
+      credentials: "include"
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return true;
   },
   adminGetTopCandidates: async (limit = 10) => {
     const res = await fetch(`${API_BASE}/admin/top-candidates?limit=${limit}`, { credentials: "include" });

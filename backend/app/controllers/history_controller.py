@@ -44,6 +44,10 @@ async def handle_abandon_interview(interview_id: str, user_id: str) -> dict:
     return {"status": "success", "kept": kept}
 
 
+async def handle_delete_interview(interview_id: str, user_id: str) -> bool:
+    return await interview_service.delete_interview(interview_id, user_id)
+
+
 async def handle_save_question(
     interview_id: str, question_text: str, question_order: int
 ) -> dict:

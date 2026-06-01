@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BarChart3, TrendingUp, Trophy, RefreshCw, AlertCircle } from 'lucide-react';
 import { api } from '../../../services/api';
+import { useModal } from '../../../context/ModalContext';
 import HistoryFilters from './HistoryFilters';
 import HistoryCard from './HistoryCard';
 
 export default function HistoryPage() {
+  const { showConfirm } = useModal();
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -44,6 +46,16 @@ export default function HistoryPage() {
         if (detail) setExpandedData(prev => ({ ...prev, [id]: detail }));
       } catch (_) {}
       setLoadingDetail(null);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!await showConfirm("Bạn có chắc chắn muốn xóa lịch sử phỏng vấn này?", "Xác nhận xóa", { danger: true })) return;
+    try {
+      await api.deleteInterview(id);
+      fetchHistory(); // Reload data
+    } catch (e) {
+      alert("Xóa thất bại: " + (e.message || "Lỗi không xác định"));
     }
   };
 
@@ -141,6 +153,7 @@ export default function HistoryPage() {
               toggleExpand={toggleExpand}
               loadingDetail={loadingDetail}
               detailData={expandedData[h.id]}
+              onDelete={handleDelete}
             />
           ))}
         </div>

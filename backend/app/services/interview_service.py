@@ -107,6 +107,19 @@ async def abandon_interview(interview_id: str, user_id: str) -> bool:
             return True  # True = đã cập nhật cancelled
 
 
+async def delete_interview(interview_id: str, user_id: str) -> bool:
+    """
+    Xóa hoàn toàn một phiên phỏng vấn khỏi DB (chỉ owner).
+    """
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        result = await conn.execute(
+            "DELETE FROM interviews WHERE id = $1 AND user_id = $2",
+            interview_id, user_id
+        )
+    return result != "DELETE 0"
+
+
 async def get_user_interviews(user_id: str, limit: int = 20, offset: int = 0) -> list[dict]:
     """
     Lấy danh sách các phiên phỏng vấn của user (kèm số câu hỏi).

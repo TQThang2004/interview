@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Star, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
+import { Clock, Star, ChevronDown, ChevronUp, RefreshCw, Trash2 } from 'lucide-react';
 import ScoreChip from '../../../components/common/ScoreChip';
 import { StatusBadge, formatDate, calcDuration } from './historyHelpers';
 import HistoryDetailExpand from './HistoryDetailExpand';
@@ -9,7 +9,8 @@ export default function HistoryCard({
   expanded,
   toggleExpand,
   loadingDetail,
-  detailData
+  detailData,
+  onDelete
 }) {
   const duration = calcDuration(h.started_at, h.completed_at);
 
@@ -45,6 +46,13 @@ export default function HistoryCard({
             ? <ChevronUp size={16} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
             : <ChevronDown size={16} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />)
         }
+        <button
+          onClick={(e) => { e.stopPropagation(); onDelete && onDelete(h.id); }}
+          title="Xóa"
+          style={{ padding: '6px', borderRadius: '8px', border: '1px solid oklch(65% 0.22 25 / 0.3)', background: 'oklch(65% 0.22 25 / 0.1)', cursor: 'pointer', color: 'oklch(65% 0.22 25)', display: 'flex', alignItems: 'center' }}
+        >
+          <Trash2 size={16} />
+        </button>
       </div>
 
       {/* ── Detail expand ── */}

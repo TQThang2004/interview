@@ -7,6 +7,7 @@ from typing import Optional
 
 from app.database.connection import get_pool
 from app.utils.common import serialize_record
+from app.core.security import hash_password
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +176,26 @@ async def delete_user(user_id: str) -> bool:
     return result != "DELETE 0"
 
 
+async def create_user(username: str, email: str, password: str, role: str) -> dict:
+    """Tạo người dùng mới (được gọi bởi admin)."""
+    password_hash = hash_password(password)
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        # Kiểm tra trùng email
+        existing = await conn.fetchval("SELECT id FROM users WHERE email = $1", email)
+        if existing:
+            raise ValueError(f"Email {email} đã tồn tại.")
+        
+        row = await conn.fetchrow(
+            """
+            INSERT INTO users (username, email, password_hash, role)
+            VALUES ($1, $2, $3, $4::user_role)
+            RETURNING id::text, username, email, role::text, created_at
+            """,
+            username, email, password_hash, role
+        )
+    return serialize_record(row)
+
 # ---------------------------------------------------------------------------
 # Interviews (admin view)
 # ---------------------------------------------------------------------------
@@ -249,6 +270,45 @@ async def get_top_candidates(limit: int) -> list[dict]:
         )
     return [serialize_record(r) for r in rows]
 
+
+async def admin_get_interview_detail(interview_id: str) -> Optional[dict]:
+    """Lấy chi tiết 1 phiên phỏng vấn kèm tất cả câu hỏi và đánh giá (không check user_id)."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        interview = await conn.fetchrow(
+            """
+            SELECT i.id::text, i.topic, i.level, i.language, i.status, i.overall_score, i.overall_feedback,
+                   i.started_at, i.completed_at, u.username, u.email
+            FROM interviews i
+            JOIN users u ON u.id = i.user_id
+            WHERE i.id = $1
+            """,
+            interview_id,
+        )
+        if not interview:
+            return None
+
+        questions = await conn.fetch(
+            """
+            SELECT id::text, question_text, user_answer, ai_evaluation, score,
+                   question_order, asked_at, answered_at
+            FROM interview_questions
+            WHERE interview_id = $1
+            ORDER BY question_order ASC
+            """,
+            interview_id,
+        )
+    result = serialize_record(interview)
+    result["questions"] = [serialize_record(q) for q in questions]
+    return result
+
+
+async def admin_delete_interview(interview_id: str) -> bool:
+    """Admin xóa thẳng cuộc phỏng vấn (cascade sẽ xóa cả câu hỏi)."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        result = await conn.execute("DELETE FROM interviews WHERE id = $1", interview_id)
+    return result != "DELETE 0"
 
 async def get_recent_activity(limit: int) -> list[dict]:
     """Hoạt động phỏng vấn gần đây trên toàn hệ thống."""

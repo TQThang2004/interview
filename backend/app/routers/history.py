@@ -85,6 +85,17 @@ async def abandon_interview(
     return await history_controller.handle_abandon_interview(interview_id, current_user["id"])
 
 
+@router.delete("/{interview_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_interview(
+    interview_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    """Xóa lịch sử phỏng vấn của người dùng."""
+    deleted = await history_controller.handle_delete_interview(interview_id, current_user["id"])
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn hoặc không có quyền.")
+
+
 @router.post("/{interview_id}/questions", status_code=status.HTTP_201_CREATED)
 async def save_question(
     interview_id: str,

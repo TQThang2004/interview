@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { api } from '../../services/api';
 import {
   Trash2, UserCog, User, AlertCircle, Search,
-  RefreshCw, X, Shield, Mail, Calendar, Mic, Star,
+  RefreshCw, X, Shield, Mail, Calendar, Mic, Star, Plus
 } from 'lucide-react';
 import { useModal } from '../../context/ModalContext';
 
@@ -132,6 +132,62 @@ function UserDetailModal({ userId, onClose }) {
   );
 }
 
+// Modal tạo user mới
+function CreateUserModal({ onClose, onSuccess }) {
+  const [formData, setFormData] = useState({ username: '', email: '', password: '', role: 'user' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true); setError('');
+    try {
+      await api.adminCreateUser(formData);
+      onSuccess('Tạo người dùng thành công!');
+    } catch (err) {
+      setError(err.message || 'Có lỗi xảy ra');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'oklch(0% 0 0 / 0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }} onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="glass-card" style={{ width: '100%', maxWidth: '400px', padding: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <h3 style={{ fontWeight: 700, fontSize: '18px', margin: 0 }}>Thêm mới người dùng</h3>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}><X size={20} /></button>
+        </div>
+        {error && <div style={{ padding: '10px 14px', borderRadius: '8px', background: 'oklch(65% 0.22 25 / 0.1)', color: 'oklch(65% 0.22 25)', fontSize: '13px', marginBottom: '16px' }}>{error}</div>}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-secondary)' }}>Tên đăng nhập</label>
+            <input required className="input-field" value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-secondary)' }}>Email</label>
+            <input required type="email" className="input-field" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-secondary)' }}>Mật khẩu</label>
+            <input required type="password" minLength={6} className="input-field" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-secondary)' }}>Vai trò</label>
+            <select className="input-field" value={formData.role} onChange={e => setFormData({...formData, role: e.target.value})}>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" className="btn-primary" disabled={loading} style={{ marginTop: '8px' }}>
+            {loading ? 'Đang tạo...' : 'Tạo người dùng'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 // Removed local ConfirmModal
 
 export default function AdminUsers() {
@@ -142,6 +198,7 @@ export default function AdminUsers() {
   const [search, setSearch] = useState('');
   const [error, setError] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [toast, setToast] = useState(null);
 
   const showToast = (msg, success = true) => {
@@ -209,12 +266,27 @@ export default function AdminUsers() {
         <UserDetailModal userId={selectedUserId} onClose={() => setSelectedUserId(null)} />
       )}
 
+      {/* Create User Modal */}
+      {showCreateModal && (
+        <CreateUserModal 
+          onClose={() => setShowCreateModal(false)} 
+          onSuccess={(msg) => {
+            setShowCreateModal(false);
+            showToast(msg);
+            loadData();
+          }} 
+        />
+      )}
+
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 800, letterSpacing: '-0.02em' }}>
           Quản lý người dùng <span style={{ fontSize: '16px', color: 'var(--text-muted)', fontWeight: 500 }}>({total})</span>
         </h2>
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <button onClick={() => setShowCreateModal(true)} className="btn-primary" style={{ padding: '9px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Plus size={16} /> Thêm mới
+          </button>
           <div style={{ position: 'relative' }}>
             <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
             <input

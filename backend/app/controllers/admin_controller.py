@@ -36,6 +36,11 @@ async def handle_list_users(limit: int, offset: int, search: Optional[str]) -> d
     return {"status": "success", "total": total, "users": users}
 
 
+async def handle_create_user(body) -> dict:
+    user = await admin_service.create_user(body.username, body.email, body.password, body.role)
+    return {"status": "success", "user": user}
+
+
 async def handle_get_user_detail(user_id: str) -> dict | None:
     user = await admin_service.get_user_detail(user_id)
     if not user:
@@ -59,6 +64,17 @@ async def handle_list_all_interviews(
 ) -> dict:
     total, interviews = await admin_service.list_all_interviews(limit, offset, status_filter)
     return {"status": "success", "total": total, "interviews": interviews}
+
+
+async def handle_admin_get_interview_detail(interview_id: str) -> dict | None:
+    detail = await admin_service.admin_get_interview_detail(interview_id)
+    if not detail:
+        return None
+    return {"status": "success", "interview": detail}
+
+
+async def handle_admin_delete_interview(interview_id: str) -> bool:
+    return await admin_service.admin_delete_interview(interview_id)
 
 
 async def handle_get_top_candidates(limit: int) -> dict:
