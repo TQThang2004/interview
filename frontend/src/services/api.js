@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../constants/api';
-export const API_BASE = API_BASE_URL;
+const API_BASE = API_BASE_URL;
 
 export const api = {
   // ── Interview Q&A ────────────────────────────────────────────────────────

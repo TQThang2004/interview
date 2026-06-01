@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { User, Mail, Lock, Camera, Save, Eye, EyeOff, Bell, Globe, Shield, CheckCircle2 } from 'lucide-react';
 import { api } from '../../services/api';
+import { API_BASE_URL } from '../../constants/api';
+import { useModal } from '../../context/ModalContext';
 
 export default function ProfilePage() {
+  const { showAlert } = useModal();
   const [tab, setTab] = useState('info');
   const [saved, setSaved] = useState(false);
   const [showPass, setShowPass] = useState(false);
@@ -22,7 +25,7 @@ export default function ProfilePage() {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const res = await fetch(`${api.API_BASE || 'http://localhost:8000/api'}/auth/me`, { credentials: "include" });
+        const res = await fetch(`${API_BASE_URL}/auth/me`, { credentials: "include" });
         if (res.ok) {
           const user = await res.json();
           setForm({
@@ -61,7 +64,7 @@ export default function ProfilePage() {
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
     } catch (err) {
-      alert("Lỗi khi cập nhật profile: " + err.message);
+      showAlert("Lỗi khi cập nhật profile: " + err.message);
     }
   };
 
@@ -81,7 +84,7 @@ export default function ProfilePage() {
         setTimeout(() => setSaved(false), 2500);
       }
     } catch (err) {
-      alert("Lỗi tải lên ảnh: " + err.message);
+      showAlert("Lỗi tải lên ảnh: " + err.message);
     }
   };
 

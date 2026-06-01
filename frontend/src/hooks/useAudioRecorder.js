@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { api } from '../services/api';
+import { useModal } from '../context/ModalContext';
 
 export function useAudioRecorder(setUserAnswer) {
+  const { showAlert } = useModal();
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
   
@@ -46,10 +48,10 @@ export function useAudioRecorder(setUserAnswer) {
           if (data.status === "success") {
             setUserAnswer(prev => prev + (prev ? " " : "") + data.text);
           } else {
-            alert("Lỗi Whisper: " + data.detail);
+            showAlert("Lỗi Whisper: " + data.detail);
           }
         } catch(err) {
-          alert("Lỗi kết nối Whisper API: " + err.message);
+          showAlert("Lỗi kết nối Whisper API: " + err.message);
         } finally {
           setIsTranscribing(false);
         }
@@ -58,7 +60,7 @@ export function useAudioRecorder(setUserAnswer) {
       mediaRecorderRef.current.start();
       setIsRecording(true);
     } catch (err) {
-      alert("Trình duyệt không thể truy cập Microphone! Vui lòng cấp quyền.");
+      showAlert("Trình duyệt không thể truy cập Microphone! Vui lòng cấp quyền.");
     }
   };
 

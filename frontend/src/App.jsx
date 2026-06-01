@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { ModalProvider } from './context/ModalContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute    from './components/common/AdminRoute';
+import GlobalModal   from './components/common/GlobalModal';
 import { ROUTES }   from './constants/routes';
 
 import LandingPage        from './pages/LandingPage';
@@ -18,9 +20,11 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 export default function App() {
   return (
     <ThemeProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
+      <ModalProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <GlobalModal />
+            <Routes>
             {/* Public */}
             <Route path={ROUTES.HOME}            element={<LandingPage />} />
             <Route path={ROUTES.LOGIN}           element={<LoginPage />} />
@@ -45,6 +49,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+      </ModalProvider>
     </ThemeProvider>
   );
 }

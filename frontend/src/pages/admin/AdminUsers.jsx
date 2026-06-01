@@ -4,6 +4,7 @@ import {
   Trash2, UserCog, User, AlertCircle, Search,
   RefreshCw, X, Shield, Mail, Calendar, Mic, Star,
 } from 'lucide-react';
+import { useModal } from '../../context/ModalContext';
 
 function Avatar({ name, avatar_url, size = 36 }) {
   const url = avatar_url || '/avatar-default.jpg';
@@ -131,34 +132,16 @@ function UserDetailModal({ userId, onClose }) {
   );
 }
 
-// Modal xác nhận
-function ConfirmModal({ message, onConfirm, onCancel, danger = false }) {
-  return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'oklch(0% 0 0 / 0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-      <div className="glass-card" style={{ maxWidth: '400px', width: '100%', padding: '28px', textAlign: 'center' }}>
-        <div style={{ fontSize: '40px', marginBottom: '16px' }}>{danger ? '⚠️' : '❓'}</div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>{message}</p>
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-          <button onClick={onCancel} className="btn-ghost" style={{ padding: '10px 24px', fontSize: '14px' }}>Hủy</button>
-          <button onClick={onConfirm} style={{
-            padding: '10px 24px', fontSize: '14px', borderRadius: '12px', border: 'none', cursor: 'pointer', fontWeight: 700,
-            background: danger ? 'oklch(65% 0.22 25)' : 'var(--gradient-primary)',
-            color: 'white',
-          }}>Xác nhận</button>
-        </div>
-      </div>
-    </div>
-  );
-}
+// Removed local ConfirmModal
 
 export default function AdminUsers() {
+  const { showConfirm } = useModal();
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [error, setError] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const [confirm, setConfirm] = useState(null); // { type, userId, role?, message }
   const [toast, setToast] = useState(null);
 
   const showToast = (msg, success = true) => {
@@ -185,8 +168,9 @@ export default function AdminUsers() {
     return () => clearTimeout(t);
   }, [loadData]);
 
-  const execRoleChange = async (userId, newRole) => {
-    setConfirm(null);
+  const handleRoleChange = async (userId, newRole, username) => {
+    const msg = newRole === 'admin' ? `Cấp quyền Admin cho "${username}"?` : `Hạ quyền "${username}" xuống User?`;
+    if (!await showConfirm(msg)) return;
     try {
       await api.adminUpdateUserRole(userId, newRole);
       showToast(`Đã ${newRole === 'admin' ? 'cấp quyền Admin' : 'hạ xuống User'} thành công!`);
@@ -194,8 +178,8 @@ export default function AdminUsers() {
     } catch { showToast('Lỗi khi đổi quyền', false); }
   };
 
-  const execDelete = async (userId) => {
-    setConfirm(null);
+  const handleDelete = async (userId, username) => {
+    if (!await showConfirm(`Xóa vĩnh viễn tài khoản "${username}"? Mọi dữ liệu phỏng vấn sẽ mất.`, 'Xác nhận', { danger: true })) return;
     try {
       await api.adminDeleteUser(userId);
       showToast('Đã xóa user thành công!');
@@ -218,18 +202,7 @@ export default function AdminUsers() {
         </div>
       )}
 
-      {/* Confirm modal */}
-      {confirm && (
-        <ConfirmModal
-          message={confirm.message}
-          danger={confirm.type === 'delete'}
-          onCancel={() => setConfirm(null)}
-          onConfirm={() => {
-            if (confirm.type === 'role') execRoleChange(confirm.userId, confirm.role);
-            else if (confirm.type === 'delete') execDelete(confirm.userId);
-          }}
-        />
-      )}
+      {/* Removed local ConfirmModal */}
 
       {/* User detail modal */}
       {selectedUserId && (
@@ -317,7 +290,7 @@ export default function AdminUsers() {
                   <div style={{ display: 'flex', gap: '6px', justifyContent: 'flex-end' }}>
                     {u.role === 'user' ? (
                       <button
-                        onClick={() => setConfirm({ type: 'role', userId: u.id, role: 'admin', message: `Cấp quyền Admin cho "${u.username}"?` })}
+                        onClick={() => handleRoleChange(u.id, 'admin', u.username)}
                         title="Cấp quyền Admin"
                         style={{ padding: '7px', background: 'oklch(83.3% 0.145 321.434 / 0.1)', border: '1px solid oklch(83.3% 0.145 321.434 / 0.3)', borderRadius: '8px', cursor: 'pointer', color: 'var(--primary)', display: 'flex' }}
                       >
@@ -325,7 +298,7 @@ export default function AdminUsers() {
                       </button>
                     ) : (
                       <button
-                        onClick={() => setConfirm({ type: 'role', userId: u.id, role: 'user', message: `Hạ quyền "${u.username}" xuống User?` })}
+                        onClick={() => handleRoleChange(u.id, 'user', u.username)}
                         title="Hạ quyền User"
                         style={{ padding: '7px', background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex' }}
                       >
@@ -333,7 +306,7 @@ export default function AdminUsers() {
                       </button>
                     )}
                     <button
-                      onClick={() => setConfirm({ type: 'delete', userId: u.id, message: `Xóa vĩnh viễn tài khoản "${u.username}"? Mọi dữ liệu phỏng vấn sẽ mất.` })}
+                      onClick={() => handleDelete(u.id, u.username)}
                       title="Xóa User"
                       style={{ padding: '7px', background: 'oklch(65% 0.22 25 / 0.1)', border: '1px solid oklch(65% 0.22 25 / 0.3)', borderRadius: '8px', cursor: 'pointer', color: 'oklch(65% 0.22 25)', display: 'flex' }}
                     >

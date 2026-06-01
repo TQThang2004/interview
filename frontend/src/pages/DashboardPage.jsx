@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useModal } from '../context/ModalContext';
 import {
   LayoutDashboard, Users, FileText, Mic, History,
   User, ArrowLeft, LogOut, FileSearch,
@@ -8,10 +9,10 @@ import {
 
 import DashboardLayout  from '../components/layout/DashboardLayout';
 import DashboardHome    from './dashboard/DashboardHome';
-import CommunityPage    from './dashboard/CommunityPage';
-import CVEvaluationPage from './dashboard/CVEvaluationPage';
-import CVHistoryPage    from './dashboard/CVHistoryPage';
-import HistoryPage      from './dashboard/HistoryPage';
+import CommunityPage    from './dashboard/community/CommunityPage';
+import CVEvaluationPage from './dashboard/cv-evaluation/CVEvaluationPage';
+import CVHistoryPage    from './dashboard/cv-history/CVHistoryPage';
+import HistoryPage      from './dashboard/history/HistoryPage';
 import ProfilePage      from './dashboard/ProfilePage';
 import InterviewPage    from './InterviewPage';
 
@@ -87,12 +88,16 @@ function renderContent(activePage, setActivePage) {
 /* ── Main Dashboard Page ── */
 export default function DashboardPage() {
   const { user, logout } = useAuth();
+  const { showConfirm } = useModal();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('dashboard');
 
   const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+    const isConfirmed = await showConfirm("Bạn có chắc chắn muốn đăng xuất không?");
+    if (isConfirmed) {
+      navigate('/');
+      await logout();
+    }
   };
 
   return (

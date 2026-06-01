@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useAudioRecorder } from '../hooks/useAudioRecorder';
+import { useModal } from '../context/ModalContext';
 import { AlertCircle } from 'lucide-react';
 
 import SetupForm, { LEVELS } from '../components/interview/SetupForm';
@@ -12,6 +13,7 @@ import FinalResult from '../components/interview/FinalResult';
 
 export default function InterviewPage() {
   const { user } = useAuth();
+  const { showAlert } = useModal();
 
   // ── Cài đặt phỏng vấn ─────────────────────────────────────────────────────
   const [appState, setAppState] = useState("SETUP");
@@ -180,11 +182,11 @@ export default function InterviewPage() {
 
         setAppState("SHOW_EVAL");
       } else {
-        alert("Lỗi chấm điểm");
+        showAlert("Lỗi chấm điểm");
         setAppState("INTERVIEWING");
       }
     } catch (err) {
-      alert("Lỗi kết nối");
+      showAlert("Lỗi kết nối");
       setAppState("INTERVIEWING");
     }
   };

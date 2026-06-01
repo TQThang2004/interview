@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useModal } from '../context/ModalContext';
 import {
   LayoutDashboard, Users, Mic, Trophy, User, LogOut,
   MessageSquare, FileText,
@@ -63,12 +64,16 @@ function renderContent(activePage) {
 /* ── Main Admin Dashboard Page ── */
 export default function AdminDashboardPage() {
   const { user, logout } = useAuth();
+  const { showConfirm } = useModal();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('stats');
 
   const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+    const isConfirmed = await showConfirm("Bạn có chắc chắn muốn đăng xuất không?");
+    if (isConfirmed) {
+      navigate('/');
+      await logout();
+    }
   };
 
   return (

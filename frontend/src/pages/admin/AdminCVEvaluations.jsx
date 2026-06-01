@@ -4,6 +4,7 @@ import {
   RefreshCw, ExternalLink, User, Calendar, HardDrive
 } from 'lucide-react';
 import { api } from '../../services/api';
+import { useModal } from '../../context/ModalContext';
 
 const PAGE_SIZE = 15;
 
@@ -30,6 +31,7 @@ function formatBytes(bytes) {
 }
 
 export default function AdminCVEvaluations() {
+  const { showConfirm } = useModal();
   const [evaluations, setEvaluations] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -67,7 +69,7 @@ export default function AdminCVEvaluations() {
   };
 
   const handleDelete = async (evalId, filename, username) => {
-    if (!window.confirm(`Xóa đánh giá CV "${filename}" của ${username}?\nFile sẽ bị xóa khỏi Cloudinary.`)) return;
+    if (!await showConfirm(`Xóa đánh giá CV "${filename}" của ${username}?\nFile sẽ bị xóa khỏi Cloudinary.`)) return;
     setActionLoading(evalId);
     try {
       const ok = await api.adminDeleteCVEvaluation(evalId);

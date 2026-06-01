@@ -5,6 +5,7 @@ import {
   ChevronRight, Star, ArrowRight, Play, CheckCircle
 } from 'lucide-react';
 import ThemeToggle from '../components/common/ThemeToggle';
+import { useAuth } from '../context/AuthContext';
 
 /* ── Animated counter ────────────────────────────────────────── */
 function AnimatedNumber({ target, suffix = '' }) {
@@ -298,6 +299,7 @@ function FloatingTechCubes() {
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -361,17 +363,19 @@ export default function LandingPage() {
                 className="hidden md:block"
               >{label}</a>
             ))}
-            <Link to="/login" style={{
-              color: 'var(--text-secondary)', textDecoration: 'none',
-              fontSize: '15px', fontWeight: 500, transition: 'color 0.2s'
-            }}
-              onMouseEnter={e => e.target.style.color = 'var(--primary)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
-            >Đăng nhập</Link>
+            {!user && (
+              <Link to="/login" style={{
+                color: 'var(--text-secondary)', textDecoration: 'none',
+                fontSize: '15px', fontWeight: 500, transition: 'color 0.2s'
+              }}
+                onMouseEnter={e => e.target.style.color = 'var(--primary)'}
+                onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+              >Đăng nhập</Link>
+            )}
             <ThemeToggle />
             <Link to="/dashboard">
               <button id="nav-cta-btn" className="btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
-                Bắt đầu miễn phí
+                {user ? 'My Dashboard' : 'Bắt đầu miễn phí'}
               </button>
             </Link>
           </div>
@@ -428,7 +432,7 @@ export default function LandingPage() {
               <Link to="/dashboard">
                 <button id="hero-cta-primary" className="btn-primary"
                   style={{ padding: '15px 28px', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  Bắt đầu miễn phí <ArrowRight size={17} />
+                  {user ? 'My Dashboard' : 'Bắt đầu miễn phí'} <ArrowRight size={17} />
                 </button>
               </Link>
               <Link to="/dashboard">
@@ -677,16 +681,18 @@ export default function LandingPage() {
               Hàng trăm developer đã dùng AI Interviewer để chuẩn bị và tự tin hơn. Lượt bạn rồi!
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', position: 'relative' }}>
-              <Link to="/register">
+              <Link to={user ? "/dashboard" : "/register"}>
                 <button id="banner-cta-btn" className="btn-primary" style={{ padding: '16px 36px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                  Bắt đầu ngay – Miễn phí <ArrowRight size={18} />
+                  {user ? 'My Dashboard' : 'Bắt đầu ngay – Miễn phí'} <ArrowRight size={18} />
                 </button>
               </Link>
-              <Link to="/login">
-                <button className="btn-ghost" style={{ padding: '16px 28px', fontSize: '16px' }}>
-                  Đã có tài khoản
-                </button>
-              </Link>
+              {!user && (
+                <Link to="/login">
+                  <button className="btn-ghost" style={{ padding: '16px 28px', fontSize: '16px' }}>
+                    Đã có tài khoản
+                  </button>
+                </Link>
+              )}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginTop: '24px', flexWrap: 'wrap' }}>
               {['Không cần thẻ tín dụng', 'Bắt đầu trong 30 giây', 'Hoàn toàn miễn phí'].map(item => (

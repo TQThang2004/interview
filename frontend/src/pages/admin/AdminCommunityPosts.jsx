@@ -4,6 +4,7 @@ import {
   Filter, RefreshCw, MessageSquare, ThumbsUp, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { api } from '../../services/api';
+import { useModal } from '../../context/ModalContext';
 
 const STATUS_CONFIG = {
   pending:  { color: 'oklch(78% 0.18 80)',  bg: 'oklch(78% 0.18 80 / 0.12)',  label: 'Chờ duyệt' },
@@ -14,6 +15,7 @@ const STATUS_CONFIG = {
 const PAGE_SIZE = 15;
 
 export default function AdminCommunityPosts() {
+  const { showConfirm } = useModal();
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -67,7 +69,7 @@ export default function AdminCommunityPosts() {
   };
 
   const handleReject = async (postId, title) => {
-    if (!window.confirm(`Từ chối bài "${title.substring(0, 50)}"?\nBài sẽ bị xóa và tác giả sẽ nhận thông báo.`)) return;
+    if (!await showConfirm(`Từ chối bài "${title.substring(0, 50)}"?\nBài sẽ bị xóa và tác giả sẽ nhận thông báo.`)) return;
     setActionLoading(postId);
     try {
       await api.adminRejectPost(postId);
@@ -82,7 +84,7 @@ export default function AdminCommunityPosts() {
   };
 
   const handleDelete = async (postId, title) => {
-    if (!window.confirm(`Xóa bài "${title.substring(0, 50)}"?`)) return;
+    if (!await showConfirm(`Xóa bài "${title.substring(0, 50)}"?`)) return;
     setActionLoading(postId);
     try {
       const ok = await api.adminDeleteCommunityPost(postId);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Brain, Mic, BarChart3, Trophy, Clock, ArrowRight, PlayCircle, TrendingUp, Star } from 'lucide-react';
 import { api } from '../../services/api';
+import { API_BASE_URL } from '../../constants/api';
 
 const QUICK_ACTIONS = [
   { icon: <PlayCircle size={22} />, label: 'Bắt đầu phỏng vấn', color: 'var(--primary)', bg: 'oklch(83.3% 0.145 321.434 / 0.12)', border: 'oklch(83.3% 0.145 321.434 / 0.3)', action: 'interview' },
@@ -27,7 +28,7 @@ export default function DashboardHome({ onNavigate }) {
       try {
         const data = await api.getInterviews(10, 0);
         setInterviews(data);
-        const res = await fetch(`${api.API_BASE || 'http://localhost:8000/api'}/auth/me`, { credentials: "include" });
+        const res = await fetch(`${API_BASE_URL}/auth/me`, { credentials: "include" });
         if (res.ok) {
           const u = await res.json();
           setUser(u);
