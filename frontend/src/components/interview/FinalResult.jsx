@@ -29,17 +29,20 @@ function ScoreBar({ score, index }) {
 
 export default function FinalResult({ history, topic, total, onRestart }) {
   // history = finalScores (mảng số, đầy đủ cả câu cuối)
-  const avgScore = history.length
+  const hasAnswered = history.length > 0;
+  const avgScore = hasAnswered
     ? (history.reduce((a, b) => a + b, 0) / history.length).toFixed(1)
     : '0.0';
 
   const numAvg = parseFloat(avgScore);
   const isGood = numAvg >= 7.0;
   const isPerfect = numAvg >= 9.0;
+  const isEarlyEnd = history.length < total;
 
   let emoji = '😊';
   let label = 'Khá tốt!';
-  if (isPerfect) { emoji = '🏆'; label = 'Xuất sắc!'; }
+  if (!hasAnswered) { emoji = '🚪'; label = 'Đã kết thúc sớm'; }
+  else if (isPerfect) { emoji = '🏆'; label = 'Xuất sắc!'; }
   else if (numAvg >= 8.5) { emoji = '🌟'; label = 'Rất giỏi!'; }
   else if (numAvg >= 7) { emoji = '✅'; label = 'Tốt!'; }
   else if (numAvg >= 5) { emoji = '📈'; label = 'Cần cố gắng thêm'; }
@@ -74,38 +77,57 @@ export default function FinalResult({ history, topic, total, onRestart }) {
             {label}
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '28px', lineHeight: 1.6 }}>
-            Bạn đã hoàn thành <strong>{history.length}/{total}</strong> câu hỏi cho chủ đề <strong>"{topic}"</strong>.
+            {hasAnswered ? (
+              <>Bạn đã hoàn thành <strong>{history.length}/{total}</strong> câu hỏi cho chủ đề <strong>"{topic}"</strong>.
+              {isEarlyEnd && <><br /><span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Phỏng vấn đã được kết thúc sớm.</span></>}
+              </>
+            ) : (
+              <>Phỏng vấn chủ đề <strong>"{topic}"</strong> đã kết thúc.<br/>
+              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Bạn chưa trả lời câu hỏi nào.</span></>
+            )}
           </p>
 
-          {/* Big score */}
-          <div style={{
-            background: 'var(--bg-elevated)', border: '1px solid var(--border)',
-            borderRadius: '20px', padding: '28px', marginBottom: '24px',
-          }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>
-              Điểm Trung Bình
+          {/* Big score – chỉ hiện khi có điểm */}
+          {hasAnswered ? (
+            <div style={{
+              background: 'var(--bg-elevated)', border: '1px solid var(--border)',
+              borderRadius: '20px', padding: '28px', marginBottom: '24px',
+            }}>
+              <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>
+                Điểm Trung Bình
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '6px' }}>
+                <span style={{
+                  fontSize: '56px', fontWeight: 900, lineHeight: 1,
+                  background: isGood ? 'var(--gradient-primary)' : 'linear-gradient(135deg, oklch(65% 0.22 25), oklch(75% 0.18 40))',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                }}>
+                  {avgScore}
+                </span>
+                <span style={{ fontSize: '22px', color: 'var(--text-muted)', fontWeight: 500 }}>/10</span>
+              </div>
+              {/* Stars */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginTop: '12px' }}>
+                {[...Array(10)].map((_, i) => (
+                  <Star
+                    key={i} size={14}
+                    fill={i < Math.round(numAvg) ? 'oklch(80% 0.18 80)' : 'transparent'}
+                    style={{ color: i < Math.round(numAvg) ? 'oklch(80% 0.18 80)' : 'var(--border)' }}
+                  />
+                ))}
+              </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '6px' }}>
-              <span style={{
-                fontSize: '56px', fontWeight: 900, lineHeight: 1,
-                background: isGood ? 'var(--gradient-primary)' : 'linear-gradient(135deg, oklch(65% 0.22 25), oklch(75% 0.18 40))',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              }}>
-                {avgScore}
-              </span>
-              <span style={{ fontSize: '22px', color: 'var(--text-muted)', fontWeight: 500 }}>/10</span>
+          ) : (
+            <div style={{
+              background: 'var(--bg-elevated)', border: '1px solid var(--border)',
+              borderRadius: '20px', padding: '28px', marginBottom: '24px',
+            }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '14px', margin: 0, lineHeight: 1.6 }}>
+                Không có dữ liệu điểm để hiển thị.<br />
+                Hãy thử lại và cố gắng trả lời các câu hỏi nhé!
+              </p>
             </div>
-            {/* Stars */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginTop: '12px' }}>
-              {[...Array(10)].map((_, i) => (
-                <Star
-                  key={i} size={14}
-                  fill={i < Math.round(numAvg) ? 'oklch(80% 0.18 80)' : 'transparent'}
-                  style={{ color: i < Math.round(numAvg) ? 'oklch(80% 0.18 80)' : 'var(--border)' }}
-                />
-              ))}
-            </div>
-          </div>
+          )}
 
           <button onClick={onRestart} className="btn-primary"
             style={{ width: '100%', padding: '16px', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>

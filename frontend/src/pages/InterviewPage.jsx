@@ -13,7 +13,7 @@ import FinalResult from '../components/interview/FinalResult';
 
 export default function InterviewPage() {
   const { user } = useAuth();
-  const { showAlert } = useModal();
+  const { showAlert, showConfirm } = useModal();
 
   // ── Cài đặt phỏng vấn ─────────────────────────────────────────────────────
   const [appState, setAppState] = useState("SETUP");
@@ -205,26 +205,86 @@ export default function InterviewPage() {
       speak(questions[nextIdx].question);
     } else {
       // Hết câu → kết thúc phỏng vấn
-      isInterviewingRef.current = false;
-
-      // Dùng scoresRef để đảm bảo có đủ tất cả điểm (không phụ thuộc setState async)
-      const allScores = scoresRef.current;
-      setFinalScores([...allScores]);
-
-      if (interviewIdRef.current && allScores.length > 0) {
-        const avgScore = parseFloat(
-          (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(2)
-        );
-        console.log(`[InterviewPage] Hoàn thành: ${allScores.length} câu, avgScore=${avgScore}`, allScores);
-        api.completeInterview(
-          interviewIdRef.current,
-          avgScore,
-          `Hoàn thành ${allScores.length} câu hỏi. Điểm trung bình: ${avgScore}/10.`
-        ).catch(console.warn);
-      }
-
-      setAppState("FINISHED");
+      finishInterview();
     }
+  };
+
+  // ── Kết thúc phỏng vấn (helper chung) ──────────────────────────────────
+  const finishInterview = () => {
+    isInterviewingRef.current = false;
+    const allScores = scoresRef.current;
+    setFinalScores([...allScores]);
+
+    if (interviewIdRef.current && allScores.length > 0) {
+      const avgScore = parseFloat(
+        (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(2)
+      );
+      console.log(`[InterviewPage] Hoàn thành: ${allScores.length} câu, avgScore=${avgScore}`, allScores);
+      api.completeInterview(
+        interviewIdRef.current,
+        avgScore,
+        `Hoàn thành ${allScores.length}/${questions.length} câu hỏi. Điểm trung bình: ${avgScore}/10.`
+      ).catch(console.warn);
+    } else if (interviewIdRef.current) {
+      // Chưa trả lời câu nào → abandon
+      api.abandonInterview(interviewIdRef.current).catch(console.warn);
+    }
+
+    setAppState("FINISHED");
+  };
+
+  // ── Bỏ qua câu hỏi ───────────────────────────────────────────────────────
+  const skipQuestion = async () => {
+    if (activeAudioRef.current) activeAudioRef.current.pause();
+    stopRecordingHard();
+
+    // Ghi 0 điểm cho câu bị bỏ qua
+    scoresRef.current = [...scoresRef.current, 0];
+
+    // Lưu DB: đánh dấu câu bị skip
+    const qDbId = questionDbIdsRef.current[currentIdx];
+    if (interviewIdRef.current && qDbId) {
+      const skipEvalJson = JSON.stringify({
+        score_str: "0/10",
+        strengths: "",
+        weaknesses: "Câu hỏi đã bị bỏ qua.",
+        suggestions: "Hãy cố gắng trả lời tất cả các câu hỏi để được đánh giá đầy đủ.",
+      });
+      try {
+        await api.updateAnswer(interviewIdRef.current, qDbId, "(Đã bỏ qua)", skipEvalJson, 0);
+      } catch (err) {
+        console.warn("[skipQuestion] Lỗi lưu skip vào DB:", err);
+      }
+    }
+
+    // Chuyển sang câu tiếp hoặc kết thúc
+    setUserAnswer("");
+    setEvalResult(null);
+    const nextIdx = currentIdx + 1;
+    if (nextIdx < questions.length) {
+      await saveQuestionToDB(questions[nextIdx].question, nextIdx);
+      setCurrentIdx(nextIdx);
+      setAppState("INTERVIEWING");
+      speak(questions[nextIdx].question);
+    } else {
+      finishInterview();
+    }
+  };
+
+  // ── Kết thúc phỏng vấn sớm ───────────────────────────────────────────────
+  const endInterviewEarly = async () => {
+    const confirmed = await showConfirm(
+      `Bạn đã trả lời ${scoresRef.current.length}/${questions.length} câu hỏi. Bạn có chắc muốn kết thúc phỏng vấn ngay bây giờ?`,
+      "Kết thúc phỏng vấn",
+      { confirmText: "Kết thúc", cancelText: "Tiếp tục phỏng vấn", danger: true }
+    );
+    if (!confirmed) return;
+
+    if (activeAudioRef.current) activeAudioRef.current.pause();
+    stopRecordingHard();
+    setUserAnswer("");
+    setEvalResult(null);
+    finishInterview();
   };
 
   // ── Bắt đầu lại ──────────────────────────────────────────────────────────
@@ -299,6 +359,7 @@ export default function InterviewPage() {
         userAnswer={userAnswer} setUserAnswer={setUserAnswer}
         isRecording={isRecording} isTranscribing={isTranscribing} toggleRecording={toggleRecording}
         onSubmit={submitAnswer} onSpeak={() => speak(questions[currentIdx].question)}
+        onSkip={skipQuestion} onEndInterview={endInterviewEarly}
       />
     );
 

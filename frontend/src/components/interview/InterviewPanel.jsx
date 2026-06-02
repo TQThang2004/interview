@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Send, Mic, Square, Edit3, Bot, Volume2 } from 'lucide-react';
+import { Send, Mic, Square, Edit3, Bot, Volume2, SkipForward, LogOut } from 'lucide-react';
 
 export default function InterviewPanel({ 
   q, currentIdx, totalQuestions, 
   userAnswer, setUserAnswer, 
   isRecording, isTranscribing, toggleRecording,
-  onSubmit, onSpeak
+  onSubmit, onSpeak, onSkip, onEndInterview
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -30,6 +30,17 @@ export default function InterviewPanel({
           }}>
             Câu hỏi {currentIdx + 1} / {totalQuestions}
           </div>
+          <button onClick={onEndInterview} title="Kết thúc phỏng vấn" style={{
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '6px 14px', borderRadius: '10px', fontSize: '12px', fontWeight: 700,
+            background: 'oklch(65% 0.22 25 / 0.1)', border: '1px solid oklch(65% 0.22 25 / 0.3)',
+            color: 'oklch(70% 0.18 25)', cursor: 'pointer', transition: 'all 0.25s',
+            whiteSpace: 'nowrap'
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'oklch(65% 0.22 25 / 0.2)'; e.currentTarget.style.borderColor = 'oklch(65% 0.22 25 / 0.5)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'oklch(65% 0.22 25 / 0.1)'; e.currentTarget.style.borderColor = 'oklch(65% 0.22 25 / 0.3)'; }}>
+            <LogOut size={14} /> Kết thúc
+          </button>
         </div>
 
         {/* AI Question Box */}
@@ -138,7 +149,21 @@ export default function InterviewPanel({
             )}
           </div>
 
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border)' }}>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border)' }}>
+            <button onClick={onSkip} disabled={isRecording || isTranscribing}
+              style={{
+                padding: '12px 22px', borderRadius: '12px', fontSize: '14px', fontWeight: 600,
+                display: 'flex', alignItems: 'center', gap: '8px', transition: 'all 0.25s',
+                cursor: isRecording || isTranscribing ? 'not-allowed' : 'pointer',
+                background: 'transparent',
+                border: '1px solid var(--border)',
+                color: isRecording || isTranscribing ? 'var(--text-muted)' : 'var(--text-secondary)',
+                opacity: isRecording || isTranscribing ? 0.5 : 1,
+              }}
+              onMouseEnter={e => { if (!isRecording && !isTranscribing) { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.06)'; } }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'transparent'; }}>
+              <SkipForward size={16} /> Bỏ qua
+            </button>
             <button onClick={onSubmit} disabled={!userAnswer.trim() || isRecording || isTranscribing}
               style={{
                 padding: '14px 28px', borderRadius: '12px', fontSize: '15px', fontWeight: 700, 
