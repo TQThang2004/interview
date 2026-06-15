@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useModal } from '../context/ModalContext';
 import {
   LayoutDashboard, Users, FileText, Mic, History,
-  User, ArrowLeft, LogOut, FileSearch,
+  User, ArrowLeft, LogOut, FileSearch, BookOpen,
 } from 'lucide-react';
 
 import DashboardLayout  from '../components/layout/DashboardLayout';
@@ -15,6 +15,7 @@ import CVHistoryPage    from './dashboard/cv-history/CVHistoryPage';
 import HistoryPage      from './dashboard/history/HistoryPage';
 import ProfilePage      from './dashboard/ProfilePage';
 import InterviewPage    from './InterviewPage';
+import PracticePage     from './dashboard/practice/PracticePage';
 
 /* ── Nav items ── */
 const NAV = [
@@ -22,6 +23,7 @@ const NAV = [
   { id: 'community',     label: 'Community',     icon: <Users size={18} /> },
   { id: 'cv-evaluation', label: 'CV Evaluation', icon: <FileText size={18} /> },
   { id: 'interview',     label: 'Interview',     icon: <Mic size={18} /> },
+  { id: 'practice',      label: 'Luyện tập',    icon: <BookOpen size={18} /> },
   { id: 'history',       label: 'History',       icon: <History size={18} /> },
   { id: 'cv-history',    label: 'CV History',    icon: <FileSearch size={18} /> },
   { id: 'profile',       label: 'Profile',       icon: <User size={18} /> },
@@ -78,6 +80,7 @@ function renderContent(activePage, setActivePage) {
     case 'community':     return <CommunityPage />;
     case 'cv-evaluation': return <CVEvaluationPage />;
     case 'interview':     return <InterviewPage />;
+    case 'practice':      return <PracticePage />;
     case 'history':       return <HistoryPage />;
     case 'cv-history':    return <CVHistoryPage />;
     case 'profile':       return <ProfilePage />;

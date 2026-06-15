@@ -526,5 +526,103 @@ export const api = {
     });
     return res.ok;
   },
+
+  // ── Practice (Quiz) ────────────────────────────────────────────────────────
+
+  /** Lấy danh sách 13 chủ đề luyện tập. */
+  getPracticeTopics: async () => {
+    const res = await fetch(`${API_BASE}/practice/topics`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.topics || [];
+  },
+
+  /**
+   * Bắt đầu bài kiểm tra.
+   * Trả về {session_id, topic, level, language, num_questions, questions[]}
+   */
+  startPractice: async (topic, level, language, numQuestions) => {
+    const res = await fetch(`${API_BASE}/practice/start`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, level, language, num_questions: numQuestions }),
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
+  },
+
+  /**
+   * Nộp toàn bộ bài kiểm tra (Phương án B).
+   * answers: [{answer_id, user_answer}, ...]
+   * Trả về {overall_score, correct_count, total_questions, results[]}
+   */
+  submitPractice: async (sessionId, answers) => {
+    const res = await fetch(`${API_BASE}/practice/sessions/${sessionId}/submit`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers }),
+    });
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lỗi máy chủ (${res.status})`);
+    }
+    return res.json();
+  },
+
+  /** Huỷ bài kiểm tra đang làm. */
+  abandonPractice: async (sessionId) => {
+    try {
+      await fetch(`${API_BASE}/practice/sessions/${sessionId}/abandon`, {
+        method: "PATCH",
+        credentials: "include",
+        keepalive: true,
+      });
+    } catch (_) { /* bỏ qua */ }
+  },
+
+  /** Lấy thống kê luyện tập theo chủ đề (cho Dashboard). */
+  getPracticeStats: async () => {
+    const res = await fetch(`${API_BASE}/practice/stats`, { credentials: "include" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.stats || [];
+  },
+
+  /** Lấy lịch sử bài kiểm tra. */
+  getPracticeSessions: async (limit = 20, offset = 0) => {
+    const res = await fetch(
+      `${API_BASE}/practice/sessions?limit=${limit}&offset=${offset}`,
+      { credentials: "include" }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.sessions || [];
+  },
+
+  /** Chi tiết 1 bài kiểm tra (kèm đáp án sau khi hoàn thành). */
+  getPracticeDetail: async (sessionId) => {
+    const res = await fetch(`${API_BASE}/practice/sessions/${sessionId}`, {
+      credentials: "include",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.session || null;
+  },
+
+  /** Xóa bài kiểm tra. */
+  deletePracticeSession: async (sessionId) => {
+    const res = await fetch(`${API_BASE}/practice/sessions/${sessionId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    return res.ok;
+  },
 };
 
