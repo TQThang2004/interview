@@ -93,7 +93,7 @@ function QuestionDetail({ item, index }) {
             <div style={{
               padding: '12px 14px', borderRadius: '10px',
               background: 'var(--bg-surface)', border: '1px solid var(--border)',
-              fontSize: '14px', color: 'var(--text-primary)', lineHeight: 1.6,
+              fontSize: '14px', lineHeight: 1.6,
               fontStyle: item.user_answer === '(Bỏ qua)' ? 'italic' : 'normal',
               color: item.user_answer === '(Bỏ qua)' ? 'var(--text-muted)' : 'var(--text-primary)',
             }}>

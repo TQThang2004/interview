@@ -104,7 +104,7 @@ export default function AdminCommunityPosts() {
   const pendingCount = posts.filter(p => p.status === 'pending').length;
 
   return (
-    <div style={{ padding: 'clamp(20px, 3vw, 36px)', maxWidth: '1200px' }}>
+    <div style={{ padding: 'clamp(20px, 3vw, 36px)', maxWidth: '920px', margin: '0 auto' }}>
       {/* Toast */}
       {toast && (
         <div style={{
@@ -145,7 +145,7 @@ export default function AdminCommunityPosts() {
       <div className="glass-card" style={{ padding: '16px 20px', marginBottom: '20px' }}>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
           {/* Search */}
-          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', flex: '1', minWidth: '200px' }}>
+          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', flex: '1 1 360px', minWidth: '260px' }}>
             <div className="input-group" style={{ flex: 1 }}>
               <Search className="input-icon" size={16} />
               <input className="input-field" placeholder="Tìm tiêu đề, tác giả..."
@@ -259,15 +259,17 @@ export default function AdminCommunityPosts() {
                     {post.image_url && (
                       <div style={{
                         marginBottom: '12px', borderRadius: '12px', overflow: 'hidden',
-                        maxHeight: isExpanded ? '480px' : '200px',
+                        maxHeight: isExpanded ? '520px' : '260px',
                         transition: 'max-height 0.3s ease',
                         background: 'oklch(18% 0.02 260 / 0.5)',
                         border: '1px solid var(--border)',
+                        display: 'flex',
+                        justifyContent: 'center',
                       }}>
                         <img
                           src={post.image_url}
                           alt="post"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          style={{ width: '100%', maxWidth: '680px', maxHeight: isExpanded ? '520px' : '260px', objectFit: 'contain', display: 'block' }}
                           onError={e => { e.target.closest('div').style.display = 'none'; }}
                         />
                       </div>

@@ -17,10 +17,14 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from app.controllers import evaluate_controller
 from app.controllers import cv_evaluation_controller
 from app.core.constants import ALLOWED_CV_MIME_TYPES, ALLOWED_CV_EXTENSIONS
+from app.core.constants import MAX_CV_UPLOAD_BYTES
 from app.core.dependencies import get_current_user
+from app.core.logging import get_logger
+from app.core.rate_limit import rate_limit
 from app.schemas.interview_schemas import EvaluateAnswerRequest
 
 router = APIRouter(prefix="/api", tags=["Evaluate"])
+logger = get_logger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -28,11 +32,15 @@ router = APIRouter(prefix="/api", tags=["Evaluate"])
 # ---------------------------------------------------------------------------
 
 @router.post("/evaluate")
-def evaluate_answer(req: EvaluateAnswerRequest):
+def evaluate_answer(
+    req: EvaluateAnswerRequest,
+    current_user: dict = Depends(get_current_user),
+    _: None = Depends(rate_limit(max_requests=30, window_seconds=60)),
+):
     try:
         return evaluate_controller.handle_evaluate_answer(req)
     except Exception as e:
-        print(f"[Router] Error /evaluate: {e}")
+        logger.exception("Failed to evaluate answer")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -41,7 +49,11 @@ def evaluate_answer(req: EvaluateAnswerRequest):
 # ---------------------------------------------------------------------------
 
 @router.post("/evaluate/cv")
-async def evaluate_cv(cv: UploadFile = File(...)):
+async def evaluate_cv(
+    cv: UploadFile = File(...),
+    current_user: dict = Depends(get_current_user),
+    _: None = Depends(rate_limit(max_requests=10, window_seconds=60)),
+):
     if cv is None or cv.filename == "":
         raise HTTPException(status_code=422, detail="CV là bắt buộc.")
 
@@ -49,11 +61,13 @@ async def evaluate_cv(cv: UploadFile = File(...)):
     is_pdf_ext  = (cv.filename or "").lower().endswith(ALLOWED_CV_EXTENSIONS)
     if not (is_pdf_mime or is_pdf_ext):
         raise HTTPException(status_code=422, detail="Chỉ hỗ trợ file PDF.")
+    if cv.size is not None and cv.size > MAX_CV_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="CV vượt quá giới hạn 10MB.")
 
     try:
         return await evaluate_controller.handle_evaluate_cv_file(cv)
     except Exception as e:
-        print(f"[Router] Error /evaluate/cv: {e}")
+        logger.exception("Failed to evaluate CV")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -80,6 +94,8 @@ async def save_cv_evaluation(
     is_pdf_ext  = (cv.filename or "").lower().endswith(ALLOWED_CV_EXTENSIONS)
     if not (is_pdf_mime or is_pdf_ext):
         raise HTTPException(status_code=422, detail="Chỉ hỗ trợ file PDF.")
+    if cv.size is not None and cv.size > MAX_CV_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="CV vượt quá giới hạn 10MB.")
 
     # Parse evaluation_result JSON string
     try:

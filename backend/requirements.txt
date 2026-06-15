@@ -1,9 +1,12 @@
 fastapi
 uvicorn
 chromadb
-google-genai
+google-generativeai
 pydantic[email]
 python-dotenv
+python-multipart
+pypdf
+gTTS
 # Auth & Database
 asyncpg
 bcrypt

@@ -6,7 +6,7 @@
             "original_row_id": 0,
             "chunk_id": "sql_0_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 265
         }
@@ -18,7 +18,7 @@
             "original_row_id": 1,
             "chunk_id": "sql_1_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 347
         }
@@ -30,7 +30,7 @@
             "original_row_id": 2,
             "chunk_id": "sql_2_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 458
         }
@@ -42,7 +42,7 @@
             "original_row_id": 3,
             "chunk_id": "sql_3_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 273
         }
@@ -54,7 +54,7 @@
             "original_row_id": 4,
             "chunk_id": "sql_4_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 473
         }
@@ -66,7 +66,7 @@
             "original_row_id": 5,
             "chunk_id": "sql_5_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 380
         }
@@ -78,7 +78,7 @@
             "original_row_id": 6,
             "chunk_id": "sql_6_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 323
         }
@@ -90,7 +90,7 @@
             "original_row_id": 7,
             "chunk_id": "sql_7_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 433
         }
@@ -102,7 +102,7 @@
             "original_row_id": 8,
             "chunk_id": "sql_8_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 919
         }
@@ -114,7 +114,7 @@
             "original_row_id": 9,
             "chunk_id": "sql_9_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 604
         }
@@ -126,7 +126,7 @@
             "original_row_id": 10,
             "chunk_id": "sql_10_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 271
         }
@@ -138,7 +138,7 @@
             "original_row_id": 11,
             "chunk_id": "sql_11_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 476
         }
@@ -150,7 +150,7 @@
             "original_row_id": 12,
             "chunk_id": "sql_12_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 393
         }
@@ -162,7 +162,7 @@
             "original_row_id": 13,
             "chunk_id": "sql_13_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 210
         }
@@ -174,7 +174,7 @@
             "original_row_id": 14,
             "chunk_id": "sql_14_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 327
         }
@@ -186,7 +186,7 @@
             "original_row_id": 15,
             "chunk_id": "sql_15_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 243
         }
@@ -198,7 +198,7 @@
             "original_row_id": 16,
             "chunk_id": "sql_16_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 356
         }
@@ -210,7 +210,7 @@
             "original_row_id": 17,
             "chunk_id": "sql_17_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 875
         }
@@ -222,7 +222,7 @@
             "original_row_id": 18,
             "chunk_id": "sql_18_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 881
         }
@@ -234,7 +234,7 @@
             "original_row_id": 19,
             "chunk_id": "sql_19_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 392
         }
@@ -246,7 +246,7 @@
             "original_row_id": 20,
             "chunk_id": "sql_20_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 320
         }
@@ -258,7 +258,7 @@
             "original_row_id": 21,
             "chunk_id": "sql_21_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 298
         }
@@ -270,7 +270,7 @@
             "original_row_id": 22,
             "chunk_id": "sql_22_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 609
         }
@@ -282,7 +282,7 @@
             "original_row_id": 23,
             "chunk_id": "sql_23_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 382
         }
@@ -294,7 +294,7 @@
             "original_row_id": 24,
             "chunk_id": "sql_24_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 283
         }
@@ -306,7 +306,7 @@
             "original_row_id": 25,
             "chunk_id": "sql_25_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 309
         }
@@ -318,7 +318,7 @@
             "original_row_id": 26,
             "chunk_id": "sql_26_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 201
         }
@@ -330,7 +330,7 @@
             "original_row_id": 27,
             "chunk_id": "sql_27_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 172
         }
@@ -342,7 +342,7 @@
             "original_row_id": 28,
             "chunk_id": "sql_28_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 305
         }
@@ -354,7 +354,7 @@
             "original_row_id": 29,
             "chunk_id": "sql_29_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 196
         }
@@ -366,7 +366,7 @@
             "original_row_id": 30,
             "chunk_id": "sql_30_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 139
         }
@@ -378,7 +378,7 @@
             "original_row_id": 31,
             "chunk_id": "sql_31_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 186
         }
@@ -390,7 +390,7 @@
             "original_row_id": 32,
             "chunk_id": "sql_32_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 496
         }
@@ -402,7 +402,7 @@
             "original_row_id": 33,
             "chunk_id": "sql_33_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 159
         }
@@ -414,7 +414,7 @@
             "original_row_id": 34,
             "chunk_id": "sql_34_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 286
         }
@@ -426,7 +426,7 @@
             "original_row_id": 35,
             "chunk_id": "sql_35_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 293
         }
@@ -438,7 +438,7 @@
             "original_row_id": 36,
             "chunk_id": "sql_36_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 325
         }
@@ -450,7 +450,7 @@
             "original_row_id": 37,
             "chunk_id": "sql_37_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 267
         }
@@ -462,7 +462,7 @@
             "original_row_id": 38,
             "chunk_id": "sql_38_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 273
         }
@@ -474,7 +474,7 @@
             "original_row_id": 39,
             "chunk_id": "sql_39_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 332
         }
@@ -486,7 +486,7 @@
             "original_row_id": 40,
             "chunk_id": "sql_40_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 783
         }
@@ -498,7 +498,7 @@
             "original_row_id": 41,
             "chunk_id": "sql_41_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 842
         }
@@ -510,7 +510,7 @@
             "original_row_id": 42,
             "chunk_id": "sql_42_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 911
         }
@@ -522,7 +522,7 @@
             "original_row_id": 43,
             "chunk_id": "sql_43_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 356
         }
@@ -534,7 +534,7 @@
             "original_row_id": 44,
             "chunk_id": "sql_44_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 438
         }
@@ -546,7 +546,7 @@
             "original_row_id": 45,
             "chunk_id": "sql_45_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 298
         }
@@ -558,7 +558,7 @@
             "original_row_id": 46,
             "chunk_id": "sql_46_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 696
         }
@@ -570,7 +570,7 @@
             "original_row_id": 47,
             "chunk_id": "sql_47_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 594
         }
@@ -582,7 +582,7 @@
             "original_row_id": 48,
             "chunk_id": "sql_48_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 959
         }
@@ -594,7 +594,7 @@
             "original_row_id": 49,
             "chunk_id": "sql_49_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 323
         }
@@ -606,7 +606,7 @@
             "original_row_id": 50,
             "chunk_id": "sql_50_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 618
         }
@@ -618,7 +618,7 @@
             "original_row_id": 51,
             "chunk_id": "sql_51_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 371
         }
@@ -630,7 +630,7 @@
             "original_row_id": 52,
             "chunk_id": "sql_52_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 419
         }
@@ -642,7 +642,7 @@
             "original_row_id": 53,
             "chunk_id": "sql_53_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 610
         }
@@ -654,7 +654,7 @@
             "original_row_id": 54,
             "chunk_id": "sql_54_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 287
         }
@@ -666,7 +666,7 @@
             "original_row_id": 55,
             "chunk_id": "sql_55_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 435
         }
@@ -678,7 +678,7 @@
             "original_row_id": 56,
             "chunk_id": "sql_56_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 248
         }
@@ -690,7 +690,7 @@
             "original_row_id": 57,
             "chunk_id": "sql_57_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 284
         }
@@ -702,7 +702,7 @@
             "original_row_id": 58,
             "chunk_id": "sql_58_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 121
         }
@@ -714,7 +714,7 @@
             "original_row_id": 59,
             "chunk_id": "sql_59_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 166
         }
@@ -726,7 +726,7 @@
             "original_row_id": 60,
             "chunk_id": "sql_60_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 245
         }
@@ -738,7 +738,7 @@
             "original_row_id": 61,
             "chunk_id": "sql_61_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 361
         }
@@ -750,7 +750,7 @@
             "original_row_id": 62,
             "chunk_id": "sql_62_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 221
         }
@@ -762,7 +762,7 @@
             "original_row_id": 63,
             "chunk_id": "sql_63_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 241
         }
@@ -774,7 +774,7 @@
             "original_row_id": 64,
             "chunk_id": "sql_64_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 345
         }
@@ -786,7 +786,7 @@
             "original_row_id": 65,
             "chunk_id": "sql_65_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 337
         }
@@ -798,7 +798,7 @@
             "original_row_id": 66,
             "chunk_id": "sql_66_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 385
         }
@@ -810,7 +810,7 @@
             "original_row_id": 67,
             "chunk_id": "sql_67_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 412
         }
@@ -822,7 +822,7 @@
             "original_row_id": 68,
             "chunk_id": "sql_68_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 341
         }
@@ -834,7 +834,7 @@
             "original_row_id": 69,
             "chunk_id": "sql_69_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 412
         }
@@ -846,7 +846,7 @@
             "original_row_id": 70,
             "chunk_id": "sql_70_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 412
         }
@@ -858,7 +858,7 @@
             "original_row_id": 71,
             "chunk_id": "sql_71_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 602
         }
@@ -870,7 +870,7 @@
             "original_row_id": 72,
             "chunk_id": "sql_72_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 526
         }
@@ -882,7 +882,7 @@
             "original_row_id": 73,
             "chunk_id": "sql_73_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 539
         }
@@ -894,7 +894,7 @@
             "original_row_id": 74,
             "chunk_id": "sql_74_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 367
         }
@@ -906,7 +906,7 @@
             "original_row_id": 75,
             "chunk_id": "sql_75_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 220
         }
@@ -918,7 +918,7 @@
             "original_row_id": 76,
             "chunk_id": "sql_76_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 271
         }
@@ -930,7 +930,7 @@
             "original_row_id": 77,
             "chunk_id": "sql_77_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 211
         }
@@ -942,7 +942,7 @@
             "original_row_id": 78,
             "chunk_id": "sql_78_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 258
         }
@@ -954,7 +954,7 @@
             "original_row_id": 79,
             "chunk_id": "sql_79_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 223
         }
@@ -966,7 +966,7 @@
             "original_row_id": 80,
             "chunk_id": "sql_80_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 652
         }
@@ -978,7 +978,7 @@
             "original_row_id": 81,
             "chunk_id": "sql_81_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 180
         }
@@ -990,7 +990,7 @@
             "original_row_id": 82,
             "chunk_id": "sql_82_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 291
         }
@@ -1002,7 +1002,7 @@
             "original_row_id": 83,
             "chunk_id": "sql_83_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 427
         }
@@ -1014,7 +1014,7 @@
             "original_row_id": 84,
             "chunk_id": "sql_84_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 582
         }
@@ -1026,7 +1026,7 @@
             "original_row_id": 85,
             "chunk_id": "sql_85_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 322
         }
@@ -1038,7 +1038,7 @@
             "original_row_id": 86,
             "chunk_id": "sql_86_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 672
         }
@@ -1050,7 +1050,7 @@
             "original_row_id": 87,
             "chunk_id": "sql_87_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 605
         }
@@ -1062,7 +1062,7 @@
             "original_row_id": 88,
             "chunk_id": "sql_88_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 565
         }
@@ -1074,7 +1074,7 @@
             "original_row_id": 89,
             "chunk_id": "sql_89_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 622
         }
@@ -1086,7 +1086,7 @@
             "original_row_id": 90,
             "chunk_id": "sql_90_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 557
         }
@@ -1098,7 +1098,7 @@
             "original_row_id": 91,
             "chunk_id": "sql_91_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 629
         }
@@ -1110,7 +1110,7 @@
             "original_row_id": 92,
             "chunk_id": "sql_92_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 565
         }
@@ -1122,7 +1122,7 @@
             "original_row_id": 93,
             "chunk_id": "sql_93_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 551
         }
@@ -1134,7 +1134,7 @@
             "original_row_id": 94,
             "chunk_id": "sql_94_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 855
         }
@@ -1146,7 +1146,7 @@
             "original_row_id": 95,
             "chunk_id": "sql_95_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 816
         }
@@ -1158,7 +1158,7 @@
             "original_row_id": 96,
             "chunk_id": "sql_96_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 744
         }
@@ -1170,7 +1170,7 @@
             "original_row_id": 97,
             "chunk_id": "sql_97_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 631
         }
@@ -1182,7 +1182,7 @@
             "original_row_id": 98,
             "chunk_id": "sql_98_chunk_0",
             "instruction": "SQL",
-            "level": "",
+            "level": "Intern,Junior,Middle,Senior",
             "has_context_input": false,
             "chunk_length": 719
         }

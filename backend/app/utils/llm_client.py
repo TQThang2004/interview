@@ -1,9 +1,9 @@
-"""
-Utils LLM Client – helper dùng chung cho toàn bộ services LLM.
+﻿"""
+Utils LLM Client â€“ helper dÃ¹ng chung cho toÃ n bá»™ services LLM.
 
-Cung cấp:
-- GeminiClient: configure + gọi LLM có retry tự động
-- parse_json_safely: làm sạch markdown block rồi parse JSON
+Cung cáº¥p:
+- GeminiClient: configure + gá»i LLM cÃ³ retry tá»± Ä‘á»™ng
+- parse_json_safely: lÃ m sáº¡ch markdown block rá»“i parse JSON
 """
 from __future__ import annotations
 
@@ -14,6 +14,9 @@ from typing import Any
 import google.generativeai as genai
 
 from app.core.config import LLM_MODEL, LLM_RETRY_WAIT
+from app.core.logging import get_logger
+
+logger = get_logger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -21,9 +24,9 @@ from app.core.config import LLM_MODEL, LLM_RETRY_WAIT
 # ---------------------------------------------------------------------------
 
 def parse_json_safely(raw: str) -> Any | None:
-    """Làm sạch markdown fence rồi parse JSON từ output LLM."""
+    """LÃ m sáº¡ch markdown fence rá»“i parse JSON tá»« output LLM."""
     cleaned = raw.strip()
-    # Bóc markdown code-fence nếu có
+    # BÃ³c markdown code-fence náº¿u cÃ³
     for prefix in ("```json", "```"):
         if cleaned.startswith(prefix):
             cleaned = cleaned[len(prefix):]
@@ -33,7 +36,7 @@ def parse_json_safely(raw: str) -> Any | None:
     try:
         return json.loads(cleaned.strip())
     except Exception as e:
-        print(f"[LLMClient] Lỗi parse JSON: {e}")
+        logger.warning("Failed to parse LLM JSON output: %s", e)
         return None
 
 
@@ -43,10 +46,10 @@ def parse_json_safely(raw: str) -> Any | None:
 
 class GeminiClient:
     """
-    Wrapper quanh google.generativeai để:
-    - Configure API key trước mỗi lần gọi (an toàn đa luồng).
-    - Retry tự động khi bị rate-limit (429 / RESOURCE_EXHAUSTED).
-    - Cung cấp generate() trả về str thuần.
+    Wrapper quanh google.generativeai Ä‘á»ƒ:
+    - Configure API key trÆ°á»›c má»—i láº§n gá»i (an toÃ n Ä‘a luá»“ng).
+    - Retry tá»± Ä‘á»™ng khi bá»‹ rate-limit (429 / RESOURCE_EXHAUSTED).
+    - Cung cáº¥p generate() tráº£ vá» str thuáº§n.
     """
 
     def __init__(self, api_key: str, model: str = LLM_MODEL):
@@ -59,8 +62,8 @@ class GeminiClient:
 
     def generate(self, prompt: str, max_retries: int = 3) -> str:
         """
-        Gửi prompt, retry nếu rate-limit.
-        Trả về text thuần hoặc chuỗi lỗi (không raise exception).
+        Gá»­i prompt, retry náº¿u rate-limit.
+        Tráº£ vá» text thuáº§n hoáº·c chuá»—i lá»—i (khÃ´ng raise exception).
         """
         llm = self._configure()
         for attempt in range(1, max_retries + 1):
@@ -71,17 +74,14 @@ class GeminiClient:
                 err = str(e)
                 if "429" in err or "RESOURCE_EXHAUSTED" in err or "quota" in err.lower():
                     wait = LLM_RETRY_WAIT * attempt
-                    print(
-                        f"[LLMClient] Rate-limit – chờ {wait}s "
-                        f"(lần {attempt}/{max_retries})..."
-                    )
+                    logger.warning("LLM rate limited; retrying in %ss (%s/%s)", wait, attempt, max_retries)
                     time.sleep(wait)
                 else:
-                    print(f"[LLMClient] Lỗi LLM: {err[:200]}")
-                    return "(Lỗi hệ thống LLM. Không thể thực hiện vào lúc này.)"
-        return "(Vượt quá số lần thử tối đa của LLM API.)"
+                    logger.warning("LLM request failed: %s", err[:200])
+                    return "(Lá»—i há»‡ thá»‘ng LLM. KhÃ´ng thá»ƒ thá»±c hiá»‡n vÃ o lÃºc nÃ y.)"
+        return "(VÆ°á»£t quÃ¡ sá»‘ láº§n thá»­ tá»‘i Ä‘a cá»§a LLM API.)"
 
     def generate_json(self, prompt: str, max_retries: int = 3) -> Any | None:
-        """Gọi generate() và parse kết quả thành JSON. Trả về None nếu lỗi."""
+        """Gá»i generate() vÃ  parse káº¿t quáº£ thÃ nh JSON. Tráº£ vá» None náº¿u lá»—i."""
         raw = self.generate(prompt, max_retries)
         return parse_json_safely(raw)

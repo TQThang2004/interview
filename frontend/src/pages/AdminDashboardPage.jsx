@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useModal } from '../context/ModalContext';
 import {
   LayoutDashboard, Users, Mic, Trophy, User, LogOut,
-  MessageSquare, FileText,
+  MessageSquare, FileText, Database,
 } from 'lucide-react';
 
 import DashboardLayout     from '../components/layout/DashboardLayout';
@@ -13,6 +13,7 @@ import AdminUsers          from './admin/AdminUsers';
 import AdminInterviews     from './admin/AdminInterviews';
 import AdminCommunityPosts from './admin/AdminCommunityPosts';
 import AdminCVEvaluations  from './admin/AdminCVEvaluations';
+import AdminRAGStatus      from './admin/AdminRAGStatus';
 import ProfilePage         from './dashboard/ProfilePage';
 
 /* ── Nav items ── */
@@ -22,6 +23,7 @@ const NAV = [
   { id: 'interviews',    label: 'Lịch sử phỏng vấn',  icon: <Mic size={18} /> },
   { id: 'community',     label: 'Bài viết Community',  icon: <MessageSquare size={18} /> },
   { id: 'cv-evals',      label: 'Đánh giá CV',         icon: <FileText size={18} /> },
+  { id: 'rag-status',    label: 'RAG Status',          icon: <Database size={18} /> },
   { id: 'profile',       label: 'Profile Admin',       icon: <User size={18} /> },
 ];
 
@@ -56,6 +58,7 @@ function renderContent(activePage) {
     case 'interviews': return <AdminInterviews />;
     case 'community':  return <AdminCommunityPosts />;
     case 'cv-evals':   return <AdminCVEvaluations />;
+    case 'rag-status': return <AdminRAGStatus />;
     case 'profile':    return <ProfilePage />;
     default:           return <AdminStats />;
   }

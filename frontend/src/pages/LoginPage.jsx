@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
+import { AUTH_BASE_URL } from '../constants/api';
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +16,7 @@ const GoogleIcon = () => (
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { login, loginWithGoogle } = useAuth();
+  const { login } = useAuth();
 
   const [email, setEmail]         = useState('');
   const [password, setPassword]   = useState('');
@@ -65,7 +66,7 @@ export default function LoginPage() {
         const userInfo = await userInfoRes.json();
 
         // Gửi lên backend theo dạng custom - chúng ta dùng access_token thay credential
-        const res = await fetch('http://localhost:8000/api/auth/google/callback', {
+        const res = await fetch(`${AUTH_BASE_URL}/google/callback`, {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },

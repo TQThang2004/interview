@@ -1,13 +1,15 @@
-"""
-Service xử lý audio: Speech-to-Text bằng Gemini và Text-to-Speech bằng gTTS.
+﻿"""
+Service xá»­ lÃ½ audio: Speech-to-Text báº±ng Gemini vÃ  Text-to-Speech báº±ng gTTS.
 """
 import io
 import google.generativeai as genai
 from gtts import gTTS
 
 from app.core.config import GOOGLE_API_KEY_AUDIO, LLM_MODEL
+from app.core.logging import get_logger
 
 genai.configure(api_key=GOOGLE_API_KEY_AUDIO)
+logger = get_logger(__name__)
 
 
 def _get_llm():
@@ -16,16 +18,16 @@ def _get_llm():
 
 def transcribe_audio_gemini(audio_bytes: bytes) -> str:
     """
-    Dùng Gemini Multimodal để chuyển audio -> văn bản.
-    Hỗ trợ Tiếng Việt pha thuật ngữ IT (Vinglish).
+    DÃ¹ng Gemini Multimodal Ä‘á»ƒ chuyá»ƒn audio -> vÄƒn báº£n.
+    Há»— trá»£ Tiáº¿ng Viá»‡t pha thuáº­t ngá»¯ IT (Vinglish).
     """
     model = _get_llm()
     prompt = (
-        "Lắng nghe và chép lời đoạn thu âm này. "
-        "Người nói đang sử dụng Tiếng Việt và các thuật ngữ chuyên ngành IT "
-        "(ví dụ: ReactJS, NodeJS, Database, Framework, Code, Bug, Vinglish). "
-        "Ưu tiên chép chính xác từ chuyên môn. "
-        "Trả về phần text nội dung, tuyệt đối không suy diễn thêm hay bình luận:"
+        "Láº¯ng nghe vÃ  chÃ©p lá»i Ä‘oáº¡n thu Ã¢m nÃ y. "
+        "NgÆ°á»i nÃ³i Ä‘ang sá»­ dá»¥ng Tiáº¿ng Viá»‡t vÃ  cÃ¡c thuáº­t ngá»¯ chuyÃªn ngÃ nh IT "
+        "(vÃ­ dá»¥: ReactJS, NodeJS, Database, Framework, Code, Bug, Vinglish). "
+        "Æ¯u tiÃªn chÃ©p chÃ­nh xÃ¡c tá»« chuyÃªn mÃ´n. "
+        "Tráº£ vá» pháº§n text ná»™i dung, tuyá»‡t Ä‘á»‘i khÃ´ng suy diá»…n thÃªm hay bÃ¬nh luáº­n:"
     )
     try:
         response = model.generate_content([
@@ -34,14 +36,14 @@ def transcribe_audio_gemini(audio_bytes: bytes) -> str:
         ])
         return response.text.strip()
     except Exception as e:
-        print(f"[AudioService] Error Gemini STT: {e}")
-        return f"(Lỗi khi phân tích audio bằng Gemini: {e})"
+        logger.warning("Gemini STT failed: %s", e)
+        return f"(Lá»—i khi phÃ¢n tÃ­ch audio báº±ng Gemini: {e})"
 
 
 def generate_tts(text: str, language: str = "vi") -> bytes:
     """
-    Tạo file MP3 từ gTTS (Google Translate TTS – miễn phí).
-    Trả về raw bytes của file MP3.
+    Táº¡o file MP3 tá»« gTTS (Google Translate TTS â€“ miá»…n phÃ­).
+    Tráº£ vá» raw bytes cá»§a file MP3.
     """
     try:
         lang_code = "vi" if language == "vi" else "en"
@@ -50,5 +52,5 @@ def generate_tts(text: str, language: str = "vi") -> bytes:
         tts.write_to_fp(fp)
         return fp.getvalue()
     except Exception as e:
-        print(f"[AudioService] Error gTTS: {e}")
+        logger.exception("gTTS generation failed")
         raise

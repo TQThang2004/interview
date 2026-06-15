@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
+import { AUTH_BASE_URL } from '../constants/api';
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -101,7 +102,7 @@ export default function RegisterPage() {
         if (!userInfoRes.ok) throw new Error('Không thể lấy thông tin Google.');
         const userInfo = await userInfoRes.json();
 
-        const res = await fetch('http://localhost:8000/api/auth/google/callback', {
+        const res = await fetch(`${AUTH_BASE_URL}/google/callback`, {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },

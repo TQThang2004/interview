@@ -2,6 +2,14 @@ import os
 import re
 import json
 import glob
+import sys
+
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 def get_instruction_from_filename(filename):
     mapping = {
@@ -60,7 +68,7 @@ def parse_markdown_qa(filepath, topic, file_name):
                 "original_row_id": idx,
                 "chunk_id": f"{topic_key}_{idx}_chunk_0",
                 "instruction": topic,
-                "level": "",
+                "level": "Intern,Junior,Middle,Senior",
                 "has_context_input": False,
                 "chunk_length": len(page_content)
             }

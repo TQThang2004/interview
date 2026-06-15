@@ -8,9 +8,17 @@ import json
 import time
 import os
 import glob
+import sys
 import google.generativeai as genai
 import chromadb
 from dotenv import load_dotenv
+
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.env"))
 load_dotenv(dotenv_path=env_path, override=True)
@@ -87,6 +95,33 @@ def get_existing_ids(collection) -> set:
     return set(result["ids"])
 
 
+def clean_metadata(metadata: dict) -> dict:
+    clean = {}
+    for k, v in metadata.items():
+        if isinstance(v, bool):
+            clean[k] = str(v).lower()
+        elif v is None:
+            clean[k] = ""
+        else:
+            clean[k] = str(v)
+    return clean
+
+
+def update_existing_metadata(collection, chunks: list, existing_ids: set):
+    existing_chunks = [c for c in chunks if c["metadata"]["chunk_id"] in existing_ids]
+    if not existing_chunks:
+        return
+
+    ids = [c["metadata"]["chunk_id"] for c in existing_chunks]
+    metadatas = [clean_metadata(c["metadata"]) for c in existing_chunks]
+    for start in range(0, len(ids), BATCH_SIZE):
+        collection.update(
+            ids=ids[start:start + BATCH_SIZE],
+            metadatas=metadatas[start:start + BATCH_SIZE],
+        )
+    print(f"🔁 Đã cập nhật metadata cho {len(ids)} chunks đã tồn tại.")
+
+
 def embed_and_store(chunks: list, collection, existing_ids: set):
     total = len(chunks)
     success_count = 0
@@ -97,6 +132,7 @@ def embed_and_store(chunks: list, collection, existing_ids: set):
     
     if skip_count > 0:
         print(f"⏭️  Bỏ qua {skip_count} chunks đã embed trước đó.")
+        update_existing_metadata(collection, chunks, existing_ids)
     
     if not pending_chunks:
         print("✅ Tất cả chunks trong file này đã được embed rồi!")
@@ -119,21 +155,12 @@ def embed_and_store(chunks: list, collection, existing_ids: set):
             page_content = item["page_content"]
             metadata = item["metadata"]
 
-            clean_metadata = {}
-            for k, v in metadata.items():
-                if isinstance(v, bool):
-                    clean_metadata[k] = str(v).lower()
-                elif v is None:
-                    clean_metadata[k] = ""
-                else:
-                    clean_metadata[k] = str(v)
-
             embedding = create_embedding_with_retry(page_content, chunk_id)
             if embedding is not None:
                 ids.append(chunk_id)
                 embeddings.append(embedding)
                 documents.append(page_content)
-                metadatas.append(clean_metadata)
+                metadatas.append(clean_metadata(metadata))
                 success_count += 1
             else:
                 error_count += 1

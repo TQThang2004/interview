@@ -8,6 +8,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.exceptions.errors import AppException
+from app.core.logging import get_logger
+
+
+logger = get_logger(__name__)
 
 
 def register_exception_handlers(app: FastAPI) -> None:
@@ -24,7 +28,7 @@ def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
         """Bắt mọi exception không được xử lý – đảm bảo luôn có CORS header."""
-        print(f"[Error] Unhandled exception: {exc}")
+        logger.exception("Unhandled exception")
         return JSONResponse(
             status_code=500,
             content={"detail": "Lỗi máy chủ nội bộ, vui lòng thử lại."},

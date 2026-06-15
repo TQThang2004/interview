@@ -1,12 +1,16 @@
 """
 Router: Interview – POST /api/start-interview
 """
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
 from app.controllers import interview_controller
-from app.core.constants import ALLOWED_CV_MIME_TYPES, ALLOWED_CV_EXTENSIONS
+from app.core.constants import ALLOWED_CV_MIME_TYPES, ALLOWED_CV_EXTENSIONS, MAX_CV_UPLOAD_BYTES
+from app.core.dependencies import get_current_user
+from app.core.logging import get_logger
+from app.core.rate_limit import rate_limit
 
 router = APIRouter(prefix="/api", tags=["Interview"])
+logger = get_logger(__name__)
 
 
 @router.post("/start-interview")
@@ -15,6 +19,8 @@ async def start_interview(
     jd: str = Form(""),
     level: str = Form("Junior"),
     language: str = Form("vi"),
+    current_user: dict = Depends(get_current_user),
+    _: None = Depends(rate_limit(max_requests=10, window_seconds=60)),
 ):
     # ── Validate đầu vào ───────────────────────────────────────────────────────
     # 1. CV bắt buộc phải được gửi kèm
@@ -32,6 +38,8 @@ async def start_interview(
             status_code=422,
             detail=f"CV phải là file PDF. File '{cv.filename}' không được chấp nhận."
         )
+    if cv.size is not None and cv.size > MAX_CV_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="CV vượt quá giới hạn 10MB.")
 
     # 3. JD bắt buộc không được để trống
     if not jd or not jd.strip():
@@ -43,5 +51,5 @@ async def start_interview(
     try:
         return await interview_controller.handle_start_interview(cv, jd, level, language)
     except Exception as e:
-        print(f"[Router] Error /start-interview: {e}")
+        logger.exception("Failed to start interview")
         raise HTTPException(status_code=500, detail=str(e))

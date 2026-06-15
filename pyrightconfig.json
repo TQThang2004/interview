@@ -1,0 +1,16 @@
+{
+  "include": [
+    "backend",
+    "data_pipeline"
+  ],
+  "extraPaths": [
+    "backend"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "frontend",
+    "chroma_db",
+    "uploads"
+  ],
+  "pythonVersion": "3.13"
+}

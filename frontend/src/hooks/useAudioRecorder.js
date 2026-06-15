@@ -59,7 +59,7 @@ export function useAudioRecorder(setUserAnswer) {
 
       mediaRecorderRef.current.start();
       setIsRecording(true);
-    } catch (err) {
+    } catch {
       showAlert("Trình duyệt không thể truy cập Microphone! Vui lòng cấp quyền.");
     }
   };

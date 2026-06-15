@@ -81,7 +81,7 @@ async def create_user(
             detail=f"Role không hợp lệ. Chỉ chấp nhận: {', '.join(VALID_ROLES)}."
         )
     try:
-        return await admin_controller.handle_create_user(body)
+        return await admin_controller.handle_create_user(body, admin["id"])
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc))
 
@@ -101,7 +101,7 @@ async def update_user_role(
     if user_id == admin["id"]:
         raise HTTPException(status_code=400, detail="Không thể thay đổi role của chính mình.")
 
-    result = await admin_controller.handle_update_user_role(user_id, body.role)
+    result = await admin_controller.handle_update_user_role(admin["id"], user_id, body.role)
     if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy người dùng.")
     return result
@@ -112,7 +112,7 @@ async def delete_user(user_id: str, admin: dict = Depends(get_admin_user)):
     """Xóa người dùng khỏi hệ thống (cascade xóa interviews)."""
     if user_id == admin["id"]:
         raise HTTPException(status_code=400, detail="Không thể xóa tài khoản admin đang đăng nhập.")
-    deleted = await admin_controller.handle_delete_user(user_id)
+    deleted = await admin_controller.handle_delete_user(admin["id"], user_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Không tìm thấy người dùng.")
 
@@ -146,7 +146,7 @@ async def delete_interview(
     admin: dict = Depends(get_admin_user),
 ):
     """Admin xóa thẳng một phiên phỏng vấn."""
-    deleted = await admin_controller.handle_admin_delete_interview(interview_id)
+    deleted = await admin_controller.handle_admin_delete_interview(admin["id"], interview_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn.")
 
@@ -167,6 +167,12 @@ async def get_recent_activity(
 ):
     """Hoạt động phỏng vấn gần đây trên toàn hệ thống."""
     return await admin_controller.handle_get_recent_activity(limit)
+
+
+@router.get("/rag/status")
+async def get_rag_status(admin: dict = Depends(get_admin_user)):
+    """Trạng thái ChromaDB/RAG: tổng vector, topic thiếu, collection/path."""
+    return await admin_controller.handle_get_rag_status()
 
 
 # =============================================================================
@@ -193,7 +199,7 @@ async def approve_community_post(
     admin: dict = Depends(get_admin_user),
 ):
     """Duyệt bài viết community. Gửi notification cho tác giả."""
-    result = await admin_controller.handle_approve_community_post(post_id)
+    result = await admin_controller.handle_approve_community_post(admin["id"], post_id)
     if not result:
         raise HTTPException(
             status_code=404,
@@ -208,7 +214,7 @@ async def reject_community_post(
     admin: dict = Depends(get_admin_user),
 ):
     """Từ chối bài viết (xóa bài + gửi notification cho tác giả)."""
-    result = await admin_controller.handle_reject_community_post(post_id)
+    result = await admin_controller.handle_reject_community_post(admin["id"], post_id)
     if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
     return result
@@ -220,7 +226,7 @@ async def admin_delete_community_post(
     admin: dict = Depends(get_admin_user),
 ):
     """Admin xóa thẳng bài viết community."""
-    deleted = await admin_controller.handle_admin_delete_community_post(post_id)
+    deleted = await admin_controller.handle_admin_delete_community_post(admin["id"], post_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
 
@@ -246,6 +252,6 @@ async def admin_delete_cv_evaluation(
     admin: dict = Depends(get_admin_user),
 ):
     """Admin xóa đánh giá CV (DB + Cloudinary)."""
-    result = await admin_controller.handle_admin_delete_cv_evaluation(eval_id)
+    result = await admin_controller.handle_admin_delete_cv_evaluation(admin["id"], eval_id)
     if not result:
         raise HTTPException(status_code=404, detail="Không tìm thấy đánh giá CV.")

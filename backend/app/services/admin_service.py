@@ -4,10 +4,12 @@ Admin Service – business logic cho các chức năng quản trị hệ thống
 Bao gồm: thống kê, quản lý người dùng, quản lý phiên phỏng vấn.
 """
 from typing import Optional
+import json
 
 from app.database.connection import get_pool
 from app.utils.common import serialize_record
 from app.core.security import hash_password
+from app.services.practice_service import get_rag_status as get_practice_rag_status
 
 
 # ---------------------------------------------------------------------------
@@ -50,6 +52,28 @@ async def get_system_stats() -> dict:
         "interviews_week": interviews_week,
         "completion_rate": completion_rate,
     }
+
+
+async def create_audit_log(
+    actor_id: str,
+    action: str,
+    entity_type: str,
+    entity_id: str | None = None,
+    metadata: dict | None = None,
+) -> None:
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """
+            INSERT INTO audit_logs (actor_id, action, entity_type, entity_id, metadata)
+            VALUES ($1, $2, $3, $4::uuid, $5::jsonb)
+            """,
+            actor_id,
+            action,
+            entity_type,
+            entity_id,
+            json.dumps(metadata or {}),
+        )
 
 
 async def get_chart_data(days: int = 30) -> list[dict]:
@@ -328,6 +352,16 @@ async def get_recent_activity(limit: int) -> list[dict]:
             limit,
         )
     return [serialize_record(r) for r in rows]
+
+
+async def get_rag_status() -> dict:
+    return get_practice_rag_status()
+
+
+async def get_user_email(user_id: str) -> Optional[str]:
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        return await conn.fetchval("SELECT email FROM users WHERE id = $1", user_id)
 
 
 # ---------------------------------------------------------------------------

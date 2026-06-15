@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { TrendingUp, BookOpen, Bell, CheckCircle } from 'lucide-react';
 import { api } from '../../../services/api';
 import { useAuth } from '../../../context/AuthContext';
@@ -10,7 +10,7 @@ import CommunityNotifications from './CommunityNotifications';
 import CommunitySidebar from './CommunitySidebar';
 
 export default function CommunityPage() {
-  const { user } = useAuth();
+  useAuth();
   const { showAlert, showConfirm } = useModal();
   const [activeTab, setActiveTab] = useState('feed'); // 'feed' | 'my-posts' | 'notifications'
 
@@ -67,7 +67,7 @@ export default function CommunityPage() {
     finally { setLoading(false); }
   };
 
-  // Đếm notifications khi mount
+  // Count notifications on mount.
   useEffect(() => {
     api.getNotifications(1).then(d => setUnreadCount(d.unread_count || 0)).catch(() => {});
   }, []);
@@ -100,9 +100,12 @@ export default function CommunityPage() {
 
   const handleDeleteMyPost = async (id) => {
     if (!await showConfirm('Bạn có chắc muốn xóa bài viết này?')) return;
-    const ok = await api.deleteCommunityPost(id);
-    if (ok) setMyPosts(p => p.filter(post => post.id !== id));
-    else showAlert('Xóa bài thất bại.');
+    try {
+      await api.deleteCommunityPost(id);
+      setMyPosts(p => p.filter(post => post.id !== id));
+    } catch (err) {
+      showAlert(err.message || 'Xóa bài thất bại.');
+    }
   };
 
   const handleImageUpload = async (e) => {
@@ -127,13 +130,15 @@ export default function CommunityPage() {
     }
     const tagsArray = newTags.split(',').map(t => t.trim()).filter(t => t);
     try {
-      const res = await api.createCommunityPost(newTitle, newContent, newCategory, tagsArray, newImageUrl || null);
+      const result = await api.createCommunityPost(newTitle, newContent, newCategory, tagsArray, newImageUrl || null);
+      if (!result?.post) throw new Error('Không nhận được dữ liệu bài viết từ server.');
       setShowCreate(false);
       setNewTitle(''); setNewContent(''); setNewTags(''); setNewImageUrl('');
-      setSuccessMsg('🎉 Bài viết đã được gửi! Bài sẽ hiển thị sau khi admin kiểm duyệt.');
+      setSuccessMsg('Bài viết đã được gửi. Bài sẽ hiển thị sau khi admin kiểm duyệt.');
+      if (activeTab === 'my-posts') loadMyPosts();
       setTimeout(() => setSuccessMsg(''), 5000);
     } catch (err) {
-      showAlert('Lỗi khi đăng bài');
+      showAlert(err.message || 'Lỗi khi đăng bài');
     }
   };
 
@@ -150,9 +155,9 @@ export default function CommunityPage() {
   };
 
   const TABS = [
-    { id: 'feed',          label: 'Bảng tin',     icon: TrendingUp },
-    { id: 'my-posts',      label: 'Bài của tôi',  icon: BookOpen },
-    { id: 'notifications', label: 'Thông báo',    icon: Bell, badge: unreadCount },
+    { id: 'feed',          label: 'Bảng tin',       icon: TrendingUp },
+    { id: 'my-posts',      label: 'Bài của tôi',    icon: BookOpen },
+    { id: 'notifications', label: 'Thông báo',      icon: Bell, badge: unreadCount },
   ];
 
   return (
@@ -160,7 +165,7 @@ export default function CommunityPage() {
       {/* Header */}
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '6px' }}>
-          <span className="gradient-text">Community</span> 🤝
+          <span className="gradient-text">Community</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
           Chia sẻ kinh nghiệm, hỏi đáp và kết nối với cộng đồng developer Việt Nam.

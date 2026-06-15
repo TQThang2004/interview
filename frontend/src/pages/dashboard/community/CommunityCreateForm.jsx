@@ -41,8 +41,8 @@ export default function CommunityCreateForm({
           </label>
         </div>
         {newImageUrl && (
-          <div style={{ marginTop: '8px', borderRadius: '12px', overflow: 'hidden', height: '150px', background: 'oklch(18% 0.02 260 / 0.6)' }}>
-            <img src={newImageUrl} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+          <div style={{ marginTop: '8px', borderRadius: '12px', overflow: 'hidden', maxHeight: '260px', background: 'oklch(18% 0.02 260 / 0.6)', display: 'flex', justifyContent: 'center' }}>
+            <img src={newImageUrl} alt="preview" style={{ width: '100%', maxHeight: '260px', objectFit: 'contain', display: 'block' }} onError={(e) => { e.target.style.display = 'none'; }} />
           </div>
         )}
         <input className="input-field" placeholder="Tags (cách nhau bởi dấu phẩy, vd: react, js)" value={newTags} onChange={e => setNewTags(e.target.value)} />

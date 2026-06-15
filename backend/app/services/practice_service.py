@@ -1,12 +1,12 @@
-"""
-Practice Service – Logic nghiệp vụ cho chức năng Luyện tập theo Chủ đề (Quiz).
+﻿"""
+Practice Service â€“ Logic nghiá»‡p vá»¥ cho chá»©c nÄƒng Luyá»‡n táº­p theo Chá»§ Ä‘á» (Quiz).
 
-Flow Phương án B:
-  1. start_practice(): lấy câu hỏi từ ChromaDB → tạo session + lưu answers
-  2. submit_quiz():    chấm điểm từng câu (evaluate_service) → cập nhật DB → trả kết quả
-  3. get_practice_stats(): thống kê cho Dashboard
+Flow PhÆ°Æ¡ng Ã¡n B:
+  1. start_practice(): láº¥y cÃ¢u há»i tá»« ChromaDB â†’ táº¡o session + lÆ°u answers
+  2. submit_quiz():    cháº¥m Ä‘iá»ƒm tá»«ng cÃ¢u (evaluate_service) â†’ cáº­p nháº­t DB â†’ tráº£ káº¿t quáº£
+  3. get_practice_stats(): thá»‘ng kÃª cho Dashboard
 
-Không dùng LLM augment – câu hỏi lấy thẳng từ ChromaDB document.
+KhÃ´ng dÃ¹ng LLM augment â€“ cÃ¢u há»i láº¥y tháº³ng tá»« ChromaDB document.
 """
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ from typing import Optional
 import chromadb
 import google.generativeai as genai
 
+from app.core.logging import get_logger
 from app.core.config import (
     GOOGLE_API_KEY_EMBEDDING,
     EMBED_MODEL,
@@ -26,9 +27,11 @@ from app.core.config import (
 from app.database.connection import get_pool
 from app.services.evaluate_service import evaluate_answer
 
+logger = get_logger(__name__)
+
 
 # ---------------------------------------------------------------------------
-# Danh sách chủ đề hỗ trợ (13 topics từ dataset)
+# Danh sÃ¡ch chá»§ Ä‘á» há»— trá»£ (13 topics tá»« dataset)
 # ---------------------------------------------------------------------------
 
 PRACTICE_TOPICS = [
@@ -51,7 +54,7 @@ TOPIC_IDS = {t["id"] for t in PRACTICE_TOPICS}
 
 
 # ---------------------------------------------------------------------------
-# Helpers – ChromaDB
+# Helpers â€“ ChromaDB
 # ---------------------------------------------------------------------------
 
 def _get_collection():
@@ -60,23 +63,23 @@ def _get_collection():
 
 
 def _extract_question(document: str) -> str:
-    """Trích xuất câu hỏi từ page_content ChromaDB."""
+    """TrÃ­ch xuáº¥t cÃ¢u há»i tá»« page_content ChromaDB."""
     for line in document.split("\n"):
         stripped = line.strip()
-        if stripped.startswith("Câu hỏi:"):
+        if stripped.startswith("CÃ¢u há»i:"):
             return stripped.split(":", 1)[1].strip()
-    # fallback: dòng 2
+    # fallback: dÃ²ng 2
     lines = [l.strip() for l in document.split("\n") if l.strip()]
     return lines[1] if len(lines) > 1 else document[:200]
 
 
 def _extract_reference(document: str) -> str:
-    """Trích xuất câu trả lời tham khảo từ page_content ChromaDB."""
+    """TrÃ­ch xuáº¥t cÃ¢u tráº£ lá»i tham kháº£o tá»« page_content ChromaDB."""
     lines = document.split("\n")
     for i, line in enumerate(lines):
         stripped = line.strip()
-        if stripped.startswith("Trả lời:"):
-            # Lấy phần còn lại của dòng này + các dòng kế tiếp
+        if stripped.startswith("Tráº£ lá»i:"):
+            # Láº¥y pháº§n cÃ²n láº¡i cá»§a dÃ²ng nÃ y + cÃ¡c dÃ²ng káº¿ tiáº¿p
             first_part = stripped.split(":", 1)[1].strip()
             rest = "\n".join(l.strip() for l in lines[i + 1:] if l.strip())
             return (first_part + "\n" + rest).strip()
@@ -84,14 +87,14 @@ def _extract_reference(document: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Public: Lấy câu hỏi từ ChromaDB
+# Public: Láº¥y cÃ¢u há»i tá»« ChromaDB
 # ---------------------------------------------------------------------------
 
 def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     """
-    Truy vấn ChromaDB lấy câu hỏi theo chủ đề.
-    Dùng where filter theo metadata.instruction == topic.
-    Trả về list[{question, reference}].
+    Truy váº¥n ChromaDB láº¥y cÃ¢u há»i theo chá»§ Ä‘á».
+    DÃ¹ng where filter theo metadata.instruction == topic.
+    Tráº£ vá» list[{question, reference}].
     """
     if topic not in TOPIC_IDS:
         return []
@@ -113,10 +116,10 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
         else:
             query_embeddings = query_embedding
     except Exception as e:
-        print(f"[PracticeService] Lỗi embedding: {e}")
+        logger.warning("Failed to embed practice query: %s", e)
         return []
 
-    # Query với filter theo topic
+    # Query vá»›i filter theo topic
     fetch_n = min(num_q * 4, 100)
     try:
         results = collection.query(
@@ -126,8 +129,8 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
             include=["documents", "metadatas", "distances"],
         )
     except Exception as e:
-        # Nếu where filter lỗi, fallback không filter
-        print(f"[PracticeService] Lỗi query with filter: {e}, fallback không filter")
+        # Náº¿u where filter lá»—i, fallback khÃ´ng filter
+        logger.warning("Practice query with topic filter failed, retrying without filter: %s", e)
         try:
             results = collection.query(
                 query_embeddings=query_embeddings,
@@ -135,7 +138,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
                 include=["documents", "metadatas", "distances"],
             )
         except Exception as e2:
-            print(f"[PracticeService] Lỗi query fallback: {e2}")
+            logger.warning("Practice fallback query failed: %s", e2)
             return []
 
     docs = results["documents"][0] if results["documents"] else []
@@ -145,7 +148,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     seen_questions = set()
 
     for doc, meta in zip(docs, metas):
-        # Ưu tiên docs đúng topic
+        # Æ¯u tiÃªn docs Ä‘Ãºng topic
         doc_topic = meta.get("instruction", "")
         if doc_topic != topic:
             continue
@@ -156,24 +159,43 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
         seen_questions.add(q_text)
         questions.append({"question": q_text, "reference": ref_text})
 
-    # Nếu không đủ, lấy thêm từ docs bất kỳ
-    if len(questions) < num_q:
-        for doc, meta in zip(docs, metas):
-            if len(questions) >= num_q * 2:
-                break
-            q_text = _extract_question(doc)
-            ref_text = _extract_reference(doc)
-            if not q_text or q_text in seen_questions:
-                continue
-            seen_questions.add(q_text)
-            questions.append({"question": q_text, "reference": ref_text})
-
     random.shuffle(questions)
     return questions[:num_q]
 
 
+def get_rag_status() -> dict:
+    expected_topics = sorted(TOPIC_IDS)
+    try:
+        collection = _get_collection()
+        result = collection.get(include=["metadatas"])
+        metadatas = result.get("metadatas", [])
+    except Exception as exc:
+        return {
+            "status": "error",
+            "error": str(exc),
+            "total_vectors": 0,
+            "topics": {},
+            "missing_topics": expected_topics,
+        }
+
+    topics: dict[str, int] = {}
+    for meta in metadatas:
+        topic = meta.get("instruction", "") if meta else ""
+        topics[topic] = topics.get(topic, 0) + 1
+
+    missing = [topic for topic in expected_topics if topics.get(topic, 0) == 0]
+    return {
+        "status": "success",
+        "total_vectors": len(metadatas),
+        "topics": dict(sorted(topics.items())),
+        "missing_topics": missing,
+        "collection_name": COLLECTION_NAME,
+        "chroma_path": CHROMA_DB_PATH,
+    }
+
+
 # ---------------------------------------------------------------------------
-# CRUD – practice_sessions
+# CRUD â€“ practice_sessions
 # ---------------------------------------------------------------------------
 
 async def create_session(
@@ -196,7 +218,7 @@ async def create_session(
 async def save_answer(
     session_id: str, question_text: str, reference_answer: str, order: int
 ) -> str:
-    """Lưu câu hỏi vào practice_answers. Trả về answer_id."""
+    """LÆ°u cÃ¢u há»i vÃ o practice_answers. Tráº£ vá» answer_id."""
     pool = await get_pool()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
@@ -322,7 +344,7 @@ async def get_session_detail(session_id: str, user_id: str) -> Optional[dict]:
 
 
 async def get_practice_stats(user_id: str) -> list[dict]:
-    """Thống kê luyện tập theo chủ đề cho Dashboard."""
+    """Thá»‘ng kÃª luyá»‡n táº­p theo chá»§ Ä‘á» cho Dashboard."""
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
@@ -344,7 +366,7 @@ async def get_practice_stats(user_id: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Chấm điểm quiz (Phương án B: nộp tất cả 1 lần)
+# Cháº¥m Ä‘iá»ƒm quiz (PhÆ°Æ¡ng Ã¡n B: ná»™p táº¥t cáº£ 1 láº§n)
 # ---------------------------------------------------------------------------
 
 async def grade_quiz(
@@ -355,14 +377,14 @@ async def grade_quiz(
     language: str,
 ) -> dict:
     """
-    Chấm điểm tất cả câu trả lời, cập nhật DB, hoàn thành session.
+    Cháº¥m Ä‘iá»ƒm táº¥t cáº£ cÃ¢u tráº£ lá»i, cáº­p nháº­t DB, hoÃ n thÃ nh session.
 
     answers_input: [{answer_id, user_answer}, ...]
-    Trả về kết quả tổng hợp với chi tiết từng câu.
+    Tráº£ vá» káº¿t quáº£ tá»•ng há»£p vá»›i chi tiáº¿t tá»«ng cÃ¢u.
     """
     pool = await get_pool()
 
-    # Lấy tất cả answers của session (để có question_text + reference)
+    # Láº¥y táº¥t cáº£ answers cá»§a session (Ä‘á»ƒ cÃ³ question_text + reference)
     async with pool.acquire() as conn:
         db_answers = await conn.fetch(
             """
@@ -374,10 +396,10 @@ async def grade_quiz(
             session_id,
         )
 
-    # Build map answer_id → db record
+    # Build map answer_id â†’ db record
     db_map = {row["id"]: dict(row) for row in db_answers}
 
-    # Xây dict user_answer từ input
+    # XÃ¢y dict user_answer tá»« input
     user_map = {a["answer_id"]: a.get("user_answer", "").strip() for a in answers_input}
 
     graded_results = []
@@ -389,11 +411,11 @@ async def grade_quiz(
         reference = db_row["reference_answer"] or ""
         user_ans = user_map.get(aid, "").strip()
 
-        # Chấm điểm bằng evaluate_service (tái sử dụng)
+        # Cháº¥m Ä‘iá»ƒm báº±ng evaluate_service (tÃ¡i sá»­ dá»¥ng)
         try:
             eval_result = evaluate_answer(
                 question=question_text,
-                user_answer=user_ans if user_ans else "(Bỏ qua)",
+                user_answer=user_ans if user_ans else "(Bá» qua)",
                 reference=reference,
                 level=level,
                 language=language,
@@ -401,20 +423,20 @@ async def grade_quiz(
             score = eval_result.score
             eval_dict = eval_result.to_dict()
         except Exception as e:
-            print(f"[PracticeService] Lỗi chấm điểm answer {aid}: {e}")
+            logger.exception("Failed to grade practice answer")
             score = 0.0
             eval_dict = {"score": 0.0, "score_str": "0/10", "strengths": "", "weaknesses": "", "suggestions": ""}
 
         all_scores.append(score)
         eval_json = json.dumps(eval_dict, ensure_ascii=False)
 
-        # Cập nhật DB
-        await update_answer(aid, user_ans or "(Bỏ qua)", eval_json, score)
+        # Cáº­p nháº­t DB
+        await update_answer(aid, user_ans or "(Bá» qua)", eval_json, score)
 
         graded_results.append({
             "answer_id": aid,
             "question": question_text,
-            "user_answer": user_ans or "(Bỏ qua)",
+            "user_answer": user_ans or "(Bá» qua)",
             "reference_answer": reference,
             "score": score,
             "score_str": eval_dict.get("score_str", f"{score}/10"),
@@ -424,11 +446,11 @@ async def grade_quiz(
             "order": db_row["question_order"],
         })
 
-    # Tính điểm tổng
+    # TÃ­nh Ä‘iá»ƒm tá»•ng
     overall = round(sum(all_scores) / len(all_scores), 2) if all_scores else 0.0
     correct_count = sum(1 for s in all_scores if s >= 6.0)
 
-    # Hoàn thành session
+    # HoÃ n thÃ nh session
     await complete_session(session_id, user_id, overall, correct_count)
 
     return {

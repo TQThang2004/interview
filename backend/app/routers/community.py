@@ -87,7 +87,7 @@ async def get_post_detail(
     return result
 
 
-@router.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/posts/{post_id}", status_code=status.HTTP_200_OK)
 async def delete_post(post_id: str, current_user: dict = Depends(get_current_user)):
     """Xóa bài viết (chỉ owner hoặc admin)."""
     result = await community_controller.handle_delete_post(
@@ -97,6 +97,7 @@ async def delete_post(post_id: str, current_user: dict = Depends(get_current_use
         raise HTTPException(status_code=404, detail="Không tìm thấy bài viết.")
     if result == "forbidden":
         raise HTTPException(status_code=403, detail="Bạn không có quyền xóa bài viết này.")
+    return {"status": "success", "deleted_id": post_id}
 
 
 @router.post("/posts/{post_id}/like")

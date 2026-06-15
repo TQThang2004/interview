@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FileText, Clock, RefreshCw, CheckCircle2, AlertTriangle, FileSearch, ChevronRight, Trash2 } from 'lucide-react';
 import { api } from '../../../services/api';
 import ScoreChip from '../../../components/common/ScoreChip';

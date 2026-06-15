@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Lightbulb, Clock, Trash2 } from 'lucide-react';
+import { Download, Star, Lightbulb, Clock, Trash2 } from 'lucide-react';
 import ScoreBar from '../../../components/common/ScoreBar';
 import { formatDate } from './cvHistoryHelpers';
 
@@ -75,8 +75,22 @@ export default function EvalResultPanel({ evaluation, onDelete, deleting }) {
         </div>
       )}
 
+      <button
+        className="no-print"
+        onClick={() => window.print()}
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+          padding: '12px', borderRadius: '12px', border: '1px solid var(--border)',
+          background: 'transparent', color: 'var(--text-secondary)',
+          cursor: 'pointer', fontSize: '13px', fontWeight: 600,
+        }}
+      >
+        <Download size={14} /> Xuat ket qua PDF
+      </button>
+
       {/* Delete button */}
       <button
+        className="no-print"
         onClick={onDelete}
         disabled={deleting}
         style={{

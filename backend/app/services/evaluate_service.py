@@ -1,18 +1,21 @@
-"""
-Evaluate Service – chấm điểm và nhận xét câu trả lời của ứng viên.
+﻿"""
+Evaluate Service â€“ cháº¥m Ä‘iá»ƒm vÃ  nháº­n xÃ©t cÃ¢u tráº£ lá»i cá»§a á»©ng viÃªn.
 
-Tách ra khỏi rag_service.py để:
-- Mỗi service có 1 trách nhiệm rõ ràng (SRP).
-- Dễ test độc lập.
-- Dễ thay thế model/prompt sau này.
+TÃ¡ch ra khá»i rag_service.py Ä‘á»ƒ:
+- Má»—i service cÃ³ 1 trÃ¡ch nhiá»‡m rÃµ rÃ ng (SRP).
+- Dá»… test Ä‘á»™c láº­p.
+- Dá»… thay tháº¿ model/prompt sau nÃ y.
 """
 from __future__ import annotations
 
 from app.core.config import GOOGLE_API_KEY_EVALUATE
 from app.core.config import GOOGLE_API_KEY_TRANSLATE
+from app.core.logging import get_logger
 from app.utils.llm_client import GeminiClient
 import json
 import re
+
+logger = get_logger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -44,43 +47,43 @@ class EvaluationResult:
         }
 
 def evaluate_cv(cv_text: str) -> dict:
-    """Đánh giá CV và trả về JSON có cấu trúc."""
+    """ÄÃ¡nh giÃ¡ CV vÃ  tráº£ vá» JSON cÃ³ cáº¥u trÃºc."""
     client = GeminiClient(api_key=GOOGLE_API_KEY_TRANSLATE)
     
     prompt = (
-        "Bạn là một chuyên gia tuyển dụng (Headhunter/HR Manager) giàu kinh nghiệm. "
-        "Hãy đánh giá nội dung CV sau đây và trả về kết quả DƯỚI DẠNG JSON. "
-        "Yêu cầu cấu trúc JSON chính xác như sau:\n"
+        "Báº¡n lÃ  má»™t chuyÃªn gia tuyá»ƒn dá»¥ng (Headhunter/HR Manager) giÃ u kinh nghiá»‡m. "
+        "HÃ£y Ä‘Ã¡nh giÃ¡ ná»™i dung CV sau Ä‘Ã¢y vÃ  tráº£ vá» káº¿t quáº£ DÆ¯á»šI Dáº NG JSON. "
+        "YÃªu cáº§u cáº¥u trÃºc JSON chÃ­nh xÃ¡c nhÆ° sau:\n"
         "{\n"
-        '  "overall": <số điểm từ 1 đến 10>,\n'
+        '  "overall": <sá»‘ Ä‘iá»ƒm tá»« 1 Ä‘áº¿n 10>,\n'
         '  "sections": [\n'
-        '    { "name": "<Tên phần, VD: Thông tin cá nhân>", "score": <số điểm 1-10>, "feedback": "<nhận xét chi tiết, chỉ ra điểm làm tốt và chưa tốt>" }\n'
+        '    { "name": "<TÃªn pháº§n, VD: ThÃ´ng tin cÃ¡ nhÃ¢n>", "score": <sá»‘ Ä‘iá»ƒm 1-10>, "feedback": "<nháº­n xÃ©t chi tiáº¿t, chá»‰ ra Ä‘iá»ƒm lÃ m tá»‘t vÃ  chÆ°a tá»‘t>" }\n'
         "  ],\n"
         '  "suggestions": [\n'
-        '    "<hướng dẫn cải thiện cụ thể 1>",\n'
-        '    "<hướng dẫn cải thiện cụ thể 2>"\n'
+        '    "<hÆ°á»›ng dáº«n cáº£i thiá»‡n cá»¥ thá»ƒ 1>",\n'
+        '    "<hÆ°á»›ng dáº«n cáº£i thiá»‡n cá»¥ thá»ƒ 2>"\n'
         "  ]\n"
         "}\n\n"
-        "NỘI DUNG CV:\n"
+        "Ná»˜I DUNG CV:\n"
         f"{cv_text}\n\n"
-        "Chỉ trả về chuỗi JSON hợp lệ, không kèm markdown, không kèm lời giải thích."
+        "Chá»‰ tráº£ vá» chuá»—i JSON há»£p lá»‡, khÃ´ng kÃ¨m markdown, khÃ´ng kÃ¨m lá»i giáº£i thÃ­ch."
     )
     
     raw = client.generate(prompt)
     
     try:
-        # Xóa markdown code block nếu có
+        # XÃ³a markdown code block náº¿u cÃ³
         raw_clean = re.sub(r'```json|```', '', raw).strip()
         result = json.loads(raw_clean)
         return result
     except Exception as e:
-        print(f"Error parsing CV evaluation JSON: {e}")
+        logger.warning("Failed to parse CV evaluation JSON: %s", e)
         return {
             "overall": 5.0,
             "sections": [
-                { "name": "Nội dung", "score": 5, "feedback": "Không thể phân tích cấu trúc CV." }
+                { "name": "Ná»™i dung", "score": 5, "feedback": "KhÃ´ng thá»ƒ phÃ¢n tÃ­ch cáº¥u trÃºc CV." }
             ],
-            "suggestions": ["Vui lòng đảm bảo CV rõ ràng và thử lại."]
+            "suggestions": ["Vui lÃ²ng Ä‘áº£m báº£o CV rÃµ rÃ ng vÃ  thá»­ láº¡i."]
         }
 
 # ---------------------------------------------------------------------------
@@ -95,17 +98,17 @@ def evaluate_answer(
     language: str = "vi",
 ) -> EvaluationResult:
     """
-    Dùng LLM chấm điểm và nhận xét câu trả lời ứng viên.
+    DÃ¹ng LLM cháº¥m Ä‘iá»ƒm vÃ  nháº­n xÃ©t cÃ¢u tráº£ lá»i á»©ng viÃªn.
 
     Args:
-        question:    Câu hỏi đã được đặt ra.
-        user_answer: Câu trả lời của ứng viên (có thể rỗng nếu bỏ qua).
-        reference:   Câu trả lời tham khảo từ knowledge base.
-        level:       Cấp độ phỏng vấn để điều chỉnh tiêu chuẩn chấm.
-        language:    "vi" hoặc "en".
+        question:    CÃ¢u há»i Ä‘Ã£ Ä‘Æ°á»£c Ä‘áº·t ra.
+        user_answer: CÃ¢u tráº£ lá»i cá»§a á»©ng viÃªn (cÃ³ thá»ƒ rá»—ng náº¿u bá» qua).
+        reference:   CÃ¢u tráº£ lá»i tham kháº£o tá»« knowledge base.
+        level:       Cáº¥p Ä‘á»™ phá»ng váº¥n Ä‘á»ƒ Ä‘iá»u chá»‰nh tiÃªu chuáº©n cháº¥m.
+        language:    "vi" hoáº·c "en".
 
     Returns:
-        EvaluationResult với score, strengths, weaknesses, suggestions.
+        EvaluationResult vá»›i score, strengths, weaknesses, suggestions.
     """
     client = GeminiClient(api_key=GOOGLE_API_KEY_EVALUATE)
 
@@ -158,33 +161,33 @@ def evaluate_answer(
 
 
 def _parse_evaluation(raw: str) -> EvaluationResult:
-    """Parse output text LLM thanh EvaluationResult – dung regex robust, khong phu thuoc format cung."""
+    """Parse output text LLM thanh EvaluationResult â€“ dung regex robust, khong phu thuoc format cung."""
     score = 0.0
     score_str = "0/10"
     strengths = ""
     weaknesses = ""
     suggestions = ""
 
-    # ── Regex patterns (case-insensitive) bat moi bien the LLM output ─────
-    # Bat: "DIEM:", "Điểm:", "điểm:", "ĐIỂM:", "Diem:", "Score:", "DIEM :" ...
+    # â”€â”€ Regex patterns (case-insensitive) bat moi bien the LLM output â”€â”€â”€â”€â”€
+    # Bat: "DIEM:", "Äiá»ƒm:", "Ä‘iá»ƒm:", "ÄIá»‚M:", "Diem:", "Score:", "DIEM :" ...
     # QUAN TRONG: phai check DIEM MANH/YEU truoc de tranh match nham
     re_strengths = re.compile(
-        r'^[\s*]*(DIEM\s*MANH|ĐIỂM\s*MẠNH|Điểm\s*mạnh|STRENGTHS?)\s*:\s*(.*)',
+        r'^[\s*]*(DIEM\s*MANH|ÄIá»‚M\s*Máº NH|Äiá»ƒm\s*máº¡nh|STRENGTHS?)\s*:\s*(.*)',
         re.IGNORECASE
     )
     re_weaknesses = re.compile(
-        r'^[\s*]*(DIEM\s*YEU|ĐIỂM\s*YẾU|Điểm\s*yếu|WEAKNESSES?)\s*:\s*(.*)',
+        r'^[\s*]*(DIEM\s*YEU|ÄIá»‚M\s*Yáº¾U|Äiá»ƒm\s*yáº¿u|WEAKNESSES?)\s*:\s*(.*)',
         re.IGNORECASE
     )
     re_suggestions = re.compile(
-        r'^[\s*]*(GOI\s*Y(\s*BO\s*SUNG)?|GỢI\s*Ý(\s*BỔ\s*SUNG)?|SUGGESTIONS?)\s*:\s*(.*)',
+        r'^[\s*]*(GOI\s*Y(\s*BO\s*SUNG)?|Gá»¢I\s*Ã(\s*Bá»”\s*SUNG)?|SUGGESTIONS?)\s*:\s*(.*)',
         re.IGNORECASE
     )
     re_score_line = re.compile(
-        r'^[\s*]*(DIEM|ĐIỂM|Điểm|điểm|Score|SCORE)\s*:\s*(.*)',
+        r'^[\s*]*(DIEM|ÄIá»‚M|Äiá»ƒm|Ä‘iá»ƒm|Score|SCORE)\s*:\s*(.*)',
         re.IGNORECASE
     )
-    # Pattern trích score dạng X/10 từ chuỗi bất kỳ
+    # Pattern trÃ­ch score dáº¡ng X/10 tá»« chuá»—i báº¥t ká»³
     re_score_value = re.compile(r'(\d+[.,]?\d*)\s*/\s*10')
 
     lines = raw.split("\n")
@@ -236,7 +239,7 @@ def _parse_evaluation(raw: str) -> EvaluationResult:
 
             val = m_score.group(2).strip()
             score_str = val
-            # Trích score từ pattern X/10
+            # TrÃ­ch score tá»« pattern X/10
             score_match = re_score_value.search(val)
             if score_match:
                 try:
@@ -247,29 +250,28 @@ def _parse_evaluation(raw: str) -> EvaluationResult:
         elif current_field and stripped:
             buffer.append(stripped)
 
-    # Flush field cuối cùng
+    # Flush field cuá»‘i cÃ¹ng
     flush_current()
 
-    # ── Fallback 1: Nếu chưa parse được score, tìm X/10 BẤT KỲ ĐÂU trong toàn bộ output ──
+    # â”€â”€ Fallback 1: Náº¿u chÆ°a parse Ä‘Æ°á»£c score, tÃ¬m X/10 Báº¤T Ká»² ÄÃ‚U trong toÃ n bá»™ output â”€â”€
     if score == 0.0:
         fallback_match = re_score_value.search(raw)
         if fallback_match:
             try:
                 score = float(fallback_match.group(1).replace(",", "."))
                 score_str = fallback_match.group(0)
-                print(f"[_parse_evaluation] [WARNING] Dung fallback regex: tim thay score={score} tu '{score_str}'")
+                logger.warning("Used fallback score parser for evaluation output")
             except (ValueError, IndexError):
                 pass
 
-    # ── Cảnh báo khi score=0 nhưng LLM có trả output ──
+    # â”€â”€ Cáº£nh bÃ¡o khi score=0 nhÆ°ng LLM cÃ³ tráº£ output â”€â”€
     if score == 0.0 and raw.strip():
-        print(f"[_parse_evaluation] [WARNING] Score=0.0 nhung LLM co output ({len(raw)} chars)")
-        print(f"[_parse_evaluation] Raw output (200 chars dau): {raw[:200]}")
+        logger.warning("Evaluation parser produced score 0.0 from non-empty LLM output")
 
-    # Clamp score vào khoảng hợp lệ [0, 10]
+    # Clamp score vÃ o khoáº£ng há»£p lá»‡ [0, 10]
     score = max(0.0, min(10.0, score))
 
-    # Fallback nếu parse hoàn toàn thất bại
+    # Fallback náº¿u parse hoÃ n toÃ n tháº¥t báº¡i
     if not strengths and not weaknesses:
         suggestions = "Da co loi phan tich tu AI. Vui long thu lai."
         strengths = raw[:300]

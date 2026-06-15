@@ -1,31 +1,47 @@
 import asyncio
-import asyncpg
 import os
+from pathlib import Path
+
+import asyncpg
 from dotenv import load_dotenv
 
-# Load env variables
-_env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.env"))
-load_dotenv(dotenv_path=_env_path, override=True)
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DB_DIR = Path(__file__).resolve().parent
+load_dotenv(ROOT_DIR / ".env", override=True)
 
-async def run_migration():
+MIGRATIONS = [
+    "migrate_add_google_auth.sql",
+    "migrate_community_moderation.sql",
+]
+
+
+def _dsn() -> str:
     host = os.getenv("DB_HOST", "localhost")
     port = os.getenv("DB_PORT", "5432")
     user = os.getenv("DB_USER", "postgres")
-    password = os.getenv("DB_PASSWORD", "123")
+    password = os.getenv("DB_PASSWORD", "")
     db_name = os.getenv("DB_NAME", "ai_mock_interview_db")
+    return f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
 
-    dsn = f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
-    
-    with open("c:/DOAN/Data/backend/database/migrate_community.sql", "r", encoding="utf-8") as f:
-        sql = f.read()
-    
+
+async def run_migration() -> None:
+    conn = await asyncpg.connect(_dsn())
     try:
-        conn = await asyncpg.connect(dsn)
-        await conn.execute(sql)
-        print("Migration executed successfully.")
+        schema_path = DB_DIR / "schema.sql"
+        await conn.execute(schema_path.read_text(encoding="utf-8"))
+        print("[Migration] Applied source schema.sql")
+
+        for filename in MIGRATIONS:
+            path = DB_DIR / filename
+            if not path.exists():
+                print(f"[Migration] Skip missing file: {filename}")
+                continue
+            sql = path.read_text(encoding="utf-8")
+            await conn.execute(sql)
+            print(f"[Migration] Applied: {filename}")
+    finally:
         await conn.close()
-    except Exception as e:
-        print(f"Error during migration: {e}")
+
 
 if __name__ == "__main__":
     asyncio.run(run_migration())

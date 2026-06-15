@@ -8,7 +8,14 @@ from fastapi import APIRouter, Depends, HTTPException, Response, status
 
 from app.core.dependencies import get_current_user
 from app.core.security import COOKIE_NAME
-from app.schemas.auth_schemas import LoginRequest, RegisterRequest, UserResponse, GoogleCallbackRequest
+from app.schemas.auth_schemas import (
+    ForgotPasswordRequest,
+    GoogleCallbackRequest,
+    LoginRequest,
+    RegisterRequest,
+    ResetPasswordRequest,
+    UserResponse,
+)
 from app.controllers import auth_controller
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
@@ -37,6 +44,19 @@ async def login(body: LoginRequest, response: Response):
             detail="Email hoặc mật khẩu không chính xác.",
         )
     return result
+
+
+@router.post("/forgot-password")
+async def forgot_password(body: ForgotPasswordRequest):
+    return await auth_controller.handle_forgot_password(body.email)
+
+
+@router.post("/reset-password")
+async def reset_password(body: ResetPasswordRequest):
+    try:
+        return await auth_controller.handle_reset_password(body.token, body.new_password)
+    except ValueError as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
 
 
 # ── Đăng nhập / Đăng ký qua Google ──────────────────────────────────────────

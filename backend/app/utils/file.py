@@ -6,6 +6,10 @@ Bao gồm: parse PDF, validate file type.
 import io
 import pypdf
 
+from app.core.logging import get_logger
+
+logger = get_logger(__name__)
+
 
 def extract_text_from_pdf_bytes(pdf_bytes: bytes) -> str:
     """Trích xuất toàn bộ văn bản từ PDF dạng bytes."""
@@ -18,7 +22,7 @@ def extract_text_from_pdf_bytes(pdf_bytes: bytes) -> str:
                 pages_text.append(text)
         return "\n".join(pages_text).strip()
     except Exception as e:
-        print(f"[FileUtils] Error parsing PDF: {e}")
+        logger.warning("Failed to parse PDF bytes: %s", e)
         return ""
 
 

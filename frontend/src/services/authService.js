@@ -56,4 +56,16 @@ export const authService = {
   /** Lấy thông tin user hiện tại từ cookie */
   me: () =>
     authFetch("/me", { method: "GET" }),
+
+  forgotPassword: (email) =>
+    authFetch("/forgot-password", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }),
+
+  resetPassword: (token, newPassword) =>
+    authFetch("/reset-password", {
+      method: "POST",
+      body: JSON.stringify({ token, new_password: newPassword }),
+    }),
 };

@@ -108,6 +108,10 @@ export default function CVHistoryDetailView({ evaluation, onBack, onDelete }) {
         @media (max-width: 768px) {
           .cv-detail-grid { grid-template-columns: 1fr !important; }
         }
+        @media print {
+          .no-print { display: none !important; }
+          body { background: white !important; }
+        }
       `}</style>
     </>
   );

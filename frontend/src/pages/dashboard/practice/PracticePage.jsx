@@ -30,6 +30,7 @@ export default function PracticePage() {
   // ── DB tracking ────────────────────────────────────────────────────────────
   const sessionIdRef = useRef(null);
   const isActiveRef  = useRef(false);
+  const [sessionId, setSessionId] = useState(null);
 
   // ── Abandon khi rời trang ─────────────────────────────────────────────────
   const handleBeforeUnload = useCallback(() => {
@@ -62,6 +63,7 @@ export default function PracticePage() {
         return;
       }
       sessionIdRef.current = data.session_id;
+      setSessionId(data.session_id);
       isActiveRef.current = true;
       setQuestions(data.questions);
       setAppState('QUIZ');
@@ -104,6 +106,7 @@ export default function PracticePage() {
   // ── Làm lại chủ đề hiện tại ───────────────────────────────────────────────
   const handleRetry = () => {
     sessionIdRef.current = null;
+    setSessionId(null);
     setQuizResult(null);
     setQuestions([]);
     if (currentSettings) {
@@ -116,6 +119,7 @@ export default function PracticePage() {
   // ── Về trang chọn chủ đề ──────────────────────────────────────────────────
   const resetToSelect = () => {
     sessionIdRef.current = null;
+    setSessionId(null);
     isActiveRef.current = false;
     setQuestions([]);
     setQuizResult(null);
@@ -138,7 +142,7 @@ export default function PracticePage() {
     case 'QUIZ':
       return (
         <QuizPanel
-          sessionId={sessionIdRef.current}
+          sessionId={sessionId}
           topic={currentSettings?.topic}
           level={currentSettings?.level}
           questions={questions}

@@ -3,7 +3,7 @@ Auth Controller – nhận request, gọi auth_service, format response.
 """
 from fastapi import Response
 
-from app.core.security import ACCESS_TOKEN_EXPIRE_DAYS, COOKIE_NAME, create_access_token
+from app.core.security import ACCESS_TOKEN_EXPIRE_DAYS, COOKIE_NAME, COOKIE_SECURE, create_access_token
 from app.schemas.auth_schemas import UserResponse
 from app.services import auth_service
 
@@ -19,7 +19,7 @@ def set_auth_cookie(response: Response, token: str) -> None:
         max_age=_COOKIE_MAX_AGE,
         httponly=True,       # Không đọc được từ JS → an toàn hơn
         samesite="lax",      # Bảo vệ CSRF cơ bản
-        secure=False,        # Đặt True khi deploy HTTPS
+        secure=COOKIE_SECURE,
     )
 
 
@@ -65,3 +65,18 @@ async def handle_update_profile(user_id: str, body: dict) -> dict:
         "message": "Cập nhật thành công.",
         "user": UserResponse(**user).model_dump(),
     }
+
+
+async def handle_forgot_password(email: str) -> dict:
+    token = await auth_service.create_password_reset_token(email)
+    return {
+        "message": "Nếu email tồn tại, hệ thống đã tạo yêu cầu đặt lại mật khẩu.",
+        "reset_token": token,
+    }
+
+
+async def handle_reset_password(token: str, new_password: str) -> dict:
+    ok = await auth_service.reset_password(token, new_password)
+    if not ok:
+        raise ValueError("Token đặt lại mật khẩu không hợp lệ hoặc đã hết hạn.")
+    return {"message": "Đặt lại mật khẩu thành công."}

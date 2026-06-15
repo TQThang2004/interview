@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, AlertCircle, RefreshCw, Star, TrendingUp } from 'lucide-react';
+import { Download, RefreshCw, Star, TrendingUp } from 'lucide-react';
 
 function ScoreBar({ score, index }) {
   const color = score >= 8
@@ -38,6 +38,24 @@ export default function FinalResult({ history, topic, total, onRestart }) {
   const isGood = numAvg >= 7.0;
   const isPerfect = numAvg >= 9.0;
   const isEarlyEnd = history.length < total;
+  const lowScores = history.filter(score => score < 6).length;
+  const highScores = history.filter(score => score >= 8).length;
+  const completionRate = total > 0 ? history.length / total : 0;
+  const finalFeedback = hasAnswered
+    ? {
+        strengths: highScores >= Math.ceil(history.length / 2)
+          ? 'Ban co nhieu cau tra loi dat diem cao, nen tiep tuc giu cach trinh bay co cau truc va dua vi du cu the.'
+          : 'Ban da hoan thanh phien phong van va co du lieu de nhan dien nhom cau hoi can cai thien.',
+        weaknesses: lowScores > 0
+          ? `Co ${lowScores} cau duoi 6 diem, can on lai kien thuc nen va luyen cach tra loi theo y: boi canh, cach lam, ket qua.`
+          : 'Chua co cau nao duoi 6 diem, diem can cai thien chinh la tang do sau va su ro rang khi giai thich.',
+        roadmap: completionRate < 0.8
+          ? 'Uu tien luyen hoan thanh tron bo phien phong van, sau do moi toi uu diem tung cau.'
+          : numAvg >= 8
+          ? 'Buoc tiep theo: luyen cau hoi nang cao, system design va cac tinh huong trade-off.'
+          : 'Buoc tiep theo: on lai topic chinh, viet san khung tra loi STAR va luyen lai cac cau diem thap.',
+      }
+    : null;
 
   let emoji = '😊';
   let label = 'Khá tốt!';
@@ -129,11 +147,37 @@ export default function FinalResult({ history, topic, total, onRestart }) {
             </div>
           )}
 
-          <button onClick={onRestart} className="btn-primary"
+          <button onClick={() => window.print()} className="btn-secondary no-print"
+            style={{ width: '100%', padding: '16px', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '10px' }}>
+            <Download size={18} /> Xuat PDF
+          </button>
+          <button onClick={onRestart} className="btn-primary no-print"
             style={{ width: '100%', padding: '16px', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
             <RefreshCw size={18} /> Bắt Đầu Phiên Khác
           </button>
         </div>
+
+        {finalFeedback && (
+          <div className="glass-card" style={{ padding: '20px 24px' }}>
+            <h3 style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <TrendingUp size={16} style={{ color: 'var(--primary)' }} /> Tong hop cuoi buoi
+            </h3>
+            <div style={{ display: 'grid', gap: '12px' }}>
+              <div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '4px' }}>Diem manh</div>
+                <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{finalFeedback.strengths}</p>
+              </div>
+              <div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '4px' }}>Diem can cai thien</div>
+                <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{finalFeedback.weaknesses}</p>
+              </div>
+              <div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '4px' }}>Lo trinh tiep theo</div>
+                <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{finalFeedback.roadmap}</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Per-question breakdown */}
         {history.length > 0 && (
@@ -159,6 +203,12 @@ export default function FinalResult({ history, topic, total, onRestart }) {
             </div>
           </div>
         )}
+        <style>{`
+          @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+          }
+        `}</style>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
-"""
-Core Config – đọc biến môi trường và định nghĩa các cấu hình toàn cục.
+﻿"""
+Core Config â€“ Ä‘á»c biáº¿n mÃ´i trÆ°á»ng vÃ  Ä‘á»‹nh nghÄ©a cÃ¡c cáº¥u hÃ¬nh toÃ n cá»¥c.
 
-Tất cả cấu hình hệ thống được tập trung tại đây.
-Các module khác import từ đây thay vì đọc trực tiếp os.getenv().
+Táº¥t cáº£ cáº¥u hÃ¬nh há»‡ thá»‘ng Ä‘Æ°á»£c táº­p trung táº¡i Ä‘Ã¢y.
+CÃ¡c module khÃ¡c import tá»« Ä‘Ã¢y thay vÃ¬ Ä‘á»c trá»±c tiáº¿p os.getenv().
 """
 import os
+import logging
 from dotenv import load_dotenv
 
-# Load .env từ thư mục gốc dự án (Data/.env)
+# Load .env tá»« thÆ° má»¥c gá»‘c dá»± Ã¡n (Data/.env)
 _env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.env"))
 load_dotenv(dotenv_path=_env_path, override=True)
 
@@ -26,8 +27,16 @@ CLOUDINARY_CLOUD_NAME: str = os.getenv("CLOUDINARY_CLOUD_NAME", "")
 CLOUDINARY_API_KEY: str = os.getenv("CLOUDINARY_API_KEY", "")
 CLOUDINARY_API_SECRET: str = os.getenv("CLOUDINARY_API_SECRET", "")
 
+# -- Email / SMTP (optional) --
+SMTP_HOST: str = os.getenv("SMTP_HOST", "")
+SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
+SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
+SMTP_FROM_EMAIL: str = os.getenv("SMTP_FROM_EMAIL", SMTP_USERNAME)
+SMTP_USE_TLS: bool = os.getenv("SMTP_USE_TLS", "true").lower() in {"1", "true", "yes", "on"}
+
 if not GOOGLE_API_KEY:
-    print("Warning: Không tìm thấy GOOGLE_API_KEY trong file .env, các module có thể gặp lỗi nếu thiếu key chi tiết.")
+    logging.getLogger(__name__).warning("GOOGLE_API_KEY is not configured; AI modules may fail without task-specific keys.")
 
 # -- Model names --
 LLM_MODEL: str = "gemini-2.5-flash"
@@ -44,4 +53,4 @@ TOP_K_RETRIEVE: int = 20
 NUM_QUESTIONS: int = 5
 
 # -- LLM retry --
-LLM_RETRY_WAIT: int = 45  # giây chờ khi bị rate-limit
+LLM_RETRY_WAIT: int = 45  # giÃ¢y chá» khi bá»‹ rate-limit

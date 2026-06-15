@@ -1,27 +1,42 @@
+import argparse
 import asyncio
-import asyncpg
 import os
+from pathlib import Path
+
+import asyncpg
 from dotenv import load_dotenv
 
-_env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.env"))
-load_dotenv(dotenv_path=_env_path, override=True)
+ROOT_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT_DIR / ".env", override=True)
 
-async def set_admin():
+
+def _dsn() -> str:
     host = os.getenv("DB_HOST", "localhost")
     port = os.getenv("DB_PORT", "5432")
     user = os.getenv("DB_USER", "postgres")
-    password = os.getenv("DB_PASSWORD", "123")
+    password = os.getenv("DB_PASSWORD", "")
     db_name = os.getenv("DB_NAME", "ai_mock_interview_db")
+    return f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
 
-    dsn = f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
-    
+
+async def set_admin(email: str) -> bool:
+    conn = await asyncpg.connect(_dsn())
     try:
-        conn = await asyncpg.connect(dsn)
-        await conn.execute("UPDATE users SET role = 'admin'")
-        print("Updated all users to admin role successfully.")
+        result = await conn.execute(
+            "UPDATE users SET role = 'admin', updated_at = NOW() WHERE email = $1",
+            email,
+        )
+        return result == "UPDATE 1"
+    finally:
         await conn.close()
-    except Exception as e:
-        print(f"Error: {e}")
+
 
 if __name__ == "__main__":
-    asyncio.run(set_admin())
+    parser = argparse.ArgumentParser(description="Promote one user to admin by email.")
+    parser.add_argument("email", help="Email of the user to promote")
+    args = parser.parse_args()
+    updated = asyncio.run(set_admin(args.email))
+    if updated:
+        print(f"Promoted {args.email} to admin.")
+    else:
+        print(f"No user found for email: {args.email}")

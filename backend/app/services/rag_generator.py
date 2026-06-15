@@ -1,14 +1,14 @@
-"""
-RAG Generator – Orchestrator của pipeline RAG đầy đủ (R → A → G).
+﻿"""
+RAG Generator â€“ Orchestrator cá»§a pipeline RAG Ä‘áº§y Ä‘á»§ (R â†’ A â†’ G).
 
 Flow:
-  1. [Extract]  extract_cv_jd_context()   → CVJDContext        (1 LLM call)
-  2. [Retrieve] retrieve_raw_docs()       → list[RawDoc]       (1 Embedding call + ChromaDB)
-                                            trả về ngân hàng TOP_K_RETRIEVE docs
-  3. [Augment]  augment_questions()       → list[Question]     (1 LLM call)
-                                            chọn lọc từ ngân hàng → sinh NUM_QUESTIONS câu hỏi
+  1. [Extract]  extract_cv_jd_context()   â†’ CVJDContext        (1 LLM call)
+  2. [Retrieve] retrieve_raw_docs()       â†’ list[RawDoc]       (1 Embedding call + ChromaDB)
+                                            tráº£ vá» ngÃ¢n hÃ ng TOP_K_RETRIEVE docs
+  3. [Augment]  augment_questions()       â†’ list[Question]     (1 LLM call)
+                                            chá»n lá»c tá»« ngÃ¢n hÃ ng â†’ sinh NUM_QUESTIONS cÃ¢u há»i
 
-Tổng: 2 LLM calls + 1 Embedding call.
+Tá»•ng: 2 LLM calls + 1 Embedding call.
 """
 from __future__ import annotations
 
@@ -34,26 +34,22 @@ def generate_questions_from_cv_jd(
     num_q: int = NUM_QUESTIONS,
 ) -> list[dict]:
     """
-    Sinh danh sách câu hỏi phỏng vấn dựa trên CV và JD theo pipeline RAG đúng kỹ thuật:
-      Retrieve → Augmented Generation
+    Sinh danh sÃ¡ch cÃ¢u há»i phá»ng váº¥n dá»±a trÃªn CV vÃ  JD theo pipeline RAG Ä‘Ãºng ká»¹ thuáº­t:
+      Retrieve â†’ Augmented Generation
 
     Args:
-        cv_text:  Nội dung CV dưới dạng plain text.
-        jd_text:  Nội dung Job Description.
-        level:    Cấp độ phỏng vấn (junior/mid/senior…).
-        language: "vi" (tiếng Việt) hoặc "en" (English).
-        num_q:    Số câu hỏi muốn sinh ra.
+        cv_text:  Ná»™i dung CV dÆ°á»›i dáº¡ng plain text.
+        jd_text:  Ná»™i dung Job Description.
+        level:    Cáº¥p Ä‘á»™ phá»ng váº¥n (junior/mid/seniorâ€¦).
+        language: "vi" (tiáº¿ng Viá»‡t) hoáº·c "en" (English).
+        num_q:    Sá»‘ cÃ¢u há»i muá»‘n sinh ra.
 
     Returns:
-        list[dict] với mỗi dict gồm: id, question, reference, source.
+        list[dict] vá»›i má»—i dict gá»“m: id, question, reference, source.
     """
-    print("\n" + "*" * 60)
-    print(">>> [RAGGenerator] Bắt đầu pipeline RAG: R → A → G")
-    print("*" * 60)
 
-    # ── Fallback khi không có CV và JD ───────────────────────────────────────
+    # â”€â”€ Fallback khi khÃ´ng cÃ³ CV vÃ  JD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if not cv_text.strip() and not jd_text.strip():
-        print(">>> [RAGGenerator] Không có CV/JD, dùng fallback generic.")
         fallback_context = CVJDContext(
             topics=["software engineering core technical interview questions"],
             tech_stack=[],
@@ -61,10 +57,10 @@ def generate_questions_from_cv_jd(
             gap_areas=[],
             matching_topics=["software engineering core technical interview questions"],
             gap_topics=[],
-            candidate_summary="Ứng viên không cung cấp CV.",
-            position_summary="Vị trí kỹ thuật phần mềm tổng quát.",
+            candidate_summary="á»¨ng viÃªn khÃ´ng cung cáº¥p CV.",
+            position_summary="Vá»‹ trÃ­ ká»¹ thuáº­t pháº§n má»m tá»•ng quÃ¡t.",
         )
-        # Retrieve ngân hàng → Augment sinh ra num_q câu
+        # Retrieve ngÃ¢n hÃ ng â†’ Augment sinh ra num_q cÃ¢u
         raw_docs = retrieve_raw_docs(
             fallback_context.topics, level,
             matching_topics=fallback_context.matching_topics,
@@ -73,29 +69,24 @@ def generate_questions_from_cv_jd(
         questions = augment_questions(raw_docs, fallback_context, level, language, num_q)
         return _to_dict_list(questions)
 
-    # ── Bước 1: Extract CV/JD Context + Gap Analysis ─────────────────────────
-    print("\n>>> [RAGGenerator] Bước 1/3: Extract CV/JD Context...")
+    # â”€â”€ BÆ°á»›c 1: Extract CV/JD Context + Gap Analysis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     context = extract_cv_jd_context(cv_text, jd_text)
 
-    # ── Bước 2: Retrieve từ ChromaDB ─────────────────────────────────────────
-    print(f"\n>>> [RAGGenerator] Bước 2/3: Retrieve {TOP_K_RETRIEVE} docs từ ChromaDB (ngân hàng)...")
-    print(f"    matching_topics={context.matching_topics}, gap_topics={context.gap_topics}")
+    # â”€â”€ BÆ°á»›c 2: Retrieve tá»« ChromaDB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     raw_docs = retrieve_raw_docs(
         context.topics, level,
         matching_topics=context.matching_topics,
         gap_topics=context.gap_topics,
     )
 
-    # ── Bước 3: Augmented Generation ─────────────────────────────────────────
-    print(f"\n>>> [RAGGenerator] Bước 3/3: Augment – chọn lọc từ {len(raw_docs)} docs → sinh {num_q} câu...")
+    # â”€â”€ BÆ°á»›c 3: Augmented Generation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     questions = augment_questions(raw_docs, context, level, language, num_q)
 
-    print(f"\n>>> [RAGGenerator] Pipeline hoàn tất. Tổng: {len(questions)} câu hỏi.")
     return _to_dict_list(questions)
 
 
 def _to_dict_list(questions: list[Question]) -> list[dict]:
-    """Chuyển Question objects thành list[dict] cho API response."""
+    """Chuyá»ƒn Question objects thÃ nh list[dict] cho API response."""
     return [
         {
             "id": q.id,

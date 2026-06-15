@@ -1,7 +1,7 @@
-"""
-History Controller – nhận request, gọi interview_service, format response.
+﻿"""
+History Controller â€“ nháº­n request, gá»i interview_service, format response.
 
-Xử lý CRUD lịch sử phỏng vấn.
+Xá»­ lÃ½ CRUD lá»‹ch sá»­ phá»ng váº¥n.
 """
 from typing import Optional
 
@@ -49,16 +49,17 @@ async def handle_delete_interview(interview_id: str, user_id: str) -> bool:
 
 
 async def handle_save_question(
-    interview_id: str, question_text: str, question_order: int
+    interview_id: str, user_id: str, question_text: str, question_order: int
 ) -> dict:
-    q_id = await interview_service.save_question(interview_id, question_text, question_order)
+    q_id = await interview_service.save_question(interview_id, user_id, question_text, question_order)
+    if not q_id:
+        return {"status": "not_found"}
     return {"status": "success", "question_id": q_id}
 
 
 async def handle_update_answer(
-    question_id: str, user_answer: str, ai_evaluation: str, score: float
+    interview_id: str, question_id: str, user_id: str, user_answer: str, ai_evaluation: str, score: float
 ) -> bool:
-    print(f"[HistoryController] question_id={question_id}, score={score}")
     return await interview_service.update_question_answer(
-        question_id, user_answer, ai_evaluation, score
+        interview_id, question_id, user_id, user_answer, ai_evaluation, score
     )

@@ -353,6 +353,11 @@ export const api = {
     const data = await res.json();
     return data.activities || [];
   },
+  adminGetRagStatus: async () => {
+    const res = await fetch(`${API_BASE}/admin/rag/status`, { credentials: "include" });
+    if (!res.ok) return null;
+    return res.json();
+  },
 
   // ── Community ────────────────────────────────────────────────────────────
   getCommunityPosts: async (limit = 20, offset = 0, search = "", category = "", tag = "") => {
@@ -373,7 +378,11 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, content, category, tags, image_url: imageUrl })
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lá»—i mÃ¡y chá»§ (${res.status})`);
+    }
     return res.json();
   },
 
@@ -427,7 +436,12 @@ export const api = {
       method: "DELETE",
       credentials: "include",
     });
-    return res.ok;
+    if (!res.ok) {
+      let errData;
+      try { errData = await res.json(); } catch (_) {}
+      throw new Error(errData?.detail || `Lá»—i mÃ¡y chá»§ (${res.status})`);
+    }
+    return res.json();
   },
 
   // ── Notifications ─────────────────────────────────────────────────────────

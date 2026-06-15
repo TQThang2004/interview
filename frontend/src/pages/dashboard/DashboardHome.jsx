@@ -75,7 +75,7 @@ export default function DashboardHome({ onNavigate }) {
   const avgScore = completed.length > 0
     ? (completed.reduce((sum, i) => sum + (parseFloat(i.overall_score) || 0), 0) / completed.length).toFixed(1)
     : '0.0';
-  const totalQuestions = completed.reduce((sum, i) => sum + (i.questions_count || 0), 0);
+  const totalQuestions = completed.reduce((sum, i) => sum + (i.answered_questions || i.total_questions || 0), 0);
   const excellentSessions = completed.filter(i => parseFloat(i.overall_score) >= 8.5).length;
 
   const stats = [
@@ -163,7 +163,7 @@ export default function DashboardHome({ onNavigate }) {
                 <div>
                   <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '2px' }}>{r.topic}</div>
                   <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                    {r.level} · {r.questions_count || 0} câu · {new Date(r.started_at).toLocaleDateString('vi-VN')}
+                    {r.level} · {r.answered_questions || r.total_questions || 0} câu · {new Date(r.started_at).toLocaleDateString('vi-VN')}
                   </div>
                 </div>
                 <ScoreBadge score={r.overall_score} />

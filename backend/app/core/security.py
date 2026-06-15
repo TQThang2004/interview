@@ -20,6 +20,7 @@ SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "change-me-in-production-super-sec
 ALGORITHM: str = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS: int = 1          # Cookie sống 1 ngày
 COOKIE_NAME: str = "access_token"
+COOKIE_SECURE: bool = os.getenv("COOKIE_SECURE", "false").lower() in ("1", "true", "yes", "on")
 
 
 # ---------------------------------------------------------------------------

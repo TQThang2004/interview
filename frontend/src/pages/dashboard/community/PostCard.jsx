@@ -60,8 +60,8 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
       </p>
 
       {post.image_url && (
-        <div style={{ marginBottom: '14px', borderRadius: '12px', overflow: 'hidden' }}>
-          <img src={post.image_url} alt="post" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+        <div style={{ marginBottom: '14px', borderRadius: '12px', overflow: 'hidden', background: 'var(--bg-elevated)', border: '1px solid var(--border)', display: 'flex', justifyContent: 'center' }}>
+          <img src={post.image_url} alt="post" style={{ width: '100%', maxHeight: '520px', objectFit: 'contain', display: 'block' }} onError={(e) => { e.target.style.display = 'none'; }} />
         </div>
       )}
 

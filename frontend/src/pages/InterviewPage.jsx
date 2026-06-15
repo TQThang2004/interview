@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useAudioRecorder } from '../hooks/useAudioRecorder';
@@ -15,7 +15,7 @@ export default function InterviewPage() {
   const { user } = useAuth();
   const { showAlert, showConfirm } = useModal();
 
-  // ── Cài đặt phỏng vấn ─────────────────────────────────────────────────────
+  // Interview setup state.
   const [appState, setAppState] = useState("SETUP");
   const [cvFile, setCvFile] = useState(null);
   const [jd, setJd] = useState("");
@@ -23,38 +23,59 @@ export default function InterviewPage() {
   const [language, setLanguage] = useState("vi");
   const [serverError, setServerError] = useState("");
 
-  // ── Danh sách câu hỏi ─────────────────────────────────────────────────────
+  // â”€â”€ Danh sÃ¡ch cÃ¢u há»i â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const [questions, setQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [evalResult, setEvalResult] = useState(null);
 
-  // ── Lưu điểm ──────────────────────────────────────────────────────────────
+  // â”€â”€ LÆ°u Ä‘iá»ƒm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   /**
-   * scoresRef: mảng điểm tích lũy dùng Ref để tránh stale closure.
-   * Luôn phản ánh đúng tất cả điểm đã chấm (kể cả ngay sau setState async).
+   * scoresRef: máº£ng Ä‘iá»ƒm tÃ­ch lÅ©y dÃ¹ng Ref Ä‘á»ƒ trÃ¡nh stale closure.
+   * LuÃ´n pháº£n Ã¡nh Ä‘Ãºng táº¥t cáº£ Ä‘iá»ƒm Ä‘Ã£ cháº¥m (ká»ƒ cáº£ ngay sau setState async).
    */
   const scoresRef = useRef([]);
   const [finalScores, setFinalScores] = useState([]);
 
-  // ── DB tracking IDs ────────────────────────────────────────────────────────
+  // â”€â”€ DB tracking IDs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const interviewIdRef = useRef(null);
   /**
    * questionDbIds: Map<questionOrder, dbId>
-   * Câu hỏi được lưu VÀO ĐÂY khi bắt đầu hỏi, trước khi người dùng trả lời.
+   * CÃ¢u há»i Ä‘Æ°á»£c lÆ°u VÃ€O ÄÃ‚Y khi báº¯t Ä‘áº§u há»i, trÆ°á»›c khi ngÆ°á»i dÃ¹ng tráº£ lá»i.
    */
   const questionDbIdsRef = useRef({});
 
-  // ── Refs khác ─────────────────────────────────────────────────────────────
+  // â”€â”€ Refs khÃ¡c â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const activeAudioRef = useRef(null);
   const { isRecording, isTranscribing, toggleRecording, stopRecordingHard } = useAudioRecorder(setUserAnswer);
   const isInterviewingRef = useRef(false);
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
+  // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const speak = (text) => api.tts(text, language, activeAudioRef);
-  const buildTopicLabel = () => jd ? `${level} – ${jd.slice(0, 50)}` : `${level} – General`;
+  const buildFinalFeedback = (scores, totalQuestions) => {
+    if (!scores.length) return 'Chua co cau tra loi nao duoc cham diem.';
+    const avgScore = parseFloat((scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(2));
+    const lowScores = scores.filter(score => score < 6).length;
+    const highScores = scores.filter(score => score >= 8).length;
+    const completionRate = totalQuestions > 0 ? scores.length / totalQuestions : 0;
 
-  // ── beforeunload ──────────────────────────────────────────────────────────
+    const strengths = highScores >= Math.ceil(scores.length / 2)
+      ? 'Diem manh: nhieu cau tra loi dat diem cao, nen tiep tuc giu cach trinh bay co cau truc va dua vi du cu the.'
+      : 'Diem manh: da hoan thanh phien phong van va co du lieu de nhan dien nhom cau hoi can cai thien.';
+    const weaknesses = lowScores > 0
+      ? `Can cai thien: co ${lowScores} cau duoi 6 diem, can on lai kien thuc nen va luyen cach tra loi theo boi canh, cach lam, ket qua.`
+      : 'Can cai thien: tang do sau va su ro rang khi giai thich de nang diem cac cau trung binh.';
+    const roadmap = completionRate < 0.8
+      ? 'Lo trinh: uu tien luyen hoan thanh tron bo phien phong van, sau do toi uu diem tung cau.'
+      : avgScore >= 8
+      ? 'Lo trinh: luyen cau hoi nang cao, system design va cac tinh huong trade-off.'
+      : 'Lo trinh: on lai topic chinh, viet san khung tra loi STAR va luyen lai cac cau diem thap.';
+
+    return `Hoan thanh ${scores.length}/${totalQuestions} cau hoi. Diem trung binh: ${avgScore}/10.\n${strengths}\n${weaknesses}\n${roadmap}`;
+  };
+  const buildTopicLabel = () => jd ? `${level} â€“ ${jd.slice(0, 50)}` : `${level} â€“ General`;
+
+  // â”€â”€ beforeunload â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleBeforeUnload = useCallback(() => {
     if (isInterviewingRef.current && interviewIdRef.current) {
       api.abandonInterview(interviewIdRef.current);
@@ -75,7 +96,7 @@ export default function InterviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleBeforeUnload]);
 
-  // ── Lưu câu hỏi vào DB ────────────────────────────────────────────────────
+  // Persist each interview question before saving its answer.
   const saveQuestionToDB = async (questionText, order) => {
     if (!interviewIdRef.current) return null;
     try {
@@ -85,12 +106,12 @@ export default function InterviewPage() {
         return res.question_id;
       }
     } catch (err) {
-      console.warn("[InterviewPage] Không lưu được câu hỏi vào DB:", err);
+      console.warn("[InterviewPage] KhÃ´ng lÆ°u Ä‘Æ°á»£c cÃ¢u há»i vÃ o DB:", err);
     }
     return null;
   };
 
-  // ── Bắt đầu phỏng vấn ────────────────────────────────────────────────────
+  // â”€â”€ Báº¯t Ä‘áº§u phá»ng váº¥n â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const startInterview = async () => {
     setServerError("");
     setAppState("LOADING_QUESTIONS");
@@ -99,41 +120,41 @@ export default function InterviewPage() {
       if (data.status === "success" && data.questions.length > 0) {
         setQuestions(data.questions);
         setCurrentIdx(0);
-        // Reset bộ đếm điểm
+        // Reset bá»™ Ä‘áº¿m Ä‘iá»ƒm
         scoresRef.current = [];
         setFinalScores([]);
         questionDbIdsRef.current = {};
 
-        // Tạo record trong DB
+        // Táº¡o record trong DB
         if (user) {
           const topic = buildTopicLabel();
           try {
             const record = await api.createInterviewRecord(topic, level, language);
             if (record?.interview?.id) {
               interviewIdRef.current = record.interview.id;
-              // Lưu câu hỏi đầu tiên (index 0)
+              // LÆ°u cÃ¢u há»i Ä‘áº§u tiÃªn (index 0)
               await saveQuestionToDB(data.questions[0].question, 0);
             }
           } catch (err) {
-            console.warn("[InterviewPage] Không tạo được record phỏng vấn:", err);
+            console.warn("[InterviewPage] KhÃ´ng táº¡o Ä‘Æ°á»£c record phá»ng váº¥n:", err);
           }
         }
 
         isInterviewingRef.current = true;
         setAppState("INTERVIEWING");
-        const intro = language === "vi" ? "Bắt đầu nhé. " : "Let's begin. ";
+        const intro = language === "vi" ? "Báº¯t Ä‘áº§u nhÃ©. " : "Let's begin. ";
         speak(intro + data.questions[0].question);
       } else {
-        setServerError("Không tải được câu hỏi. Vui lòng kiểm tra lại CV và JD.");
+        setServerError("KhÃ´ng táº£i Ä‘Æ°á»£c cÃ¢u há»i. Vui lÃ²ng kiá»ƒm tra láº¡i CV vÃ  JD.");
         setAppState("SETUP");
       }
     } catch (err) {
-      setServerError(err.message || "Lỗi kết nối. Vui lòng thử lại.");
+      setServerError(err.message || "Lá»—i káº¿t ná»‘i. Vui lÃ²ng thá»­ láº¡i.");
       setAppState("SETUP");
     }
   };
 
-  // ── Nộp câu trả lời ──────────────────────────────────────────────────────
+  // â”€â”€ Ná»™p cÃ¢u tráº£ lá»i â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const submitAnswer = async () => {
     if (activeAudioRef.current) activeAudioRef.current.pause();
     stopRecordingHard();
@@ -145,10 +166,8 @@ export default function InterviewPage() {
         const evaluation = data.evaluation;
         setEvalResult(evaluation);
 
-        // Cập nhật DB: lưu câu trả lời + đánh giá
+        // Cáº­p nháº­t DB: lÆ°u cÃ¢u tráº£ lá»i + Ä‘Ã¡nh giÃ¡
         const qDbId = questionDbIdsRef.current[currentIdx];
-        console.log(`[submitAnswer] Câu ${currentIdx}: qDbId=${qDbId}, score=${evaluation.score}, interviewId=${interviewIdRef.current}`);
-        console.log(`[submitAnswer] questionDbIdsRef:`, { ...questionDbIdsRef.current });
 
         if (interviewIdRef.current && qDbId) {
           const evalJson = JSON.stringify({
@@ -157,59 +176,58 @@ export default function InterviewPage() {
             weaknesses: evaluation.weaknesses,
             suggestions: evaluation.suggestions,
           });
-          // Đảm bảo score là số float hợp lệ
+          // Normalize score before saving to history.
           const scoreToSave = typeof evaluation.score === 'number' && !isNaN(evaluation.score)
             ? evaluation.score
             : 0.0;
           try {
-            const ok = await api.updateAnswer(
+            await api.updateAnswer(
               interviewIdRef.current,
               qDbId,
               userAnswer,
               evalJson,
               scoreToSave
             );
-            console.log(`[submitAnswer] updateAnswer kết quả:`, ok, `| score gửi:`, scoreToSave);
           } catch (dbErr) {
-            console.error(`[submitAnswer] Lỗi lưu câu trả lời vào DB:`, dbErr);
+            console.error("[submitAnswer] Failed to save answer:", dbErr);
           }
         } else {
-          console.warn(`[submitAnswer] Bỏ qua lưu DB: interviewId=${interviewIdRef.current}, qDbId=${qDbId}`);
+          console.warn(`[submitAnswer] Skip DB save: interviewId=${interviewIdRef.current}, qDbId=${qDbId}`);
         }
 
-        // Tích lũy điểm vào Ref (tránh stale closure)
+        // Keep scores in a ref to avoid stale closure issues.
         scoresRef.current = [...scoresRef.current, evaluation.score];
 
         setAppState("SHOW_EVAL");
       } else {
-        showAlert("Lỗi chấm điểm");
+        showAlert("Lá»—i cháº¥m Ä‘iá»ƒm");
         setAppState("INTERVIEWING");
       }
     } catch (err) {
-      showAlert("Lỗi kết nối");
+      showAlert("Lá»—i káº¿t ná»‘i");
       setAppState("INTERVIEWING");
     }
   };
 
-  // ── Câu hỏi tiếp theo ────────────────────────────────────────────────────
+  // â”€â”€ CÃ¢u há»i tiáº¿p theo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const nextQuestion = async () => {
     setEvalResult(null);
     setUserAnswer("");
     const nextIdx = currentIdx + 1;
 
     if (nextIdx < questions.length) {
-      // Còn câu tiếp theo → lưu câu hỏi kế vào DB rồi chuyển
+      // Persist the next question before moving forward.
       await saveQuestionToDB(questions[nextIdx].question, nextIdx);
       setCurrentIdx(nextIdx);
       setAppState("INTERVIEWING");
       speak(questions[nextIdx].question);
     } else {
-      // Hết câu → kết thúc phỏng vấn
+      // Háº¿t cÃ¢u â†’ káº¿t thÃºc phá»ng váº¥n
       finishInterview();
     }
   };
 
-  // ── Kết thúc phỏng vấn (helper chung) ──────────────────────────────────
+  // â”€â”€ Káº¿t thÃºc phá»ng váº¥n (helper chung) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const finishInterview = () => {
     isInterviewingRef.current = false;
     const allScores = scoresRef.current;
@@ -219,45 +237,44 @@ export default function InterviewPage() {
       const avgScore = parseFloat(
         (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(2)
       );
-      console.log(`[InterviewPage] Hoàn thành: ${allScores.length} câu, avgScore=${avgScore}`, allScores);
       api.completeInterview(
         interviewIdRef.current,
         avgScore,
-        `Hoàn thành ${allScores.length}/${questions.length} câu hỏi. Điểm trung bình: ${avgScore}/10.`
+        buildFinalFeedback(allScores, questions.length)
       ).catch(console.warn);
     } else if (interviewIdRef.current) {
-      // Chưa trả lời câu nào → abandon
+      // No answered questions yet, mark the interview as abandoned.
       api.abandonInterview(interviewIdRef.current).catch(console.warn);
     }
 
     setAppState("FINISHED");
   };
 
-  // ── Bỏ qua câu hỏi ───────────────────────────────────────────────────────
+  // â”€â”€ Bá» qua cÃ¢u há»i â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const skipQuestion = async () => {
     if (activeAudioRef.current) activeAudioRef.current.pause();
     stopRecordingHard();
 
-    // Ghi 0 điểm cho câu bị bỏ qua
+    // Ghi 0 Ä‘iá»ƒm cho cÃ¢u bá»‹ bá» qua
     scoresRef.current = [...scoresRef.current, 0];
 
-    // Lưu DB: đánh dấu câu bị skip
+    // LÆ°u DB: Ä‘Ã¡nh dáº¥u cÃ¢u bá»‹ skip
     const qDbId = questionDbIdsRef.current[currentIdx];
     if (interviewIdRef.current && qDbId) {
       const skipEvalJson = JSON.stringify({
         score_str: "0/10",
         strengths: "",
-        weaknesses: "Câu hỏi đã bị bỏ qua.",
-        suggestions: "Hãy cố gắng trả lời tất cả các câu hỏi để được đánh giá đầy đủ.",
+        weaknesses: "CÃ¢u há»i Ä‘Ã£ bá»‹ bá» qua.",
+        suggestions: "HÃ£y cá»‘ gáº¯ng tráº£ lá»i táº¥t cáº£ cÃ¡c cÃ¢u há»i Ä‘á»ƒ Ä‘Æ°á»£c Ä‘Ã¡nh giÃ¡ Ä‘áº§y Ä‘á»§.",
       });
       try {
-        await api.updateAnswer(interviewIdRef.current, qDbId, "(Đã bỏ qua)", skipEvalJson, 0);
+        await api.updateAnswer(interviewIdRef.current, qDbId, "(ÄÃ£ bá» qua)", skipEvalJson, 0);
       } catch (err) {
-        console.warn("[skipQuestion] Lỗi lưu skip vào DB:", err);
+        console.warn("[skipQuestion] Lá»—i lÆ°u skip vÃ o DB:", err);
       }
     }
 
-    // Chuyển sang câu tiếp hoặc kết thúc
+    // Chuyá»ƒn sang cÃ¢u tiáº¿p hoáº·c káº¿t thÃºc
     setUserAnswer("");
     setEvalResult(null);
     const nextIdx = currentIdx + 1;
@@ -271,12 +288,12 @@ export default function InterviewPage() {
     }
   };
 
-  // ── Kết thúc phỏng vấn sớm ───────────────────────────────────────────────
+  // â”€â”€ Káº¿t thÃºc phá»ng váº¥n sá»›m â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const endInterviewEarly = async () => {
     const confirmed = await showConfirm(
-      `Bạn đã trả lời ${scoresRef.current.length}/${questions.length} câu hỏi. Bạn có chắc muốn kết thúc phỏng vấn ngay bây giờ?`,
-      "Kết thúc phỏng vấn",
-      { confirmText: "Kết thúc", cancelText: "Tiếp tục phỏng vấn", danger: true }
+      `Báº¡n Ä‘Ã£ tráº£ lá»i ${scoresRef.current.length}/${questions.length} cÃ¢u há»i. Báº¡n cÃ³ cháº¯c muá»‘n káº¿t thÃºc phá»ng váº¥n ngay bÃ¢y giá»?`,
+      "Káº¿t thÃºc phá»ng váº¥n",
+      { confirmText: "Káº¿t thÃºc", cancelText: "Tiáº¿p tá»¥c phá»ng váº¥n", danger: true }
     );
     if (!confirmed) return;
 
@@ -287,7 +304,7 @@ export default function InterviewPage() {
     finishInterview();
   };
 
-  // ── Bắt đầu lại ──────────────────────────────────────────────────────────
+  // â”€â”€ Báº¯t Ä‘áº§u láº¡i â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const restart = () => {
     if (activeAudioRef.current) activeAudioRef.current.pause();
     stopRecordingHard();
@@ -310,7 +327,7 @@ export default function InterviewPage() {
     setAppState("SETUP");
   };
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  // â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (appState === "SETUP")
     return (
       <>
@@ -326,7 +343,7 @@ export default function InterviewPage() {
             <AlertCircle size={18} style={{ color: 'oklch(65% 0.2 25)', flexShrink: 0, marginTop: '2px' }} />
             <div style={{ flex: 1 }}>
               <p style={{ margin: 0, fontSize: '14px', fontWeight: 600, color: 'oklch(82% 0.12 25)' }}>
-                Không thể bắt đầu phỏng vấn
+                KhÃ´ng thá»ƒ báº¯t Ä‘áº§u phá»ng váº¥n
               </p>
               <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'oklch(68% 0.08 25)', lineHeight: 1.5 }}>
                 {serverError}
@@ -339,7 +356,7 @@ export default function InterviewPage() {
                 padding: '2px 6px', fontSize: '18px', color: 'var(--text-muted)',
                 lineHeight: 1
               }}
-            >×</button>
+            >Ã—</button>
           </div>
         )}
         <SetupForm {...{ cvFile, setCvFile, jd, setJd, level, setLevel, language, setLanguage, onStart: startInterview }} />
@@ -347,7 +364,7 @@ export default function InterviewPage() {
     );
 
   if (appState === "LOADING_QUESTIONS" || appState === "EVALUATING")
-    return <LoadingScreen message={appState === "LOADING_QUESTIONS" ? "Đang xào nấu câu hỏi từ CV/JD..." : "Đang chấm điểm..."} />;
+    return <LoadingScreen message={appState === "LOADING_QUESTIONS" ? "Äang xÃ o náº¥u cÃ¢u há»i tá»« CV/JD..." : "Äang cháº¥m Ä‘iá»ƒm..."} />;
 
   if (appState === "FINISHED")
     return <FinalResult history={finalScores} topic={buildTopicLabel()} total={questions.length} onRestart={restart} />;

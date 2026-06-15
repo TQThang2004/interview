@@ -41,6 +41,11 @@ export default function CommunityMyPosts({ myPosts, loading, onDelete, onNewPost
             <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.6, marginBottom: '10px' }}>
               {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
             </p>
+            {post.image_url && (
+              <div style={{ marginBottom: '10px', borderRadius: '12px', overflow: 'hidden', background: 'var(--bg-elevated)', border: '1px solid var(--border)', display: 'flex', justifyContent: 'center' }}>
+                <img src={post.image_url} alt="post" style={{ width: '100%', maxHeight: '420px', objectFit: 'contain', display: 'block' }} onError={(e) => { e.target.style.display = 'none'; }} />
+              </div>
+            )}
             {post.status === 'pending' && (
               <div style={{
                 padding: '8px 12px', borderRadius: '8px', fontSize: '12px',

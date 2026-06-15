@@ -1,22 +1,49 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Mail, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { authService } from '../services/authService';
 
 export default function ForgotPasswordPage() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resetToken, setResetToken] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [resetDone, setResetDone] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    // TODO: kết nối API gửi email reset
-    setTimeout(() => {
-      setLoading(false);
+    setError('');
+    try {
+      const data = await authService.forgotPassword(email);
+      setResetToken(data.reset_token || '');
       setSent(true);
-    }, 1000);
+    } catch (err) {
+      setError(err.message || 'Không thể tạo yêu cầu đặt lại mật khẩu.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = async (e) => {
+    e.preventDefault();
+    if (!resetToken || newPassword.length < 8) {
+      setError('Mật khẩu mới phải có ít nhất 8 ký tự.');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      await authService.resetPassword(resetToken, newPassword);
+      setResetDone(true);
+    } catch (err) {
+      setError(err.message || 'Không thể đặt lại mật khẩu.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -40,10 +67,39 @@ export default function ForgotPasswordPage() {
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'oklch(72% 0.18 145 / 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid oklch(72% 0.18 145 / 0.3)' }}>
                 <CheckCircle2 size={32} style={{ color: 'oklch(72% 0.18 145)' }} />
               </div>
-              <h3 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '10px' }}>Email đã được gửi!</h3>
+              <h3 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '10px' }}>
+                {resetDone ? 'Mật khẩu đã được đặt lại!' : 'Yêu cầu đã được tạo!'}
+              </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: 1.6, marginBottom: '28px' }}>
-                Kiểm tra hộp thư <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{email}</span> và nhấp vào link để đặt lại mật khẩu.
+                {resetDone
+                  ? 'Bạn có thể quay lại trang đăng nhập và sử dụng mật khẩu mới.'
+                  : <>Kiểm tra hộp thư <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{email}</span> và dùng token để đặt lại mật khẩu.</>}
               </p>
+              {resetToken && !resetDone && (
+                <p style={{ color: 'var(--text-muted)', fontSize: '12px', lineHeight: 1.5, wordBreak: 'break-all', marginBottom: '18px' }}>
+                  Token demo: {resetToken}
+                </p>
+              )}
+              {!resetDone && (
+                <form onSubmit={handleReset} style={{ marginBottom: '18px' }}>
+                  <input
+                    className="input-field"
+                    type="password"
+                    placeholder="Mật khẩu mới"
+                    value={newPassword}
+                    onChange={e => setNewPassword(e.target.value)}
+                    style={{ marginBottom: '12px' }}
+                  />
+                  {error && (
+                    <p style={{ color: 'oklch(65% 0.22 25)', fontSize: '13px', marginBottom: '12px' }}>
+                      {error}
+                    </p>
+                  )}
+                  <button className="btn-primary w-full" disabled={loading || newPassword.length < 8}>
+                    {loading ? 'Đang đặt lại...' : 'Đặt lại mật khẩu'}
+                  </button>
+                </form>
+              )}
               <Link to="/login">
                 <button className="btn-primary w-full">Về trang đăng nhập</button>
               </Link>
@@ -68,6 +124,11 @@ export default function ForgotPasswordPage() {
                   />
                 </div>
               </div>
+              {error && (
+                <p style={{ color: 'oklch(65% 0.22 25)', fontSize: '13px', marginTop: '-12px', marginBottom: '16px' }}>
+                  {error}
+                </p>
+              )}
               <button
                 id="btn-forgot-submit"
                 type="submit"

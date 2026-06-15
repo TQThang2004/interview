@@ -32,6 +32,22 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+    @field_validator("new_password")
+    @classmethod
+    def password_min_length(cls, v: str) -> str:
+        if len(v) < 8:
+            raise ValueError("Mật khẩu phải có ít nhất 8 ký tự.")
+        return v
+
+
 class GoogleCallbackRequest(BaseModel):
     """
     Nhận Google credential từ frontend.

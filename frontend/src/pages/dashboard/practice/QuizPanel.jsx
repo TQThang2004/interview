@@ -3,11 +3,11 @@
  * Hiển thị tất cả câu hỏi trên 1 trang – Phương án B.
  * Ứng viên trả lời tất cả rồi nộp 1 lần.
  */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Send, ChevronUp, ChevronDown, AlertCircle, BookOpen } from 'lucide-react';
 
 export default function QuizPanel({
-  sessionId,
+  sessionId: _sessionId,
   topic,
   level,
   questions,         // [{answer_id, order, question}]

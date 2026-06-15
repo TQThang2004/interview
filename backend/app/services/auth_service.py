@@ -2,6 +2,8 @@
 Auth Service – xử lý business logic đăng ký, đăng nhập, Google OAuth.
 """
 import os
+import secrets
+from datetime import datetime, timedelta, timezone
 import httpx
 from dotenv import load_dotenv
 
@@ -178,3 +180,52 @@ async def update_profile(user_id: str, updates: dict) -> dict:
         """
         row = await conn.fetchrow(query, *values)
         return dict(row)
+
+
+async def create_password_reset_token(email: str) -> str | None:
+    """
+    Tạo token reset password cho email đã tồn tại.
+    Trả token cho frontend/dev demo; production nên gửi token qua email và không trả token.
+    """
+    pool = await get_pool()
+    token = secrets.token_urlsafe(32)
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=30)
+
+    async with pool.acquire() as conn:
+        user = await conn.fetchrow("SELECT id FROM users WHERE email = $1", email)
+        if not user:
+            return None
+        await conn.execute(
+            """
+            INSERT INTO password_reset_tokens (user_id, token, expires_at)
+            VALUES ($1, $2, $3)
+            """,
+            user["id"], token, expires_at,
+        )
+    return token
+
+
+async def reset_password(token: str, new_password: str) -> bool:
+    pool = await get_pool()
+    password_hash = hash_password(new_password)
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            """
+            SELECT id, user_id
+            FROM password_reset_tokens
+            WHERE token = $1 AND used_at IS NULL AND expires_at > NOW()
+            """,
+            token,
+        )
+        if not row:
+            return False
+        async with conn.transaction():
+            await conn.execute(
+                "UPDATE users SET password_hash = $1, updated_at = NOW() WHERE id = $2",
+                password_hash, row["user_id"],
+            )
+            await conn.execute(
+                "UPDATE password_reset_tokens SET used_at = NOW() WHERE id = $1",
+                row["id"],
+            )
+    return True
