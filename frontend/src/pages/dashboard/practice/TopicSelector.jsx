@@ -102,7 +102,7 @@ export default function TopicSelector({ onStart }) {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             boxShadow: 'var(--shadow-primary)',
           }}>
-            <GraduationCap size={24} style={{ color: 'oklch(15% 0.01 250)' }} />
+            <GraduationCap size={24} style={{ color: 'var(--primary-contrast)' }} />
           </div>
           <div>
             <h1 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '4px' }}>

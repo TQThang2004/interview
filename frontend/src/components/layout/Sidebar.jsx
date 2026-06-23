@@ -51,7 +51,7 @@ export default function Sidebar({
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0, boxShadow: 'var(--shadow-primary)',
             }}>
-              <Brain size={20} style={{ color: 'oklch(15% 0.01 250)' }} />
+              <Brain size={20} style={{ color: 'var(--primary-contrast)' }} />
             </div>
             <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
               <span className="gradient-text">{brandLabel.split(' ')[0]}</span>{' '}
@@ -65,7 +65,7 @@ export default function Sidebar({
             background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center',
             boxShadow: 'var(--shadow-primary)',
           }}>
-            <Brain size={22} style={{ color: 'oklch(15% 0.01 250)' }} />
+            <Brain size={22} style={{ color: 'var(--primary-contrast)' }} />
           </div>
         )}
         <button
@@ -130,7 +130,7 @@ export default function Sidebar({
       </div>
 
       {/* ── Nav items ── */}
-      <nav style={{ flex: 1, padding: collapsed ? '0 12px' : '0 16px', overflowY: 'auto', overflowX: 'hidden', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <nav style={{ flex: 1, padding: collapsed ? '6px 12px 10px' : '6px 16px 10px', overflowY: 'auto', overflowX: 'hidden', display: 'flex', flexDirection: 'column', gap: '6px' }}>
         {navItems.map(item => {
           const isActive = active === item.id;
           return (
@@ -147,7 +147,7 @@ export default function Sidebar({
                 borderRadius: '14px', border: 'none',
                 boxShadow: isActive ? '0 8px 16px var(--primary-glow)' : 'none',
                 cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                color: isActive ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+                color: isActive ? 'var(--primary-contrast)' : 'var(--text-secondary)',
                 textAlign: 'left', position: 'relative',
               }}
               onMouseEnter={e => {
@@ -173,7 +173,7 @@ export default function Sidebar({
                   <span style={{ fontWeight: isActive ? 700 : 500, fontSize: '15px', flex: 1, whiteSpace: 'nowrap' }}>
                     {item.label}
                   </span>
-                  {isActive && <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'oklch(15% 0.01 250)' }} />}
+                  {isActive && <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary-contrast)' }} />}
                 </>
               )}
             </button>

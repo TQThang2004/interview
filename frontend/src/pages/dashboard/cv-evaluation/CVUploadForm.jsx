@@ -8,7 +8,7 @@ export default function CVUploadForm({ file, setFile, loading, onEvaluate }) {
   const handleDrop = (e) => { e.preventDefault(); setDragging(false); handleFile(e.dataTransfer.files[0]); };
 
   return (
-    <div className="glass-card" style={{ padding: '36px', maxWidth: '600px' }}>
+    <div className="glass-card" style={{ padding: '36px', maxWidth: '600px', width: '100%', margin: '0 auto' }}>
       {/* Drop zone */}
       <div
         onDragOver={e => { e.preventDefault(); setDragging(true); }}
@@ -17,7 +17,7 @@ export default function CVUploadForm({ file, setFile, loading, onEvaluate }) {
         style={{
           border: `2px dashed ${dragging ? 'var(--primary)' : file ? 'oklch(72% 0.18 145)' : 'var(--border)'}`,
           borderRadius: '16px', padding: '40px 24px', textAlign: 'center',
-          background: dragging ? 'oklch(83.3% 0.145 321.434 / 0.05)' : file ? 'oklch(72% 0.18 145 / 0.05)' : 'transparent',
+          background: dragging ? 'var(--primary-05)' : file ? 'oklch(72% 0.18 145 / 0.05)' : 'transparent',
           transition: 'all 0.25s', cursor: 'pointer', marginBottom: '24px',
         }}
         onClick={() => document.getElementById('cv-file-input').click()}>

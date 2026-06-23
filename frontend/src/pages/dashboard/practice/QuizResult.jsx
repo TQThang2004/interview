@@ -37,11 +37,17 @@ function ScoreRing({ score, size = 120 }) {
   );
 }
 
+function isSkippedResult(item, score) {
+  const answer = (item.user_answer || '').trim();
+  return !answer || answer === '(Bỏ qua)' || answer === '(Bo qua)' || score === 0;
+}
+
 function QuestionDetail({ item, index }) {
   const [expanded, setExpanded] = useState(false);
   const score = parseFloat(item.score) || 0;
-  const passed = score >= 6;
-  const color = score >= 8 ? 'oklch(72% 0.18 145)' : score >= 6 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)';
+  const skipped = isSkippedResult(item, score);
+  const passed = !skipped && score >= 6;
+  const color = skipped ? 'oklch(65% 0.02 250)' : score >= 8 ? 'oklch(72% 0.18 145)' : score >= 6 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)';
 
   return (
     <div style={{
@@ -75,7 +81,7 @@ function QuestionDetail({ item, index }) {
 
         {/* Score */}
         <div style={{ fontWeight: 800, fontSize: '15px', color, flexShrink: 0, marginRight: '8px' }}>
-          {score.toFixed(1)}/10
+          {skipped ? 'Bỏ qua - 0/10' : `${score.toFixed(1)}/10`}
         </div>
 
         {expanded ? <ChevronUp size={16} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
@@ -94,15 +100,31 @@ function QuestionDetail({ item, index }) {
               padding: '12px 14px', borderRadius: '10px',
               background: 'var(--bg-surface)', border: '1px solid var(--border)',
               fontSize: '14px', lineHeight: 1.6,
-              fontStyle: item.user_answer === '(Bỏ qua)' ? 'italic' : 'normal',
-              color: item.user_answer === '(Bỏ qua)' ? 'var(--text-muted)' : 'var(--text-primary)',
+              fontStyle: skipped ? 'italic' : 'normal',
+              color: skipped ? 'var(--text-muted)' : 'var(--text-primary)',
             }}>
               {item.user_answer || '(Bỏ qua)'}
             </div>
           </div>
 
+          {skipped && (
+            <div style={{
+              marginTop: '12px', padding: '12px 14px', borderRadius: '10px',
+              background: 'oklch(65% 0.22 25 / 0.07)',
+              border: '1px solid oklch(65% 0.22 25 / 0.25)',
+              fontSize: '13px', lineHeight: 1.6, color: 'var(--text-primary)',
+            }}>
+              <p style={{ margin: '0 0 6px', fontWeight: 700, color: 'oklch(65% 0.22 25)' }}>
+                Câu này bị bỏ qua nên được tính 0 điểm.
+              </p>
+              <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+                Hãy nhập câu trả lời trước khi nộp để được chấm điểm và nhận góp ý.
+              </p>
+            </div>
+          )}
+
           {/* AI evaluation */}
-          {(item.strengths || item.weaknesses || item.suggestions) && (
+          {!skipped && (item.strengths || item.weaknesses || item.suggestions) && (
             <div style={{
               marginTop: '12px', padding: '12px 14px', borderRadius: '10px',
               background: `${color.replace(')', ' / 0.06)').replace('oklch(', 'oklch(')}`,
@@ -156,7 +178,8 @@ function QuestionDetail({ item, index }) {
 export default function QuizResult({ result, topic, level, onRetry, onSelectTopic }) {
   const { overall_score, correct_count, total_questions, results = [] } = result;
   const score = parseFloat(overall_score) || 0;
-  const wrongCount = total_questions - correct_count;
+  const skippedCount = result.skipped_count ?? results.filter(item => isSkippedResult(item, parseFloat(item.score) || 0)).length;
+  const wrongCount = Math.max(0, total_questions - correct_count - skippedCount);
 
   const rankLabel = score >= 9 ? 'Xuất sắc 🏆' : score >= 8 ? 'Giỏi 🌟' : score >= 7 ? 'Khá 👍' : score >= 6 ? 'Trung bình 📚' : 'Cần ôn tập 💪';
   const rankColor = score >= 8 ? 'oklch(72% 0.18 145)' : score >= 6 ? 'oklch(80% 0.18 80)' : 'oklch(65% 0.22 25)';
@@ -167,8 +190,8 @@ export default function QuizResult({ result, topic, level, onRetry, onSelectTopi
       <div className="glass-card" style={{
         padding: 'clamp(24px, 4vw, 40px)',
         marginBottom: '24px',
-        background: 'oklch(83.3% 0.145 321.434 / 0.04)',
-        border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+        background: 'var(--primary-04)',
+        border: '1px solid var(--primary-20)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
           <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
@@ -203,6 +226,13 @@ export default function QuizResult({ result, topic, level, onRetry, onSelectTopi
                   {wrongCount}
                 </div>
                 <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600 }}>Câu sai ❌</div>
+              </div>
+              <div style={{ width: '1px', background: 'var(--border)' }} />
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '26px', fontWeight: 900, color: 'var(--text-muted)' }}>
+                  {skippedCount}
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600 }}>Bỏ qua</div>
               </div>
               <div style={{ width: '1px', background: 'var(--border)' }} />
               <div style={{ textAlign: 'center' }}>

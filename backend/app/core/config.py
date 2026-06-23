@@ -1,14 +1,14 @@
-﻿"""
-Core Config â€“ Ä‘á»c biáº¿n mÃ´i trÆ°á»ng vÃ  Ä‘á»‹nh nghÄ©a cÃ¡c cáº¥u hÃ¬nh toÃ n cá»¥c.
+"""
+Core Config – đọc biến môi trường và định nghĩa các cấu hình toàn cục.
 
-Táº¥t cáº£ cáº¥u hÃ¬nh há»‡ thá»‘ng Ä‘Æ°á»£c táº­p trung táº¡i Ä‘Ã¢y.
-CÃ¡c module khÃ¡c import tá»« Ä‘Ã¢y thay vÃ¬ Ä‘á»c trá»±c tiáº¿p os.getenv().
+Tất cả cấu hình hệ thống được tập trung tại đây.
+Các module khác import từ đây thay vì đọc trực tiếp os.getenv().
 """
 import os
 import logging
 from dotenv import load_dotenv
 
-# Load .env tá»« thÆ° má»¥c gá»‘c dá»± Ã¡n (Data/.env)
+# Load .env từ thư mục gốc dự án (Data/.env)
 _env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.env"))
 load_dotenv(dotenv_path=_env_path, override=True)
 
@@ -53,4 +53,4 @@ TOP_K_RETRIEVE: int = 20
 NUM_QUESTIONS: int = 5
 
 # -- LLM retry --
-LLM_RETRY_WAIT: int = 45  # giÃ¢y chá» khi bá»‹ rate-limit
+LLM_RETRY_WAIT: int = 45  # giây chờ khi bị rate-limit

@@ -46,7 +46,7 @@ export default function GlobalModal() {
             <div style={{
               width: '40px', height: '40px', borderRadius: '10px',
               background: danger ? 'oklch(65% 0.22 25 / 0.1)' : 'var(--gradient-primary)',
-              color: danger ? 'oklch(65% 0.22 25)' : 'oklch(15% 0.01 250)',
+              color: danger ? 'oklch(65% 0.22 25)' : 'var(--primary-contrast)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               {type === 'alert' && !danger ? <Info size={22} /> : <AlertCircle size={22} />}
@@ -93,7 +93,7 @@ export default function GlobalModal() {
             style={{
               padding: '10px 24px', fontSize: '14px', fontWeight: 600,
               background: danger ? 'oklch(65% 0.22 25)' : 'var(--gradient-primary)',
-              color: danger ? 'white' : 'oklch(15% 0.01 250)',
+              color: danger ? 'white' : 'var(--primary-contrast)',
             }}
           >
             {confirmText}

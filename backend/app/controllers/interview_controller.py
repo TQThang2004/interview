@@ -1,8 +1,8 @@
-﻿"""
-Interview Controller â€“ business logic cho luá»“ng phá»ng váº¥n.
+"""
+Interview Controller – business logic cho luồng phỏng vấn.
 
-TÃ¡ch biá»‡t xá»­ lÃ½ nghiá»‡p vá»¥ ra khá»i router Ä‘á»ƒ dá»… test vÃ  tÃ¡i sá»­ dá»¥ng.
-Gá»i trá»±c tiáº¿p rag_generator thay vÃ¬ qua rag_service facade.
+Tách biệt xử lý nghiệp vụ ra khỏi router để dễ test và tái sử dụng.
+Gọi trực tiếp rag_generator thay vì qua rag_service facade.
 """
 from fastapi import UploadFile
 
@@ -21,9 +21,9 @@ async def handle_start_interview(
     language: str,
 ) -> dict:
     """
-    Xá»­ lÃ½ request báº¯t Ä‘áº§u phá»ng váº¥n:
-      1. Äá»c vÃ  parse CV (náº¿u cÃ³)
-      2. Sinh danh sÃ¡ch cÃ¢u há»i qua pipeline RAG (Extract â†’ Retrieve â†’ Augment)
+    Xử lý request bắt đầu phỏng vấn:
+      1. Đọc và parse CV (nếu có)
+      2. Sinh danh sách câu hỏi qua pipeline RAG (Extract → Retrieve → Augment)
     """
     logger.info("Starting interview generation request.")
 

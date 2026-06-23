@@ -61,7 +61,7 @@ export default function CVEvalResult({ result, onReset }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {result.suggestions.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-              <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, color: 'oklch(15% 0.01 250)', flexShrink: 0, marginTop: '1px' }}>
+              <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, color: 'var(--primary-contrast)', flexShrink: 0, marginTop: '1px' }}>
                 {i + 1}
               </div>
               <span style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{s}</span>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { api } from '../../services/api';
-import { Clock, CheckCircle, XCircle, RefreshCw, ChevronLeft, ChevronRight, Eye, X, Trash2 } from 'lucide-react';
+import { Clock, CheckCircle, XCircle, RefreshCw, ChevronLeft, ChevronRight, Eye, X, Trash2, Search } from 'lucide-react';
 import { useModal } from '../../context/ModalContext';
 
 function StatusBadge({ status }) {
@@ -133,6 +133,7 @@ export default function AdminInterviews() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState(null);
 
@@ -141,7 +142,7 @@ export default function AdminInterviews() {
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await api.adminGetInterviews(PAGE_SIZE, page * PAGE_SIZE, statusFilter);
+      const data = await api.adminGetInterviews(PAGE_SIZE, page * PAGE_SIZE, statusFilter, search);
       setInterviews(data.interviews || []);
       setTotal(data.total || 0);
     } catch (e) {
@@ -149,7 +150,7 @@ export default function AdminInterviews() {
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, page]);
+  }, [statusFilter, page, search]);
 
   useEffect(() => { loadData(); }, [loadData]);
 
@@ -174,6 +175,16 @@ export default function AdminInterviews() {
           Lịch sử phỏng vấn <span style={{ fontSize: '16px', color: 'var(--text-muted)', fontWeight: 500 }}>({total})</span>
         </h2>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+          <div style={{ position: 'relative' }}>
+            <Search size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+            <input
+              className="input-field"
+              value={search}
+              onChange={e => { setSearch(e.target.value); setPage(0); }}
+              placeholder="Tìm user, email, topic..."
+              style={{ width: '220px', height: '34px', paddingLeft: '32px', fontSize: '12px' }}
+            />
+          </div>
           {[
             { val: '', label: 'Tất cả' },
             { val: 'completed', label: '✅ Hoàn thành' },
@@ -185,7 +196,7 @@ export default function AdminInterviews() {
                 padding: '7px 14px', borderRadius: '10px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', border: '1px solid', transition: 'all 0.15s',
                 background: statusFilter === opt.val ? 'var(--gradient-primary)' : 'transparent',
                 borderColor: statusFilter === opt.val ? 'transparent' : 'var(--border)',
-                color: statusFilter === opt.val ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+                color: statusFilter === opt.val ? 'var(--primary-contrast)' : 'var(--text-secondary)',
               }}>
               {opt.label}
             </button>

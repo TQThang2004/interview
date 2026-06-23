@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Search, Trash2, FileText, Star, ChevronLeft, ChevronRight,
   RefreshCw, ExternalLink, User, Calendar, HardDrive
@@ -39,6 +39,8 @@ export default function AdminCVEvaluations() {
 
   const [search, setSearch] = useState('');
   const [searchInput, setSearchInput] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [page, setPage] = useState(0);
   const [toast, setToast] = useState(null);
 
@@ -47,10 +49,10 @@ export default function AdminCVEvaluations() {
     setTimeout(() => setToast(null), 3500);
   };
 
-  const loadEvaluations = async () => {
+  const loadEvaluations = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await api.adminGetCVEvaluations(PAGE_SIZE, page * PAGE_SIZE, search);
+      const data = await api.adminGetCVEvaluations(PAGE_SIZE, page * PAGE_SIZE, search, fromDate, toDate);
       setEvaluations(data.evaluations || []);
       setTotal(data.total || 0);
     } catch (err) {
@@ -58,9 +60,9 @@ export default function AdminCVEvaluations() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [fromDate, page, search, toDate]);
 
-  useEffect(() => { loadEvaluations(); }, [page, search]);
+  useEffect(() => { loadEvaluations(); }, [loadEvaluations]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -115,7 +117,7 @@ export default function AdminCVEvaluations() {
 
       {/* Stats */}
       <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-        <div className="glass-card" style={{ padding: '14px 20px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <div className="glass-card" style={{ padding: '8px 20px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <span style={{ fontSize: '22px', fontWeight: 800, color: 'var(--primary)' }}>{total}</span>
           <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Tổng đánh giá</span>
         </div>
@@ -131,8 +133,22 @@ export default function AdminCVEvaluations() {
               style={{ paddingLeft: '40px', height: '40px' }} />
           </div>
           <button type="submit" className="btn-primary" style={{ padding: '8px 18px', fontSize: '13px' }}>Tìm kiếm</button>
-          {search && (
-            <button type="button" onClick={() => { setSearch(''); setSearchInput(''); setPage(0); }} style={{
+          <input
+            type="date"
+            className="input-field"
+            value={fromDate}
+            onChange={e => { setFromDate(e.target.value); setPage(0); }}
+            style={{ maxWidth: '160px', height: '40px' }}
+          />
+          <input
+            type="date"
+            className="input-field"
+            value={toDate}
+            onChange={e => { setToDate(e.target.value); setPage(0); }}
+            style={{ maxWidth: '160px', height: '40px' }}
+          />
+          {(search || fromDate || toDate) && (
+            <button type="button" onClick={() => { setSearch(''); setSearchInput(''); setFromDate(''); setToDate(''); setPage(0); }} style={{
               padding: '8px 14px', fontSize: '13px', background: 'var(--bg-elevated)',
               border: '1px solid var(--border)', borderRadius: '10px', cursor: 'pointer', color: 'var(--text-muted)'
             }}>Xóa lọc</button>

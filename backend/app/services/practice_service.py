@@ -1,12 +1,12 @@
-﻿"""
-Practice Service â€“ Logic nghiá»‡p vá»¥ cho chá»©c nÄƒng Luyá»‡n táº­p theo Chá»§ Ä‘á» (Quiz).
+"""
+Practice Service – Logic nghiệp vụ cho chức năng Luyện tập theo Chủ đề (Quiz).
 
-Flow PhÆ°Æ¡ng Ã¡n B:
-  1. start_practice(): láº¥y cÃ¢u há»i tá»« ChromaDB â†’ táº¡o session + lÆ°u answers
-  2. submit_quiz():    cháº¥m Ä‘iá»ƒm tá»«ng cÃ¢u (evaluate_service) â†’ cáº­p nháº­t DB â†’ tráº£ káº¿t quáº£
-  3. get_practice_stats(): thá»‘ng kÃª cho Dashboard
+Flow Phương án B:
+  1. start_practice(): lấy câu hỏi từ ChromaDB → tạo session + lưu answers
+  2. submit_quiz():    chấm điểm từng câu (evaluate_service) → cập nhật DB → trả kết quả
+  3. get_practice_stats(): thống kê cho Dashboard
 
-KhÃ´ng dÃ¹ng LLM augment â€“ cÃ¢u há»i láº¥y tháº³ng tá»« ChromaDB document.
+Không dùng LLM augment – câu hỏi lấy thẳng từ ChromaDB document.
 """
 from __future__ import annotations
 
@@ -15,7 +15,6 @@ import json
 from typing import Optional
 
 import chromadb
-import google.generativeai as genai
 
 from app.core.logging import get_logger
 from app.core.config import (
@@ -25,13 +24,14 @@ from app.core.config import (
     COLLECTION_NAME,
 )
 from app.database.connection import get_pool
-from app.services.evaluate_service import evaluate_answer
+from app.services.evaluate_service import evaluate_answer, is_skipped_answer
+from app.utils.gemini_client import embed_contents
 
 logger = get_logger(__name__)
 
 
 # ---------------------------------------------------------------------------
-# Danh sÃ¡ch chá»§ Ä‘á» há»— trá»£ (13 topics tá»« dataset)
+# Danh sách chủ đề hỗ trợ (13 topics từ dataset)
 # ---------------------------------------------------------------------------
 
 PRACTICE_TOPICS = [
@@ -54,7 +54,7 @@ TOPIC_IDS = {t["id"] for t in PRACTICE_TOPICS}
 
 
 # ---------------------------------------------------------------------------
-# Helpers â€“ ChromaDB
+# Helpers – ChromaDB
 # ---------------------------------------------------------------------------
 
 def _get_collection():
@@ -63,23 +63,23 @@ def _get_collection():
 
 
 def _extract_question(document: str) -> str:
-    """TrÃ­ch xuáº¥t cÃ¢u há»i tá»« page_content ChromaDB."""
+    """Trích xuất câu hỏi từ page_content ChromaDB."""
     for line in document.split("\n"):
         stripped = line.strip()
-        if stripped.startswith("CÃ¢u há»i:"):
+        if stripped.startswith("Câu hỏi:"):
             return stripped.split(":", 1)[1].strip()
-    # fallback: dÃ²ng 2
+    # fallback: dòng 2
     lines = [l.strip() for l in document.split("\n") if l.strip()]
     return lines[1] if len(lines) > 1 else document[:200]
 
 
 def _extract_reference(document: str) -> str:
-    """TrÃ­ch xuáº¥t cÃ¢u tráº£ lá»i tham kháº£o tá»« page_content ChromaDB."""
+    """Trích xuất câu trả lời tham khảo từ page_content ChromaDB."""
     lines = document.split("\n")
     for i, line in enumerate(lines):
         stripped = line.strip()
-        if stripped.startswith("Tráº£ lá»i:"):
-            # Láº¥y pháº§n cÃ²n láº¡i cá»§a dÃ²ng nÃ y + cÃ¡c dÃ²ng káº¿ tiáº¿p
+        if stripped.startswith("Trả lời:"):
+            # Lấy phần còn lại của dòng này + các dòng kế tiếp
             first_part = stripped.split(":", 1)[1].strip()
             rest = "\n".join(l.strip() for l in lines[i + 1:] if l.strip())
             return (first_part + "\n" + rest).strip()
@@ -87,14 +87,14 @@ def _extract_reference(document: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Public: Láº¥y cÃ¢u há»i tá»« ChromaDB
+# Public: Lấy câu hỏi từ ChromaDB
 # ---------------------------------------------------------------------------
 
 def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     """
-    Truy váº¥n ChromaDB láº¥y cÃ¢u há»i theo chá»§ Ä‘á».
-    DÃ¹ng where filter theo metadata.instruction == topic.
-    Tráº£ vá» list[{question, reference}].
+    Truy vấn ChromaDB lấy câu hỏi theo chủ đề.
+    Dùng where filter theo metadata.instruction == topic.
+    Trả về list[{question, reference}].
     """
     if topic not in TOPIC_IDS:
         return []
@@ -103,23 +103,20 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
 
     # Embed query
     query_text = f"{topic} technical interview questions"
-    genai.configure(api_key=GOOGLE_API_KEY_EMBEDDING)
     try:
-        embed_result = genai.embed_content(
+        query_embeddings = embed_contents(
+            api_key=GOOGLE_API_KEY_EMBEDDING,
+            contents=query_text,
             model=EMBED_MODEL,
-            content=query_text,
-            task_type="retrieval_query",
+            task_type="RETRIEVAL_QUERY",
         )
-        query_embedding = embed_result["embedding"]
-        if isinstance(query_embedding[0], float):
-            query_embeddings = [query_embedding]
-        else:
-            query_embeddings = query_embedding
+        if not query_embeddings:
+            return []
     except Exception as e:
         logger.warning("Failed to embed practice query: %s", e)
         return []
 
-    # Query vá»›i filter theo topic
+    # Query với filter theo topic
     fetch_n = min(num_q * 4, 100)
     try:
         results = collection.query(
@@ -129,7 +126,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
             include=["documents", "metadatas", "distances"],
         )
     except Exception as e:
-        # Náº¿u where filter lá»—i, fallback khÃ´ng filter
+        # Nếu where filter lỗi, fallback không filter
         logger.warning("Practice query with topic filter failed, retrying without filter: %s", e)
         try:
             results = collection.query(
@@ -148,7 +145,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     seen_questions = set()
 
     for doc, meta in zip(docs, metas):
-        # Æ¯u tiÃªn docs Ä‘Ãºng topic
+        # Ưu tiên docs đúng topic
         doc_topic = meta.get("instruction", "")
         if doc_topic != topic:
             continue
@@ -195,7 +192,7 @@ def get_rag_status() -> dict:
 
 
 # ---------------------------------------------------------------------------
-# CRUD â€“ practice_sessions
+# CRUD – practice_sessions
 # ---------------------------------------------------------------------------
 
 async def create_session(
@@ -218,7 +215,7 @@ async def create_session(
 async def save_answer(
     session_id: str, question_text: str, reference_answer: str, order: int
 ) -> str:
-    """LÆ°u cÃ¢u há»i vÃ o practice_answers. Tráº£ vá» answer_id."""
+    """Lưu câu hỏi vào practice_answers. Trả về answer_id."""
     pool = await get_pool()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
@@ -344,7 +341,7 @@ async def get_session_detail(session_id: str, user_id: str) -> Optional[dict]:
 
 
 async def get_practice_stats(user_id: str) -> list[dict]:
-    """Thá»‘ng kÃª luyá»‡n táº­p theo chá»§ Ä‘á» cho Dashboard."""
+    """Thống kê luyện tập theo chủ đề cho Dashboard."""
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
@@ -366,7 +363,7 @@ async def get_practice_stats(user_id: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Cháº¥m Ä‘iá»ƒm quiz (PhÆ°Æ¡ng Ã¡n B: ná»™p táº¥t cáº£ 1 láº§n)
+# Chấm điểm quiz (Phương án B: nộp tất cả 1 lần)
 # ---------------------------------------------------------------------------
 
 async def grade_quiz(
@@ -377,14 +374,14 @@ async def grade_quiz(
     language: str,
 ) -> dict:
     """
-    Cháº¥m Ä‘iá»ƒm táº¥t cáº£ cÃ¢u tráº£ lá»i, cáº­p nháº­t DB, hoÃ n thÃ nh session.
+    Chấm điểm tất cả câu trả lời, cập nhật DB, hoàn thành session.
 
     answers_input: [{answer_id, user_answer}, ...]
-    Tráº£ vá» káº¿t quáº£ tá»•ng há»£p vá»›i chi tiáº¿t tá»«ng cÃ¢u.
+    Trả về kết quả tổng hợp với chi tiết từng câu.
     """
     pool = await get_pool()
 
-    # Láº¥y táº¥t cáº£ answers cá»§a session (Ä‘á»ƒ cÃ³ question_text + reference)
+    # Lấy tất cả answers của session (để có question_text + reference)
     async with pool.acquire() as conn:
         db_answers = await conn.fetch(
             """
@@ -396,14 +393,16 @@ async def grade_quiz(
             session_id,
         )
 
-    # Build map answer_id â†’ db record
+    # Build map answer_id → db record
     db_map = {row["id"]: dict(row) for row in db_answers}
 
-    # XÃ¢y dict user_answer tá»« input
+    # Xây dict user_answer từ input
     user_map = {a["answer_id"]: a.get("user_answer", "").strip() for a in answers_input}
 
     graded_results = []
     all_scores = []
+    answered_count = 0
+    skipped_count = 0
 
     for db_row in sorted(db_map.values(), key=lambda r: r["question_order"]):
         aid = db_row["id"]
@@ -411,32 +410,46 @@ async def grade_quiz(
         reference = db_row["reference_answer"] or ""
         user_ans = user_map.get(aid, "").strip()
 
-        # Cháº¥m Ä‘iá»ƒm báº±ng evaluate_service (tÃ¡i sá»­ dá»¥ng)
-        try:
-            eval_result = evaluate_answer(
-                question=question_text,
-                user_answer=user_ans if user_ans else "(Bá» qua)",
-                reference=reference,
-                level=level,
-                language=language,
-            )
-            score = eval_result.score
-            eval_dict = eval_result.to_dict()
-        except Exception as e:
-            logger.exception("Failed to grade practice answer")
+        if is_skipped_answer(user_ans):
+            skipped_count += 1
             score = 0.0
-            eval_dict = {"score": 0.0, "score_str": "0/10", "strengths": "", "weaknesses": "", "suggestions": ""}
+            eval_dict = {
+                "score": 0.0,
+                "score_str": "0/10",
+                "strengths": "",
+                "weaknesses": "Bạn chưa trả lời câu hỏi này.",
+                "suggestions": "Hãy nhập câu trả lời trước khi nộp để được chấm điểm và nhận góp ý.",
+            }
+            stored_answer = "(Bỏ qua)"
+        else:
+            answered_count += 1
+            stored_answer = user_ans
+            # Chấm điểm bằng evaluate_service (tái sử dụng)
+            try:
+                eval_result = evaluate_answer(
+                    question=question_text,
+                    user_answer=user_ans,
+                    reference=reference,
+                    level=level,
+                    language=language,
+                )
+                score = eval_result.score
+                eval_dict = eval_result.to_dict()
+            except Exception:
+                logger.exception("Failed to grade practice answer")
+                score = 0.0
+                eval_dict = {"score": 0.0, "score_str": "0/10", "strengths": "", "weaknesses": "", "suggestions": ""}
 
         all_scores.append(score)
         eval_json = json.dumps(eval_dict, ensure_ascii=False)
 
-        # Cáº­p nháº­t DB
-        await update_answer(aid, user_ans or "(Bá» qua)", eval_json, score)
+        # Cập nhật DB
+        await update_answer(aid, stored_answer, eval_json, score)
 
         graded_results.append({
             "answer_id": aid,
             "question": question_text,
-            "user_answer": user_ans or "(Bá» qua)",
+            "user_answer": stored_answer,
             "reference_answer": reference,
             "score": score,
             "score_str": eval_dict.get("score_str", f"{score}/10"),
@@ -446,11 +459,11 @@ async def grade_quiz(
             "order": db_row["question_order"],
         })
 
-    # TÃ­nh Ä‘iá»ƒm tá»•ng
+    # Tính điểm tổng
     overall = round(sum(all_scores) / len(all_scores), 2) if all_scores else 0.0
     correct_count = sum(1 for s in all_scores if s >= 6.0)
 
-    # HoÃ n thÃ nh session
+    # Hoàn thành session
     await complete_session(session_id, user_id, overall, correct_count)
 
     return {
@@ -458,5 +471,7 @@ async def grade_quiz(
         "overall_score": overall,
         "correct_count": correct_count,
         "total_questions": len(graded_results),
+        "answered_count": answered_count,
+        "skipped_count": skipped_count,
         "results": sorted(graded_results, key=lambda r: r["order"]),
     }

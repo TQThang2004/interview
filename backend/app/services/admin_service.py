@@ -101,46 +101,46 @@ async def get_chart_data(days: int = 30) -> list[dict]:
 # Users
 # ---------------------------------------------------------------------------
 
-async def list_users(limit: int, offset: int, search: Optional[str]) -> tuple[int, list[dict]]:
+async def list_users(
+    limit: int,
+    offset: int,
+    search: Optional[str],
+    role: Optional[str] = None,
+) -> tuple[int, list[dict]]:
     """Danh sách người dùng với tìm kiếm và phân trang."""
     pool = await get_pool()
     async with pool.acquire() as conn:
+        conditions = []
+        params: list = []
+        idx = 1
+
         if search:
-            rows = await conn.fetch(
-                """
+            conditions.append(f"(u.username ILIKE ${idx} OR u.email ILIKE ${idx})")
+            params.append(f"%{search}%")
+            idx += 1
+
+        if role in ("user", "admin"):
+            conditions.append(f"u.role = ${idx}::user_role")
+            params.append(role)
+            idx += 1
+
+        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+        rows = await conn.fetch(
+            f"""
                 SELECT u.id::text, u.username, u.email, u.role::text,
                        u.avatar_url, u.phone_number, u.created_at,
                        COUNT(i.id) AS total_interviews,
                        ROUND(AVG(i.overall_score)::numeric, 2) AS avg_score
                 FROM users u
                 LEFT JOIN interviews i ON i.user_id = u.id
-                WHERE u.username ILIKE $1 OR u.email ILIKE $1
+                {where}
                 GROUP BY u.id, u.username, u.email, u.role, u.avatar_url, u.phone_number, u.created_at
                 ORDER BY u.created_at DESC
-                LIMIT $2 OFFSET $3
+                LIMIT ${idx} OFFSET ${idx + 1}
                 """,
-                f"%{search}%", limit, offset,
-            )
-            total = await conn.fetchval(
-                "SELECT COUNT(*) FROM users WHERE username ILIKE $1 OR email ILIKE $1",
-                f"%{search}%",
-            )
-        else:
-            rows = await conn.fetch(
-                """
-                SELECT u.id::text, u.username, u.email, u.role::text,
-                       u.avatar_url, u.phone_number, u.created_at,
-                       COUNT(i.id) AS total_interviews,
-                       ROUND(AVG(i.overall_score)::numeric, 2) AS avg_score
-                FROM users u
-                LEFT JOIN interviews i ON i.user_id = u.id
-                GROUP BY u.id, u.username, u.email, u.role, u.avatar_url, u.phone_number, u.created_at
-                ORDER BY u.created_at DESC
-                LIMIT $1 OFFSET $2
-                """,
-                limit, offset,
-            )
-            total = await conn.fetchval("SELECT COUNT(*) FROM users")
+            *params, limit, offset,
+        )
+        total = await conn.fetchval(f"SELECT COUNT(*) FROM users u {where}", *params)
 
     return total, [serialize_record(r) for r in rows]
 
@@ -225,17 +225,31 @@ async def create_user(username: str, email: str, password: str, role: str) -> di
 # ---------------------------------------------------------------------------
 
 async def list_all_interviews(
-    limit: int, offset: int, status_filter: Optional[str]
+    limit: int,
+    offset: int,
+    status_filter: Optional[str],
+    search: Optional[str] = None,
 ) -> tuple[int, list[dict]]:
     """Danh sách tất cả phiên phỏng vấn của mọi người dùng."""
     pool = await get_pool()
     async with pool.acquire() as conn:
-        where_clause = ""
-        params: list = [limit, offset]
+        conditions = []
+        params: list = []
+        idx = 1
 
         if status_filter and status_filter in ("in_progress", "completed", "cancelled"):
-            where_clause = "WHERE i.status = $3"
+            conditions.append(f"i.status = ${idx}")
             params.append(status_filter)
+            idx += 1
+
+        if search:
+            conditions.append(
+                f"(u.username ILIKE ${idx} OR u.email ILIKE ${idx} OR i.topic ILIKE ${idx})"
+            )
+            params.append(f"%{search}%")
+            idx += 1
+
+        where_clause = ("WHERE " + " AND ".join(conditions)) if conditions else ""
 
         rows = await conn.fetch(
             f"""
@@ -252,16 +266,20 @@ async def list_all_interviews(
                      i.overall_score, i.started_at, i.completed_at,
                      u.username, u.email
             ORDER BY i.started_at DESC
-            LIMIT $1 OFFSET $2
+            LIMIT ${idx} OFFSET ${idx + 1}
+            """,
+            *params, limit, offset,
+        )
+
+        total = await conn.fetchval(
+            f"""
+            SELECT COUNT(*)
+            FROM interviews i
+            JOIN users u ON u.id = i.user_id
+            {where_clause}
             """,
             *params,
         )
-
-        count_query = "SELECT COUNT(*) FROM interviews"
-        if status_filter and status_filter in ("in_progress", "completed", "cancelled"):
-            total = await conn.fetchval(f"{count_query} WHERE status = $1", status_filter)
-        else:
-            total = await conn.fetchval(count_query)
 
     return total, [serialize_record(r) for r in rows]
 
@@ -373,6 +391,7 @@ async def list_community_posts_admin(
     offset: int,
     status_filter: Optional[str],
     search: Optional[str] = None,
+    category: Optional[str] = None,
 ) -> tuple[int, list[dict]]:
     """Danh sách tất cả bài viết community kèm filter status/search."""
     pool = await get_pool()
@@ -391,6 +410,11 @@ async def list_community_posts_admin(
                 f"(p.title ILIKE ${idx} OR p.content ILIKE ${idx} OR u.username ILIKE ${idx})"
             )
             params.append(f"%{search}%")
+            idx += 1
+
+        if category:
+            conditions.append(f"p.category = ${idx}")
+            params.append(category)
             idx += 1
 
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
@@ -475,15 +499,39 @@ async def list_all_cv_evaluations(
     limit: int,
     offset: int,
     search: Optional[str] = None,
+    from_date: Optional[str] = None,
+    to_date: Optional[str] = None,
 ) -> tuple[int, list[dict]]:
     """Danh sách tất cả CV evaluations của mọi user (admin)."""
     import json
 
     pool = await get_pool()
     async with pool.acquire() as conn:
+        conditions = []
+        params: list = []
+        idx = 1
+
         if search:
-            rows = await conn.fetch(
-                """
+            conditions.append(
+                f"(u.username ILIKE ${idx} OR u.email ILIKE ${idx} OR e.original_filename ILIKE ${idx})"
+            )
+            params.append(f"%{search}%")
+            idx += 1
+
+        if from_date:
+            conditions.append(f"e.evaluated_at::date >= ${idx}::date")
+            params.append(from_date)
+            idx += 1
+
+        if to_date:
+            conditions.append(f"e.evaluated_at::date <= ${idx}::date")
+            params.append(to_date)
+            idx += 1
+
+        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+
+        rows = await conn.fetch(
+            f"""
                 SELECT
                     e.id::text, e.user_id::text,
                     u.username, u.email, u.avatar_url,
@@ -492,37 +540,20 @@ async def list_all_cv_evaluations(
                     e.evaluation_result::text, e.evaluated_at
                 FROM cv_evaluations e
                 JOIN users u ON u.id = e.user_id
-                WHERE u.username ILIKE $1 OR u.email ILIKE $1 OR e.original_filename ILIKE $1
+                {where}
                 ORDER BY e.evaluated_at DESC
-                LIMIT $2 OFFSET $3
+                LIMIT ${idx} OFFSET ${idx + 1}
                 """,
-                f"%{search}%", limit, offset,
-            )
-            total = await conn.fetchval(
-                """
+            *params, limit, offset,
+        )
+        total = await conn.fetchval(
+            f"""
                 SELECT COUNT(*) FROM cv_evaluations e
                 JOIN users u ON u.id = e.user_id
-                WHERE u.username ILIKE $1 OR u.email ILIKE $1 OR e.original_filename ILIKE $1
-                """,
-                f"%{search}%",
-            )
-        else:
-            rows = await conn.fetch(
-                """
-                SELECT
-                    e.id::text, e.user_id::text,
-                    u.username, u.email, u.avatar_url,
-                    e.original_filename, e.cloudinary_url, e.cloudinary_public_id,
-                    e.file_size_bytes, e.overall_score,
-                    e.evaluation_result::text, e.evaluated_at
-                FROM cv_evaluations e
-                JOIN users u ON u.id = e.user_id
-                ORDER BY e.evaluated_at DESC
-                LIMIT $1 OFFSET $2
-                """,
-                limit, offset,
-            )
-            total = await conn.fetchval("SELECT COUNT(*) FROM cv_evaluations")
+                {where}
+            """,
+            *params,
+        )
 
     results = []
     for r in rows:
@@ -550,4 +581,65 @@ async def admin_delete_cv_evaluation(eval_id: str) -> Optional[str]:
             "DELETE FROM cv_evaluations WHERE id = $1 RETURNING cloudinary_public_id",
             eval_id,
         )
-    return row["cloudinary_public_id"] if row else None
+    return (row["cloudinary_public_id"] or "") if row else None
+
+
+async def list_audit_logs(
+    limit: int,
+    offset: int,
+    actor_id: Optional[str] = None,
+    action: Optional[str] = None,
+    entity_type: Optional[str] = None,
+) -> tuple[int, list[dict]]:
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        conditions = []
+        params: list = []
+        idx = 1
+
+        if actor_id:
+            conditions.append(f"a.actor_id = ${idx}")
+            params.append(actor_id)
+            idx += 1
+        if action:
+            conditions.append(f"a.action = ${idx}")
+            params.append(action)
+            idx += 1
+        if entity_type:
+            conditions.append(f"a.entity_type = ${idx}")
+            params.append(entity_type)
+            idx += 1
+
+        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+        rows = await conn.fetch(
+            f"""
+            SELECT
+                a.id::text,
+                a.actor_id::text,
+                u.username AS actor_name,
+                u.email AS actor_email,
+                a.action,
+                a.entity_type,
+                a.entity_id::text,
+                a.metadata::text,
+                a.created_at
+            FROM audit_logs a
+            LEFT JOIN users u ON u.id = a.actor_id
+            {where}
+            ORDER BY a.created_at DESC
+            LIMIT ${idx} OFFSET ${idx + 1}
+            """,
+            *params, limit, offset,
+        )
+        total = await conn.fetchval(f"SELECT COUNT(*) FROM audit_logs a {where}", *params)
+
+    logs = []
+    for row in rows:
+        item = serialize_record(row)
+        if isinstance(item.get("metadata"), str):
+            try:
+                item["metadata"] = json.loads(item["metadata"])
+            except Exception:
+                item["metadata"] = {}
+        logs.append(item)
+    return total, logs

@@ -1,20 +1,19 @@
-﻿"""
-RAG Retriever â€“ BÆ°á»›c R (Retrieve) trong pipeline RAG.
+"""
+RAG Retriever – Bước R (Retrieve) trong pipeline RAG.
 
-Chá»©c nÄƒng:
-- NhÃºng (embed) cÃ¡c query string thÃ nh vector qua Gemini Embedding API.
-- Truy váº¥n ChromaDB theo batch Ä‘á»ƒ láº¥y TOP_K tÃ i liá»‡u liÃªn quan.
-- PhÃ¢n bá»• slot vÃ  xáº¿p háº¡ng: topic chÃ­nh chiáº¿m ~60%, topic phá»¥ ~40%.
-- Tráº£ vá» list[RawDoc] Ä‘á»ƒ Augmentor xá»­ lÃ½ tiáº¿p.
+Chức năng:
+- Nhúng (embed) các query string thành vector qua Gemini Embedding API.
+- Truy vấn ChromaDB theo batch để lấy TOP_K tài liệu liên quan.
+- Phân bổ slot và xếp hạng: topic chính chiếm ~60%, topic phụ ~40%.
+- Trả về list[RawDoc] để Augmentor xử lý tiếp.
 
-KhÃ´ng gá»i LLM text-generation táº¡i bÆ°á»›c nÃ y.
+Không gọi LLM text-generation tại bước này.
 """
 from __future__ import annotations
 
 import random
 
 import chromadb
-import google.generativeai as genai
 
 from app.core.logging import get_logger
 from app.core.config import (
@@ -24,6 +23,7 @@ from app.core.config import (
     COLLECTION_NAME,
     TOP_K_RETRIEVE,
 )
+from app.utils.gemini_client import embed_contents
 
 logger = get_logger(__name__)
 
@@ -33,7 +33,7 @@ logger = get_logger(__name__)
 # ---------------------------------------------------------------------------
 
 class RawDoc:
-    """TÃ i liá»‡u thÃ´ láº¥y tá»« ChromaDB, kÃ¨m metadata Ä‘á»ƒ Augmentor sá»­ dá»¥ng."""
+    """Tài liệu thô lấy từ ChromaDB, kèm metadata để Augmentor sử dụng."""
 
     def __init__(self, document: str, distance: float, topic: str, metadata: dict):
         self.document = document
@@ -56,8 +56,8 @@ def _get_collection():
 
 def _sorted_by_distance_bands(candidates: list[RawDoc]) -> list[RawDoc]:
     """
-    Sáº¯p theo distance ASC, xÃ¡o nháº¹ trong má»—i band 0.05 Ä‘á»ƒ Ä‘a dáº¡ng
-    mÃ  váº«n giá»¯ tÃ­nh liÃªn quan (band nhá» = khoáº£ng cÃ¡ch nhá» = relevant hÆ¡n).
+    Sắp theo distance ASC, xáo nhẹ trong mỗi band 0.05 để đa dạng
+    mà vẫn giữ tính liên quan (band nhỏ = khoảng cách nhỏ = relevant hơn).
     """
     bands: dict[int, list[RawDoc]] = {}
     for c in candidates:
@@ -82,28 +82,28 @@ def retrieve_raw_docs(
     gap_topics: list[str] | None = None,
 ) -> list[RawDoc]:
     """
-    Truy váº¥n ChromaDB vÃ  tráº£ vá» ngÃ¢n hÃ ng cÃ¢u há»i Ä‘áº§y Ä‘á»§ (TOP_K_RETRIEVE docs).
+    Truy vấn ChromaDB và trả về ngân hàng câu hỏi đầy đủ (TOP_K_RETRIEVE docs).
 
-    PhÃ¢n bá»• slot:
-    - 60% cho matching_topics (ká»¹ nÄƒng á»©ng viÃªn ÄÃƒ CÃ“ theo JD)
-    - 40% cho gap_topics (ká»¹ nÄƒng á»©ng viÃªn THIáº¾U theo JD)
+    Phân bổ slot:
+    - 60% cho matching_topics (kỹ năng ứng viên ĐÃ CÓ theo JD)
+    - 40% cho gap_topics (kỹ năng ứng viên THIẾU theo JD)
 
     Args:
-        topics:           All query strings (backward compat, dÃ¹ng khi matching/gap chÆ°a cÃ³).
-        level:            Cáº¥p Ä‘á»™ phá»ng váº¥n (junior/mid/seniorâ€¦) Ä‘á»ƒ lá»c metadata.
-        matching_topics:  Query strings cho ká»¹ nÄƒng khá»›p (60%).
-        gap_topics:       Query strings cho ká»¹ nÄƒng thiáº¿u (40%).
+        topics:           All query strings (backward compat, dùng khi matching/gap chưa có).
+        level:            Cấp độ phỏng vấn (junior/mid/senior…) để lọc metadata.
+        matching_topics:  Query strings cho kỹ năng khớp (60%).
+        gap_topics:       Query strings cho kỹ năng thiếu (40%).
 
     Returns:
-        list[RawDoc] tá»‘i Ä‘a TOP_K_RETRIEVE pháº§n tá»­, sáº¯p xáº¿p theo relevance.
+        list[RawDoc] tối đa TOP_K_RETRIEVE phần tử, sắp xếp theo relevance.
     """
-    # Náº¿u cÃ³ matching/gap topics, dÃ¹ng chÃºng; ngÆ°á»£c láº¡i fallback vá» topics cÅ©
+    # Nếu có matching/gap topics, dùng chúng; ngược lại fallback về topics cũ
     if matching_topics or gap_topics:
         m_topics = matching_topics or []
         g_topics = gap_topics or []
         all_query_topics = m_topics + g_topics
     else:
-        # Backward compat: topic Ä‘áº§u = matching, cÃ²n láº¡i = gap
+        # Backward compat: topic đầu = matching, còn lại = gap
         all_query_topics = topics
         m_topics = topics[:1] if topics else []
         g_topics = topics[1:] if len(topics) > 1 else []
@@ -113,23 +113,21 @@ def retrieve_raw_docs(
 
     collection = _get_collection()
 
-    # â”€â”€ Embedding batch (1 API call cho táº¥t cáº£ topics) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    genai.configure(api_key=GOOGLE_API_KEY_EMBEDDING)
+    # ── Embedding batch (1 API call cho tất cả topics) ───────────────────────
     try:
-        embed_result = genai.embed_content(
+        query_embeddings = embed_contents(
+            api_key=GOOGLE_API_KEY_EMBEDDING,
+            contents=all_query_topics,
             model=EMBED_MODEL,
-            content=all_query_topics,
-            task_type="retrieval_query",
+            task_type="RETRIEVAL_QUERY",
         )
-        query_embeddings = embed_result["embedding"]
-        # Khi chá»‰ cÃ³ 1 topic, API tráº£ vá» flat list thay vÃ¬ list-of-list
-        if isinstance(query_embeddings[0], float):
-            query_embeddings = [query_embeddings]
+        if not query_embeddings:
+            return []
     except Exception as e:
         logger.warning("Failed to embed RAG retrieval query: %s", e)
         return []
 
-    # â”€â”€ ChromaDB batch query â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── ChromaDB batch query ─────────────────────────────────────────────────
     try:
         results = collection.query(
             query_embeddings=query_embeddings,
@@ -140,7 +138,7 @@ def retrieve_raw_docs(
         logger.warning("Failed to query ChromaDB: %s", e)
         return []
 
-    # â”€â”€ PhÃ¢n loáº¡i: valid (Ä‘Ãºng level) vs fallback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Phân loại: valid (đúng level) vs fallback ────────────────────────────
     valid_per_topic: dict[str, list[RawDoc]] = {t: [] for t in all_query_topics}
     fallback: list[RawDoc] = []
     seen_docs: set[str] = set()
@@ -162,7 +160,7 @@ def retrieve_raw_docs(
             else:
                 fallback.append(raw)
 
-    # â”€â”€ PhÃ¢n bá»• slot: 60% matching, 40% gap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Phân bổ slot: 60% matching, 40% gap ─────────────────────────────────
     matching_slots = max(5, round(TOP_K_RETRIEVE * 0.6)) if g_topics else TOP_K_RETRIEVE
     gap_slots = TOP_K_RETRIEVE - matching_slots if g_topics else 0
 
@@ -182,7 +180,7 @@ def retrieve_raw_docs(
             candidates = _sorted_by_distance_bands(valid_per_topic.get(t, []))
             selected.extend(candidates[:per_g])
 
-    # Fallback náº¿u váº«n chÆ°a Ä‘á»§ TOP_K_RETRIEVE
+    # Fallback nếu vẫn chưa đủ TOP_K_RETRIEVE
     if len(selected) < TOP_K_RETRIEVE:
         fallback.sort(key=lambda c: c.distance)
         selected.extend(fallback[: TOP_K_RETRIEVE - len(selected)])

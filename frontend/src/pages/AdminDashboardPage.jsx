@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useModal } from '../context/ModalContext';
 import {
   LayoutDashboard, Users, Mic, Trophy, User, LogOut,
-  MessageSquare, FileText, Database,
+  MessageSquare, FileText, Database, ShieldCheck,
 } from 'lucide-react';
 
 import DashboardLayout     from '../components/layout/DashboardLayout';
@@ -14,6 +14,7 @@ import AdminInterviews     from './admin/AdminInterviews';
 import AdminCommunityPosts from './admin/AdminCommunityPosts';
 import AdminCVEvaluations  from './admin/AdminCVEvaluations';
 import AdminRAGStatus      from './admin/AdminRAGStatus';
+import AdminAuditLogs      from './admin/AdminAuditLogs';
 import ProfilePage         from './dashboard/ProfilePage';
 
 /* ── Nav items ── */
@@ -24,6 +25,7 @@ const NAV = [
   { id: 'community',     label: 'Bài viết Community',  icon: <MessageSquare size={18} /> },
   { id: 'cv-evals',      label: 'Đánh giá CV',         icon: <FileText size={18} /> },
   { id: 'rag-status',    label: 'RAG Status',          icon: <Database size={18} /> },
+  { id: 'audit-logs',    label: 'Audit Log',           icon: <ShieldCheck size={18} /> },
   { id: 'profile',       label: 'Profile Admin',       icon: <User size={18} /> },
 ];
 
@@ -59,6 +61,7 @@ function renderContent(activePage) {
     case 'community':  return <AdminCommunityPosts />;
     case 'cv-evals':   return <AdminCVEvaluations />;
     case 'rag-status': return <AdminRAGStatus />;
+    case 'audit-logs': return <AdminAuditLogs />;
     case 'profile':    return <ProfilePage />;
     default:           return <AdminStats />;
   }

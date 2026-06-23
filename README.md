@@ -1,248 +1,534 @@
 # AI Mock Interviewer
 
-Hệ thống **AI Mock Interviewer** là một nền tảng phỏng vấn giả lập thông minh dành cho developer. Hệ thống tự động phân tích CV của ứng viên và đối chiếu với Job Description (JD) để tạo ra bộ câu hỏi cá nhân hóa. Với sức mạnh của hệ thống RAG (Retrieval-Augmented Generation) kết hợp cùng Google Gemini, ứng viên có thể trải nghiệm quá trình hỏi đáp bằng giọng nói theo thời gian thực và nhận được những đánh giá, góp ý sát thực tế.
+AI Mock Interviewer là nền tảng luyện phỏng vấn kỹ thuật dành cho lập trình viên. Ứng dụng cho phép người dùng tải CV và Job Description, hệ thống dùng RAG kết hợp Google Gemini để sinh bộ câu hỏi cá nhân hóa, hỗ trợ trả lời bằng giọng nói, chấm điểm từng câu và lưu lại lịch sử luyện tập.
 
-## 1. Công nghệ sử dụng
-- **Frontend**: React.js, Vite, TailwindCSS (glassmorphism UI), Lucide React.
-- **Backend**: FastAPI, Python 3.10+, PostgreSQL (lưu trữ người dùng, lịch sử, cộng đồng), ChromaDB (Vector Database).
-- **AI / LLM**: Google Gemini (gemini-2.5-flash) cho cả sinh câu hỏi và đánh giá. Mô hình nhúng (Embedding) sử dụng `gemini-embedding-001`.
-- **Media / Storage**: Cloudinary (lưu file CV PDF và Avatar).
+Ngoài luồng phỏng vấn giả lập, hệ thống còn có đánh giá CV, luyện tập quiz theo chủ đề, cộng đồng chia sẻ kinh nghiệm và trang quản trị dành cho admin.
 
----
+## Nội dung chính
 
-## 2. Các Tác nhân (Actors) trong Hệ thống
+- [Chức năng](#chức-năng)
+- [Công nghệ sử dụng](#công-nghệ-sử-dụng)
+- [Kiến trúc tổng quan](#kiến-trúc-tổng-quan)
+- [Luồng hoạt động chính](#luồng-hoạt-động-chính)
+- [RAG Pipeline](#rag-pipeline)
+- [API chính](#api-chính)
+- [Cấu trúc thư mục](#cấu-trúc-thư-mục)
+- [Cài đặt và chạy local](#cài-đặt-và-chạy-local)
+- [Biến môi trường](#biến-môi-trường)
 
-1. **Ứng viên (User)**: Người dùng chính của hệ thống. Họ tải CV, JD lên để phỏng vấn, xem lại kết quả đánh giá (CV History, Interview History) và tham gia giao lưu trên Cộng đồng.
-2. **Quản trị viên (Admin)**: Quản lý người dùng, kiểm duyệt bài viết trên Cộng đồng, theo dõi các chỉ số và dữ liệu hệ thống.
-3. **AI (Gemini) + RAG Pipeline**: Đóng vai trò là "Người phỏng vấn" - sinh câu hỏi chuyên môn dựa trên CV/JD, phân tích giọng nói (STT), tổng hợp giọng nói (TTS), và chấm điểm (Evaluate).
+## Chức năng
 
----
+### Người dùng
 
-## 3. Sơ đồ Use Case (Use Case Diagram)
+- Đăng ký, đăng nhập bằng email/password.
+- Đăng nhập bằng Google OAuth.
+- Quên mật khẩu và đặt lại mật khẩu qua email.
+- Cập nhật hồ sơ cá nhân.
+- Chuyển theme sáng/tối.
+
+### Phỏng vấn AI
+
+- Tải CV dạng PDF và nhập Job Description.
+- Chọn cấp độ phỏng vấn và ngôn ngữ.
+- Hệ thống phân tích CV/JD, truy xuất ngân hàng câu hỏi từ ChromaDB và sinh câu hỏi phù hợp.
+- AI đọc câu hỏi bằng TTS.
+- Người dùng trả lời bằng micro hoặc nhập nội dung trả lời.
+- Gemini chuyển giọng nói thành văn bản.
+- Gemini chấm điểm câu trả lời theo thang 10, trả về điểm mạnh, điểm yếu và gợi ý cải thiện.
+- Lưu lịch sử phiên phỏng vấn, từng câu hỏi, câu trả lời, đánh giá và điểm tổng.
+- Cho phép hoàn thành, hủy giữa chừng hoặc xóa lịch sử phỏng vấn.
+
+### Đánh giá CV
+
+- Upload CV PDF để AI phân tích.
+- Trích xuất nội dung PDF.
+- Chấm điểm tổng quan và từng phần trong CV.
+- Đưa ra nhận xét và gợi ý cải thiện.
+- Lưu lịch sử đánh giá CV vào PostgreSQL.
+- Lưu file CV lên Cloudinary.
+- Mỗi người dùng có giới hạn số bản đánh giá CV đã lưu.
+- Xem chi tiết hoặc xóa bản đánh giá CV.
+
+### Luyện tập theo chủ đề
+
+- Chọn chủ đề, cấp độ, ngôn ngữ và số lượng câu hỏi.
+- Lấy câu hỏi từ kho dữ liệu RAG/ChromaDB.
+- Tạo session luyện tập.
+- Nộp toàn bộ bài để hệ thống chấm điểm và trả đáp án tham khảo.
+- Xem lịch sử, thống kê và chi tiết các bài luyện tập.
+- Hủy hoặc xóa session luyện tập.
+
+### Cộng đồng
+
+- Xem danh sách bài viết đã được duyệt.
+- Tìm kiếm, lọc theo danh mục và tag.
+- Tạo bài viết mới, trạng thái mặc định là chờ duyệt.
+- Xem chi tiết bài viết và bình luận.
+- Like, lưu bài viết, quản lý bài đã lưu.
+- Xem bài viết của chính mình, bao gồm pending/rejected.
+- Nhận thông báo liên quan đến hoạt động cộng đồng.
+- Đánh dấu thông báo đã đọc.
+
+### Quản trị viên
+
+- Xem thống kê tổng quan hệ thống.
+- Xem dữ liệu biểu đồ theo thời gian.
+- Quản lý người dùng, tạo tài khoản, đổi vai trò, xóa người dùng.
+- Xem và xóa lịch sử phỏng vấn.
+- Xem top candidates và recent activity.
+- Duyệt, từ chối hoặc xóa bài viết cộng đồng.
+- Quản lý lịch sử đánh giá CV.
+- Kiểm tra trạng thái RAG/ChromaDB.
+- Xem audit log các thao tác quản trị.
+
+## Công nghệ sử dụng
+
+### Frontend
+
+- React 19
+- Vite 8
+- React Router DOM 7
+- Tailwind CSS 4
+- Lucide React
+- Google OAuth client
+- Context API cho Auth, Theme và Modal
+
+### Backend
+
+- Python
+- FastAPI
+- Uvicorn
+- Pydantic
+- AsyncPG
+- PostgreSQL
+- python-jose cho JWT
+- bcrypt cho mã hóa mật khẩu
+- python-multipart cho upload file
+- pypdf để đọc CV PDF
+- gTTS để tạo audio TTS
+- Cloudinary SDK
+
+### AI và dữ liệu
+
+- Google Gemini `gemini-2.5-flash`
+- Gemini Embedding `models/gemini-embedding-001`
+- ChromaDB persistent vector database
+- RAG pipeline cho sinh câu hỏi phỏng vấn và luyện tập
+- Dataset câu hỏi kỹ thuật dạng Markdown theo nhiều chủ đề
+
+## Kiến trúc tổng quan
 
 ```mermaid
-usecaseDiagram
-    actor "Ứng viên (User)" as U
-    actor "Quản trị viên (Admin)" as A
-    actor "AI & RAG System" as AI
+flowchart LR
+    U[User Browser] --> FE[React + Vite Frontend]
+    FE --> API[FastAPI Backend]
 
-    package "AI Mock Interview System" {
-        U --> (Đăng ký & Đăng nhập)
-        U --> (Phỏng vấn thử)
-        U --> (Đánh giá CV)
-        U --> (Quản lý Lịch sử)
-        U --> (Đăng bài Cộng đồng)
-        
-        A --> (Kiểm duyệt Bài viết)
-        A --> (Quản lý Người dùng)
-        
-        (Phỏng vấn thử) ..> (Sinh câu hỏi phỏng vấn) : <<include>>
-        (Phỏng vấn thử) ..> (Chấm điểm & Đánh giá) : <<include>>
-        
-        AI --> (Sinh câu hỏi phỏng vấn)
-        AI --> (Chấm điểm & Đánh giá)
-        AI --> (Đánh giá CV)
-    }
+    API --> PG[(PostgreSQL)]
+    API --> CH[(ChromaDB)]
+    API --> CL[Cloudinary]
+    API --> GM[Google Gemini]
+    API --> SMTP[SMTP Email]
+
+    DP[Data Pipeline] --> CH
+    DATA[Markdown Question Dataset] --> DP
 ```
 
-### Đặc tả các Use Case chính:
-- **UC01 - Đăng nhập/Đăng ký**: Hỗ trợ đăng ký truyền thống (Email/Password) kết hợp xác thực qua Google OAuth2.
-- **UC02 - Phỏng vấn thử (Mock Interview)**: Upload CV/JD, thiết lập cấp độ và ngôn ngữ. Hệ thống dùng RAG để tạo câu hỏi. Ứng viên tương tác bằng giọng nói. AI chấm điểm từng câu.
-- **UC03 - Đánh giá CV (CV Evaluation)**: Upload file PDF. LLM phân tích bố cục, kinh nghiệm, kỹ năng và đưa ra gợi ý tối ưu. Lưu lịch sử tối đa 2 bản.
-- **UC04 - Cộng đồng (Community)**: Chia sẻ kinh nghiệm, đăng bài hỏi đáp. Bài viết phải qua bước kiểm duyệt của Admin trước khi hiển thị công khai.
+Ứng dụng được chia thành ba phần chính:
 
----
+- `frontend`: giao diện người dùng, dashboard, admin panel và các luồng tương tác.
+- `backend`: REST API, xác thực, nghiệp vụ, gọi LLM, quản lý dữ liệu và upload file.
+- `data_pipeline`: xử lý dataset câu hỏi kỹ thuật, chunking, embedding và đồng bộ vào ChromaDB.
 
-## 4. Sơ đồ Hoạt động (Activity Diagram) - Luồng Phỏng vấn
+PostgreSQL lưu dữ liệu nghiệp vụ như user, interview history, CV evaluation, community, practice session và audit log. ChromaDB lưu vector embedding của ngân hàng câu hỏi để truy xuất ngữ nghĩa khi sinh câu hỏi.
 
-```mermaid
-stateDiagram-v2
-    [*] --> Nhap_Thong_Tin
-    Nhap_Thong_Tin : Upload CV & JD
-    Nhap_Thong_Tin --> Trich_Xuat_Du_Lieu
-    Trich_Xuat_Du_Lieu : AI phân tích Gap & Matching (Context)
-    Trich_Xuat_Du_Lieu --> Truoc_Van_Vector
-    Truoc_Van_Vector : Tìm kiếm ChromaDB lấy câu hỏi thô
-    Truoc_Van_Vector --> Sinh_Cau_Hoi
-    Sinh_Cau_Hoi : AI tổng hợp Context + Raw Docs -> Bộ câu hỏi
-    Sinh_Cau_Hoi --> Phong_Van
-    
-    state Phong_Van {
-        [*] --> Doc_Cau_Hoi
-        Doc_Cau_Hoi : AI đọc câu hỏi (TTS)
-        Doc_Cau_Hoi --> Ghi_Am_Tra_Loi
-        Ghi_Am_Tra_Loi : Ứng viên trả lời qua Mic
-        Ghi_Am_Tra_Loi --> Chuyen_Doi_Giong_Noi
-        Chuyen_Doi_Giong_Noi : STT (Speech-to-Text)
-        Chuyen_Doi_Giong_Noi --> Cham_Diem
-        Cham_Diem : AI đánh giá & cho điểm
-        Cham_Diem --> Kiem_Tra_Ket_Thuc
-        Kiem_Tra_Ket_Thuc --> Doc_Cau_Hoi : Còn câu hỏi
-    }
-    
-    Kiem_Tra_Ket_Thuc --> Tinh_Diem_Tong : Hết câu hỏi
-    Tinh_Diem_Tong --> Luu_Lich_Su
-    Luu_Lich_Su --> [*]
-```
+## Luồng hoạt động chính
 
----
-
-## 5. Sơ đồ Tuần tự (Sequence Diagram) - RAG Pipeline
+### Luồng phỏng vấn AI
 
 ```mermaid
 sequenceDiagram
-    participant U as User (Frontend)
-    participant B as Backend API
-    participant A as RAG Augmentor
-    participant R as RAG Retriever
-    participant C as ChromaDB
-    participant G as RAG Generator (LLM)
+    participant U as User
+    participant FE as Frontend
+    participant API as FastAPI
+    participant RAG as RAG Services
+    participant CH as ChromaDB
+    participant GM as Gemini
+    participant DB as PostgreSQL
 
-    U->>B: Gửi CV & JD text
-    B->>A: Gọi extract_cv_jd_context(cv, jd)
-    A->>G: LLM Phân tích Gap Analysis & Matching Skills
-    G-->>A: Trả về CVJDContext JSON
-    A-->>B: CVJDContext
-    
-    B->>R: Gọi retrieve_raw_docs(topics)
-    R->>C: Tìm kiếm vector (Embedding query)
-    C-->>R: Trả về top_k Raw Docs
-    R-->>B: List<RawDoc>
-    
-    B->>A: Gọi augment_questions(RawDocs, Context)
-    A->>G: Đưa Context (Matching/Gap) + RawDocs vào Prompt
-    Note over A, G: Bổ sung dữ liệu (Augment) vào Context
-    G-->>A: Trả về List câu hỏi tinh chỉnh
-    A-->>B: List<Question>
-    B-->>U: Trả về JSON câu hỏi phỏng vấn
+    U->>FE: Upload CV PDF và nhập JD
+    FE->>API: POST /api/start-interview
+    API->>API: Parse PDF thành text
+    API->>GM: Phân tích CV/JD, trích xuất context
+    API->>CH: Retrieve câu hỏi liên quan
+    API->>GM: Sinh bộ câu hỏi cá nhân hóa
+    API-->>FE: Trả danh sách câu hỏi
+
+    FE->>DB: Tạo phiên phỏng vấn
+    U->>FE: Trả lời từng câu bằng giọng nói
+    FE->>API: POST /api/transcribe
+    API->>GM: Speech-to-text
+    API-->>FE: Text câu trả lời
+    FE->>API: POST /api/evaluate
+    API->>GM: Chấm điểm câu trả lời
+    API-->>FE: Score và feedback
+    FE->>API: Lưu câu trả lời vào lịch sử
+    FE->>API: Hoàn thành phiên phỏng vấn
 ```
 
----
-
-## 6. Sơ đồ Lớp (Class Diagram) - Backend Kiến trúc
+### Luồng đánh giá CV
 
 ```mermaid
-classDiagram
-    class FastAPI_App {
-        +routers
-        +middlewares
-        +exception_handlers
-    }
-    class RagGenerator {
-        +generate_questions_from_cv_jd()
-    }
-    class RagRetriever {
-        +retrieve_raw_docs()
-    }
-    class RagAugmentor {
-        +extract_cv_jd_context()
-        +augment_questions()
-    }
-    class EvaluateService {
-        +evaluate_answer()
-        +evaluate_cv()
-    }
-    class GeminiClient {
-        +generate()
-        +generate_json()
-    }
-    
-    FastAPI_App --> RagGenerator : Gọi API
-    RagGenerator --> RagAugmentor : Phân tích CV/JD
-    RagGenerator --> RagRetriever : Tìm tài liệu
-    RagGenerator --> RagAugmentor : Tổng hợp câu hỏi
-    RagAugmentor --> GeminiClient : LLM Call
-    EvaluateService --> GeminiClient : LLM Call
+flowchart TD
+    A[Upload CV PDF] --> B[Backend validate file]
+    B --> C[Trích xuất text bằng pypdf]
+    C --> D[Gemini đánh giá CV theo JSON schema]
+    D --> E[Frontend hiển thị điểm và góp ý]
+    E --> F{Người dùng lưu kết quả?}
+    F -->|Có| G[Upload file lên Cloudinary]
+    G --> H[Lưu metadata và kết quả vào PostgreSQL]
+    F -->|Không| I[Kết thúc]
 ```
 
----
+### Luồng cộng đồng
 
-## 7. Kiến trúc RAG chi tiết (Retrieval-Augmented Generation)
+```mermaid
+flowchart TD
+    A[User tạo bài viết] --> B[Post status = pending]
+    B --> C[Admin xem danh sách bài chờ duyệt]
+    C --> D{Quyết định}
+    D -->|Approve| E[Bài viết hiển thị công khai]
+    D -->|Reject| F[Bài viết bị từ chối]
+    E --> G[User khác có thể đọc, like, save, comment]
+```
 
-Hệ thống xử lý bài toán sinh câu hỏi dựa trên CV của ứng viên bằng cách áp dụng RAG với 3 giai đoạn rõ rệt, tính toán dữ liệu bằng các thuật toán NLP và Vector Search:
+## RAG Pipeline
 
-### 7.1 Data Pipeline (Tiền xử lý)
-- **Thuật toán xử lý**: Markdown text slicing. Hệ thống đọc các file markdown (`dataset/`), chia nhỏ (chunking) theo cú pháp (hỏi đáp).
-- **Embedding**: Sử dụng `gemini-embedding-001` để biến chuỗi văn bản thành vector đa chiều. Vector này mang ý nghĩa ngữ nghĩa (semantic meaning).
-- **Lưu trữ**: Vector cùng siêu dữ liệu (metadata như cấp độ, công nghệ) được đưa vào **ChromaDB**.
+RAG được dùng để tạo câu hỏi phỏng vấn cá nhân hóa và cung cấp câu hỏi luyện tập theo chủ đề.
 
-### 7.2 Retrieve (Truy xuất dữ liệu)
-- **Hoạt động**: Khi có CV và JD, thuật toán trích xuất từ khóa tìm kiếm (Query Topics). Hệ thống đưa query qua model nhúng để thành vector.
-- **Thuật toán**: Sử dụng **Cosine Similarity** (hoặc L2 Distance) trong ChromaDB để tìm top 20 tài liệu gần nhất (Nearest Neighbors) với vector truy vấn.
-- **Kết quả**: Ngân hàng câu hỏi thô (Raw Docs).
+### 1. Chuẩn bị dữ liệu
 
-### 7.3 Augment (Bổ sung dữ liệu ngữ cảnh)
-- **Hoạt động**: Đây là bước cốt lõi tạo nên tính "cá nhân hóa". 
-- Hệ thống áp dụng **Gap Analysis**: So khớp (Matching) giữa những kỹ năng JD cần và CV đang có. Tìm ra khoảng hở (Gap) - kỹ năng JD cần nhưng CV thiếu.
-- **Prompt Engineering**: Raw docs từ bước Retrieve được nối (concatenate) cùng với kết quả Gap Analysis tạo thành một **Context dồi dào và chặt chẽ**.
-- Đây chính là phần bổ sung dữ liệu vào prompt/context trước khi đưa cho LLM.
+- Dataset nằm trong `data_pipeline/dataset`.
+- Mỗi file Markdown chứa câu hỏi kỹ thuật theo chủ đề như React, Node.js, Python, Java, SQL, Docker, Git, OOP, Machine Learning, System Design.
+- Script trong `data_pipeline/scripts` parse dataset, chunk nội dung và tạo embedding.
+- Embedding được lưu vào ChromaDB tại `chroma_db`.
 
-### 7.4 Generate (LLM Sinh câu hỏi)
-- **Hoạt động**: Đưa Prompt đã được *Augment* vào LLM (`gemini-2.5-flash`).
-- Đây là phần sử dụng sức mạnh của LLM để sinh ra các câu hỏi phỏng vấn mạch lạc, thực tế.
-- **Thuật toán / Quy tắc ép kiểu**: Yêu cầu LLM sinh ra chính xác JSON Schema định sẵn. 
-- LLM được thiết lập với bộ hướng dẫn khắt khe: 60% câu hỏi đào sâu vào kỹ năng đã khớp (Matching) để kiểm chứng, 40% câu hỏi khai thác khoảng hở (Gap) để đánh giá tiềm năng. Kết quả cuối cùng là bộ câu hỏi chất lượng cao gửi về Frontend.
+### 2. Trích xuất ngữ cảnh CV/JD
 
----
+Backend đọc nội dung CV và JD, sau đó dùng Gemini để rút ra:
 
-## 8. Cấu trúc thư mục
+- Chủ đề kỹ thuật chính.
+- Tech stack liên quan.
+- Kỹ năng trong CV khớp với JD.
+- Khoảng thiếu giữa CV và JD.
+- Tóm tắt ứng viên và vị trí ứng tuyển.
+
+### 3. Retrieve
+
+RAG Retriever tạo embedding cho các topic truy vấn bằng Gemini Embedding, rồi truy vấn ChromaDB để lấy các tài liệu/câu hỏi gần nhất theo ngữ nghĩa.
+
+Luồng hiện tại ưu tiên:
+
+- Khoảng 60% câu hỏi cho kỹ năng đã khớp với JD.
+- Khoảng 40% câu hỏi cho phần còn thiếu để kiểm tra tiềm năng.
+- Lọc theo cấp độ nếu metadata có thông tin level.
+
+### 4. Augment và Generate
+
+RAG Augmentor đưa context CV/JD và raw docs từ ChromaDB vào prompt. Gemini sinh danh sách câu hỏi cuối cùng, kèm reference answer và source để dùng cho chấm điểm.
+
+## API chính
+
+### Auth
+
+- `POST /api/auth/register`: đăng ký tài khoản.
+- `POST /api/auth/login`: đăng nhập và set JWT HttpOnly cookie.
+- `POST /api/auth/logout`: đăng xuất.
+- `GET /api/auth/me`: lấy user hiện tại.
+- `PUT /api/auth/profile`: cập nhật profile.
+- `POST /api/auth/google/callback`: đăng nhập bằng Google.
+- `POST /api/auth/forgot-password`: gửi yêu cầu quên mật khẩu.
+- `POST /api/auth/reset-password`: đặt lại mật khẩu.
+
+### Interview
+
+- `POST /api/start-interview`: upload CV/JD và sinh câu hỏi phỏng vấn.
+- `POST /api/evaluate`: chấm điểm một câu trả lời.
+- `POST /api/transcribe`: chuyển audio sang text.
+- `POST /api/tts`: tạo audio đọc câu hỏi.
+- `POST /api/interviews`: tạo phiên phỏng vấn.
+- `GET /api/interviews`: lấy lịch sử phỏng vấn.
+- `GET /api/interviews/{interview_id}`: xem chi tiết phiên phỏng vấn.
+- `PATCH /api/interviews/{interview_id}/complete`: hoàn thành phiên.
+- `PATCH /api/interviews/{interview_id}/abandon`: hủy phiên.
+- `DELETE /api/interviews/{interview_id}`: xóa phiên.
+
+### CV Evaluation
+
+- `POST /api/evaluate/cv`: đánh giá CV.
+- `POST /api/evaluate/cv/save`: lưu kết quả đánh giá CV.
+- `GET /api/evaluate/cv/count`: đếm số bản đánh giá đã lưu.
+- `GET /api/evaluate/cv/history`: danh sách lịch sử đánh giá CV.
+- `GET /api/evaluate/cv/history/{evaluation_id}`: chi tiết một bản đánh giá.
+- `DELETE /api/evaluate/cv/history/{evaluation_id}`: xóa bản đánh giá.
+
+### Practice
+
+- `GET /api/practice/topics`: danh sách chủ đề luyện tập.
+- `POST /api/practice/start`: bắt đầu bài luyện tập.
+- `POST /api/practice/sessions/{session_id}/submit`: nộp bài.
+- `PATCH /api/practice/sessions/{session_id}/abandon`: hủy bài.
+- `GET /api/practice/sessions`: lịch sử luyện tập.
+- `GET /api/practice/sessions/{session_id}`: chi tiết bài luyện tập.
+- `GET /api/practice/stats`: thống kê luyện tập.
+- `DELETE /api/practice/sessions/{session_id}`: xóa bài luyện tập.
+
+### Community
+
+- `GET /api/community/posts`: danh sách bài viết đã duyệt.
+- `POST /api/community/posts`: tạo bài viết.
+- `GET /api/community/posts/{post_id}`: chi tiết bài viết.
+- `DELETE /api/community/posts/{post_id}`: xóa bài viết.
+- `POST /api/community/posts/{post_id}/like`: like/unlike bài viết.
+- `POST /api/community/posts/{post_id}/save`: save/unsave bài viết.
+- `GET /api/community/posts/{post_id}/comments`: lấy bình luận.
+- `POST /api/community/posts/{post_id}/comments`: thêm bình luận.
+- `DELETE /api/community/comments/{comment_id}`: xóa bình luận.
+- `GET /api/community/tags`: tags phổ biến.
+- `GET /api/community/my-saves`: bài viết đã lưu.
+- `GET /api/community/my-posts`: bài viết của user hiện tại.
+- `GET /api/community/notifications`: thông báo.
+
+### Admin
+
+- `GET /api/admin/stats`: thống kê tổng quan.
+- `GET /api/admin/stats/chart`: dữ liệu biểu đồ.
+- `GET /api/admin/users`: danh sách người dùng.
+- `POST /api/admin/users`: tạo người dùng.
+- `PATCH /api/admin/users/{user_id}/role`: đổi vai trò.
+- `DELETE /api/admin/users/{user_id}`: xóa người dùng.
+- `GET /api/admin/interviews`: danh sách toàn bộ phiên phỏng vấn.
+- `GET /api/admin/top-candidates`: ứng viên nổi bật.
+- `GET /api/admin/recent-activity`: hoạt động gần đây.
+- `GET /api/admin/rag/status`: trạng thái RAG.
+- `GET /api/admin/community/posts`: quản lý bài viết cộng đồng.
+- `PATCH /api/admin/community/posts/{post_id}/approve`: duyệt bài.
+- `POST /api/admin/community/posts/{post_id}/reject`: từ chối bài.
+- `GET /api/admin/cv-evaluations`: quản lý đánh giá CV.
+- `GET /api/admin/audit-logs`: xem audit log.
+
+## Cấu trúc thư mục
 
 ```text
-c:\DOAN\Data\
-├── backend/                  # Mã nguồn FastAPI
+C:\DOAN\Data
+├── backend/
 │   ├── app/
-│   │   ├── controllers/      # Xử lý logic API (Auth, Interview, Community,...)
-│   │   ├── services/         # Chứa RagGenerator, RagRetriever, RagAugmentor, ...
-│   │   ├── database/         # Kết nối PostgreSQL, schema
-│   │   ├── core/             # Cấu hình, bảo mật, logger
-│   │   └── utils/            # Helper function (GeminiClient, file_upload)
-│   └── main.py               # Entrypoint FastAPI
-├── frontend/                 # Mã nguồn React.js
+│   │   ├── controllers/       # Điều phối request và gọi service
+│   │   ├── core/              # Config, security, dependencies, logging, rate limit
+│   │   ├── database/          # Kết nối PostgreSQL
+│   │   ├── exceptions/        # Custom errors và exception handlers
+│   │   ├── middlewares/       # CORS, logging middleware
+│   │   ├── routers/           # REST API routers
+│   │   ├── schemas/           # Pydantic schemas
+│   │   ├── services/          # Business logic, RAG, AI, auth, community
+│   │   └── utils/             # Gemini client, file helpers, datetime helpers
+│   ├── database/              # SQL schema và migration scripts
+│   ├── tests/                 # Backend tests
+│   └── requirements.txt
+├── frontend/
+│   ├── public/
 │   ├── src/
-│   │   ├── components/       # Các module UI tái sử dụng (Toast, ScoreBar, ...)
-│   │   ├── pages/            # View logic (Dashboard, History, Community, ...)
-│   │   ├── services/         # Gọi HTTP Request tới Backend
-│   │   ├── context/          # Quản lý State toàn cục (AuthContext)
-│   │   └── styles/           # Global CSS, Theme Variables
-│   └── index.html
-├── data_pipeline/            # Tập lệnh xử lý dữ liệu RAG
-│   ├── dataset/              # Chứa các file Markdown kiến thức lập trình
-│   └── scripts/              # Chứa script embedding và đẩy data lên ChromaDB
-└── README.md                 # Tài liệu mô tả hệ thống
+│   │   ├── components/        # UI components dùng chung
+│   │   ├── constants/         # Route và API constants
+│   │   ├── context/           # Auth, Theme, Modal contexts
+│   │   ├── hooks/             # Hooks cho audio, interview, community
+│   │   ├── pages/             # Pages user, dashboard, admin
+│   │   ├── services/          # API clients
+│   │   ├── styles/            # Theme CSS
+│   │   └── utils/
+│   └── package.json
+├── data_pipeline/
+│   ├── dataset/               # Dataset Markdown câu hỏi kỹ thuật
+│   └── scripts/               # Parse, embed, sync và check RAG data
+├── chroma_db/                 # ChromaDB persistent storage
+├── uploads/                   # Static uploads local
+├── .env.example
+└── README.md
 ```
 
----
+## Cài đặt và chạy local
 
-## 9. Hướng dẫn cài đặt và chạy hệ thống
+### Yêu cầu
 
-### 9.1 Yêu cầu môi trường
-- Node.js >= 18
-- Python >= 3.10
-- PostgreSQL >= 14
-- Tài khoản Google Gemini API Key
-- Tài khoản Cloudinary
+- Node.js 18+
+- Python 3.10+
+- PostgreSQL 14+
+- Google Gemini API key
+- Google OAuth client ID
+- Cloudinary account
+- SMTP account nếu dùng quên mật khẩu
 
-### 9.2 Khởi chạy Backend
-```bash
+### 1. Tạo file môi trường
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Sau đó cập nhật các giá trị trong `.env`.
+
+### 2. Cài backend
+
+```powershell
 cd backend
 python -m venv venv
-source venv/bin/activate  # Hoặc venv\Scripts\activate trên Windows
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
+
+### 3. Khởi tạo database
+
+Tạo database PostgreSQL theo `DB_NAME` trong `.env`, sau đó chạy schema:
+
+```powershell
+psql -U postgres -d ai_mock_interview_db -f database/schema.sql
+```
+
+Nếu cần chạy migration riêng lẻ, xem các file trong `backend/database`.
+
+### 4. Khởi tạo dữ liệu RAG
+
+Chạy embedding dataset vào ChromaDB:
+
+```powershell
+cd ..\data_pipeline\scripts
+python embed_all_datasets.py
+```
+
+Có thể kiểm tra trạng thái RAG:
+
+```powershell
+python check_rag_status.py
+```
+
+### 5. Chạy backend
+
+Từ thư mục `backend`:
+
+```powershell
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 9.3 Khởi chạy Frontend
-```bash
+Backend chạy tại:
+
+```text
+http://localhost:8000
+```
+
+Swagger UI:
+
+```text
+http://localhost:8000/docs
+```
+
+### 6. Cài và chạy frontend
+
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-### 9.4 Khởi tạo dữ liệu (Lần đầu tiên)
-1. Đảm bảo cấu hình đúng chuỗi kết nối Database trong file `.env`.
-2. Chạy schema SQL để tạo bảng (`backend/database/schema.sql`).
-3. (Tùy chọn) Chạy script RAG data pipeline:
-```bash
-cd data_pipeline/scripts
-python embed_all_datasets.py
+Frontend mặc định chạy tại:
+
+```text
+http://localhost:5173
 ```
+
+## Biến môi trường
+
+Các biến chính nằm trong `.env.example`:
+
+```env
+GOOGLE_API_KEY=
+GOOGLE_API_KEY_EMBEDDING=
+GOOGLE_API_KEY_TRANSLATE=
+GOOGLE_API_KEY_EXTRACT_TOPIC=
+GOOGLE_API_KEY_GENERATE_Q=
+GOOGLE_API_KEY_EVALUATE=
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=
+DB_NAME=ai_mock_interview_db
+
+JWT_SECRET_KEY=
+COOKIE_SECURE=false
+
+GOOGLE_CLIENT_ID=
+VITE_GOOGLE_CLIENT_ID=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USERNAME=
+SMTP_PASSWORD=
+SMTP_FROM_EMAIL=
+SMTP_USE_TLS=true
+
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+## Scripts hữu ích
+
+### Frontend
+
+```powershell
+npm run dev
+npm run build
+npm run lint
+npm run preview
+```
+
+### Backend
+
+```powershell
+uvicorn app.main:app --reload --port 8000
+```
+
+### Data pipeline
+
+```powershell
+python parse_datasets.py
+python embed_all_datasets.py
+python check_rag_status.py
+python sync_chroma_metadata.py
+```
+
+## Kiểm thử
+
+Backend có thư mục `backend/tests`. Có thể cài thêm dependency dev và chạy test từ thư mục `backend`:
+
+```powershell
+pip install -r requirements-dev.txt
+pytest
+```
+
+Frontend có thể kiểm tra lint:
+
+```powershell
+cd frontend
+npm run lint
+```
+
+## Ghi chú triển khai
+
+- File CV upload cho phỏng vấn và đánh giá CV chỉ hỗ trợ PDF.
+- Giới hạn upload CV hiện tại là 10MB.
+- Upload ảnh cộng đồng/profile hỗ trợ JPEG, PNG, WEBP và GIF, giới hạn 5MB.
+- JWT được lưu trong HttpOnly cookie.
+- Một số endpoint có rate limit để tránh gọi LLM quá dày.
+- Nếu ChromaDB chưa có dữ liệu, luồng RAG sẽ không truy xuất được câu hỏi chất lượng.
+- Nếu thiếu Gemini API key hoặc gặp lỗi quota/rate limit, các chức năng AI sẽ thất bại hoặc trả fallback.

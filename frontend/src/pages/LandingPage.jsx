@@ -36,18 +36,18 @@ function FAQItem({ q, a }) {
   return (
     <div
       className="glass-card"
-      style={{ padding: 0, overflow: 'hidden', transition: 'border-color 0.25s', cursor: 'pointer', borderColor: open ? 'oklch(83.3% 0.145 321.434 / 0.4)' : '' }}
+      style={{ padding: 0, overflow: 'hidden', transition: 'border-color 0.25s', cursor: 'pointer', borderColor: open ? 'var(--primary-40)' : '' }}
       onClick={() => setOpen(v => !v)}
     >
       <div style={{ padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
         <span style={{ fontWeight: 600, fontSize: '15px', color: 'var(--text-primary)' }}>{q}</span>
         <span style={{
           flexShrink: 0, width: '26px', height: '26px', borderRadius: '50%',
-          background: open ? 'var(--gradient-primary)' : 'oklch(83.3% 0.145 321.434 / 0.1)',
-          border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+          background: open ? 'var(--gradient-primary)' : 'var(--primary-10)',
+          border: '1px solid var(--primary-25)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: '18px', fontWeight: 700, lineHeight: 1,
-          color: open ? 'oklch(15% 0.01 250)' : 'var(--primary)',
+          color: open ? 'var(--primary-contrast)' : 'var(--primary)',
           transition: 'all 0.25s',
         }}>
           {open ? '−' : '+'}
@@ -67,7 +67,7 @@ const FEATURES = [
   {
     icon: <Brain size={28} />, title: 'AI Thông minh',
     desc: 'Gemini 2.5 Flash phân tích CV & JD, tạo câu hỏi phù hợp với từng vị trí và cấp độ.',
-    color: 'oklch(83.3% 0.145 321.434)',
+    color: 'var(--primary)',
   },
   {
     icon: <Mic size={28} />, title: 'Nhận diện giọng nói',
@@ -128,7 +128,7 @@ const TECH_CUBES = [
   { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg', color: '#6DB33F', size: 60, x: 50, y: 35, z: -40, delay: 0.3 },
   { name: 'Machine Learning', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg', color: '#FF6F00', size: 80, x: 30, y: 15, z: -10, delay: 1.8 },
   { name: 'OOP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg', color: '#00599C', size: 60, x: 90, y: 60, z: -50, delay: 0.9 },
-  { name: 'AI', text: 'AI', color: '#8B5CF6', size: 75, x: 70, y: 15, z: 20, delay: 0.6 },
+  { name: 'AI', text: 'AI', color: '#66FCF1', size: 75, x: 70, y: 15, z: 20, delay: 0.6 },
   { name: 'SQL', text: 'SQL', color: '#3B82F6', size: 60, x: 10, y: 65, z: -30, delay: 2.1 },
 ];
 
@@ -343,7 +343,7 @@ export default function LandingPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'var(--shadow-primary)',
             }}>
-              <Brain size={20} style={{ color: 'oklch(15% 0.01 250)' }} />
+              <Brain size={20} style={{ color: 'var(--primary-contrast)' }} />
             </div>
             <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em' }}>
               <span className="gradient-text">AI</span>
@@ -401,8 +401,8 @@ export default function LandingPage() {
             {/* Badge */}
             <div className="fade-in-up" style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px',
-              background: 'oklch(83.3% 0.145 321.434 / 0.1)',
-              border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+              background: 'var(--primary-10)',
+              border: '1px solid var(--primary-25)',
               borderRadius: '999px', padding: '6px 16px',
               fontSize: '13px', color: 'var(--primary-light)', fontWeight: 500,
             }}>
@@ -502,8 +502,8 @@ export default function LandingPage() {
             {TECH_STACK.map(tech => (
               <span key={tech} style={{
                 padding: '5px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 600,
-                background: 'oklch(83.3% 0.145 321.434 / 0.08)',
-                border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+                background: 'var(--primary-08)',
+                border: '1px solid var(--primary-20)',
                 color: 'var(--primary-light)',
               }}>{tech}</span>
             ))}
@@ -573,11 +573,11 @@ export default function LandingPage() {
           <div className="scroll-reveal scroll-reveal-delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {STEPS.map((s, i) => (
               <div key={i} className="glass-card" style={{ padding: '28px 32px', display: 'flex', alignItems: 'flex-start', gap: '24px', transition: 'all 0.3s', cursor: 'default' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(8px)'; e.currentTarget.style.borderColor = 'oklch(83.3% 0.145 321.434 / 0.4)'; }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(8px)'; e.currentTarget.style.borderColor = 'var(--primary-40)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.borderColor = ''; }}>
                 <div style={{
                   minWidth: '52px', height: '52px', borderRadius: '14px', flexShrink: 0,
-                  background: 'var(--gradient-primary)', color: 'oklch(15% 0.01 250)',
+                  background: 'var(--gradient-primary)', color: 'var(--primary-contrast)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontWeight: 900, fontSize: '16px', boxShadow: 'var(--shadow-primary)',
                 }}>{s.num}</div>
@@ -630,7 +630,7 @@ export default function LandingPage() {
                     width: '42px', height: '42px', borderRadius: '50%', flexShrink: 0,
                     background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center',
                     justifyContent: 'center', fontWeight: 700, fontSize: '14px',
-                    color: 'oklch(15% 0.01 250)',
+                    color: 'var(--primary-contrast)',
                   }}>{t.avatar}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: '14px' }}>{t.name}</div>
@@ -666,12 +666,12 @@ export default function LandingPage() {
           <div className="glass-card scroll-reveal" style={{
             padding: 'clamp(40px, 6vw, 72px) clamp(28px, 6vw, 72px)',
             textAlign: 'center', position: 'relative', overflow: 'hidden',
-            background: 'oklch(83.3% 0.145 321.434 / 0.06)',
-            border: '1px solid oklch(83.3% 0.145 321.434 / 0.3)',
+            background: 'var(--primary-06)',
+            border: '1px solid var(--primary-30)',
           }}>
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'radial-gradient(ellipse 70% 60% at 50% 50%, oklch(83.3% 0.145 321.434 / 0.06) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse 70% 60% at 50% 50%, var(--primary-06) 0%, transparent 70%)',
               pointerEvents: 'none',
             }} />
             <h2 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 900, letterSpacing: '-0.03em', marginBottom: '16px', position: 'relative' }}>
@@ -711,7 +711,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Brain size={15} style={{ color: 'oklch(15% 0.01 250)' }} />
+              <Brain size={15} style={{ color: 'var(--primary-contrast)' }} />
             </div>
             <span style={{ fontWeight: 700, fontSize: '15px' }}>
               <span className="gradient-text">AI</span> Interviewer

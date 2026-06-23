@@ -9,7 +9,8 @@ import time
 import os
 import glob
 import sys
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import chromadb
 from dotenv import load_dotenv
 
@@ -42,6 +43,10 @@ RETRY_BASE_DELAY = 20
 # ============================================================
 
 
+def normalize_model_name(model: str) -> str:
+    return model.removeprefix("models/")
+
+
 def load_chunks(filepath: str) -> list:
     with open(filepath, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -50,14 +55,17 @@ def load_chunks(filepath: str) -> list:
 
 
 def create_embedding_with_retry(text: str, chunk_id: str) -> list[float] | None:
+    client = genai.Client(api_key=GOOGLE_API_KEY)
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            result = genai.embed_content(
-                model=EMBEDDING_MODEL,
-                content=text,
-                task_type="retrieval_document"
+            result = client.models.embed_content(
+                model=normalize_model_name(EMBEDDING_MODEL),
+                contents=text,
+                config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
             )
-            return result["embedding"]
+            if result.embeddings:
+                return list(result.embeddings[0].values)
+            return None
         except Exception as e:
             err_str = str(e)
             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
@@ -186,7 +194,6 @@ def main():
     print("🚀 EMBEDDING NHIỀU FILE VÀO CHROMADB - GOOGLE GEMINI")
     print("=" * 60)
 
-    genai.configure(api_key=GOOGLE_API_KEY)
     print(f"✅ Gemini API: {EMBEDDING_MODEL}")
 
     json_files = glob.glob(os.path.join(INPUT_DIR, "*.json"))

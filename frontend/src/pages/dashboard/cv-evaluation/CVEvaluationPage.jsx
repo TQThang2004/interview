@@ -69,7 +69,7 @@ export default function CVEvaluationPage() {
   };
 
   return (
-    <div style={{ padding: 'clamp(20px, 3vw, 36px)', maxWidth: '900px' }}>
+    <div style={{ padding: 'clamp(20px, 3vw, 36px)', maxWidth: '900px', width: '100%', margin: '0 auto' }}>
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -81,7 +81,7 @@ export default function CVEvaluationPage() {
       )}
 
       {/* Header */}
-      <div style={{ marginBottom: '28px' }}>
+      <div style={{ marginBottom: '28px', textAlign: 'left', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
         <h1 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '6px' }}>
           <span className="gradient-text">CV Evaluation</span> 📄
         </h1>

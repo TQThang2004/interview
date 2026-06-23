@@ -1,7 +1,7 @@
-﻿"""
-Interview Service â€“ CRUD lá»‹ch sá»­ phá»ng váº¥n vÃ o PostgreSQL.
+"""
+Interview Service – CRUD lịch sử phỏng vấn vào PostgreSQL.
 
-Äáº£m báº£o Ä‘Ãºng schema:
+Đảm bảo đúng schema:
   interviews(id, user_id, topic, level, language, status, overall_score, overall_feedback, started_at, completed_at)
   interview_questions(id, interview_id, question_text, user_answer, ai_evaluation, score, question_order, asked_at, answered_at)
 """
@@ -17,8 +17,8 @@ from app.database.connection import get_pool
 
 async def create_interview(user_id: str, topic: str, level: str, language: str) -> dict:
     """
-    Táº¡o má»™t phiÃªn phá»ng váº¥n má»›i vá»›i status='in_progress'.
-    Tráº£ vá» dict chá»©a id vÃ  cÃ¡c trÆ°á»ng cÆ¡ báº£n.
+    Tạo một phiên phỏng vấn mới với status='in_progress'.
+    Trả về dict chứa id và các trường cơ bản.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -41,8 +41,8 @@ async def complete_interview(
     overall_feedback: Optional[str],
 ) -> Optional[dict]:
     """
-    ÄÃ¡nh dáº¥u phiÃªn phá»ng váº¥n lÃ  'completed', cáº­p nháº­t Ä‘iá»ƒm & nháº­n xÃ©t tá»•ng.
-    Chá»‰ cho phÃ©p owner cáº­p nháº­t (kiá»ƒm tra user_id).
+    Đánh dấu phiên phỏng vấn là 'completed', cập nhật điểm & nhận xét tổng.
+    Chỉ cho phép owner cập nhật (kiểm tra user_id).
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -63,12 +63,12 @@ async def complete_interview(
 
 async def abandon_interview(interview_id: str, user_id: str) -> bool:
     """
-    ÄÃ¡nh dáº¥u phiÃªn phá»ng váº¥n lÃ  'cancelled' (ngÆ°á»i dÃ¹ng thoÃ¡t giá»¯a chá»«ng).
-    Náº¿u chÆ°a cÃ³ cÃ¢u há»i nÃ o Ä‘Æ°á»£c tráº£ lá»i â†’ xoÃ¡ luÃ´n Ä‘á»ƒ trÃ¡nh rÃ¡c.
+    Đánh dấu phiên phỏng vấn là 'cancelled' (người dùng thoát giữa chừng).
+    Nếu chưa có câu hỏi nào được trả lời → xoá luôn để tránh rác.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
-        # Äáº¿m sá»‘ cÃ¢u Ä‘Ã£ tráº£ lá»i
+        # Đếm số câu đã trả lời
         answered_count = await conn.fetchval(
             """
             SELECT COUNT(*) FROM interview_questions
@@ -77,15 +77,15 @@ async def abandon_interview(interview_id: str, user_id: str) -> bool:
             interview_id,
         )
         if answered_count == 0:
-            # ChÆ°a tráº£ lá»i cÃ¢u nÃ o â†’ xoÃ¡ khá»i DB Ä‘á»ƒ khÃ´ng rÃ¡c lá»‹ch sá»­
+            # Chưa trả lời câu nào → xoá khỏi DB để không rác lịch sử
             await conn.execute(
                 "DELETE FROM interviews WHERE id = $1 AND user_id = $2",
                 interview_id, user_id,
             )
-            return False  # False = Ä‘Ã£ xoÃ¡
+            return False  # False = đã xoá
         else:
-            # ÄÃ£ tráº£ lá»i Ã­t nháº¥t 1 cÃ¢u â†’ giá»¯ láº¡i vá»›i tráº¡ng thÃ¡i cancelled
-            # TÃ­nh Ä‘iá»ƒm trung bÃ¬nh cá»§a cÃ¡c cÃ¢u Ä‘Ã£ cháº¥m
+            # Đã trả lời ít nhất 1 câu → giữ lại với trạng thái cancelled
+            # Tính điểm trung bình của các câu đã chấm
             avg_score = await conn.fetchval(
                 """
                 SELECT AVG(score) FROM interview_questions
@@ -104,12 +104,12 @@ async def abandon_interview(interview_id: str, user_id: str) -> bool:
                 interview_id, user_id,
                 float(avg_score) if avg_score is not None else None,
             )
-            return True  # True = Ä‘Ã£ cáº­p nháº­t cancelled
+            return True  # True = đã cập nhật cancelled
 
 
 async def delete_interview(interview_id: str, user_id: str) -> bool:
     """
-    XÃ³a hoÃ n toÃ n má»™t phiÃªn phá»ng váº¥n khá»i DB (chá»‰ owner).
+    Xóa hoàn toàn một phiên phỏng vấn khỏi DB (chỉ owner).
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -122,8 +122,8 @@ async def delete_interview(interview_id: str, user_id: str) -> bool:
 
 async def get_user_interviews(user_id: str, limit: int = 20, offset: int = 0) -> list[dict]:
     """
-    Láº¥y danh sÃ¡ch cÃ¡c phiÃªn phá»ng váº¥n cá»§a user (kÃ¨m sá»‘ cÃ¢u há»i).
-    Sáº¯p xáº¿p theo thá»i gian báº¯t Ä‘áº§u má»›i nháº¥t.
+    Lấy danh sách các phiên phỏng vấn của user (kèm số câu hỏi).
+    Sắp xếp theo thời gian bắt đầu mới nhất.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -155,8 +155,8 @@ async def get_user_interviews(user_id: str, limit: int = 20, offset: int = 0) ->
 
 async def get_interview_detail(interview_id: str, user_id: str) -> Optional[dict]:
     """
-    Láº¥y chi tiáº¿t 1 phiÃªn phá»ng váº¥n kÃ¨m táº¥t cáº£ cÃ¢u há»i vÃ  Ä‘Ã¡nh giÃ¡.
-    Chá»‰ tráº£ vá» náº¿u Ä‘Ãºng owner.
+    Lấy chi tiết 1 phiên phỏng vấn kèm tất cả câu hỏi và đánh giá.
+    Chỉ trả về nếu đúng owner.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -198,7 +198,7 @@ async def save_question(
     question_order: int,
 ) -> str | None:
     """
-    LÆ°u má»™t cÃ¢u há»i vÃ o DB khi báº¯t Ä‘áº§u há»i. Tráº£ vá» id cá»§a record.
+    Lưu một câu hỏi vào DB khi bắt đầu hỏi. Trả về id của record.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -228,7 +228,7 @@ async def update_question_answer(
     score: float,
 ) -> bool:
     """
-    Cáº­p nháº­t cÃ¢u tráº£ lá»i + Ä‘Ã¡nh giÃ¡ cho má»™t cÃ¢u há»i sau khi ngÆ°á»i dÃ¹ng tráº£ lá»i.
+    Cập nhật câu trả lời + đánh giá cho một câu hỏi sau khi người dùng trả lời.
     """
     pool = await get_pool()
     async with pool.acquire() as conn:

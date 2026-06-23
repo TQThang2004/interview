@@ -22,8 +22,8 @@ export default function CommunityNotifications({ notifications, loading, unreadC
       ) : notifications.map(notif => (
         <div key={notif.id} className="glass-card" style={{
           padding: '16px 20px', marginBottom: '10px',
-          background: notif.is_read ? '' : 'oklch(83.3% 0.145 321.434 / 0.04)',
-          borderColor: notif.is_read ? '' : 'oklch(83.3% 0.145 321.434 / 0.25)',
+          background: notif.is_read ? '' : 'var(--primary-04)',
+          borderColor: notif.is_read ? '' : 'var(--primary-25)',
           cursor: notif.is_read ? 'default' : 'pointer'
         }} onClick={() => !notif.is_read && onMarkRead(notif.id)}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>

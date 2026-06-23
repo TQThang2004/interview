@@ -49,8 +49,8 @@ export default function AiEvaluationPanel({ aiEvaluation }) {
       {parsed.suggestions && (
         <div style={{
           padding: '10px 14px', borderRadius: '10px',
-          background: 'oklch(83.3% 0.145 321.434 / 0.06)',
-          border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+          background: 'var(--primary-06)',
+          border: '1px solid var(--primary-20)',
           display: 'flex', gap: '10px', alignItems: 'flex-start',
         }}>
           <Lightbulb size={14} style={{ color: 'var(--primary)', marginTop: '2px', flexShrink: 0 }} />

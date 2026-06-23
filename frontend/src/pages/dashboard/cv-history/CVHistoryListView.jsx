@@ -26,8 +26,8 @@ export default function CVHistoryListView({ evaluations, count, maxCount, loadin
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
         <div style={{
           display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px',
-          borderRadius: '10px', background: count < maxCount ? 'oklch(83.3% 0.145 321.434 / 0.08)' : 'oklch(65% 0.22 25 / 0.08)',
-          border: `1px solid ${count < maxCount ? 'oklch(83.3% 0.145 321.434 / 0.3)' : 'oklch(65% 0.22 25 / 0.3)'}`,
+          borderRadius: '10px', background: count < maxCount ? 'var(--primary-08)' : 'oklch(65% 0.22 25 / 0.08)',
+          border: `1px solid ${count < maxCount ? 'var(--primary-30)' : 'oklch(65% 0.22 25 / 0.3)'}`,
         }}>
           {count < maxCount
             ? <CheckCircle2 size={14} style={{ color: 'var(--primary)' }} />
@@ -74,8 +74,8 @@ export default function CVHistoryListView({ evaluations, count, maxCount, loadin
                 {/* File icon + index */}
                 <div style={{
                   width: '44px', height: '44px', borderRadius: '12px', flexShrink: 0,
-                  background: 'oklch(83.3% 0.145 321.434 / 0.1)',
-                  border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+                  background: 'var(--primary-10)',
+                  border: '1px solid var(--primary-25)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <FileText size={20} style={{ color: 'var(--primary)' }} />
@@ -96,7 +96,7 @@ export default function CVHistoryListView({ evaluations, count, maxCount, loadin
                       </span>
                     )}
                     <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--primary)',
-                      background: 'oklch(83.3% 0.145 321.434 / 0.1)', padding: '1px 8px', borderRadius: '6px' }}>
+                      background: 'var(--primary-10)', padding: '1px 8px', borderRadius: '6px' }}>
                       Bản #{idx + 1}
                     </span>
                   </div>

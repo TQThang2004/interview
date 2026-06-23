@@ -5,7 +5,7 @@ import {
 
 const CATEGORY_COLOR = {
   'Kinh nghiệm': { bg: 'oklch(75% 0.17 150 / 0.12)', color: 'oklch(68% 0.2 145)', border: 'oklch(75% 0.17 150 / 0.3)' },
-  'Câu hỏi':     { bg: 'oklch(83.3% 0.145 321.434 / 0.12)', color: 'var(--primary)', border: 'oklch(83.3% 0.145 321.434 / 0.3)' },
+  'Câu hỏi':     { bg: 'var(--primary-12)', color: 'var(--primary)', border: 'var(--primary-30)' },
   'Tài nguyên':  { bg: 'oklch(68% 0.16 230 / 0.12)', color: 'oklch(62% 0.18 230)', border: 'oklch(68% 0.16 230 / 0.3)' },
   'Thảo luận':   { bg: 'oklch(78% 0.14 60 / 0.12)', color: 'oklch(72% 0.18 60)', border: 'oklch(78% 0.14 60 / 0.3)' },
 };
@@ -34,7 +34,7 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
   const cat = CATEGORY_COLOR[post.category] || {};
   return (
     <div className="glass-card" style={{ padding: '22px', transition: 'all 0.25s', cursor: 'pointer' }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = 'oklch(83.3% 0.145 321.434 / 0.4)'; }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary-40)'; }}
       onMouseLeave={e => { e.currentTarget.style.borderColor = ''; }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -68,7 +68,7 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
       {post.tags && post.tags.length > 0 && (
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '14px' }}>
           {post.tags.map(t => (
-            <span key={t} style={{ fontSize: '11px', color: 'var(--primary-light)', background: 'oklch(83.3% 0.145 321.434 / 0.08)', border: '1px solid oklch(83.3% 0.145 321.434 / 0.15)', borderRadius: '999px', padding: '2px 8px' }}>
+            <span key={t} style={{ fontSize: '11px', color: 'var(--primary-light)', background: 'var(--primary-08)', border: '1px solid var(--primary-15)', borderRadius: '999px', padding: '2px 8px' }}>
               #{t}
             </span>
           ))}

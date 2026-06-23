@@ -39,6 +39,7 @@ build/
 # Machine Learning / Data
 chroma_db/
 *.csv
+docs/
 
 # OS
 .DS_Store

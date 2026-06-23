@@ -264,8 +264,8 @@ export default function RegisterPage() {
                 <span key={b} style={{
                   display: 'inline-flex', alignItems: 'center', gap: '4px',
                   fontSize: '12px', color: 'var(--primary-light)',
-                  background: 'oklch(83.3% 0.145 321.434 / 0.08)',
-                  border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+                  background: 'var(--primary-08)',
+                  border: '1px solid var(--primary-20)',
                   borderRadius: '999px', padding: '3px 10px'
                 }}>
                   <CheckCircle2 size={11} style={{ color: 'var(--primary)' }} />

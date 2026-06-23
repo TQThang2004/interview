@@ -1,5 +1,5 @@
-﻿"""
-FastAPI application factory â€“ Ä‘Äƒng kÃ½ middleware, routers vÃ  exception handlers.
+"""
+FastAPI application factory – đăng ký middleware, routers và exception handlers.
 """
 from contextlib import asynccontextmanager
 
@@ -13,14 +13,14 @@ from app.middlewares.cors import register_cors
 from app.exceptions.handlers import register_exception_handlers
 from app.core.logging import setup_logging, get_logger
 
-# Cáº¥u hÃ¬nh logging khi khá»Ÿi Ä‘á»™ng
+# Cấu hình logging khi khởi động
 setup_logging()
 logger = get_logger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Thá»­ káº¿t ná»‘i DB pool khi start. KhÃ´ng crash náº¿u DB chÆ°a sáºµn sÃ ng."""
+    """Thử kết nối DB pool khi start. Không crash nếu DB chưa sẵn sàng."""
     try:
         await get_pool()
         logger.info("PostgreSQL connection ready.")
@@ -34,30 +34,30 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="AI Interviewer API",
-    description="Backend API cho há»‡ thá»‘ng phá»ng váº¥n AI tÃ­ch há»£p RAG + Gemini.",
+    description="Backend API cho hệ thống phỏng vấn AI tích hợp RAG + Gemini.",
     version="1.0.0",
     lifespan=lifespan,
 )
 
-# â”€â”€ CORS pháº£i Ä‘Æ°á»£c Ä‘Äƒng kÃ½ TRÆ¯á»šC má»i thá»© khÃ¡c â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── CORS phải được đăng ký TRƯỚC mọi thứ khác ────────────────────────────────
 register_cors(app)
 
-# â”€â”€ Exception handlers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Exception handlers ────────────────────────────────────────────────────────
 register_exception_handlers(app)
 
-# â”€â”€ Static Files â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Static Files ──────────────────────────────────────────────────────────────
 upload_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../uploads"))
 os.makedirs(upload_dir, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=upload_dir), name="uploads")
 
 
-# â”€â”€ Health check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Health check ──────────────────────────────────────────────────────────────
 @app.get("/", tags=["Health"])
 def read_root():
     return {"status": "ok", "message": "Backend FastAPI is running"}
 
 
-# â”€â”€ Routers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Routers ───────────────────────────────────────────────────────────────────
 app.include_router(auth.router)
 app.include_router(interview.router)
 app.include_router(evaluate.router)

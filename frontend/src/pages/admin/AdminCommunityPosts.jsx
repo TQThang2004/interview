@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Search, CheckCircle, XCircle, Trash2, Clock, Eye,
   Filter, RefreshCw, MessageSquare, ThumbsUp, ChevronLeft, ChevronRight
@@ -22,6 +22,7 @@ export default function AdminCommunityPosts() {
   const [actionLoading, setActionLoading] = useState(null); // postId đang xử lý
 
   const [statusFilter, setStatusFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
   const [search, setSearch] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [page, setPage] = useState(0);
@@ -34,10 +35,10 @@ export default function AdminCommunityPosts() {
     setTimeout(() => setToast(null), 3500);
   };
 
-  const loadPosts = async () => {
+  const loadPosts = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await api.adminGetCommunityPosts(PAGE_SIZE, page * PAGE_SIZE, statusFilter, search);
+      const data = await api.adminGetCommunityPosts(PAGE_SIZE, page * PAGE_SIZE, statusFilter, search, categoryFilter);
       setPosts(data.posts || []);
       setTotal(data.total || 0);
     } catch (err) {
@@ -45,9 +46,9 @@ export default function AdminCommunityPosts() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [categoryFilter, page, search, statusFilter]);
 
-  useEffect(() => { loadPosts(); }, [statusFilter, page, search]);
+  useEffect(() => { loadPosts(); }, [loadPosts]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -134,7 +135,7 @@ export default function AdminCommunityPosts() {
           { label: 'Tổng bài', value: total, color: 'var(--primary)' },
           { label: 'Chờ duyệt (trang này)', value: pendingCount, color: 'oklch(78% 0.18 80)' },
         ].map(stat => (
-          <div key={stat.label} className="glass-card" style={{ padding: '14px 20px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div key={stat.label} className="glass-card" style={{ padding: '8px 20px', display: 'flex', gap: '12px', alignItems: 'center' }}>
             <span style={{ fontSize: '22px', fontWeight: 800, color: stat.color }}>{stat.value}</span>
             <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{stat.label}</span>
           </div>
@@ -167,7 +168,7 @@ export default function AdminCommunityPosts() {
               <button key={opt.value} onClick={() => { setStatusFilter(opt.value); setPage(0); }} style={{
                 padding: '8px 14px', fontSize: '12px', fontWeight: 600, borderRadius: '10px',
                 background: statusFilter === opt.value ? 'var(--primary)' : 'var(--bg-elevated)',
-                color: statusFilter === opt.value ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+                color: statusFilter === opt.value ? 'var(--primary-contrast)' : 'var(--text-secondary)',
                 border: `1px solid ${statusFilter === opt.value ? 'var(--primary)' : 'var(--border)'}`,
                 cursor: 'pointer', transition: 'all 0.2s'
               }}>
@@ -175,6 +176,24 @@ export default function AdminCommunityPosts() {
               </button>
             ))}
           </div>
+
+          <select
+            className="input-field"
+            value={categoryFilter}
+            onChange={e => { setCategoryFilter(e.target.value); setPage(0); }}
+            style={{
+              flex: '0 0 220px',
+              width: '220px',
+              maxWidth: '100%',
+              minHeight: '44px',
+            }}
+          >
+            <option value="">Tất cả danh mục</option>
+            <option value="Thảo luận">Thảo luận</option>
+            <option value="Câu hỏi">Câu hỏi</option>
+            <option value="Tài nguyên">Tài nguyên</option>
+            <option value="Kinh nghiệm">Kinh nghiệm</option>
+          </select>
 
           <button onClick={() => { loadPosts(); }} style={{
             padding: '8px 12px', background: 'var(--bg-elevated)', border: '1px solid var(--border)',
@@ -281,8 +300,8 @@ export default function AdminCommunityPosts() {
                         {post.tags.map(t => (
                           <span key={t} style={{
                             fontSize: '11px', padding: '2px 8px', borderRadius: '999px',
-                            background: 'oklch(83.3% 0.145 321.434 / 0.08)',
-                            border: '1px solid oklch(83.3% 0.145 321.434 / 0.15)',
+                            background: 'var(--primary-08)',
+                            border: '1px solid var(--primary-15)',
                             color: 'var(--primary-light)'
                           }}>#{t}</span>
                         ))}

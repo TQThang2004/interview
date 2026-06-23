@@ -14,7 +14,7 @@ export default function Toast({ message, type = 'success', onClose }) {
   const colors = {
     success: { bg: 'oklch(72% 0.18 145 / 0.12)', border: 'oklch(72% 0.18 145 / 0.4)', text: 'oklch(60% 0.2 145)' },
     error:   { bg: 'oklch(65% 0.22 25 / 0.12)',  border: 'oklch(65% 0.22 25 / 0.4)',  text: 'oklch(55% 0.22 25)' },
-    info:    { bg: 'oklch(83.3% 0.145 321.434 / 0.1)', border: 'oklch(83.3% 0.145 321.434 / 0.35)', text: 'var(--primary)' },
+    info:    { bg: 'var(--primary-10)', border: 'var(--primary-35)', text: 'var(--primary)' },
   };
   const c = colors[type] || colors.info;
 

@@ -21,7 +21,7 @@ const TOPIC_EMOJI = {
 };
 
 const QUICK_ACTIONS = [
-  { icon: <PlayCircle size={22} />, label: 'Bắt đầu phỏng vấn', color: 'var(--primary)', bg: 'oklch(83.3% 0.145 321.434 / 0.12)', border: 'oklch(83.3% 0.145 321.434 / 0.3)', action: 'interview' },
+  { icon: <PlayCircle size={22} />, label: 'Bắt đầu phỏng vấn', color: 'var(--primary)', bg: 'var(--primary-12)', border: 'var(--primary-30)', action: 'interview' },
   { icon: <BookOpen size={22} />, label: 'Luyện tập chủ đề', color: 'oklch(72% 0.18 145)', bg: 'oklch(72% 0.18 145 / 0.12)', border: 'oklch(72% 0.18 145 / 0.3)', action: 'practice' },
   { icon: <BarChart3 size={22} />, label: 'Đánh giá CV', color: 'oklch(68% 0.16 230)', bg: 'oklch(68% 0.16 230 / 0.12)', border: 'oklch(68% 0.16 230 / 0.3)', action: 'cv-evaluation' },
   { icon: <TrendingUp size={22} />, label: 'Xem lịch sử', color: 'oklch(75% 0.17 150)', bg: 'oklch(75% 0.17 150 / 0.12)', border: 'oklch(75% 0.17 150 / 0.3)', action: 'history' },
@@ -79,7 +79,7 @@ export default function DashboardHome({ onNavigate }) {
   const excellentSessions = completed.filter(i => parseFloat(i.overall_score) >= 8.5).length;
 
   const stats = [
-    { label: 'Phiên phỏng vấn', value: interviews.length, icon: <Mic size={20} />, color: 'oklch(83.3% 0.145 321.434)' },
+    { label: 'Phiên phỏng vấn', value: interviews.length, icon: <Mic size={20} />, color: 'var(--primary)' },
     { label: 'Điểm trung bình', value: avgScore, icon: <Star size={20} />, color: 'oklch(80% 0.18 80)' },
     { label: 'Câu hỏi đã trả lời', value: totalQuestions, icon: <Brain size={20} />, color: 'oklch(68% 0.16 230)' },
     { label: 'Phiên xuất sắc', value: excellentSessions, icon: <Trophy size={20} />, color: 'oklch(75% 0.17 150)' },
@@ -266,8 +266,8 @@ export default function DashboardHome({ onNavigate }) {
       {/* CTA banner */}
       <div className="glass-card" style={{
         marginTop: '20px', padding: '24px 28px',
-        background: 'oklch(83.3% 0.145 321.434 / 0.06)',
-        border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+        background: 'var(--primary-06)',
+        border: '1px solid var(--primary-25)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         flexWrap: 'wrap', gap: '16px',
       }}>

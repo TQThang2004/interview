@@ -70,7 +70,7 @@ export default function SetupForm({ cvFile, setCvFile, jd, setJd, level, setLeve
             background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center',
             boxShadow: 'var(--shadow-primary)'
           }}>
-            <GraduationCap size={28} style={{ color: 'oklch(15% 0.01 250)' }} />
+            <GraduationCap size={28} style={{ color: 'var(--primary-contrast)' }} />
           </div>
           <h1 style={{ fontSize: 'clamp(22px, 3vw, 26px)', fontWeight: 800, marginBottom: '6px', textAlign: 'center' }}>
             <span className="gradient-text">Mock Interview AI</span>
@@ -107,7 +107,7 @@ export default function SetupForm({ cvFile, setCvFile, jd, setJd, level, setLeve
               onMouseEnter={e => {
                 if (!cvFile && !hasError('cv')) {
                   e.currentTarget.style.borderColor = 'var(--primary)';
-                  e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.05)';
+                  e.currentTarget.style.background = 'var(--primary-05)';
                 }
               }}
               onMouseLeave={e => {

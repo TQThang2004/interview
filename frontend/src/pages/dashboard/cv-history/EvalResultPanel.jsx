@@ -65,7 +65,7 @@ export default function EvalResultPanel({ evaluation, onDelete, deleting }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {result.suggestions.map((s, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: 'oklch(15% 0.01 250)', flexShrink: 0, marginTop: '1px' }}>
+                <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'var(--gradient-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: 'var(--primary-contrast)', flexShrink: 0, marginTop: '1px' }}>
                   {i + 1}
                 </div>
                 <span style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{s}</span>

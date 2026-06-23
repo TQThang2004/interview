@@ -24,9 +24,9 @@ function RoleBadge({ role }) {
   return (
     <span style={{
       padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 700,
-      background: isAdmin ? 'oklch(65% 0.22 25 / 0.15)' : 'oklch(83.3% 0.145 321.434 / 0.15)',
+      background: isAdmin ? 'oklch(65% 0.22 25 / 0.15)' : 'var(--primary-15)',
       color: isAdmin ? 'oklch(65% 0.22 25)' : 'var(--primary)',
-      border: `1px solid ${isAdmin ? 'oklch(65% 0.22 25 / 0.3)' : 'oklch(83.3% 0.145 321.434 / 0.3)'}`,
+      border: `1px solid ${isAdmin ? 'oklch(65% 0.22 25 / 0.3)' : 'var(--primary-30)'}`,
     }}>
       {isAdmin ? '👑 ADMIN' : 'USER'}
     </span>
@@ -196,6 +196,7 @@ export default function AdminUsers() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [roleFilter, setRoleFilter] = useState('');
   const [error, setError] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -210,7 +211,7 @@ export default function AdminUsers() {
     setLoading(true);
     setError(null);
     try {
-      const data = await api.adminGetUsers(100, 0, search);
+      const data = await api.adminGetUsers(100, 0, search, roleFilter);
       setUsers(data.users || []);
       setTotal(data.total || 0);
     } catch {
@@ -218,7 +219,7 @@ export default function AdminUsers() {
     } finally {
       setLoading(false);
     }
-  }, [search]);
+  }, [roleFilter, search]);
 
   useEffect(() => {
     const t = setTimeout(loadData, 300);
@@ -297,6 +298,16 @@ export default function AdminUsers() {
               onChange={e => setSearch(e.target.value)}
             />
           </div>
+          <select
+            className="input-field"
+            value={roleFilter}
+            onChange={e => setRoleFilter(e.target.value)}
+            style={{ width: '140px' }}
+          >
+            <option value="">Tất cả role</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
           <button onClick={loadData} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border)', background: 'transparent', cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '13px', transition: 'all 0.2s' }}>
             <RefreshCw size={14} style={loading ? { animation: 'spin 1s linear infinite' } : {}} />
           </button>
@@ -364,7 +375,7 @@ export default function AdminUsers() {
                       <button
                         onClick={() => handleRoleChange(u.id, 'admin', u.username)}
                         title="Cấp quyền Admin"
-                        style={{ padding: '7px', background: 'oklch(83.3% 0.145 321.434 / 0.1)', border: '1px solid oklch(83.3% 0.145 321.434 / 0.3)', borderRadius: '8px', cursor: 'pointer', color: 'var(--primary)', display: 'flex' }}
+                        style={{ padding: '7px', background: 'var(--primary-10)', border: '1px solid var(--primary-30)', borderRadius: '8px', cursor: 'pointer', color: 'var(--primary)', display: 'flex' }}
                       >
                         <UserCog size={16} />
                       </button>

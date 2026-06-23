@@ -1,7 +1,7 @@
-﻿"""
-Logging Middleware â€“ middleware ghi log má»i HTTP request/response.
+"""
+Logging Middleware – middleware ghi log mọi HTTP request/response.
 
-Ghi láº¡i: method, path, status code, thá»i gian xá»­ lÃ½.
+Ghi lại: method, path, status code, thời gian xử lý.
 """
 import time
 from fastapi import Request
@@ -13,7 +13,7 @@ logger = get_logger(__name__)
 
 
 class LoggingMiddleware(BaseHTTPMiddleware):
-    """Middleware ghi log thÃ´ng tin request vÃ  thá»i gian xá»­ lÃ½."""
+    """Middleware ghi log thông tin request và thời gian xử lý."""
 
     async def dispatch(self, request: Request, call_next):
         start = time.perf_counter()
@@ -25,5 +25,5 @@ class LoggingMiddleware(BaseHTTPMiddleware):
 
 
 def register_logging_middleware(app) -> None:
-    """ÄÄƒng kÃ½ logging middleware vÃ o á»©ng dá»¥ng FastAPI."""
+    """Đăng ký logging middleware vào ứng dụng FastAPI."""
     app.add_middleware(LoggingMiddleware)

@@ -102,7 +102,7 @@ export default function HistoryPage() {
       {/* ── Mini stats ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', marginBottom: '24px' }}>
         {[
-          { icon: <BarChart3 size={18} />, label: 'Hoàn thành', value: loading ? '…' : completedCount, color: 'oklch(83.3% 0.145 321.434)' },
+          { icon: <BarChart3 size={18} />, label: 'Hoàn thành', value: loading ? '…' : completedCount, color: 'var(--primary)' },
           { icon: <TrendingUp size={18} />, label: 'Điểm TB', value: loading ? '…' : avgScore, color: 'oklch(80% 0.18 80)' },
           { icon: <Trophy size={18} />, label: 'Điểm cao nhất', value: loading ? '…' : bestScore, color: 'oklch(75% 0.17 150)' },
         ].map((s, i) => (

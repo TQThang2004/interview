@@ -1,8 +1,9 @@
 import React from 'react';
 import { CheckCircle2, ChevronRight } from 'lucide-react';
 
-export default function EvaluationResult({ evalResult, onNext, isLast }) {
-  if (!evalResult) return null;
+export default function EvaluationResult({ result, evalResult, onNext, isLast }) {
+  const evaluation = result || evalResult;
+  if (!evaluation) return null;
 
   return (
     <div style={{ padding: 'clamp(20px, 5vw, 60px)', display: 'flex', justifyContent: 'center' }}>
@@ -23,7 +24,7 @@ export default function EvaluationResult({ evalResult, onNext, isLast }) {
                padding: '8px 20px', borderRadius: '12px', fontSize: '20px', fontWeight: 900, 
                color: 'var(--primary)', boxShadow: '0 4px 12px oklch(0% 0 0 / 0.2)' 
              }}>
-                {evalResult.score_str}
+                {evaluation.score_str}
              </div>
           </div>
           
@@ -38,7 +39,7 @@ export default function EvaluationResult({ evalResult, onNext, isLast }) {
                  ✅ Điểm Mạnh
                </h4>
                <p style={{ color: 'var(--text-primary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
-                 {evalResult.strengths || "Không có đáng kể."}
+                 {evaluation.strengths || "Không có đáng kể."}
                </p>
              </div>
 
@@ -52,21 +53,21 @@ export default function EvaluationResult({ evalResult, onNext, isLast }) {
                  ⚠️ Cần Cải Thiện
                </h4>
                <p style={{ color: 'var(--text-primary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
-                 {evalResult.weaknesses || "Bạn đã trả lời rất tốt, không có điểm trừ."}
+                 {evaluation.weaknesses || "Bạn đã trả lời rất tốt, không có điểm trừ."}
                </p>
              </div>
 
              {/* Gợi ý */}
              <div style={{
                padding: '10px 14px', borderRadius: '10px',
-               background: 'oklch(83.3% 0.145 321.434 / 0.07)',
-               border: '1px solid oklch(83.3% 0.145 321.434 / 0.25)',
+               background: 'var(--primary-07)',
+               border: '1px solid var(--primary-25)',
              }}>
                <h4 style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '5px' }}>
                  💡 Gợi Ý AI
                </h4>
                <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.55, margin: 0 }}>
-                 {evalResult.suggestions}
+                 {evaluation.suggestions}
                </p>
              </div>
 

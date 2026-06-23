@@ -21,9 +21,9 @@ export default function SaveBanner({ canSave, savedCount, maxCount, saving, onSa
     <div style={{
       padding: '18px 22px', borderRadius: '16px', marginBottom: '20px',
       background: canSave
-        ? 'oklch(83.3% 0.145 321.434 / 0.07)'
+        ? 'var(--primary-07)'
         : 'oklch(65% 0.22 25 / 0.07)',
-      border: `1px solid ${canSave ? 'oklch(83.3% 0.145 321.434 / 0.3)' : 'oklch(65% 0.22 25 / 0.3)'}`,
+      border: `1px solid ${canSave ? 'var(--primary-30)' : 'oklch(65% 0.22 25 / 0.3)'}`,
     }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
         <Save size={18} style={{ color: canSave ? 'var(--primary)' : 'oklch(65% 0.22 25)', marginTop: '2px', flexShrink: 0 }} />
@@ -49,7 +49,7 @@ export default function SaveBanner({ canSave, savedCount, maxCount, saving, onSa
               style={{
                 display: 'flex', alignItems: 'center', gap: '6px',
                 padding: '9px 18px', borderRadius: '10px', border: 'none', cursor: saving ? 'not-allowed' : 'pointer',
-                background: 'var(--gradient-primary)', color: 'oklch(15% 0.01 250)',
+                background: 'var(--gradient-primary)', color: 'var(--primary-contrast)',
                 fontSize: '13px', fontWeight: 700, opacity: saving ? 0.7 : 1, transition: 'all 0.2s',
               }}
             >

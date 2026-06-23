@@ -1,14 +1,14 @@
-﻿"""
-Router: History â€“ CRUD lá»‹ch sá»­ phá»ng váº¥n.
+"""
+Router: History – CRUD lịch sử phỏng vấn.
 
 Endpoints:
-  POST   /api/interviews                     â€“ Táº¡o phiÃªn má»›i
-  GET    /api/interviews                     â€“ Láº¥y danh sÃ¡ch phiÃªn cá»§a user
-  GET    /api/interviews/{interview_id}      â€“ Chi tiáº¿t 1 phiÃªn
-  PATCH  /api/interviews/{interview_id}/complete  â€“ HoÃ n thÃ nh phiÃªn
-  PATCH  /api/interviews/{interview_id}/abandon   â€“ Huá»· / thoÃ¡t giá»¯a chá»«ng
-  POST   /api/interviews/{interview_id}/questions           â€“ LÆ°u 1 cÃ¢u há»i
-  PATCH  /api/interviews/{interview_id}/questions/{q_id}    â€“ LÆ°u cÃ¢u tráº£ lá»i + Ä‘Ã¡nh giÃ¡
+  POST   /api/interviews                     – Tạo phiên mới
+  GET    /api/interviews                     – Lấy danh sách phiên của user
+  GET    /api/interviews/{interview_id}      – Chi tiết 1 phiên
+  PATCH  /api/interviews/{interview_id}/complete  – Hoàn thành phiên
+  PATCH  /api/interviews/{interview_id}/abandon   – Huỷ / thoát giữa chừng
+  POST   /api/interviews/{interview_id}/questions           – Lưu 1 câu hỏi
+  PATCH  /api/interviews/{interview_id}/questions/{q_id}    – Lưu câu trả lời + đánh giá
 """
 from fastapi import APIRouter, Depends, HTTPException, status
 
@@ -31,7 +31,7 @@ async def create_interview(
     body: CreateInterviewBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """Táº¡o phiÃªn phá»ng váº¥n má»›i vÃ  tráº£ vá» interview_id Ä‘á»ƒ frontend theo dÃµi."""
+    """Tạo phiên phỏng vấn mới và trả về interview_id để frontend theo dõi."""
     return await history_controller.handle_create_interview(
         current_user["id"], body.topic, body.level, body.language
     )
@@ -43,7 +43,7 @@ async def list_interviews(
     offset: int = 0,
     current_user: dict = Depends(get_current_user),
 ):
-    """Láº¥y danh sÃ¡ch lá»‹ch sá»­ phá»ng váº¥n cá»§a user hiá»‡n táº¡i."""
+    """Lấy danh sách lịch sử phỏng vấn của user hiện tại."""
     return await history_controller.handle_list_interviews(current_user["id"], limit, offset)
 
 
@@ -52,10 +52,10 @@ async def get_interview(
     interview_id: str,
     current_user: dict = Depends(get_current_user),
 ):
-    """Chi tiáº¿t má»™t phiÃªn phá»ng váº¥n kÃ¨m táº¥t cáº£ cÃ¢u há»i."""
+    """Chi tiết một phiên phỏng vấn kèm tất cả câu hỏi."""
     result = await history_controller.handle_get_interview(interview_id, current_user["id"])
     if not result:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y phiÃªn phá»ng váº¥n.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn.")
     return result
 
 
@@ -65,12 +65,12 @@ async def complete_interview(
     body: CompleteInterviewBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """ÄÃ¡nh dáº¥u hoÃ n thÃ nh phiÃªn vÃ  lÆ°u Ä‘iá»ƒm tá»•ng / nháº­n xÃ©t tá»•ng."""
+    """Đánh dấu hoàn thành phiên và lưu điểm tổng / nhận xét tổng."""
     result = await history_controller.handle_complete_interview(
         interview_id, current_user["id"], body.overall_score, body.overall_feedback
     )
     if not result:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y hoáº·c khÃ´ng cÃ³ quyá»n.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy hoặc không có quyền.")
     return result
 
 
@@ -80,9 +80,9 @@ async def abandon_interview(
     current_user: dict = Depends(get_current_user),
 ):
     """
-    Huá»· phiÃªn phá»ng váº¥n (ngÆ°á»i dÃ¹ng thoÃ¡t giá»¯a chá»«ng).
-    - Náº¿u chÆ°a tráº£ lá»i cÃ¢u nÃ o â†’ xoÃ¡ khá»i DB.
-    - Náº¿u Ä‘Ã£ tráº£ lá»i Ã­t nháº¥t 1 cÃ¢u â†’ Ä‘á»•i status='cancelled', lÆ°u Ä‘iá»ƒm TB.
+    Huỷ phiên phỏng vấn (người dùng thoát giữa chừng).
+    - Nếu chưa trả lời câu nào → xoá khỏi DB.
+    - Nếu đã trả lời ít nhất 1 câu → đổi status='cancelled', lưu điểm TB.
     """
     return await history_controller.handle_abandon_interview(interview_id, current_user["id"])
 
@@ -92,10 +92,10 @@ async def delete_interview(
     interview_id: str,
     current_user: dict = Depends(get_current_user),
 ):
-    """XÃ³a lá»‹ch sá»­ phá»ng váº¥n cá»§a ngÆ°á»i dÃ¹ng."""
+    """Xóa lịch sử phỏng vấn của người dùng."""
     deleted = await history_controller.handle_delete_interview(interview_id, current_user["id"])
     if not deleted:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y phiÃªn phá»ng váº¥n hoáº·c khÃ´ng cÃ³ quyá»n.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn hoặc không có quyền.")
 
 
 @router.post("/{interview_id}/questions", status_code=status.HTTP_201_CREATED)
@@ -104,12 +104,12 @@ async def save_question(
     body: SaveQuestionBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """LÆ°u cÃ¢u há»i khi báº¯t Ä‘áº§u há»i (chÆ°a cÃ³ cÃ¢u tráº£ lá»i)."""
+    """Lưu câu hỏi khi bắt đầu hỏi (chưa có câu trả lời)."""
     result = await history_controller.handle_save_question(
         interview_id, current_user["id"], body.question_text, body.question_order
     )
     if result.get("status") == "not_found":
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y phiÃªn phá»ng váº¥n hoáº·c khÃ´ng cÃ³ quyá»n.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy phiên phỏng vấn hoặc không có quyền.")
     return result
 
 
@@ -120,7 +120,7 @@ async def update_answer(
     body: UpdateAnswerBody,
     current_user: dict = Depends(get_current_user),
 ):
-    """Cáº­p nháº­t cÃ¢u tráº£ lá»i vÃ  Ä‘Ã¡nh giÃ¡ AI cho má»™t cÃ¢u há»i Ä‘Ã£ lÆ°u."""
+    """Cập nhật câu trả lời và đánh giá AI cho một câu hỏi đã lưu."""
     # Validate score range
     score_value = max(0.0, min(10.0, body.score))
     if score_value != body.score:
@@ -131,5 +131,5 @@ async def update_answer(
         interview_id, question_id, current_user["id"], body.user_answer, body.ai_evaluation, score_value
     )
     if not ok:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y cÃ¢u há»i.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy câu hỏi.")
     return {"status": "success"}

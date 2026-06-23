@@ -1,9 +1,9 @@
-﻿"""
-Core Dependencies â€“ FastAPI dependency injection cho xÃ¡c thá»±c ngÆ°á»i dÃ¹ng.
+"""
+Core Dependencies – FastAPI dependency injection cho xác thực người dùng.
 
-Cung cáº¥p:
-- get_current_user: Dependency láº¥y user hiá»‡n táº¡i tá»« JWT cookie.
-- get_admin_user:   Dependency yÃªu cáº§u user pháº£i cÃ³ role='admin'.
+Cung cấp:
+- get_current_user: Dependency lấy user hiện tại từ JWT cookie.
+- get_admin_user:   Dependency yêu cầu user phải có role='admin'.
 """
 from fastapi import Cookie, Depends, HTTPException, status
 from jose import JWTError
@@ -19,19 +19,19 @@ async def get_current_user(
     access_token: str | None = Cookie(default=None, alias=COOKIE_NAME),
 ) -> dict:
     """
-    Dependency inject vÃ o cÃ¡c route cáº§n xÃ¡c thá»±c.
-    Äá»c JWT tá»« cookie â†’ tráº£ vá» dict user tá»« DB.
+    Dependency inject vào các route cần xác thực.
+    Đọc JWT từ cookie → trả về dict user từ DB.
     """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="ChÆ°a Ä‘Äƒng nháº­p hoáº·c phiÃªn Ä‘Ã£ háº¿t háº¡n.",
+        detail="Chưa đăng nhập hoặc phiên đã hết hạn.",
     )
 
-    # KhÃ´ng cÃ³ cookie â†’ chÆ°a Ä‘Äƒng nháº­p
+    # Không có cookie → chưa đăng nhập
     if not access_token:
         raise credentials_exception
 
-    # Giáº£i mÃ£ JWT
+    # Giải mã JWT
     try:
         payload = decode_access_token(access_token)
         user_id: str = payload.get("sub")
@@ -40,7 +40,7 @@ async def get_current_user(
     except JWTError:
         raise credentials_exception
 
-    # Truy váº¥n DB â€“ báº¯t má»i lá»—i káº¿t ná»‘i Ä‘á»ƒ tráº£ 401 thay vÃ¬ 500
+    # Truy vấn DB – bắt mọi lỗi kết nối để trả 401 thay vì 500
     try:
         pool = await get_pool()
         async with pool.acquire() as conn:
@@ -56,7 +56,7 @@ async def get_current_user(
         logger.warning("Database connection failed while authenticating user: %s", exc)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="KhÃ´ng thá»ƒ káº¿t ná»‘i cÆ¡ sá»Ÿ dá»¯ liá»‡u.",
+            detail="Không thể kết nối cơ sở dữ liệu.",
         )
 
     if not user:
@@ -67,12 +67,12 @@ async def get_current_user(
 
 async def get_admin_user(current_user: dict = Depends(get_current_user)) -> dict:
     """
-    Dependency: yÃªu cáº§u user hiá»‡n táº¡i pháº£i cÃ³ role='admin'.
-    Náº¿u khÃ´ng â†’ 403 Forbidden.
+    Dependency: yêu cầu user hiện tại phải có role='admin'.
+    Nếu không → 403 Forbidden.
     """
     if current_user.get("role") != "admin":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Báº¡n khÃ´ng cÃ³ quyá»n truy cáº­p trang nÃ y.",
+            detail="Bạn không có quyền truy cập trang này.",
         )
     return current_user

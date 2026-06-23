@@ -40,8 +40,8 @@ export default function HistoryDetailExpand({ detail }) {
               <span style={{
                 fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)',
                 flexShrink: 0, marginTop: '2px',
-                background: 'oklch(83.3% 0.145 321.434 / 0.1)',
-                border: '1px solid oklch(83.3% 0.145 321.434 / 0.2)',
+                background: 'var(--primary-10)',
+                border: '1px solid var(--primary-20)',
                 padding: '2px 8px', borderRadius: '6px',
               }}>#{i + 1}</span>
               <span style={{ fontSize: '13px', flex: 1, color: 'var(--text-primary)', fontWeight: 600, lineHeight: 1.5 }}>{q.question_text}</span>
@@ -60,7 +60,7 @@ export default function HistoryDetailExpand({ detail }) {
             {/* Câu trả lời đầy đủ */}
             {q.user_answer ? (
               <div style={{
-                paddingLeft: '14px', borderLeft: '3px solid oklch(83.3% 0.145 321.434 / 0.4)',
+                paddingLeft: '14px', borderLeft: '3px solid var(--primary-40)',
                 marginBottom: '10px',
               }}>
                 <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>

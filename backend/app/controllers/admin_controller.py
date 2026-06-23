@@ -1,5 +1,5 @@
-﻿"""
-Admin Controller â€“ nháº­n request, gá»i admin_service, format response.
+"""
+Admin Controller – nhận request, gọi admin_service, format response.
 """
 from typing import Optional
 
@@ -14,7 +14,7 @@ from app.core.config import (
     CLOUDINARY_API_SECRET,
 )
 
-# Cloudinary config (cÃ³ thá»ƒ Ä‘Ã£ Ä‘Æ°á»£c init á»Ÿ cv_evaluation_controller, nhÆ°ng Ä‘áº·t láº¡i Ä‘á»ƒ cháº¯c cháº¯n)
+# Cloudinary config (có thể đã được init ở cv_evaluation_controller, nhưng đặt lại để chắc chắn)
 cloudinary.config(
     cloud_name=CLOUDINARY_CLOUD_NAME,
     api_key=CLOUDINARY_API_KEY,
@@ -34,8 +34,13 @@ async def handle_get_chart_data(days: int) -> dict:
     return {"status": "success", "chart": chart}
 
 
-async def handle_list_users(limit: int, offset: int, search: Optional[str]) -> dict:
-    total, users = await admin_service.list_users(limit, offset, search)
+async def handle_list_users(
+    limit: int,
+    offset: int,
+    search: Optional[str],
+    role: Optional[str] = None,
+) -> dict:
+    total, users = await admin_service.list_users(limit, offset, search, role)
     return {"status": "success", "total": total, "users": users}
 
 
@@ -68,9 +73,12 @@ async def handle_delete_user(admin_id: str, user_id: str) -> bool:
 
 
 async def handle_list_all_interviews(
-    limit: int, offset: int, status_filter: Optional[str]
+    limit: int,
+    offset: int,
+    status_filter: Optional[str],
+    search: Optional[str] = None,
 ) -> dict:
-    total, interviews = await admin_service.list_all_interviews(limit, offset, status_filter)
+    total, interviews = await admin_service.list_all_interviews(limit, offset, status_filter, search)
     return {"status": "success", "total": total, "interviews": interviews}
 
 
@@ -111,23 +119,24 @@ async def handle_list_community_posts(
     offset: int,
     status_filter: Optional[str],
     search: Optional[str],
+    category: Optional[str] = None,
 ) -> dict:
     total, posts = await admin_service.list_community_posts_admin(
-        limit, offset, status_filter, search
+        limit, offset, status_filter, search, category
     )
     return {"status": "success", "total": total, "posts": posts}
 
 
 async def handle_approve_community_post(admin_id: str, post_id: str) -> dict | None:
-    """Duyá»‡t bÃ i vÃ  gá»­i notification cho tÃ¡c giáº£."""
+    """Duyệt bài và gửi notification cho tác giả."""
     post = await admin_service.approve_community_post(post_id)
     if not post:
         return None
-    # Gá»­i notification cho tÃ¡c giáº£
+    # Gửi notification cho tác giả
     await community_service.create_notification(
         user_id=post["author_id"],
         notif_type="post_approved",
-        message=f"âœ… BÃ i viáº¿t \"{post['title']}\" cá»§a báº¡n Ä‘Ã£ Ä‘Æ°á»£c admin duyá»‡t vÃ  hiá»ƒn thá»‹ cÃ´ng khai.",
+        message=f"✅ Bài viết \"{post['title']}\" của bạn đã được admin duyệt và hiển thị công khai.",
     )
     author_email = await admin_service.get_user_email(post["author_id"])
     await email_service.send_email(
@@ -140,16 +149,16 @@ async def handle_approve_community_post(admin_id: str, post_id: str) -> dict | N
 
 
 async def handle_reject_community_post(admin_id: str, post_id: str) -> dict | None:
-    """Tá»« chá»‘i bÃ i, xÃ³a bÃ i vÃ  gá»­i notification cho tÃ¡c giáº£."""
+    """Từ chối bài, xóa bài và gửi notification cho tác giả."""
     result = await admin_service.reject_community_post(post_id)
     if not result:
         return None
     author_id, title = result
-    # Gá»­i notification cho tÃ¡c giáº£
+    # Gửi notification cho tác giả
     await community_service.create_notification(
         user_id=author_id,
         notif_type="post_rejected",
-        message=f"âŒ BÃ i viáº¿t \"{title}\" cá»§a báº¡n Ä‘Ã£ bá»‹ tá»« chá»‘i vÃ  xÃ³a do khÃ´ng phÃ¹ há»£p vá»›i quy Ä‘á»‹nh cá»™ng Ä‘á»“ng.",
+        message=f"❌ Bài viết \"{title}\" của bạn đã bị từ chối và xóa do không phù hợp với quy định cộng đồng.",
     )
     author_email = await admin_service.get_user_email(author_id)
     await email_service.send_email(
@@ -158,7 +167,7 @@ async def handle_reject_community_post(admin_id: str, post_id: str) -> dict | No
         f"Bai viet \"{title}\" da bi tu choi va xoa do khong phu hop voi quy dinh cong dong.",
     )
     await admin_service.create_audit_log(admin_id, "reject_post", "community_post", post_id, {"title": title})
-    return {"status": "success", "message": "BÃ i viáº¿t Ä‘Ã£ bá»‹ tá»« chá»‘i vÃ  xÃ³a."}
+    return {"status": "success", "message": "Bài viết đã bị từ chối và xóa."}
 
 
 async def handle_admin_delete_community_post(admin_id: str, post_id: str) -> bool:
@@ -173,21 +182,41 @@ async def handle_admin_delete_community_post(admin_id: str, post_id: str) -> boo
 # ---------------------------------------------------------------------------
 
 async def handle_list_all_cv_evaluations(
-    limit: int, offset: int, search: Optional[str]
+    limit: int,
+    offset: int,
+    search: Optional[str],
+    from_date: Optional[str] = None,
+    to_date: Optional[str] = None,
 ) -> dict:
-    total, evaluations = await admin_service.list_all_cv_evaluations(limit, offset, search)
+    total, evaluations = await admin_service.list_all_cv_evaluations(
+        limit, offset, search, from_date, to_date
+    )
     return {"status": "success", "total": total, "evaluations": evaluations}
 
 
 async def handle_admin_delete_cv_evaluation(admin_id: str, eval_id: str) -> dict | None:
-    """Admin xÃ³a CV evaluation khá»i DB vÃ  Cloudinary."""
+    """Admin xóa CV evaluation khỏi DB và Cloudinary."""
     public_id = await admin_service.admin_delete_cv_evaluation(eval_id)
     if public_id is None:
         return None
-    # XÃ³a file trÃªn Cloudinary
-    try:
-        cloudinary.uploader.destroy(public_id, resource_type="image")
-    except Exception as exc:
-        logger.warning("Failed to delete Cloudinary CV asset: %s", exc)
+    # Xóa file trên Cloudinary
+    if public_id:
+        try:
+            cloudinary.uploader.destroy(public_id, resource_type="image")
+        except Exception as exc:
+            logger.warning("Failed to delete Cloudinary CV asset: %s", exc)
     await admin_service.create_audit_log(admin_id, "delete_cv_evaluation", "cv_evaluation", eval_id)
     return {"status": "success", "deleted_id": eval_id}
+
+
+async def handle_list_audit_logs(
+    limit: int,
+    offset: int,
+    actor_id: Optional[str],
+    action: Optional[str],
+    entity_type: Optional[str],
+) -> dict:
+    total, logs = await admin_service.list_audit_logs(
+        limit, offset, actor_id, action, entity_type
+    )
+    return {"status": "success", "total": total, "logs": logs}

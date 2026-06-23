@@ -8,40 +8,61 @@
   :root,
   [data-theme="dark"] {
     /* Primary */
-    --primary:        oklch(83.3% 0.145 321.434);
-    --primary-dark:   oklch(60% 0.18 321.434);
-    --primary-light:  oklch(92% 0.07 321.434);
-    --primary-glow:   oklch(83.3% 0.145 321.434 / 0.35);
+    --primary:        #66FCF1;
+    --primary-dark:   #45A29E;
+    --primary-light:  #B8FFFB;
+    --primary-contrast: #0B0C10;
+    --primary-glow:   rgb(102 252 241 / 0.35);
+    --primary-04:     rgb(102 252 241 / 0.04);
+    --primary-05:     rgb(102 252 241 / 0.05);
+    --primary-06:     rgb(102 252 241 / 0.06);
+    --primary-07:     rgb(102 252 241 / 0.07);
+    --primary-08:     rgb(102 252 241 / 0.08);
+    --primary-10:     rgb(102 252 241 / 0.10);
+    --primary-12:     rgb(102 252 241 / 0.12);
+    --primary-15:     rgb(102 252 241 / 0.15);
+    --primary-20:     rgb(102 252 241 / 0.20);
+    --primary-25:     rgb(102 252 241 / 0.25);
+    --primary-30:     rgb(102 252 241 / 0.30);
+    --primary-35:     rgb(102 252 241 / 0.35);
+    --primary-40:     rgb(102 252 241 / 0.40);
+    --primary-60:     rgb(102 252 241 / 0.60);
+    --primary-70:     rgb(102 252 241 / 0.70);
 
     /* Secondary */
-    --secondary:      oklch(45% 0.017 213.2);
-    --secondary-dark: oklch(30% 0.025 213.2);
-    --secondary-light:oklch(65% 0.017 213.2);
+    --secondary:      #45A29E;
+    --secondary-dark: #2B6F6C;
+    --secondary-light:#77DCD6;
+    --accent-glow:    #45A29E;
+    --accent-glow-05: rgb(69 162 158 / 0.05);
+    --accent-glow-08: rgb(69 162 158 / 0.08);
+    --accent-glow-10: rgb(69 162 158 / 0.10);
+    --accent-glow-12: rgb(69 162 158 / 0.12);
 
     /* Backgrounds */
-    --bg-base:        oklch(12% 0.015 250);
-    --bg-surface:     oklch(16% 0.018 250);
-    --bg-elevated:    oklch(22% 0.015 250 / 0.5);
-    --bg-card:        oklch(18% 0.02 260 / 0.85);
-    --bg-hover:       oklch(22% 0.015 250 / 0.3);
+    --bg-base:        #0B0C10;
+    --bg-surface:     #1F2833;
+    --bg-elevated:    rgb(31 40 51 / 0.62);
+    --bg-card:        rgb(31 40 51 / 0.88);
+    --bg-hover:       rgb(69 162 158 / 0.12);
 
     /* Layout-specific */
-    --sidebar-bg:          oklch(16% 0.018 250 / 0.8);
-    --topbar-bg:           oklch(14% 0.018 250 / 0.7);
-    --navbar-scrolled-bg:  oklch(14% 0.018 250 / 0.92);
+    --sidebar-bg:          rgb(31 40 51 / 0.86);
+    --topbar-bg:           rgb(11 12 16 / 0.78);
+    --navbar-scrolled-bg:  rgb(11 12 16 / 0.94);
 
     /* Text */
-    --text-primary:   oklch(96% 0.005 250);
-    --text-secondary: oklch(70% 0.01 250);
-    --text-muted:     oklch(50% 0.01 250);
+    --text-primary:   #C5C6C7;
+    --text-secondary: rgb(197 198 199 / 0.78);
+    --text-muted:     rgb(197 198 199 / 0.52);
 
     /* Border */
-    --border:         oklch(30% 0.02 250 / 0.6);
-    --border-focus:   oklch(83.3% 0.145 321.434 / 0.7);
+    --border:         rgb(69 162 158 / 0.28);
+    --border-focus:   var(--primary-70);
 
     /* Input */
-    --input-bg:       oklch(22% 0.015 250 / 0.8);
-    --input-bg-focus: oklch(24% 0.018 250 / 0.9);
+    --input-bg:       rgb(31 40 51 / 0.82);
+    --input-bg-focus: rgb(31 40 51 / 0.95);
 
     /* Status */
     --success:        oklch(72% 0.18 145);
@@ -49,49 +70,73 @@
     --warning:        oklch(80% 0.18 80);
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, oklch(83.3% 0.145 321.434), oklch(65% 0.2 280));
-    --gradient-bg: linear-gradient(135deg, oklch(12% 0.015 250) 0%, oklch(15% 0.025 280) 50%, oklch(13% 0.02 220) 100%);
+    --gradient-primary: linear-gradient(135deg, #66FCF1, #45A29E);
+    --gradient-bg: linear-gradient(135deg, #0B0C10 0%, #101820 45%, #1F2833 100%);
 
     /* Shadows */
-    --shadow-primary: 0 0 40px oklch(83.3% 0.145 321.434 / 0.2);
+    --shadow-primary: 0 0 40px var(--primary-20);
     --shadow-card:    0 8px 32px oklch(0% 0 0 / 0.4);
-    --shadow-glow:    0 0 60px oklch(83.3% 0.145 321.434 / 0.15);
+    --shadow-glow:    0 0 60px var(--primary-15);
   }
 
   /* ═════════════════════════════════════════════════════════════
      LIGHT MODE
   ═════════════════════════════════════════════════════════════ */
   [data-theme="light"] {
-    /* Primary stays same */
-    --primary:        oklch(60% 0.18 321.434);
-    --primary-dark:   oklch(45% 0.18 321.434);
-    --primary-light:  oklch(78% 0.12 321.434);
-    --primary-glow:   oklch(60% 0.18 321.434 / 0.25);
+    --primary:        #0D8F88;
+    --primary-dark:   #0B6F6C;
+    --primary-light:  #117C78;
+    --primary-contrast: #0B0C10;
+    --primary-glow:   rgb(102 252 241 / 0.28);
+    --primary-04:     rgb(13 143 136 / 0.04);
+    --primary-05:     rgb(13 143 136 / 0.05);
+    --primary-06:     rgb(13 143 136 / 0.06);
+    --primary-07:     rgb(13 143 136 / 0.07);
+    --primary-08:     rgb(13 143 136 / 0.08);
+    --primary-10:     rgb(13 143 136 / 0.10);
+    --primary-12:     rgb(13 143 136 / 0.12);
+    --primary-15:     rgb(13 143 136 / 0.15);
+    --primary-20:     rgb(13 143 136 / 0.20);
+    --primary-25:     rgb(13 143 136 / 0.25);
+    --primary-30:     rgb(13 143 136 / 0.30);
+    --primary-35:     rgb(13 143 136 / 0.35);
+    --primary-40:     rgb(13 143 136 / 0.40);
+    --primary-60:     rgb(13 143 136 / 0.60);
+    --primary-70:     rgb(13 143 136 / 0.70);
+
+    --secondary:      #45A29E;
+    --secondary-dark: #2B6F6C;
+    --secondary-light:#66FCF1;
+    --accent-glow:    #45A29E;
+    --accent-glow-05: rgb(69 162 158 / 0.05);
+    --accent-glow-08: rgb(69 162 158 / 0.08);
+    --accent-glow-10: rgb(69 162 158 / 0.10);
+    --accent-glow-12: rgb(69 162 158 / 0.12);
 
     /* Backgrounds */
-    --bg-base:        oklch(97% 0.003 250);
-    --bg-surface:     oklch(94% 0.005 250);
-    --bg-elevated:    oklch(91% 0.006 250 / 0.7);
-    --bg-card:        oklch(100% 0 0 / 0.85);
-    --bg-hover:       oklch(94% 0.005 250 / 0.8);
+    --bg-base:        #F4FEFD;
+    --bg-surface:     #E8F4F3;
+    --bg-elevated:    rgb(232 244 243 / 0.78);
+    --bg-card:        rgb(255 255 255 / 0.88);
+    --bg-hover:       rgb(102 252 241 / 0.16);
 
     /* Layout-specific */
-    --sidebar-bg:          oklch(98% 0.003 250 / 0.92);
-    --topbar-bg:           oklch(98% 0.003 250 / 0.85);
-    --navbar-scrolled-bg:  oklch(98% 0.004 250 / 0.93);
+    --sidebar-bg:          rgb(244 254 253 / 0.92);
+    --topbar-bg:           rgb(244 254 253 / 0.86);
+    --navbar-scrolled-bg:  rgb(244 254 253 / 0.94);
 
     /* Text */
-    --text-primary:   oklch(15% 0.01 250);
-    --text-secondary: oklch(38% 0.015 250);
-    --text-muted:     oklch(58% 0.01 250);
+    --text-primary:   #0B0C10;
+    --text-secondary: rgb(11 12 16 / 0.72);
+    --text-muted:     rgb(11 12 16 / 0.48);
 
     /* Border */
-    --border:         oklch(82% 0.01 250 / 0.8);
-    --border-focus:   oklch(60% 0.18 321.434 / 0.6);
+    --border:         rgb(69 162 158 / 0.24);
+    --border-focus:   var(--primary-70);
 
     /* Input */
-    --input-bg:       oklch(97% 0.003 250);
-    --input-bg-focus: oklch(100% 0 0);
+    --input-bg:       rgb(255 255 255 / 0.86);
+    --input-bg-focus: #FFFFFF;
 
     /* Status */
     --success:        oklch(55% 0.18 145);
@@ -99,13 +144,13 @@
     --warning:        oklch(62% 0.18 80);
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, oklch(60% 0.18 321.434), oklch(55% 0.2 280));
-    --gradient-bg: linear-gradient(135deg, oklch(98% 0.01 260) 0%, oklch(95% 0.03 290) 50%, oklch(96% 0.02 320) 100%);
+    --gradient-primary: linear-gradient(135deg, #66FCF1, #45A29E);
+    --gradient-bg: linear-gradient(135deg, #F4FEFD 0%, #E8F4F3 52%, #DDFDFC 100%);
 
     /* Shadows */
-    --shadow-primary: 0 0 40px oklch(60% 0.18 321.434 / 0.15);
-    --shadow-card:    0 4px 24px oklch(0% 0 0 / 0.08);
-    --shadow-glow:    0 0 60px oklch(60% 0.18 321.434 / 0.1);
+    --shadow-primary: 0 0 36px rgb(102 252 241 / 0.24);
+    --shadow-card:    0 4px 24px rgb(11 12 16 / 0.08);
+    --shadow-glow:    0 0 56px rgb(69 162 158 / 0.14);
   }
 
   /* ── Base reset ── */
@@ -137,9 +182,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 20% 30%, oklch(83.3% 0.145 321.434 / 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 80% 70%, oklch(65% 0.2 280 / 0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 60% 10%, oklch(45% 0.017 213.2 / 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 40% at 20% 30%, var(--primary-12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 80% 70%, var(--accent-glow-10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 60% 10%, var(--accent-glow-08) 0%, transparent 60%);
   pointer-events: none;
   animation: bgGlow 8s ease-in-out infinite alternate;
   z-index: 0;
@@ -159,9 +204,9 @@
 
 [data-theme="light"] .bg-animated::before {
   background:
-    radial-gradient(ellipse 60% 40% at 20% 30%, oklch(60% 0.18 321.434 / 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 80% 70%, oklch(55% 0.2 280 / 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 60% 10%, oklch(45% 0.017 213.2 / 0.1) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 40% at 20% 30%, var(--primary-15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 80% 70%, var(--accent-glow-12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 60% 10%, var(--primary-10) 0%, transparent 60%);
 }
 
 [data-theme="light"] .bg-animated::after {
@@ -186,7 +231,7 @@
 /* ─── Primary button ────────────────────────────────────────── */
 .btn-primary {
   background: var(--gradient-primary);
-  color: oklch(15% 0.01 250);
+  color: var(--primary-contrast);
   font-weight: 700;
   border: none;
   border-radius: 14px;
@@ -247,6 +292,12 @@
 }
 
 .input-field::placeholder { color: var(--text-muted); }
+
+select.input-field {
+  min-height: 44px;
+  padding: 0 40px 0 16px;
+  line-height: normal;
+}
 
 .input-field:focus {
   border-color: var(--border-focus);
@@ -325,21 +376,21 @@
 
 .orb-1 {
   width: 350px; height: 350px;
-  background: oklch(83.3% 0.145 321.434 / 0.12);
+  background: var(--primary-12);
   top: -80px; right: -80px;
   animation-delay: 0s;
 }
 
 .orb-2 {
   width: 250px; height: 250px;
-  background: oklch(65% 0.2 280 / 0.1);
+  background: var(--accent-glow-10);
   bottom: 10%; left: -60px;
   animation-delay: 3s;
 }
 
 .orb-3 {
   width: 180px; height: 180px;
-  background: oklch(45% 0.017 213.2 / 0.08);
+  background: var(--accent-glow-08);
   top: 40%; right: 10%;
   animation-delay: 1.5s;
 }

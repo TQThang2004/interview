@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { api } from '../services/api';
 import { useModal } from '../context/ModalContext';
 
@@ -6,31 +6,23 @@ export function useAudioRecorder(setUserAnswer) {
   const { showAlert } = useModal();
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
-  
+
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  useEffect(() => {
-    return () => stopRecordingHard();
-  }, []);
-
-  const stopRecordingHard = () => {
+  const stopRecordingHard = useCallback(() => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
       mediaRecorderRef.current.stop();
-      mediaRecorderRef.current.stream.getTracks().forEach(t => t.stop());
+      mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
     }
     setIsRecording(false);
-  };
+  }, []);
 
-  const toggleRecording = async () => {
-    if (!isRecording) {
-      startRecording();
-    } else {
-      stopRecordingHard();
-    }
-  };
+  useEffect(() => {
+    return () => stopRecordingHard();
+  }, [stopRecordingHard]);
 
-  const startRecording = async () => {
+  const startRecording = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaRecorderRef.current = new MediaRecorder(stream);
@@ -45,13 +37,13 @@ export function useAudioRecorder(setUserAnswer) {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         try {
           const data = await api.transcribe(audioBlob);
-          if (data.status === "success") {
-            setUserAnswer(prev => prev + (prev ? " " : "") + data.text);
+          if (data.status === 'success') {
+            setUserAnswer(prev => prev + (prev ? ' ' : '') + data.text);
           } else {
-            showAlert("Lỗi Whisper: " + data.detail);
+            showAlert(`Lỗi nhận diện giọng nói: ${data.detail}`);
           }
-        } catch(err) {
-          showAlert("Lỗi kết nối Whisper API: " + err.message);
+        } catch (err) {
+          showAlert(`Lỗi kết nối API nhận diện giọng nói: ${err.message}`);
         } finally {
           setIsTranscribing(false);
         }
@@ -60,9 +52,17 @@ export function useAudioRecorder(setUserAnswer) {
       mediaRecorderRef.current.start();
       setIsRecording(true);
     } catch {
-      showAlert("Trình duyệt không thể truy cập Microphone! Vui lòng cấp quyền.");
+      showAlert('Trình duyệt không thể truy cập Microphone. Vui lòng cấp quyền.');
     }
-  };
+  }, [setUserAnswer, showAlert]);
+
+  const toggleRecording = useCallback(async () => {
+    if (!isRecording) {
+      await startRecording();
+    } else {
+      stopRecordingHard();
+    }
+  }, [isRecording, startRecording, stopRecordingHard]);
 
   return { isRecording, isTranscribing, toggleRecording, stopRecordingHard };
 }

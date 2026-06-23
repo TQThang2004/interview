@@ -114,7 +114,7 @@ export default function ProfilePage() {
             width: '72px', height: '72px', borderRadius: '50%',
             background: 'var(--gradient-primary)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '24px', fontWeight: 900, color: 'oklch(15% 0.01 250)',
+            fontSize: '24px', fontWeight: 900, color: 'var(--primary-contrast)',
             boxShadow: 'var(--shadow-primary)',
             overflow: 'hidden'
           }}>
@@ -148,7 +148,7 @@ export default function ProfilePage() {
               padding: '9px 18px', borderRadius: '10px', fontSize: '13px', fontWeight: 600,
               display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', border: 'none', transition: 'all 0.2s',
               background: tab === t.id ? 'var(--gradient-primary)' : 'transparent',
-              color: tab === t.id ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+              color: tab === t.id ? 'var(--primary-contrast)' : 'var(--text-secondary)',
             }}>
             {t.icon} {t.label}
           </button>

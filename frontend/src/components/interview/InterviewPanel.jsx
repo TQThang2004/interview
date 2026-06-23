@@ -19,7 +19,7 @@ export default function InterviewPanel({
             {Array.from({ length: totalQuestions }).map((_, i) => (
               <div key={i} style={{ 
                 height: '6px', width: '32px', borderRadius: '4px', transition: 'all 0.3s',
-                background: i < currentIdx ? 'var(--primary)' : i === currentIdx ? 'oklch(83.3% 0.145 321.434 / 0.6)' : 'var(--bg-elevated)'
+                background: i < currentIdx ? 'var(--primary)' : i === currentIdx ? 'var(--primary-60)' : 'var(--bg-elevated)'
               }}></div>
             ))}
           </div>
@@ -49,9 +49,9 @@ export default function InterviewPanel({
             width: '52px', height: '52px', background: 'var(--gradient-primary)', 
             borderRadius: '16px', borderRadiusBottomRight: '4px', display: 'flex', 
             alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-            boxShadow: '0 8px 24px oklch(83.3% 0.145 321.434 / 0.3)'
+            boxShadow: '0 8px 24px var(--primary-30)'
           }}>
-            <Bot size={28} style={{ color: 'oklch(15% 0.01 250)' }} />
+            <Bot size={28} style={{ color: 'var(--primary-contrast)' }} />
           </div>
           <div className="glass-card" style={{ 
             flex: 1, padding: '24px 32px', position: 'relative', 
@@ -62,7 +62,7 @@ export default function InterviewPanel({
               border: 'none', color: 'var(--text-muted)', padding: '8px', borderRadius: '50%',
               cursor: 'pointer', transition: 'all 0.2s', display: 'flex'
             }}
-            onMouseEnter={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.15)'; }}
+            onMouseEnter={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'var(--primary-15)'; }}
             onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'var(--bg-elevated)'; }}>
               <Volume2 size={20} />
             </button>
@@ -86,8 +86,8 @@ export default function InterviewPanel({
               position: 'relative', zIndex: 10, width: '84px', height: '84px', borderRadius: '50%', 
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: 'none',
               background: isRecording ? 'oklch(65% 0.22 25)' : 'var(--gradient-primary)',
-              color: isRecording ? 'white' : 'oklch(15% 0.01 250)',
-              boxShadow: isRecording ? '0 0 30px oklch(65% 0.22 25 / 0.5)' : '0 12px 30px oklch(83.3% 0.145 321.434 / 0.3)',
+              color: isRecording ? 'white' : 'var(--primary-contrast)',
+              boxShadow: isRecording ? '0 0 30px oklch(65% 0.22 25 / 0.5)' : '0 12px 30px var(--primary-30)',
               transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
               transform: isRecording ? 'scale(1.05)' : 'scale(1)'
             }}
@@ -137,7 +137,7 @@ export default function InterviewPanel({
                 background: 'oklch(14% 0.018 250 / 0.4)', border: '1px solid var(--border)',
                 transition: 'all 0.3s',
                 borderColor: isRecording || isTranscribing ? 'var(--primary)' : 'var(--border)',
-                boxShadow: isRecording || isTranscribing ? '0 0 0 2px oklch(83.3% 0.145 321.434 / 0.1)' : 'none',
+                boxShadow: isRecording || isTranscribing ? '0 0 0 2px var(--primary-10)' : 'none',
                 overflowY: 'auto'
               }}>
                 {userAnswer ? (
@@ -160,7 +160,7 @@ export default function InterviewPanel({
                 color: isRecording || isTranscribing ? 'var(--text-muted)' : 'var(--text-secondary)',
                 opacity: isRecording || isTranscribing ? 0.5 : 1,
               }}
-              onMouseEnter={e => { if (!isRecording && !isTranscribing) { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'oklch(83.3% 0.145 321.434 / 0.06)'; } }}
+              onMouseEnter={e => { if (!isRecording && !isTranscribing) { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'var(--primary-06)'; } }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'transparent'; }}>
               <SkipForward size={16} /> Bỏ qua
             </button>

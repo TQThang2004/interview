@@ -121,7 +121,7 @@ export default function QuizPanel({
               style={{
                 padding: '6px 14px', borderRadius: '8px', border: 'none',
                 background: 'oklch(72% 0.18 145)', cursor: 'pointer', fontSize: '13px',
-                color: 'oklch(15% 0.01 250)', fontWeight: 700,
+                color: 'var(--primary-contrast)', fontWeight: 700,
               }}
             >Nộp bài</button>
           </div>

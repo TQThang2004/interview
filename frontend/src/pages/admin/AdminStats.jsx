@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { api } from '../../services/api';
 import {
   Users, Mic, Trophy, Target, TrendingUp, BarChart3,
@@ -38,7 +38,7 @@ function ChartBar({ date, total, completed, avgScore, maxTotal }) {
         {avgScore != null ? avgScore : ''}
       </div>
       <div style={{ width: '100%', height: '80px', display: 'flex', alignItems: 'flex-end', gap: '2px' }}>
-        <div style={{ flex: 1, height: `${pct}%`, minHeight: total > 0 ? '4px' : 0, background: 'oklch(83.3% 0.145 321.434 / 0.3)', borderRadius: '4px 4px 0 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ flex: 1, height: `${pct}%`, minHeight: total > 0 ? '4px' : 0, background: 'var(--primary-30)', borderRadius: '4px 4px 0 0', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', bottom: 0, width: '100%', height: `${completedPct}%`, background: 'var(--gradient-primary)', borderRadius: '4px 4px 0 0' }} />
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function AdminStats() {
   const [topLimit, setTopLimit] = useState(10);
   const [candidatesLoading, setCandidatesLoading] = useState(true);
 
-  const loadStats = async () => {
+  const loadStats = useCallback(async () => {
     setLoading(true);
     try {
       const [s, c] = await Promise.all([
@@ -144,9 +144,9 @@ export default function AdminStats() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [chartDays]);
 
-  const loadCandidates = async () => {
+  const loadCandidates = useCallback(async () => {
     setCandidatesLoading(true);
     try {
       const data = await api.adminGetTopCandidates(topLimit);
@@ -156,10 +156,10 @@ export default function AdminStats() {
     } finally {
       setCandidatesLoading(false);
     }
-  };
+  }, [topLimit]);
 
-  useEffect(() => { loadStats(); }, [chartDays]);
-  useEffect(() => { loadCandidates(); }, [topLimit]);
+  useEffect(() => { loadStats(); }, [loadStats]);
+  useEffect(() => { loadCandidates(); }, [loadCandidates]);
 
   if (loading) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px', gap: '12px', color: 'var(--text-muted)' }}>
@@ -172,7 +172,7 @@ export default function AdminStats() {
   const maxTotal = chart.length > 0 ? Math.max(...chart.map(d => d.total || 0), 1) : 1;
 
   const CARDS = [
-    { icon: <Users size={20} />, label: 'Tổng người dùng', value: stats.total_users, sub: `+${stats.new_users_week} tuần này`, color: 'oklch(83.3% 0.145 321.434)' },
+    { icon: <Users size={20} />, label: 'Tổng người dùng', value: stats.total_users, sub: `+${stats.new_users_week} tuần này`, color: 'var(--primary)' },
     { icon: <Mic size={20} />, label: 'Tổng phỏng vấn', value: stats.total_interviews, sub: `+${stats.interviews_week} tuần này`, color: 'oklch(68% 0.16 230)' },
     { icon: <CheckCircle size={20} />, label: 'Tỉ lệ hoàn thành', value: `${stats.completion_rate}%`, sub: `${stats.completed_interviews} / ${stats.total_interviews}`, color: 'oklch(72% 0.18 145)' },
     { icon: <Trophy size={20} />, label: 'Điểm trung bình', value: `${stats.avg_score}/10`, sub: stats.avg_score >= 7 ? 'Xuất sắc 🏆' : 'Cần cải thiện', color: 'oklch(80% 0.18 80)' },
@@ -209,7 +209,7 @@ export default function AdminStats() {
                   padding: '5px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', border: '1px solid',
                   background: chartDays === d ? 'var(--gradient-primary)' : 'transparent',
                   borderColor: chartDays === d ? 'transparent' : 'var(--border)',
-                  color: chartDays === d ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+                  color: chartDays === d ? 'var(--primary-contrast)' : 'var(--text-secondary)',
                 }}>
                 {d}N
               </button>
@@ -231,7 +231,7 @@ export default function AdminStats() {
                 <span style={{ width: '12px', height: '12px', borderRadius: '3px', background: 'var(--gradient-primary)', display: 'inline-block' }} /> Hoàn thành
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--text-muted)' }}>
-                <span style={{ width: '12px', height: '12px', borderRadius: '3px', background: 'oklch(83.3% 0.145 321.434 / 0.3)', display: 'inline-block' }} /> Tổng phỏng vấn
+                <span style={{ width: '12px', height: '12px', borderRadius: '3px', background: 'var(--primary-30)', display: 'inline-block' }} /> Tổng phỏng vấn
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--primary)' }}>
                 Số = Điểm TB ngày đó
@@ -255,7 +255,7 @@ export default function AdminStats() {
                   padding: '5px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', border: '1px solid',
                   background: topLimit === n ? 'var(--gradient-primary)' : 'transparent',
                   borderColor: topLimit === n ? 'transparent' : 'var(--border)',
-                  color: topLimit === n ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+                  color: topLimit === n ? 'var(--primary-contrast)' : 'var(--text-secondary)',
                 }}>Top {n}</button>
             ))}
             <button onClick={loadCandidates} style={{ padding: '5px 10px', borderRadius: '8px', border: '1px solid var(--border)', background: 'transparent', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex' }}>
@@ -269,7 +269,7 @@ export default function AdminStats() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '16px' }}>
             {[
               { icon: <Award size={16} />, label: 'Điểm TB cao nhất', value: `${Number(candidates[0]?.avg_score || 0).toFixed(1)}/10`, color: 'oklch(80% 0.18 80)' },
-              { icon: <TrendingUp size={16} />, label: 'PV nhiều nhất', value: candidates.reduce((m, c) => Math.max(m, c.completed_interviews), 0), color: 'oklch(83.3% 0.145 321.434)' },
+              { icon: <TrendingUp size={16} />, label: 'PV nhiều nhất', value: candidates.reduce((m, c) => Math.max(m, c.completed_interviews), 0), color: 'var(--primary)' },
               { icon: <Target size={16} />, label: 'Điểm tuyệt đối', value: `${Math.max(...candidates.map(c => Number(c.best_score || 0))).toFixed(1)}/10`, color: 'oklch(72% 0.18 145)' },
             ].map((s, i) => (
               <div key={i} className="glass-card" style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', gap: '10px' }}>

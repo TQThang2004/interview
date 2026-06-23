@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 chromadb
-google-generativeai
+google-genai
 pydantic[email]
 python-dotenv
 python-multipart

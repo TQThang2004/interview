@@ -1,16 +1,16 @@
-﻿"""
-CV Evaluation Controller â€“ xá»­ lÃ½ upload Cloudinary vÃ  CRUD lá»‹ch sá»­ Ä‘Ã¡nh giÃ¡ CV.
+"""
+CV Evaluation Controller – xử lý upload Cloudinary và CRUD lịch sử đánh giá CV.
 
-Luá»“ng lÆ°u:
-  1. Nháº­n file PDF + káº¿t quáº£ Ä‘Ã¡nh giÃ¡ tá»« frontend
-  2. Kiá»ƒm tra giá»›i háº¡n 2 báº£n/user (qua service)
-  3. Upload PDF lÃªn Cloudinary vá»›i resource_type="image" (theo yÃªu cáº§u)
-  4. LÆ°u record vÃ o PostgreSQL
-  5. Tráº£ vá» response kÃ¨m cloudinary_url Ä‘á»ƒ frontend embed
+Luồng lưu:
+  1. Nhận file PDF + kết quả đánh giá từ frontend
+  2. Kiểm tra giới hạn 2 bản/user (qua service)
+  3. Upload PDF lên Cloudinary với resource_type="image" (theo yêu cầu)
+  4. Lưu record vào PostgreSQL
+  5. Trả về response kèm cloudinary_url để frontend embed
 
-Luá»“ng xÃ³a:
-  1. XÃ³a record DB (service tráº£ vá» cloudinary_public_id)
-  2. Gá»i cloudinary.uploader.destroy(public_id, resource_type="image") Ä‘á»ƒ xÃ³a file
+Luồng xóa:
+  1. Xóa record DB (service trả về cloudinary_public_id)
+  2. Gọi cloudinary.uploader.destroy(public_id, resource_type="image") để xóa file
 """
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ from app.services.cv_evaluation_service import MAX_CV_EVALUATIONS
 
 logger = get_logger(__name__)
 
-# Khá»Ÿi táº¡o Cloudinary má»™t láº§n
+# Khởi tạo Cloudinary một lần
 cloudinary.config(
     cloud_name=CLOUDINARY_CLOUD_NAME,
     api_key=CLOUDINARY_API_KEY,
@@ -48,26 +48,26 @@ async def handle_save_cv_evaluation(
     cv_text: str,
 ) -> dict:
     """
-    Upload CV lÃªn Cloudinary rá»“i lÆ°u káº¿t quáº£ Ä‘Ã¡nh giÃ¡ vÃ o DB.
+    Upload CV lên Cloudinary rồi lưu kết quả đánh giá vào DB.
 
     Raises:
-        HTTPException 409: Khi Ä‘Ã£ Ä‘áº¡t giá»›i háº¡n 2 báº£n.
-        HTTPException 500: Khi upload Cloudinary tháº¥t báº¡i.
+        HTTPException 409: Khi đã đạt giới hạn 2 bản.
+        HTTPException 500: Khi upload Cloudinary thất bại.
     """
-    # 1. Kiá»ƒm tra giá»›i háº¡n trÆ°á»›c Ä‘á»ƒ trÃ¡nh upload dÆ° thá»«a
+    # 1. Kiểm tra giới hạn trước để tránh upload dư thừa
     count = await cv_evaluation_service.count_user_evaluations(user_id)
     if count >= MAX_CV_EVALUATIONS:
         raise HTTPException(
             status_code=409,
-            detail=f"ÄÃ£ Ä‘áº¡t giá»›i háº¡n {MAX_CV_EVALUATIONS} báº£n Ä‘Ã¡nh giÃ¡. Vui lÃ²ng xÃ³a báº£n cÅ© trÆ°á»›c.",
+            detail=f"Đã đạt giới hạn {MAX_CV_EVALUATIONS} bản đánh giá. Vui lòng xóa bản cũ trước.",
         )
 
-    # 2. Äá»c bytes file
+    # 2. Đọc bytes file
     cv_bytes = await cv_file.read()
     original_filename = cv_file.filename or "cv.pdf"
     file_size = len(cv_bytes)
 
-    # 3. Upload lÃªn Cloudinary vá»›i resource_type="image"
+    # 3. Upload lên Cloudinary với resource_type="image"
     try:
         upload_result = cloudinary.uploader.upload(
             cv_bytes,
@@ -81,16 +81,16 @@ async def handle_save_cv_evaluation(
         cloudinary_public_id = upload_result.get("public_id", "")
     except Exception as exc:
         logger.exception("Failed to upload CV to Cloudinary")
-        raise HTTPException(status_code=500, detail=f"KhÃ´ng thá»ƒ upload CV lÃªn Cloudinary: {exc}")
+        raise HTTPException(status_code=500, detail=f"Không thể upload CV lên Cloudinary: {exc}")
 
-    # 4. Láº¥y overall_score tá»« evaluation_result
+    # 4. Lấy overall_score từ evaluation_result
     overall_score = None
     try:
         overall_score = float(evaluation_result.get("overall", 0))
     except (TypeError, ValueError):
         pass
 
-    # 5. LÆ°u vÃ o DB
+    # 5. Lưu vào DB
     try:
         record = await cv_evaluation_service.save_cv_evaluation(
             user_id=user_id,
@@ -103,7 +103,7 @@ async def handle_save_cv_evaluation(
             evaluation_result=evaluation_result,
         )
     except ValueError as e:
-        # Race condition: giá»›i háº¡n bá»‹ vÆ°á»£t giá»¯a lÃºc check vÃ  insert
+        # Race condition: giới hạn bị vượt giữa lúc check và insert
         raise HTTPException(status_code=409, detail=str(e))
 
     return {
@@ -117,7 +117,7 @@ async def handle_list_cv_evaluations(
     limit: int = 10,
     offset: int = 0,
 ) -> dict:
-    """Láº¥y danh sÃ¡ch báº£n Ä‘Ã¡nh giÃ¡ CV cá»§a user."""
+    """Lấy danh sách bản đánh giá CV của user."""
     items = await cv_evaluation_service.get_user_cv_evaluations(user_id, limit, offset)
     count = await cv_evaluation_service.count_user_evaluations(user_id)
     return {
@@ -132,10 +132,10 @@ async def handle_get_cv_evaluation(
     evaluation_id: str,
     user_id: str,
 ) -> dict:
-    """Chi tiáº¿t 1 báº£n Ä‘Ã¡nh giÃ¡ (kÃ¨m cv_text)."""
+    """Chi tiết 1 bản đánh giá (kèm cv_text)."""
     detail = await cv_evaluation_service.get_cv_evaluation_detail(evaluation_id, user_id)
     if not detail:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y báº£n Ä‘Ã¡nh giÃ¡.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy bản đánh giá.")
     return {"status": "success", "evaluation": detail}
 
 
@@ -143,24 +143,24 @@ async def handle_delete_cv_evaluation(
     evaluation_id: str,
     user_id: str,
 ) -> dict:
-    """XÃ³a báº£n Ä‘Ã¡nh giÃ¡ khá»i DB vÃ  Cloudinary."""
+    """Xóa bản đánh giá khỏi DB và Cloudinary."""
     public_id = await cv_evaluation_service.delete_cv_evaluation(evaluation_id, user_id)
     if public_id is None:
-        raise HTTPException(status_code=404, detail="KhÃ´ng tÃ¬m tháº¥y báº£n Ä‘Ã¡nh giÃ¡ hoáº·c khÃ´ng cÃ³ quyá»n xÃ³a.")
+        raise HTTPException(status_code=404, detail="Không tìm thấy bản đánh giá hoặc không có quyền xóa.")
 
-    # XÃ³a file trÃªn Cloudinary (resource_type="image" khá»›p vá»›i lÃºc upload)
+    # Xóa file trên Cloudinary (resource_type="image" khớp với lúc upload)
     try:
         cloudinary.uploader.destroy(public_id, resource_type="image")
         logger.info("Deleted Cloudinary CV asset.")
     except Exception as exc:
-        # Log lá»—i nhÆ°ng khÃ´ng fail request â€“ record DB Ä‘Ã£ xÃ³a rá»“i
+        # Log lỗi nhưng không fail request – record DB đã xóa rồi
         logger.warning("Failed to delete Cloudinary CV asset: %s", exc)
 
     return {"status": "success", "deleted_id": evaluation_id}
 
 
 async def handle_count_cv_evaluations(user_id: str) -> dict:
-    """Tráº£ vá» sá»‘ báº£n Ä‘Ã¡nh giÃ¡ hiá»‡n cÃ³ vÃ  giá»›i háº¡n."""
+    """Trả về số bản đánh giá hiện có và giới hạn."""
     count = await cv_evaluation_service.count_user_evaluations(user_id)
     return {
         "status": "success",

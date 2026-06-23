@@ -36,6 +36,8 @@ def setup_logging(level: int = logging.INFO) -> None:
     # Giảm noise từ thư viện ngoài
     logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
     logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("google_genai").setLevel(logging.WARNING)
+    logging.getLogger("google_genai.models").setLevel(logging.WARNING)
 
 
 def get_logger(name: str) -> logging.Logger:

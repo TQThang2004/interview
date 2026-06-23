@@ -1,7 +1,7 @@
-﻿"""
-History Controller â€“ nháº­n request, gá»i interview_service, format response.
+"""
+History Controller – nhận request, gọi interview_service, format response.
 
-Xá»­ lÃ½ CRUD lá»‹ch sá»­ phá»ng váº¥n.
+Xử lý CRUD lịch sử phỏng vấn.
 """
 from typing import Optional
 

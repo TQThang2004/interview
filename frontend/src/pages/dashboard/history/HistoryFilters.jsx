@@ -21,7 +21,7 @@ export default function HistoryFilters({
               padding: '7px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', border: '1px solid', transition: 'all 0.15s',
               background: filterLevel === l ? 'var(--gradient-primary)' : 'transparent',
               borderColor: filterLevel === l ? 'transparent' : 'var(--border)',
-              color: filterLevel === l ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+              color: filterLevel === l ? 'var(--primary-contrast)' : 'var(--text-secondary)',
             }}>
             {l === 'all' ? 'Tất cả' : l}
           </button>
@@ -38,7 +38,7 @@ export default function HistoryFilters({
               padding: '7px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', border: '1px solid', transition: 'all 0.15s',
               background: filterStatus === s.key ? 'var(--gradient-primary)' : 'transparent',
               borderColor: filterStatus === s.key ? 'transparent' : 'var(--border)',
-              color: filterStatus === s.key ? 'oklch(15% 0.01 250)' : 'var(--text-secondary)',
+              color: filterStatus === s.key ? 'var(--primary-contrast)' : 'var(--text-secondary)',
             }}>
             {s.label}
           </button>

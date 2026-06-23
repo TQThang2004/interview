@@ -30,7 +30,7 @@ export default function DashboardLayout({
     <div className="bg-animated" style={{ minHeight: '100vh', display: 'flex' }}>
       {/* Background orbs */}
       <div className="orb" style={{ width: '300px', height: '300px', background: 'var(--primary-glow)', top: '-80px', right: '10%', animation: 'orbFloat 7s ease-in-out infinite' }} />
-      <div className="orb" style={{ width: '200px', height: '200px', background: 'oklch(65% 0.2 280 / 0.05)', bottom: '10%', right: '5%', animation: 'orbFloat 9s ease-in-out infinite', animationDelay: '3s' }} />
+      <div className="orb" style={{ width: '200px', height: '200px', background: 'var(--accent-glow-05)', bottom: '10%', right: '5%', animation: 'orbFloat 9s ease-in-out infinite', animationDelay: '3s' }} />
 
       {/* Sidebar */}
       <Sidebar
@@ -104,7 +104,7 @@ export default function DashboardLayout({
                   background: 'var(--gradient-primary)',
                   border: '2px solid var(--primary-glow)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontWeight: 800, fontSize: '12px', color: 'oklch(15% 0.01 250)', cursor: 'pointer', overflow: 'hidden', padding: 0
+                  fontWeight: 800, fontSize: '12px', color: 'var(--primary-contrast)', cursor: 'pointer', overflow: 'hidden', padding: 0
                 }}
               >
                 <img src={getAvatar(user)} alt="avatar" style={{width: '100%', height: '100%', borderRadius: 'inherit', objectFit: 'cover'}} />
