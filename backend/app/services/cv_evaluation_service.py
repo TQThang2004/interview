@@ -2,7 +2,7 @@
 CV Evaluation Service – CRUD lịch sử đánh giá CV vào PostgreSQL.
 
 Quy tắc nghiệp vụ:
-  - Mỗi user tối đa 2 bản đánh giá CV.
+  - Mỗi user tối đa 5 bản đánh giá CV.
   - File CV được lưu trên Cloudinary (xem cloudinary_public_id để xóa sau).
   - Raise ValueError nếu vượt giới hạn khi gọi save_cv_evaluation.
 """
@@ -13,7 +13,7 @@ from typing import Optional
 
 from app.database.connection import get_pool
 
-MAX_CV_EVALUATIONS = 2
+MAX_CV_EVALUATIONS = 5
 
 
 # ---------------------------------------------------------------------------

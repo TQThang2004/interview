@@ -8,9 +8,10 @@ import CommunityFeed from './CommunityFeed';
 import CommunityMyPosts from './CommunityMyPosts';
 import CommunityNotifications from './CommunityNotifications';
 import CommunitySidebar from './CommunitySidebar';
+import PostDetailModal from './PostDetailModal';
 
 export default function CommunityPage() {
-  useAuth();
+  const { user } = useAuth();
   const { showAlert, showConfirm } = useModal();
   const [activeTab, setActiveTab] = useState('feed');
   const [search, setSearch] = useState('');
@@ -77,6 +78,7 @@ export default function CommunityPage() {
               search={search} setSearch={setSearch}
               showCreate={community.showCreate} setShowCreate={community.setShowCreate}
               onLike={community.toggleLike} onSave={community.toggleSave}
+              onViewDetail={community.openPostDetail}
               newTitle={community.newTitle} setNewTitle={community.setNewTitle}
               newContent={community.newContent} setNewContent={community.setNewContent}
               newCategory={community.newCategory} setNewCategory={community.setNewCategory}
@@ -108,6 +110,21 @@ export default function CommunityPage() {
 
         <CommunitySidebar tags={community.tags} />
       </div>
+
+      {/* Post Detail Modal */}
+      {community.selectedPost && (
+        <PostDetailModal
+          post={community.selectedPost}
+          comments={community.comments}
+          commentsLoading={community.commentsLoading}
+          currentUserId={user?.id}
+          onClose={community.closePostDetail}
+          onLike={community.toggleLike}
+          onSave={community.toggleSave}
+          onAddComment={community.handleAddComment}
+          onDeleteComment={community.handleDeleteComment}
+        />
+      )}
     </div>
   );
 }

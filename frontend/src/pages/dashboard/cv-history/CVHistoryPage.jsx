@@ -42,7 +42,7 @@ export default function CVHistoryPage() {
           <span className="gradient-text">Lịch sử đánh giá CV</span> 📋
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-          Xem lại bản CV và kết quả phân tích đã lưu. Mỗi tài khoản được lưu tối đa <strong>2 bản</strong>.
+          Xem lại bản CV và kết quả phân tích đã lưu. Mỗi tài khoản được lưu tối đa <strong>5 bản</strong>.
         </p>
       </div>
 
@@ -56,7 +56,7 @@ export default function CVHistoryPage() {
         <CVHistoryListView
           evaluations={evaluations}
           count={count}
-          maxCount={2}
+          maxCount={5}
           loading={loading}
           onSelect={setSelected}
           onDelete={handleDelete}

@@ -17,6 +17,11 @@ export function useCommunityPage({ activeTab, search, showAlert, showConfirm }) 
   const [uploadingImage, setUploadingImage] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
 
+  // Post detail + comments
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [commentsLoading, setCommentsLoading] = useState(false);
+
   const loadFeed = useCallback(async () => {
     setLoading(true);
     try {
@@ -171,6 +176,66 @@ export function useCommunityPage({ activeTab, search, showAlert, showConfirm }) 
     setUnreadCount(c => Math.max(0, c - 1));
   }, []);
 
+  // ── Post Detail & Comments ──
+
+  const openPostDetail = useCallback(async (postId) => {
+    setCommentsLoading(true);
+    try {
+      const data = await api.getPostDetail(postId);
+      if (data?.post) {
+        setSelectedPost(data.post);
+        setComments(data.post.comments || []);
+      }
+    } catch (err) {
+      console.error('Failed to load post detail:', err);
+    } finally {
+      setCommentsLoading(false);
+    }
+  }, []);
+
+  const closePostDetail = useCallback(() => {
+    setSelectedPost(null);
+    setComments([]);
+  }, []);
+
+  const handleAddComment = useCallback(async (postId, content) => {
+    try {
+      const result = await api.addComment(postId, content);
+      if (result?.comment) {
+        setComments(prev => [...prev, result.comment]);
+        // Update comments_count on posts list
+        const updateCount = (list) =>
+          list.map(p => p.id === postId ? { ...p, comments_count: (p.comments_count || 0) + 1 } : p);
+        setPosts(updateCount);
+        setMyPosts(updateCount);
+        if (selectedPost && selectedPost.id === postId) {
+          setSelectedPost(prev => ({ ...prev, comments_count: (prev.comments_count || 0) + 1 }));
+        }
+      }
+    } catch (err) {
+      showAlert(err.message || 'Gửi bình luận thất bại.');
+    }
+  }, [selectedPost, showAlert]);
+
+  const handleDeleteComment = useCallback(async (commentId) => {
+    if (!await showConfirm('Bạn có chắc muốn xóa bình luận này?')) return;
+    try {
+      await api.deleteComment(commentId);
+      setComments(prev => prev.filter(c => c.id !== commentId));
+      // Update comments_count on posts list
+      if (selectedPost) {
+        const postId = selectedPost.id;
+        const updateCount = (list) =>
+          list.map(p => p.id === postId ? { ...p, comments_count: Math.max(0, (p.comments_count || 0) - 1) } : p);
+        setPosts(updateCount);
+        setMyPosts(updateCount);
+        setSelectedPost(prev => ({ ...prev, comments_count: Math.max(0, (prev.comments_count || 0) - 1) }));
+      }
+    } catch (err) {
+      showAlert(err.message || 'Xóa bình luận thất bại.');
+    }
+  }, [selectedPost, showAlert, showConfirm]);
+
   return {
     posts,
     myPosts,
@@ -199,5 +264,13 @@ export function useCommunityPage({ activeTab, search, showAlert, showConfirm }) 
     handleCreatePost,
     handleMarkAllRead,
     handleMarkRead,
+    // Post detail & comments
+    selectedPost,
+    comments,
+    commentsLoading,
+    openPostDetail,
+    closePostDetail,
+    handleAddComment,
+    handleDeleteComment,
   };
 }

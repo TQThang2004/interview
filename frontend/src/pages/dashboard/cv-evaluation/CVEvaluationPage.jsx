@@ -13,7 +13,7 @@ export default function CVEvaluationPage() {
 
   // Save state
   const [savedCount, setSavedCount] = useState(0);
-  const [maxCount] = useState(2);
+  const [maxCount] = useState(5);
   const [saving, setSaving] = useState(false);
   const [alreadySaved, setAlreadySaved] = useState(false);
   const [showSaveBanner, setShowSaveBanner] = useState(true);

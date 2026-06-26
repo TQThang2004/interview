@@ -104,14 +104,15 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     # Embed query
     query_text = f"{topic} technical interview questions"
     try:
-        query_embeddings = embed_contents(
+        raw_embeddings = embed_contents(
             api_key=GOOGLE_API_KEY_EMBEDDING,
             contents=query_text,
             model=EMBED_MODEL,
             task_type="RETRIEVAL_QUERY",
         )
-        if not query_embeddings:
+        if not raw_embeddings:
             return []
+        query_embedding = raw_embeddings[0]
     except Exception as e:
         logger.warning("Failed to embed practice query: %s", e)
         return []
@@ -120,7 +121,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
     fetch_n = min(num_q * 4, 100)
     try:
         results = collection.query(
-            query_embeddings=query_embeddings,
+            query_embeddings=query_embedding,
             n_results=fetch_n,
             where={"instruction": topic},
             include=["documents", "metadatas", "distances"],
@@ -130,7 +131,7 @@ def get_practice_questions(topic: str, level: str, num_q: int) -> list[dict]:
         logger.warning("Practice query with topic filter failed, retrying without filter: %s", e)
         try:
             results = collection.query(
-                query_embeddings=query_embeddings,
+                query_embeddings=query_embedding,
                 n_results=fetch_n,
                 include=["documents", "metadatas", "distances"],
             )
@@ -165,7 +166,7 @@ def get_rag_status() -> dict:
     try:
         collection = _get_collection()
         result = collection.get(include=["metadatas"])
-        metadatas = result.get("metadatas", [])
+        metadatas = result.get("metadatas") or []
     except Exception as exc:
         return {
             "status": "error",
@@ -177,7 +178,7 @@ def get_rag_status() -> dict:
 
     topics: dict[str, int] = {}
     for meta in metadatas:
-        topic = meta.get("instruction", "") if meta else ""
+        topic = str(meta.get("instruction", "")) if meta else ""
         topics[topic] = topics.get(topic, 0) + 1
 
     missing = [topic for topic in expected_topics if topics.get(topic, 0) == 0]

@@ -60,4 +60,36 @@ export const communityApi = {
     const res = await apiFetch('/community/notifications/read-all', { method: 'PATCH' });
     return res.ok;
   },
+
+  // --- Comments ---
+
+  getPostDetail: async (postId) => {
+    const res = await apiFetch(`/community/posts/${postId}`);
+    if (!res.ok) return null;
+    return res.json();
+  },
+
+  getComments: async (postId) => {
+    const res = await apiFetch(`/community/posts/${postId}/comments`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.comments || [];
+  },
+
+  addComment: async (postId, content) => {
+    const res = await apiFetch(`/community/posts/${postId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ content }),
+    });
+    return jsonOrThrow(res);
+  },
+
+  deleteComment: async (commentId) => {
+    const res = await apiFetch(`/community/comments/${commentId}`, { method: 'DELETE' });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      throw new Error(data?.detail || 'Xóa comment thất bại.');
+    }
+    return true;
+  },
 };

@@ -30,7 +30,7 @@ export function StatusBadge({ status }) {
   );
 }
 
-export default function PostCard({ post, onLike, onSave, showStatus }) {
+export default function PostCard({ post, onLike, onSave, onViewDetail, showStatus }) {
   const cat = CATEGORY_COLOR[post.category] || {};
   return (
     <div className="glass-card" style={{ padding: '22px', transition: 'all 0.25s', cursor: 'pointer' }}
@@ -81,7 +81,7 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
             <ThumbsUp size={14} /> {post.likes_count}
           </button>
         )}
-        <button style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '13px', color: 'var(--text-muted)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500 }}>
+        <button onClick={() => onViewDetail && onViewDetail(post.id)} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '13px', color: 'var(--text-muted)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500 }}>
           <MessageSquare size={14} /> {post.comments_count}
         </button>
         {onSave && (
@@ -89,7 +89,7 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
             <Bookmark size={14} fill={post.is_saved ? 'oklch(80% 0.18 80)' : 'none'} /> {post.is_saved ? 'Đã lưu' : 'Lưu'}
           </button>
         )}
-        <button style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: 'var(--primary)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600, marginLeft: onSave ? '0' : 'auto' }}>
+        <button onClick={() => onViewDetail && onViewDetail(post.id)} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: 'var(--primary)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600, marginLeft: onSave ? '0' : 'auto' }}>
           Đọc thêm <ChevronRight size={13} />
         </button>
       </div>
@@ -97,14 +97,14 @@ export default function PostCard({ post, onLike, onSave, showStatus }) {
   );
 }
 
-export function PostList({ posts, loading, onLike, onSave, showStatus }) {
+export function PostList({ posts, loading, onLike, onSave, onViewDetail, showStatus }) {
   if (loading) return <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>Đang tải bài viết...</div>;
   if (posts.length === 0) return <div style={{ textAlign: 'center', padding: '40px' }}>Không có bài viết nào.</div>;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
       {posts.map(post => (
-        <PostCard key={post.id} post={post} onLike={onLike} onSave={onSave} showStatus={showStatus} />
+        <PostCard key={post.id} post={post} onLike={onLike} onSave={onSave} onViewDetail={onViewDetail} showStatus={showStatus} />
       ))}
     </div>
   );

@@ -6,7 +6,7 @@ import CommunityCreateForm from './CommunityCreateForm';
 export default function CommunityFeed({
   posts, loading, search, setSearch,
   showCreate, setShowCreate,
-  onLike, onSave,
+  onLike, onSave, onViewDetail,
   // Create form props
   newTitle, setNewTitle, newContent, setNewContent,
   newCategory, setNewCategory, newTags, setNewTags,
@@ -41,7 +41,7 @@ export default function CommunityFeed({
       )}
 
       {/* Posts */}
-      <PostList posts={posts} loading={loading} onLike={onLike} onSave={onSave} showStatus={false} />
+      <PostList posts={posts} loading={loading} onLike={onLike} onSave={onSave} onViewDetail={onViewDetail} showStatus={false} />
     </>
   );
 }
